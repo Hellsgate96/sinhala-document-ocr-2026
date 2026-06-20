@@ -1,0 +1,20 @@
+images/line_000007.png	වෙළඳසැල වයස මුදල රුපියල්
+images/line_000005.png	වයස පාසල මිල
+images/line_000018.png	ජාතික හැඳුනුම්පත අද නගරය ලංකාව
+images/line_000000.png	රෝහල බැංකුව විද්‍යුත් තැපෑල
+images/line_000013.png	ඔව්
+images/line_000019.png	ප්‍රමාණය
+images/line_000008.png	භාණ්ඩ රජය
+images/line_000016.png	නම
+images/line_000014.png	රජය
+images/line_000010.png	වටිනාකම විද්‍යාලය
+images/line_000002.png	ගිණුම් අංකය වයස නැහැ බිල්පත
+images/line_000006.png	රජය
+images/line_000009.png	සුභ උදෑසනක් ස්තූතියි ශත
+images/line_000012.png	ඔව් බිල්පත
+images/line_000015.png	ගම ආහාර
+images/line_000003.png	ආයුබෝවන් ඔව් මහනුවර
+images/line_000017.png	කාර්යාලය රුපියල්
+images/line_000004.png	කරුණාකර සේවය
+images/line_000001.png	පොත
+images/line_000011.png	භාණ්ඩ

@@ -1,0 +1,3 @@
+images/line_000004.png	කරුණාකර සේවය
+images/line_000001.png	පොත
+images/line_000011.png	භාණ්ඩ

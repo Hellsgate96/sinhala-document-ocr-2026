@@ -1,0 +1,3 @@
+images/line_000015.png	ගම ආහාර
+images/line_000003.png	ආයුබෝවන් ඔව් මහනුවර
+images/line_000017.png	කාර්යාලය රුපියල්
