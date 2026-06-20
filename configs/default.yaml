@@ -14,12 +14,13 @@ paths:
   models_dir: models
   charset_path: models/charset.json
   word_list: src/data/sample_words.txt
+  form_vocab: src/data/form_vocab.txt   # extra form-field vocabulary (optional)
 
 # ------------------------------------------------------------
 # Image / recognition input geometry
 # ------------------------------------------------------------
 image:
-  height: 32          # fixed line height fed to the CRNN
+  height: 32          # fixed line height fed to the CRNN (CRNN expects 32)
   max_width: 512      # lines wider than this are resized down
   channels: 1         # 1 = grayscale, 3 = RGB
   pad_value: 255      # padding colour for variable-width batching
@@ -28,25 +29,30 @@ image:
 # Synthetic data generation
 # ------------------------------------------------------------
 synthetic:
-  num_samples: 2000
-  split: [0.70, 0.15, 0.15]      # train / val / test (by source)
-  min_words: 1
-  max_words: 4
+  num_samples: 2000              # default (non-large) run size
+  large:                         # used by `generate_data.py --large`
+    num_samples: 10000
+    output_dir: data/synthetic
+  split: [0.70, 0.15, 0.15]      # train / val / test
+  min_words: 1                   # words_per_line lower bound
+  max_words: 6                   # words_per_line upper bound
+  numeric_ratio: 0.12            # P(token is a synthetic number/date)
+  mixed_ratio: 0.10              # P(token is a Sinhala-English mixed token)
   font_sizes: [22, 26, 30, 34, 40]
   # Font search list. Missing fonts are skipped with a warning.
   # Nirmala UI ships with Windows and supports Sinhala -> good default.
   fonts:
     - "C:/Windows/Fonts/Nirmala.ttc"   # Nirmala UI (Sinhala), ships with Windows
-    - "C:/Windows/Fonts/Iskpota.ttf"          # Iskoola Pota
-    - "/usr/share/fonts/truetype/noto/NotoSansSinhala-Regular.ttf"
+    - "C:/Windows/Fonts/iskpota.ttf"   # Iskoola Pota (if installed)
+    - "/usr/share/fonts/truetype/noto/NotoSansSinhala-Regular.ttf"  # Linux/Colab
     - "fonts/NotoSansSinhala-Regular.ttf"
-    - "fonts/FMAbhaya.ttf"
-    - "fonts/MalithiWeb.ttf"
   augment:
     rotation: true
     rotation_max_deg: 3.0
+    perspective: true
     blur: true
     gaussian_noise: true
+    brightness_contrast: true
     jpeg_compression: true
     shadow: true
 
