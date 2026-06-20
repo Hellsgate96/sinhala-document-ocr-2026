@@ -1,0 +1,31 @@
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+.ipynb_checkpoints/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Model checkpoints
+*.pth
+*.pt
+*.ckpt
+
+# Data and model artifacts (keep dirs via .gitkeep)
+data/*
+!data/.gitkeep
+models/*
+!models/.gitkeep
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Logs
+*.log
+runs/

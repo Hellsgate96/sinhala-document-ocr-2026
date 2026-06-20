@@ -1,0 +1,91 @@
+# ============================================================
+# Sinhala Document OCR - central configuration
+# ============================================================
+
+project:
+  name: sinhala-document-ocr
+  seed: 1337
+
+paths:
+  data_dir: data
+  synthetic_dir: data/synthetic
+  raw_dir: data/raw
+  preprocessed_dir: data/preprocessed
+  models_dir: models
+  charset_path: models/charset.json
+  word_list: src/data/sample_words.txt
+
+# ------------------------------------------------------------
+# Image / recognition input geometry
+# ------------------------------------------------------------
+image:
+  height: 32          # fixed line height fed to the CRNN
+  max_width: 512      # lines wider than this are resized down
+  channels: 1         # 1 = grayscale, 3 = RGB
+  pad_value: 255      # padding colour for variable-width batching
+
+# ------------------------------------------------------------
+# Synthetic data generation
+# ------------------------------------------------------------
+synthetic:
+  num_samples: 2000
+  split: [0.70, 0.15, 0.15]      # train / val / test (by source)
+  min_words: 1
+  max_words: 4
+  font_sizes: [22, 26, 30, 34, 40]
+  # Font search list. Missing fonts are skipped with a warning.
+  # Nirmala UI ships with Windows and supports Sinhala -> good default.
+  fonts:
+    - "C:/Windows/Fonts/Nirmala.ttc"   # Nirmala UI (Sinhala), ships with Windows
+    - "C:/Windows/Fonts/Iskpota.ttf"          # Iskoola Pota
+    - "/usr/share/fonts/truetype/noto/NotoSansSinhala-Regular.ttf"
+    - "fonts/NotoSansSinhala-Regular.ttf"
+    - "fonts/FMAbhaya.ttf"
+    - "fonts/MalithiWeb.ttf"
+  augment:
+    rotation: true
+    rotation_max_deg: 3.0
+    blur: true
+    gaussian_noise: true
+    jpeg_compression: true
+    shadow: true
+
+# ------------------------------------------------------------
+# Model (CRNN) hyper-parameters
+# ------------------------------------------------------------
+model:
+  name: crnn
+  cnn_out_channels: 512
+  rnn_hidden: 256
+  rnn_layers: 2
+  dropout: 0.1
+
+# ------------------------------------------------------------
+# Training
+# ------------------------------------------------------------
+train:
+  epochs: 30
+  batch_size: 64
+  lr: 0.001
+  optimizer: adam          # adam | sgd
+  weight_decay: 0.0
+  num_workers: 2
+  grad_clip: 5.0
+  val_every: 1
+  save_best_metric: cer    # checkpoint selection metric (lower is better)
+  device: auto             # auto | cuda | cpu
+
+# ------------------------------------------------------------
+# Detection (OpenCV baseline)
+# ------------------------------------------------------------
+detection:
+  min_line_height: 8
+  min_line_width: 20
+  dilate_kernel: [25, 3]   # (width, height) to merge characters into lines
+
+# ------------------------------------------------------------
+# Post-processing
+# ------------------------------------------------------------
+postprocess:
+  vocab_path: src/data/sample_words.txt
+  max_edit_distance: 2
