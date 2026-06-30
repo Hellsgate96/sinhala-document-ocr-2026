@@ -1,4 +1,4 @@
-"""Run inference with a trained CRNN: greedy CTC decoding on image(s).
+﻿"""Run inference with a trained CRNN: greedy CTC decoding on image(s).
 
 Usage:
     python -m src.recognition.predict --checkpoint models/crnn_best.pth \
@@ -12,14 +12,14 @@ from __future__ import annotations
 import argparse
 import glob
 import os
-from typing import List, Tuple
+from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
 from PIL import Image
 
 from src.charset import Charset
-from src.data.dataset import resize_keep_height
+from src.recognition.inference import inference_options_from_config, prepare_line_tensor
 from src.recognition.model import build_crnn
 from src.utils.common import (configure_stdout_utf8, get_device, load_checkpoint,
                               load_config)
@@ -27,36 +27,117 @@ from src.utils.common import (configure_stdout_utf8, get_device, load_checkpoint
 IMG_EXTS = (".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp")
 
 
-def image_to_tensor(path: str, height: int, max_width: int, channels: int) -> torch.Tensor:
-    """Load and normalize a single image to a (1, C, H, W) tensor."""
-    mode = "L" if channels == 1 else "RGB"
-    img = Image.open(path).convert(mode)
-    img = resize_keep_height(img, height, max_width)
-    arr = np.asarray(img, dtype=np.float32) / 255.0
-    if channels == 1:
-        arr = arr[None, :, :]
-    else:
-        arr = np.transpose(arr, (2, 0, 1))
-    arr = (arr - 0.5) / 0.5
-    return torch.from_numpy(arr).unsqueeze(0)
+def image_to_tensor(
+    path: str,
+    height: int,
+    max_width: int,
+    channels: int,
+    auto_invert: bool = True,
+    denoise: bool = False,
+) -> torch.Tensor:
+    """Load a line image, apply inference preprocessing, return (1, C, H, W)."""
+    import cv2
+
+    bgr = cv2.imread(path, cv2.IMREAD_COLOR)
+    if bgr is not None:
+        return prepare_line_tensor(
+            bgr,
+            height=height,
+            max_width=max_width,
+            channels=channels,
+            auto_invert=auto_invert,
+            denoise=denoise,
+        )
+    img = Image.open(path)
+    return prepare_line_tensor(
+        img,
+        height=height,
+        max_width=max_width,
+        channels=channels,
+        auto_invert=auto_invert,
+        denoise=denoise,
+    )
 
 
 @torch.no_grad()
-def predict_image(model, charset: Charset, path: str, height: int,
-                  max_width: int, channels: int, device) -> str:
-    """Predict the transcript of one line image."""
-    tensor = image_to_tensor(path, height, max_width, channels).to(device)
-    log_probs = model(tensor)                  # (T, 1, C)
-    indices = log_probs.argmax(2).squeeze(1)   # (T,)
+def predict_tensor(
+    model,
+    charset: Charset,
+    tensor: torch.Tensor,
+    device,
+) -> str:
+    tensor = tensor.to(device)
+    log_probs = model(tensor)
+    indices = log_probs.argmax(2).squeeze(1)
     return charset.ctc_greedy_decode(indices.tolist())
 
 
-def predict_folder(model, charset, folder, height, max_width, channels, device) -> List[Tuple[str, str]]:
+@torch.no_grad()
+def predict_image(
+    model,
+    charset: Charset,
+    path: str,
+    height: int,
+    max_width: int,
+    channels: int,
+    device,
+    auto_invert: bool = True,
+    denoise: bool = False,
+) -> str:
+    """Predict the transcript of one line image file."""
+    tensor = image_to_tensor(
+        path, height, max_width, channels, auto_invert=auto_invert, denoise=denoise,
+    )
+    return predict_tensor(model, charset, tensor, device)
+
+
+@torch.no_grad()
+def predict_line_array(
+    model,
+    charset: Charset,
+    image: Union[np.ndarray, Image.Image],
+    height: int,
+    max_width: int,
+    channels: int,
+    device,
+    auto_invert: bool = True,
+    denoise: bool = False,
+) -> str:
+    """Predict from an in-memory line crop (BGR, grayscale, or PIL)."""
+    tensor = prepare_line_tensor(
+        image,
+        height=height,
+        max_width=max_width,
+        channels=channels,
+        auto_invert=auto_invert,
+        denoise=denoise,
+    )
+    return predict_tensor(model, charset, tensor, device)
+
+
+def predict_folder(
+    model,
+    charset,
+    folder,
+    height,
+    max_width,
+    channels,
+    device,
+    auto_invert: bool = True,
+    denoise: bool = False,
+) -> List[Tuple[str, str]]:
     results = []
     for path in sorted(glob.glob(os.path.join(folder, "*"))):
         if os.path.splitext(path)[1].lower() in IMG_EXTS:
-            results.append((path, predict_image(model, charset, path, height,
-                                                max_width, channels, device)))
+            results.append(
+                (
+                    path,
+                    predict_image(
+                        model, charset, path, height, max_width, channels, device,
+                        auto_invert=auto_invert, denoise=denoise,
+                    ),
+                )
+            )
     return results
 
 
@@ -75,19 +156,29 @@ def main():
         parser.error("provide --image or --folder")
 
     cfg = load_config(args.config)
+    inf_opts = inference_options_from_config(cfg)
     device = get_device(args.device)
     charset = Charset.load(args.charset)
     model = build_crnn(charset.num_classes, cfg.get("model"),
-                       in_channels=cfg["image"]["channels"]).to(device)
+                       in_channels=inf_opts["channels"]).to(device)
     load_checkpoint(args.checkpoint, model, map_location=str(device))
     model.eval()
 
-    h, mw, ch = cfg["image"]["height"], cfg["image"]["max_width"], cfg["image"]["channels"]
+    h, mw, ch = inf_opts["height"], inf_opts["max_width"], inf_opts["channels"]
+    auto_inv = inf_opts["auto_invert"]
+    denoise = inf_opts["denoise"]
+
     if args.image:
-        text = predict_image(model, charset, args.image, h, mw, ch, device)
+        text = predict_image(
+            model, charset, args.image, h, mw, ch, device,
+            auto_invert=auto_inv, denoise=denoise,
+        )
         print(f"{args.image}\t{text}")
     if args.folder:
-        for path, text in predict_folder(model, charset, args.folder, h, mw, ch, device):
+        for path, text in predict_folder(
+            model, charset, args.folder, h, mw, ch, device,
+            auto_invert=auto_inv, denoise=denoise,
+        ):
             print(f"{path}\t{text}")
 
 

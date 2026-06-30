@@ -95,3 +95,13 @@ detection:
 postprocess:
   vocab_path: src/data/sample_words.txt
   max_edit_distance: 2
+# ------------------------------------------------------------
+# Recognition inference (uploads / predict.py)
+# ------------------------------------------------------------
+inference:
+  auto_invert: true       # light-on-dark -> dark-on-light (matches synthetic training)
+  use_grayscale: true
+  binarize: false         # CRNN uses grayscale; avoid harsh binarization on stylized text
+  denoise: false          # optional light median blur in prepare_line_for_recognition
+  image_height: 32        # must match image.height / training
+

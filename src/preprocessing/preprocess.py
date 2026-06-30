@@ -75,13 +75,48 @@ def enhance_contrast(gray: np.ndarray, clip_limit: float = 2.0,
     return clahe.apply(gray)
 
 
+def prepare_for_ocr(image: np.ndarray,
+                    do_denoise: bool = True,
+                    do_clahe: bool = True,
+                    do_deskew: bool = False,
+                    auto_invert: bool = False) -> np.ndarray:
+    """Lightweight page/crop prep for recognition (no binarization).
+
+    Keeps grayscale edges for stylized or logo-like text. Document-level
+    :func:`preprocess_document` with binarization remains for detection-only paths.
+    """
+    gray = to_grayscale(image)
+    if do_clahe:
+        gray = enhance_contrast(gray)
+    if do_denoise:
+        gray = denoise(gray, method="median")
+    if do_deskew:
+        gray = deskew(gray)
+    if auto_invert and float(gray.mean()) < 128.0:
+        gray = cv2.bitwise_not(gray)
+    return gray
+
+
 def preprocess_document(image: np.ndarray,
                         do_deskew: bool = True,
                         do_denoise: bool = True,
                         do_clahe: bool = True,
                         do_binarize: bool = True,
-                        binarize_method: str = "adaptive") -> np.ndarray:
-    """Run the full preprocessing pipeline and return a cleaned image."""
+                        binarize_method: str = "adaptive",
+                        for_recognition: bool = False) -> np.ndarray:
+    """Run the full preprocessing pipeline and return a cleaned image.
+
+    When ``for_recognition`` is True, skips binarization (and uses a lighter path
+    via :func:`prepare_for_ocr`) so CRNN inputs are not destroyed.
+    """
+    if for_recognition:
+        return prepare_for_ocr(
+            image,
+            do_denoise=do_denoise,
+            do_clahe=do_clahe,
+            do_deskew=do_deskew,
+            auto_invert=False,
+        )
     gray = to_grayscale(image)
     if do_clahe:
         gray = enhance_contrast(gray)
