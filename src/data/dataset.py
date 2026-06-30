@@ -34,12 +34,26 @@ def read_labels(labels_path: str) -> List[Tuple[str, str]]:
     return rows
 
 
-def resize_keep_height(img: Image.Image, height: int, max_width: int) -> Image.Image:
-    """Resize an image to a fixed height, clamping the resulting width."""
+def resize_keep_height(
+    img: Image.Image,
+    height: int,
+    max_width: int,
+    min_width: int = 0,
+    pad_value: int = 255,
+) -> Image.Image:
+    """Resize to fixed height (aspect ratio), clamp width, optional horizontal pad."""
     w, h = img.size
+    if h < 1:
+        h = 1
     new_w = max(1, int(round(w * height / h)))
     new_w = min(new_w, max_width)
-    return img.resize((new_w, height), Image.BILINEAR)
+    resample = getattr(Image, "LANCZOS", Image.BILINEAR)
+    out = img.resize((new_w, height), resample)
+    if min_width and new_w < min_width:
+        canvas = Image.new(img.mode, (min_width, height), pad_value)
+        canvas.paste(out, (0, 0))
+        out = canvas
+    return out
 
 
 class OCRLineDataset(Dataset):

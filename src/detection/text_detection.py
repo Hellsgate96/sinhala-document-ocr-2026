@@ -84,16 +84,29 @@ class DBNetDetector(TextDetector):
         )
 
 
-def crop_lines(image: np.ndarray, boxes: List[BBox],
-               padding: int = 2) -> List[np.ndarray]:
-    """Crop each detected box from the page (with optional padding)."""
+def crop_lines(
+    image: np.ndarray,
+    boxes: List[BBox],
+    padding: int | None = None,
+    padding_x: int = 10,
+    padding_y: int = 5,
+    min_crop_height: int = 14,
+) -> List[np.ndarray]:
+    """Crop each detected box from the page (with padding and minimum height)."""
+    if padding is not None:
+        padding_x = padding_y = int(padding)
     h, w = image.shape[:2]
     crops: List[np.ndarray] = []
     for (x, y, bw, bh) in boxes:
-        x0 = max(0, x - padding)
-        y0 = max(0, y - padding)
-        x1 = min(w, x + bw + padding)
-        y1 = min(h, y + bh + padding)
+        cy = y + bh // 2
+        bh_eff = max(int(bh), int(min_crop_height))
+        y0 = max(0, cy - bh_eff // 2)
+        y1 = min(h, y0 + bh_eff)
+        y0 = max(0, y1 - bh_eff)
+        x0 = max(0, x - int(padding_x))
+        x1 = min(w, x + bw + int(padding_x))
+        y0 = max(0, y0 - int(padding_y))
+        y1 = min(h, y1 + int(padding_y))
         crops.append(image[y0:y1, x0:x1])
     return crops
 

@@ -1,7 +1,7 @@
 """CRNN recognizer: CNN backbone -> map-to-sequence -> BiLSTM -> CTC linear head.
 
 Architecture follows the classic Shi et al. CRNN (CNN + BiLSTM + CTC), adapted to a
-fixed input height of 32. ``forward`` returns log-probabilities shaped
+fixed input height (``configs/default.yaml`` ``image.height``, typically 48). ``forward`` returns log-probabilities shaped
 ``(T, B, num_classes)`` ready for :class:`torch.nn.CTCLoss`.
 """
 
@@ -65,8 +65,9 @@ class CRNN(nn.Module):
             *conv_bn(256, 512, bn=True),
             *conv_bn(512, c, bn=True),
             nn.MaxPool2d((2, 2), (2, 1), (0, 1)),           # H/16, W/4
-            *conv_bn(c, c, k=2, s=1, p=0, bn=True),         # H/16 - 1 -> 1 for H=32
+            *conv_bn(c, c, k=2, s=1, p=0, bn=True),
         )
+        self._height_pool = nn.AdaptiveAvgPool2d((1, None))
 
         # Two stacked BiLSTM blocks (map-to-sequence -> recurrent -> classes).
         self.rnn = nn.Sequential(
@@ -77,9 +78,12 @@ class CRNN(nn.Module):
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         # x: (B, C, H, W)
-        conv = self.cnn(x)                  # (B, C', 1, W')
+        conv = self.cnn(x)                  # (B, C', H', W')
         b, ch, h, w = conv.size()
-        assert h == 1, f"expected feature height 1, got {h} (input height must be 32)"
+        if h != 1:
+            conv = self._height_pool(conv)
+            _, _, h, w = conv.size()
+        assert h == 1, f"expected feature height 1, got {h} (check image.height)"
         conv = conv.squeeze(2)              # (B, C', W')
         conv = conv.permute(2, 0, 1)        # (W'=T, B, C')  -- map to sequence
         out = self.rnn(conv)               # (T, B, num_classes)

@@ -20,7 +20,7 @@ paths:
 # Image / recognition input geometry
 # ------------------------------------------------------------
 image:
-  height: 32          # fixed line height fed to the CRNN (CRNN expects 32)
+  height: 48          # fixed line height fed to the CRNN (must match checkpoint training)
   max_width: 512      # lines wider than this are resized down
   channels: 1         # 1 = grayscale, 3 = RGB
   pad_value: 255      # padding colour for variable-width batching
@@ -34,8 +34,8 @@ synthetic:
     num_samples: 10000
     output_dir: data/synthetic
   split: [0.70, 0.15, 0.15]      # train / val / test
-  min_words: 1                   # words_per_line lower bound
-  max_words: 6                   # words_per_line upper bound
+  min_words: 3                   # words_per_line lower bound
+  max_words: 15                  # words_per_line upper bound (document-like lines)
   numeric_ratio: 0.12            # P(token is a synthetic number/date)
   mixed_ratio: 0.10              # P(token is a Sinhala-English mixed token)
   font_sizes: [22, 26, 30, 34, 40]
@@ -88,6 +88,9 @@ detection:
   min_line_height: 8
   min_line_width: 20
   dilate_kernel: [25, 3]   # (width, height) to merge characters into lines
+  crop_padding_x: 10
+  crop_padding_y: 5
+  min_crop_height: 14
 
 # ------------------------------------------------------------
 # Post-processing
@@ -103,5 +106,7 @@ inference:
   use_grayscale: true
   binarize: false         # CRNN uses grayscale; avoid harsh binarization on stylized text
   denoise: false          # optional light median blur in prepare_line_for_recognition
-  image_height: 32        # must match image.height / training
+  image_height: 48        # must match image.height / training
+  min_model_width: 32     # pad short lines instead of stretching
+  pad_to_height: true     # pad small crops before upscale
 

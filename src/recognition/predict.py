@@ -24,6 +24,32 @@ from src.recognition.model import build_crnn
 from src.utils.common import (configure_stdout_utf8, get_device, load_checkpoint,
                               load_config)
 
+
+
+def digit_ratio(text: str) -> float:
+    """Fraction of characters that are ASCII digits (0-9)."""
+    if not text:
+        return 0.0
+    digits = sum(1 for ch in text if ch.isdigit())
+    return digits / max(1, len(text))
+
+
+def looks_like_garbage_prediction(text: str, digit_threshold: float = 0.4) -> bool:
+    """Heuristic: mostly digits often means a failed recognition on prose lines."""
+    stripped = text.strip()
+    if not stripped:
+        return False
+    return digit_ratio(stripped) >= digit_threshold
+
+
+def format_prediction_with_warning(text: str, ground_truth: str | None = None) -> str:
+    """Return text, optionally prefixed with a low-confidence warning."""
+    if ground_truth is not None:
+        return text
+    if looks_like_garbage_prediction(text):
+        return f"[warn: low confidence / likely wrong] {text}"
+    return text
+
 IMG_EXTS = (".png", ".jpg", ".jpeg", ".tif", ".tiff", ".bmp")
 
 
@@ -34,6 +60,8 @@ def image_to_tensor(
     channels: int,
     auto_invert: bool = True,
     denoise: bool = False,
+    min_model_width: int = 0,
+    pad_to_height: bool = True,
 ) -> torch.Tensor:
     """Load a line image, apply inference preprocessing, return (1, C, H, W)."""
     import cv2
@@ -47,6 +75,8 @@ def image_to_tensor(
             channels=channels,
             auto_invert=auto_invert,
             denoise=denoise,
+            min_model_width=min_model_width,
+            pad_to_height=pad_to_height,
         )
     img = Image.open(path)
     return prepare_line_tensor(
@@ -56,6 +86,8 @@ def image_to_tensor(
         channels=channels,
         auto_invert=auto_invert,
         denoise=denoise,
+        min_model_width=min_model_width,
+        pad_to_height=pad_to_height,
     )
 
 
@@ -83,12 +115,20 @@ def predict_image(
     device,
     auto_invert: bool = True,
     denoise: bool = False,
+    min_model_width: int = 0,
+    pad_to_height: bool = True,
+    warn_garbage: bool = True,
 ) -> str:
     """Predict the transcript of one line image file."""
     tensor = image_to_tensor(
-        path, height, max_width, channels, auto_invert=auto_invert, denoise=denoise,
+        path, height, max_width, channels,
+        auto_invert=auto_invert, denoise=denoise,
+        min_model_width=min_model_width, pad_to_height=pad_to_height,
     )
-    return predict_tensor(model, charset, tensor, device)
+    text = predict_tensor(model, charset, tensor, device)
+    if warn_garbage:
+        return format_prediction_with_warning(text)
+    return text
 
 
 @torch.no_grad()
@@ -102,6 +142,10 @@ def predict_line_array(
     device,
     auto_invert: bool = True,
     denoise: bool = False,
+    min_model_width: int = 0,
+    pad_to_height: bool = True,
+    warn_garbage: bool = True,
+    ground_truth: Optional[str] = None,
 ) -> str:
     """Predict from an in-memory line crop (BGR, grayscale, or PIL)."""
     tensor = prepare_line_tensor(
@@ -111,8 +155,13 @@ def predict_line_array(
         channels=channels,
         auto_invert=auto_invert,
         denoise=denoise,
+        min_model_width=min_model_width,
+        pad_to_height=pad_to_height,
     )
-    return predict_tensor(model, charset, tensor, device)
+    text = predict_tensor(model, charset, tensor, device)
+    if warn_garbage:
+        return format_prediction_with_warning(text, ground_truth=ground_truth)
+    return text
 
 
 def predict_folder(
@@ -167,17 +216,21 @@ def main():
     h, mw, ch = inf_opts["height"], inf_opts["max_width"], inf_opts["channels"]
     auto_inv = inf_opts["auto_invert"]
     denoise = inf_opts["denoise"]
+    min_w = inf_opts.get("min_model_width", 0)
+    pad_h = inf_opts.get("pad_to_height", True)
 
     if args.image:
         text = predict_image(
             model, charset, args.image, h, mw, ch, device,
             auto_invert=auto_inv, denoise=denoise,
+            min_model_width=min_w, pad_to_height=pad_h,
         )
         print(f"{args.image}\t{text}")
     if args.folder:
         for path, text in predict_folder(
             model, charset, args.folder, h, mw, ch, device,
             auto_invert=auto_inv, denoise=denoise,
+            min_model_width=min_w, pad_to_height=pad_h,
         ):
             print(f"{path}\t{text}")
 
