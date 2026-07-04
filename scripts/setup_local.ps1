@@ -83,6 +83,25 @@ if ($isCpuBuild -or $cudaFalse) {
     Write-Host "Python 3.13: CUDA wheels exist on cu124; if install fails, use scripts/setup_gpu_venv.ps1 (Python 3.11/3.12)."
 }
 
+
+Write-Host ""
+Write-Host "Checking Sinhala display font..."
+$fontCheck = @"
+from src.utils.display import find_sinhala_font, setup_matplotlib_sinhala
+p = find_sinhala_font()
+print('sinhala_font', p)
+if p:
+    setup_matplotlib_sinhala(str(p))
+    print('matplotlib_ok', True)
+else:
+    print('matplotlib_ok', False)
+    print('hint', 'Run scripts/download_fonts.ps1 or install Nirmala UI / fonts-noto-core')
+"@
+python -c $fontCheck 2>&1 | Write-Host
+if ($LASTEXITCODE -ne 0) {
+    Write-Host "Font check skipped (run from project root after pip install)."
+}
+
 Write-Host "Setup complete."
 Write-Host "Next steps:"
 Write-Host "  1. cd `"$ProjectRoot`""

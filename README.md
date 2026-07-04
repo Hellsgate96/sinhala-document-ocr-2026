@@ -153,6 +153,25 @@ Core setup does **not** require `editdistance`. On **Windows with Python 3.13**,
 - **Optional speedup:** `pip install -r requirements-optional.txt` (includes `rapidfuzz`, which has Python 3.13 wheels, and `editdistance` when a wheel or compiler is available).
 - **If you need `editdistance` specifically:** install Visual C++ Build Tools, or use **Python 3.11** where wheels are more common.
 
+
+### Sinhala display in Jupyter
+
+Training, evaluation, and OCR use Unicode label files and PNG line images. **Missing tofu boxes in plots do not block OCR** — they only affect how matplotlib/IPython render Sinhala in notebook titles and prints.
+
+For readable Sinhala in previews:
+
+1. **Windows:** `setup_matplotlib_sinhala()` registers **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`) automatically (Latin + Sinhala).
+2. **Linux / Colab:** install `fonts-noto-core` or let `notebooks/colab_pipeline.ipynb` download Noto Sans Sinhala into `fonts/`.
+3. **Fallback:** `powershell -ExecutionPolicy Bypass -File scripts/download_fonts.ps1` saves `fonts/NotoSansSinhala-Regular.ttf`.
+
+Notebooks call `from src.utils.display import setup_matplotlib_sinhala` after font detection. `scripts/setup_local.ps1` prints the resolved font path.
+
+Quick check:
+
+```powershell
+python -c "from src.utils.display import setup_matplotlib_sinhala; print(setup_matplotlib_sinhala())"
+```
+
 ### Start the local notebook
 
 ```powershell
