@@ -1,8 +1,8 @@
 """Evaluation metrics for OCR: CER, WER, field-level accuracy and CPU timing.
 
-Edit distance uses the ``editdistance`` package when available and transparently
-falls back to a pure-Python implementation, so the core metrics run with no extra
-dependencies (and without a GPU). Model evaluation utilities import torch lazily.
+Edit distance uses ``editdistance`` or ``rapidfuzz`` when available and
+transparently falls back to a pure-Python implementation, so CER/WER run with no
+required native extensions (and without a GPU). Model evaluation utilities import torch lazily.
 """
 
 from __future__ import annotations
@@ -33,10 +33,15 @@ def _pure_levenshtein(a: Sequence, b: Sequence) -> int:
 
 
 def edit_distance(a: Sequence, b: Sequence) -> int:
-    """Levenshtein distance using ``editdistance`` if installed, else pure Python."""
+    """Levenshtein distance using optional libs if installed, else pure Python."""
     try:
         import editdistance
         return int(editdistance.eval(a, b))
+    except ImportError:
+        pass
+    try:
+        from rapidfuzz.distance import Levenshtein
+        return int(Levenshtein.distance(a, b))
     except ImportError:
         return _pure_levenshtein(list(a), list(b))
 

@@ -20,6 +20,16 @@ if ($CreateVenv) {
 
 python -m pip install --upgrade pip
 python -m pip install -r requirements.txt
+$optionalExit = 0
+try {
+    python -m pip install -r requirements-optional.txt 2>$null
+    if ($LASTEXITCODE -ne 0) { $optionalExit = $LASTEXITCODE }
+} catch {
+    $optionalExit = 1
+}
+if ($optionalExit -ne 0) {
+    Write-Host "Optional deps skipped (editdistance needs C++ build tools on Windows/Python 3.13). CER/WER uses pure-Python fallback."
+}
 python -m ipykernel install --user --name sinhala-ocr --display-name "Sinhala OCR"
 
 $dirs = @(

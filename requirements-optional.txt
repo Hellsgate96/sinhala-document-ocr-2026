@@ -1,0 +1,3 @@
+# Optional - faster CER/WER if a wheel exists for your platform
+editdistance>=0.6.2
+rapidfuzz>=3.0.0  # has cp313 wheels, could use as optional speedup

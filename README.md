@@ -54,6 +54,7 @@ python -m venv .venv
 # Windows:  .venv\Scripts\activate
 # Linux:    source .venv/bin/activate
 pip install -r requirements.txt
+# optional: pip install -r requirements-optional.txt
 ```
 
 On Windows the Sinhala-capable font **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`)
@@ -115,6 +116,12 @@ powershell -ExecutionPolicy Bypass -File scripts/setup_local.ps1 -CreateVenv
 ```
 
 This installs `requirements.txt`, registers the **Sinhala OCR** Jupyter kernel, and creates the `data/` layout.
+
+Core setup does **not** require `editdistance`. On **Windows with Python 3.13**, `editdistance` often has no prebuilt wheel and needs [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) to compile. CER/WER still work via a pure-Python Levenshtein fallback in `src/evaluation/metrics.py`.
+
+- **Default:** run setup without optional native metrics extensions.
+- **Optional speedup:** `pip install -r requirements-optional.txt` (includes `rapidfuzz`, which has Python 3.13 wheels, and `editdistance` when a wheel or compiler is available).
+- **If you need `editdistance` specifically:** install Visual C++ Build Tools, or use **Python 3.11** where wheels are more common.
 
 ### Start the local notebook
 
