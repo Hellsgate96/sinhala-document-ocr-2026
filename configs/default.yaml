@@ -9,6 +9,9 @@ project:
 paths:
   data_dir: data
   synthetic_dir: data/synthetic
+  uploads_dir: data/uploads
+  real_dir: data/real
+  debug_dir: data/debug
   raw_dir: data/raw
   preprocessed_dir: data/preprocessed
   models_dir: models

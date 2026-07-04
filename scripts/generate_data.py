@@ -1,4 +1,4 @@
-"""CLI wrapper: generate synthetic Sinhala line data from the config.
+﻿"""CLI wrapper: generate synthetic Sinhala line data from the config.
 
 Two paths are supported:
 
@@ -33,7 +33,7 @@ from src.utils.common import configure_stdout_utf8, get_logger, load_config  # n
 def main():
     parser = argparse.ArgumentParser(description="Generate synthetic Sinhala OCR data.")
     parser.add_argument("--config", default="configs/default.yaml")
-    parser.add_argument("--num", type=int, default=None, help="number of samples")
+    parser.add_argument("--num", "--num-samples", type=int, default=None, dest="num", help="number of samples")
     parser.add_argument("--out", default=None, help="output directory override")
     parser.add_argument("--seed", type=int, default=None, help="random seed override")
     parser.add_argument("--large", action="store_true",

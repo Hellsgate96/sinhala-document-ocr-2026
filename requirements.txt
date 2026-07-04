@@ -1,4 +1,4 @@
-# Core deep learning
+﻿# Core deep learning
 torch>=2.0
 torchvision>=0.15
 
@@ -19,6 +19,10 @@ tqdm>=4.65
 matplotlib>=3.7
 scikit-learn>=1.3
 
+
+# Local Jupyter workflow (Windows / Linux)
+jupyter>=1.0
+ipykernel>=6.0
 # --- Google Colab notes ---
 # Colab already ships torch, torchvision, numpy, pillow, opencv-python, matplotlib
 # and scikit-learn. There you typically only need:

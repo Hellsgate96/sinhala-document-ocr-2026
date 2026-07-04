@@ -1,0 +1,91 @@
+﻿# Local (Windows + Jupyter) overrides — use with:
+#   python scripts/generate_data.py --config configs/local.yaml --large
+#   python -m src.recognition.train --config configs/local.yaml
+
+project:
+  name: sinhala-document-ocr
+  seed: 1337
+
+paths:
+  data_dir: data
+  synthetic_dir: data/synthetic
+  uploads_dir: data/uploads
+  real_dir: data/real
+  debug_dir: data/debug
+  raw_dir: data/raw
+  preprocessed_dir: data/preprocessed
+  models_dir: models
+  charset_path: models/charset.json
+  word_list: src/data/sample_words.txt
+  form_vocab: src/data/form_vocab.txt
+
+image:
+  height: 48
+  max_width: 512
+  channels: 1
+  pad_value: 255
+
+synthetic:
+  num_samples: 5000
+  large:
+    num_samples: 5000
+    output_dir: data/synthetic
+  split: [0.70, 0.15, 0.15]
+  min_words: 3
+  max_words: 15
+  numeric_ratio: 0.12
+  mixed_ratio: 0.10
+  font_sizes: [22, 26, 30, 34, 40]
+  fonts:
+    - "C:/Windows/Fonts/Nirmala.ttc"
+    - "C:/Windows/Fonts/iskpota.ttf"
+    - "fonts/NotoSansSinhala-Regular.ttf"
+  augment:
+    rotation: true
+    rotation_max_deg: 3.0
+    perspective: true
+    blur: true
+    gaussian_noise: true
+    brightness_contrast: true
+    jpeg_compression: true
+    shadow: true
+
+model:
+  name: crnn
+  cnn_out_channels: 512
+  rnn_hidden: 256
+  rnn_layers: 2
+  dropout: 0.1
+
+train:
+  epochs: 15
+  batch_size: 16
+  lr: 0.001
+  optimizer: adam
+  weight_decay: 0.0
+  num_workers: 2
+  grad_clip: 5.0
+  val_every: 1
+  save_best_metric: cer
+  device: auto
+
+detection:
+  min_line_height: 8
+  min_line_width: 20
+  dilate_kernel: [25, 3]
+  crop_padding_x: 10
+  crop_padding_y: 5
+  min_crop_height: 14
+
+postprocess:
+  vocab_path: src/data/sample_words.txt
+  max_edit_distance: 2
+
+inference:
+  auto_invert: true
+  use_grayscale: true
+  binarize: false
+  denoise: false
+  image_height: 48
+  min_model_width: 32
+  pad_to_height: true

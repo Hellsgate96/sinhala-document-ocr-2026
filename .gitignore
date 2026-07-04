@@ -1,4 +1,4 @@
-# Byte-compiled / cache
+﻿# Byte-compiled / cache
 __pycache__/
 *.py[cod]
 *$py.class
@@ -14,9 +14,29 @@ env/
 *.pt
 *.ckpt
 
-# Data and model artifacts (keep dirs via .gitkeep)
-data/*
+# Data artifacts (keep directory placeholders)
+data/synthetic/images/**
+data/synthetic/train/**
+data/synthetic/val/**
+data/synthetic/test/**
+data/synthetic/*_labels.txt
+data/synthetic/all_labels.txt
+data/uploads/*
+!data/uploads/.gitkeep
+data/real/images/*
+!data/real/images/.gitkeep
+data/real/labels/*
+!data/real/labels/.gitkeep
+data/debug/*
+!data/debug/.gitkeep
+data/raw/**
+data/preprocessed/**
 !data/.gitkeep
+!data/real/.gitkeep
+!data/synthetic/train/.gitkeep
+!data/synthetic/val/.gitkeep
+!data/synthetic/test/.gitkeep
+
 models/*
 !models/.gitkeep
 
@@ -29,3 +49,5 @@ Thumbs.db
 # Logs
 *.log
 runs/
+
+

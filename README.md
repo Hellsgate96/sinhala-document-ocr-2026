@@ -1,8 +1,8 @@
-# Sinhala Document OCR
+﻿# Sinhala Document OCR
 
 An end-to-end Optical Character Recognition (OCR) pipeline for **printed (primary)**
-and **handwritten (secondary)** Sinhala documents — forms, invoices and ID-style
-fields — with support for mixed **Sinhala–English** layouts.
+and **handwritten (secondary)** Sinhala documents â€” forms, invoices and ID-style
+fields â€” with support for mixed **Sinhalaâ€“English** layouts.
 
 This repository is the implementation scaffold for an MSc research project. The design
 follows the approved proposal (Sinhala only; Tamil is out of scope) and is built to be
@@ -92,6 +92,61 @@ python -m src.evaluation.metrics --checkpoint models/crnn_best.pth \
 
 Character Error Rate (CER), Word Error Rate (WER), field-level accuracy, and average
 **CPU inference time** (see `src/evaluation/metrics.py`).
+
+
+## Running Locally (Windows + Jupyter)
+
+Run the full baseline pipeline on your laptop without Google Colab.
+
+### Prerequisites
+
+- **Python 3.10+** (3.11 or 3.12 recommended)
+- **Optional:** NVIDIA GPU with CUDA for faster CRNN training
+- Sinhala-capable fonts: **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`) ships with Windows
+
+### One-time setup
+
+From the project root in PowerShell:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_local.ps1
+# optional virtual environment:
+powershell -ExecutionPolicy Bypass -File scripts/setup_local.ps1 -CreateVenv
+```
+
+This installs `requirements.txt`, registers the **Sinhala OCR** Jupyter kernel, and creates the `data/` layout.
+
+### Start the local notebook
+
+```powershell
+cd C:\path\to\sinhala-document-ocr
+jupyter notebook notebooks/local_pipeline.ipynb
+```
+
+Work through the cells in order: synthetic data generation, training, evaluation, and upload OCR.
+
+### Data layout (local)
+
+| Path | Purpose |
+|------|---------|
+| `data/synthetic/` | Generated training lines (`images/`, `train_labels.txt`, …) — **gitignored** after generation |
+| `data/uploads/` | Place test photos/scans for Section 8 |
+| `data/real/images/` + `data/real/labels/` | Future real annotated documents (your local collection) |
+| `data/debug/` | Optional inference debug dumps from the notebook |
+| `models/` | `crnn_best.pth`, `crnn_last.pth`, `charset.json` (checkpoints gitignored) |
+
+The first local run **generates synthetic samples** into `data/synthetic/` (default **5000** lines via `configs/local.yaml`).
+
+### Train without Jupyter
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_local_train.ps1
+# or
+python scripts/run_local_train.py
+```
+
+Uses `configs/local.yaml` (15 epochs, batch size 16 by default).
+
 
 ## Google Colab
 
