@@ -191,7 +191,7 @@ Work through the cells in order: synthetic data generation, training, evaluation
 | `data/debug/` | Optional inference debug dumps from the notebook |
 | `models/` | `crnn_best.pth`, `crnn_last.pth`, `charset.json` (checkpoints gitignored) |
 
-The first local run **generates synthetic samples** into `data/synthetic/` (default **5000** lines via `configs/local.yaml`).
+The first local run **generates synthetic samples** into `data/synthetic/` (default **15000** lines (GPU baseline) via `configs/local.yaml`).
 
 ### Train without Jupyter
 
@@ -204,6 +204,43 @@ python scripts/run_local_train.py
 Uses `configs/local.yaml` (15 epochs, batch size 16 by default).
 
 
+
+## Baseline + Fine-tuning workflow
+
+**Step A — GPU baseline training** (synthetic data only):
+
+```powershell
+python scripts/generate_data.py --config configs/local.yaml --large --num-samples 15000
+python -m src.recognition.train --config configs/local.yaml
+```
+
+Defaults in `configs/local.yaml`: **15 000** synthetic lines, **25** epochs, batch **32**, `num_workers: 0` on Windows.
+
+Or run both steps:
+
+```powershell
+python scripts/run_local_train.py
+```
+
+**Step B — Fine-tune on the Kanyawee poem** (real line crops + ground truth):
+
+1. Place the poem page at `data/uploads/test2.png` (or pass `--image`).
+2. Build crops and labels:
+
+```powershell
+python scripts/prepare_poem_dataset.py --image data/uploads/test2.png
+```
+
+3. Fine-tune from the baseline checkpoint (merges poem labels with synthetic train split):
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/run_finetune.ps1
+```
+
+Outputs: `data/real/images/poem_line_*.png`, `data/real/labels/poem_kanyawee.txt`, `models/crnn_finetuned.pth`.
+
+The local notebook (`notebooks/local_pipeline.ipynb`) has **Step A** cells for generate/train and **Section B** for prepare, fine-tune, and before/after CER on the upload.
+
 ## Google Colab
 
 See `notebooks/colab_pipeline.ipynb` for an end-to-end run: mount Drive, install deps,
@@ -212,4 +249,6 @@ generate synthetic data, train the CRNN, evaluate (CER/WER) and run an inference
 ## Reference methods (2021+)
 
 TrOCR, PARSeq, Donut, PP-OCRv3, SynthTIGER, DBNet, CRNN.
+
+
 

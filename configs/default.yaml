@@ -1,4 +1,4 @@
-# ============================================================
+﻿# ============================================================
 # Sinhala Document OCR - central configuration
 # ============================================================
 
@@ -32,9 +32,9 @@ image:
 # Synthetic data generation
 # ------------------------------------------------------------
 synthetic:
-  num_samples: 2000              # default (non-large) run size
+  num_samples: 15000             # reference default (local GPU runs)
   large:                         # used by `generate_data.py --large`
-    num_samples: 10000
+    num_samples: 15000             # reference for --large / full GPU baseline
     output_dir: data/synthetic
   split: [0.70, 0.15, 0.15]      # train / val / test
   min_words: 3                   # words_per_line lower bound
@@ -73,8 +73,8 @@ model:
 # Training
 # ------------------------------------------------------------
 train:
-  epochs: 30
-  batch_size: 64
+  epochs: 25                      # reference; local.yaml uses 25 for GPU baseline
+  batch_size: 32                  # reference GPU batch; use 64 on large server GPUs
   lr: 0.001
   optimizer: adam          # adam | sgd
   weight_decay: 0.0
@@ -112,4 +112,5 @@ inference:
   image_height: 48        # must match image.height / training
   min_model_width: 32     # pad short lines instead of stretching
   pad_to_height: true     # pad small crops before upscale
+
 

@@ -1,4 +1,4 @@
-"""Shared utilities: seeding, logging, config loading, image IO, checkpoints.
+﻿"""Shared utilities: seeding, logging, config loading, image IO, checkpoints.
 
 Heavy dependencies (``torch``) are imported lazily inside the functions that need
 them so this module can be imported in a CPU-only / torch-less environment.
@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import logging
 import os
+import copy
 import random
 from typing import Any, Dict, Optional
 
@@ -61,11 +62,34 @@ def configure_stdout_utf8() -> None:
 # --------------------------------------------------------------------------
 # Config
 # --------------------------------------------------------------------------
+def _deep_merge(base: Dict[str, Any], override: Dict[str, Any]) -> Dict[str, Any]:
+    """Recursively merge override into a copy of base (override wins)."""
+    out = copy.deepcopy(base)
+    for key, value in override.items():
+        if key in out and isinstance(out[key], dict) and isinstance(value, dict):
+            out[key] = _deep_merge(out[key], value)
+        else:
+            out[key] = copy.deepcopy(value)
+    return out
+
+
 def load_config(path: str) -> Dict[str, Any]:
-    """Load a YAML configuration file into a dict."""
+    """Load a YAML configuration file into a dict.
+
+    If the file defines ``_inherits: other.yaml``, that file is loaded first and
+    merged with the current file (child keys override).
+    """
     import yaml
+
+    path = os.path.abspath(path)
     with open(path, "r", encoding="utf-8") as f:
-        return yaml.safe_load(f)
+        cfg = yaml.safe_load(f) or {}
+    inherit = cfg.pop("_inherits", None)
+    if inherit:
+        base_path = inherit if os.path.isabs(inherit) else os.path.join(os.path.dirname(path), inherit)
+        base_cfg = load_config(base_path)
+        cfg = _deep_merge(base_cfg, cfg)
+    return cfg
 
 
 def apply_overrides(cfg: Dict[str, Any], overrides: Optional[list]) -> Dict[str, Any]:
