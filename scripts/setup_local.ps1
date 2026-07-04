@@ -62,12 +62,25 @@ Write-Host ""
 
 Write-Host ""
 Write-Host "Checking PyTorch / CUDA..."
-$cudaCheck = python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())" 2>&1
+$cudaScript = @"
+import torch
+print('torch', torch.__version__)
+print('cuda_available', torch.cuda.is_available())
+if torch.cuda.is_available():
+    print('device', torch.cuda.get_device_name(0))
+"@
+$cudaCheck = python -c $cudaScript 2>&1
 Write-Host $cudaCheck
-if ($cudaCheck -match "\+cpu" -and $cudaCheck -match "False") {
+$isCpuBuild = ($cudaCheck -match "\+cpu") -or ($cudaCheck -match "cpu_only")
+$cudaFalse = $cudaCheck -match "cuda_available False"
+if ($isCpuBuild -or $cudaFalse) {
     Write-Host ""
-    Write-Host "CPU-only PyTorch detected (no CUDA). For NVIDIA GPU training (e.g. RTX 4060), run:"
+    Write-Host "CPU-only PyTorch (CUDA not available). For RTX 4060 / NVIDIA GPU on Windows:"
+    Write-Host "  powershell -ExecutionPolicy Bypass -File scripts/install_cuda_torch.ps1"
+    Write-Host "Or manually (~2.5 GB download):"
+    Write-Host "  pip uninstall torch torchvision torchaudio -y"
     Write-Host "  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124"
+    Write-Host "Python 3.13: CUDA wheels exist on cu124; if install fails, use scripts/setup_gpu_venv.ps1 (Python 3.11/3.12)."
 }
 
 Write-Host "Setup complete."
@@ -76,4 +89,5 @@ Write-Host "  1. cd `"$ProjectRoot`""
 Write-Host "  2. jupyter notebook notebooks/local_pipeline.ipynb"
 Write-Host ""
 Write-Host "Optional: re-run with -CreateVenv to use a project virtual environment."
+
 

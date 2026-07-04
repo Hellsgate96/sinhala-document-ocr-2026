@@ -106,6 +106,19 @@ Run the full baseline pipeline on your laptop without Google Colab.
 
 ### NVIDIA GPU (local training, e.g. RTX 4060)
 
+
+**Python 3.13 on Windows:** CUDA wheels are published for `cp313` on the `cu124` index (e.g. `torch-2.6.0+cu124`). The download is about **2.5 GB**; allow time on slower connections. If `pip` only installs `+cpu`, run:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/install_cuda_torch.ps1
+```
+
+For a dedicated GPU environment when only older Python versions are available:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_gpu_venv.ps1
+```
+
 `requirements.txt` installs a **CPU-only** PyTorch wheel by default. For an **NVIDIA GeForce RTX 4060** (or similar) on Windows, install CUDA-enabled PyTorch **after** the base requirements:
 
 ```powershell
@@ -115,7 +128,7 @@ pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
 Verify the GPU is visible:
 
 ```powershell
-python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'cpu')"
+python -c "import torch; print('version:', torch.__version__); print('CUDA:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
 ```
 
 The local notebook (`notebooks/local_pipeline.ipynb`) picks `cuda` automatically when available and uses `train.batch_size: 32` from `configs/local.yaml`. `train.device: auto` in that config is overridden by the notebook during interactive runs.
