@@ -1,14 +1,7 @@
-"""PyTorch Dataset / DataLoader for Sinhala OCR line recognition.
-
-Reads a tab-separated labels file (``relative_image_path<TAB>transcript``), loads
-each image, resizes it to a fixed height while preserving aspect ratio, encodes the
-transcript with the shared :class:`~src.charset.Charset`, and provides a
-``collate_fn`` that pads variable-width images and builds flattened CTC targets.
-"""
-
-from __future__ import annotations
+﻿from __future__ import annotations
 
 import os
+from functools import partial
 from typing import Callable, List, Optional, Tuple
 
 import numpy as np
@@ -104,26 +97,27 @@ class OCRLineDataset(Dataset):
         return image, target, len(target), text
 
 
+def _ctc_collate_batch(batch, pad_value: float = 1.0):
+    """Right-pad images to the batch max width (top-level for Windows multiprocessing)."""
+    images, targets, target_lengths, texts = zip(*batch)
+    c = images[0].shape[0]
+    h = images[0].shape[1]
+    widths = [im.shape[2] for im in images]
+    max_w = max(widths)
+
+    padded = torch.full((len(images), c, h, max_w), pad_value, dtype=torch.float32)
+    for i, im in enumerate(images):
+        padded[i, :, :, : im.shape[2]] = im
+
+    flat_targets = torch.cat([t for t in targets]) if targets else torch.tensor([], dtype=torch.long)
+    target_lengths = torch.tensor(target_lengths, dtype=torch.long)
+    widths = torch.tensor(widths, dtype=torch.long)
+    return padded, flat_targets, target_lengths, widths, list(texts)
+
+
 def ctc_collate(pad_value: float = 1.0) -> Callable:
     """Build a collate_fn that right-pads images to the batch max width."""
-
-    def _collate(batch):
-        images, targets, target_lengths, texts = zip(*batch)
-        c = images[0].shape[0]
-        h = images[0].shape[1]
-        widths = [im.shape[2] for im in images]
-        max_w = max(widths)
-
-        padded = torch.full((len(images), c, h, max_w), pad_value, dtype=torch.float32)
-        for i, im in enumerate(images):
-            padded[i, :, :, : im.shape[2]] = im
-
-        flat_targets = torch.cat([t for t in targets]) if targets else torch.tensor([], dtype=torch.long)
-        target_lengths = torch.tensor(target_lengths, dtype=torch.long)
-        widths = torch.tensor(widths, dtype=torch.long)
-        return padded, flat_targets, target_lengths, widths, list(texts)
-
-    return _collate
+    return partial(_ctc_collate_batch, pad_value=pad_value)
 
 
 def build_dataloader(labels_path: str,

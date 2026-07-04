@@ -59,9 +59,21 @@ foreach ($d in $dirs) {
 }
 
 Write-Host ""
+
+Write-Host ""
+Write-Host "Checking PyTorch / CUDA..."
+$cudaCheck = python -c "import torch; print(torch.__version__); print(torch.cuda.is_available())" 2>&1
+Write-Host $cudaCheck
+if ($cudaCheck -match "\+cpu" -and $cudaCheck -match "False") {
+    Write-Host ""
+    Write-Host "CPU-only PyTorch detected (no CUDA). For NVIDIA GPU training (e.g. RTX 4060), run:"
+    Write-Host "  pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124"
+}
+
 Write-Host "Setup complete."
 Write-Host "Next steps:"
 Write-Host "  1. cd `"$ProjectRoot`""
 Write-Host "  2. jupyter notebook notebooks/local_pipeline.ipynb"
 Write-Host ""
 Write-Host "Optional: re-run with -CreateVenv to use a project virtual environment."
+

@@ -103,6 +103,23 @@ Run the full baseline pipeline on your laptop without Google Colab.
 
 - **Python 3.10+** (3.11 or 3.12 recommended)
 - **Optional:** NVIDIA GPU with CUDA for faster CRNN training
+
+### NVIDIA GPU (local training, e.g. RTX 4060)
+
+`requirements.txt` installs a **CPU-only** PyTorch wheel by default. For an **NVIDIA GeForce RTX 4060** (or similar) on Windows, install CUDA-enabled PyTorch **after** the base requirements:
+
+```powershell
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+```
+
+Verify the GPU is visible:
+
+```powershell
+python -c "import torch; print(torch.cuda.is_available(), torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'cpu')"
+```
+
+The local notebook (`notebooks/local_pipeline.ipynb`) picks `cuda` automatically when available and uses `train.batch_size: 32` from `configs/local.yaml`. `train.device: auto` in that config is overridden by the notebook during interactive runs.
+
 - Sinhala-capable fonts: **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`) ships with Windows
 
 ### One-time setup
@@ -163,3 +180,4 @@ generate synthetic data, train the CRNN, evaluate (CER/WER) and run an inference
 ## Reference methods (2021+)
 
 TrOCR, PARSeq, Donut, PP-OCRv3, SynthTIGER, DBNet, CRNN.
+
