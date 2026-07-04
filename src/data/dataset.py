@@ -53,19 +53,37 @@ def _merge_label_records(
     labels_path: str,
     extra_label_paths: Optional[List[str]] = None,
     extra_base_dirs: Optional[List[str]] = None,
+    extra_label_repeat: int = 1,
+    primary_label_repeat: int = 1,
+    max_primary_samples: Optional[int] = None,
+    primary_sample_seed: int = 1337,
 ) -> List[Tuple[str, str, str]]:
     """Build (base_dir, rel_path, text) rows from one or more label files."""
     rows: List[Tuple[str, str, str]] = []
     primary_base = os.path.dirname(os.path.abspath(labels_path))
-    for rel, text in read_labels(labels_path):
-        rows.append((primary_base, rel, text))
+    primary = read_labels(labels_path)
+    if max_primary_samples is not None and len(primary) > max_primary_samples:
+        import random
+
+        rng = random.Random(primary_sample_seed)
+        idx = list(range(len(primary)))
+        rng.shuffle(idx)
+        keep = set(idx[: max_primary_samples])
+        primary = [primary[i] for i in range(len(primary)) if i in keep]
+    primary_repeat = max(1, int(primary_label_repeat))
+    for _ in range(primary_repeat):
+        for rel, text in primary:
+            rows.append((primary_base, rel, text))
     extras = extra_label_paths or []
     bases = extra_base_dirs or []
+    repeat = max(1, int(extra_label_repeat))
     for i, extra_path in enumerate(extras):
         base = bases[i] if i < len(bases) else os.path.dirname(os.path.abspath(extra_path))
         base = os.path.abspath(base)
-        for rel, text in read_labels(extra_path):
-            rows.append((base, rel, text))
+        extra_rows = read_labels(extra_path)
+        for _ in range(repeat):
+            for rel, text in extra_rows:
+                rows.append((base, rel, text))
     return rows
 
 
@@ -81,9 +99,21 @@ class OCRLineDataset(Dataset):
                  channels: int = 1,
                  transform: Optional[Callable] = None,
                  extra_label_paths: Optional[List[str]] = None,
-                 extra_base_dirs: Optional[List[str]] = None):
-        if extra_label_paths:
-            merged = _merge_label_records(labels_path, extra_label_paths, extra_base_dirs)
+                 extra_base_dirs: Optional[List[str]] = None,
+                 extra_label_repeat: int = 1,
+                 primary_label_repeat: int = 1,
+                 max_primary_samples: Optional[int] = None,
+                 primary_sample_seed: int = 1337):
+        if extra_label_paths or max_primary_samples is not None:
+            merged = _merge_label_records(
+                labels_path,
+                extra_label_paths,
+                extra_base_dirs,
+                extra_label_repeat=extra_label_repeat,
+                primary_label_repeat=primary_label_repeat,
+                max_primary_samples=max_primary_samples,
+                primary_sample_seed=primary_sample_seed,
+            )
             self.records = [(rel, text) for _base, rel, text in merged]
             self._image_bases = [base for base, _rel, _text in merged]
         else:
@@ -160,13 +190,21 @@ def build_dataloader(labels_path: str,
                      base_dir: Optional[str] = None,
                      pad_value: float = 1.0,
                      extra_label_paths: Optional[List[str]] = None,
-                     extra_base_dirs: Optional[List[str]] = None) -> DataLoader:
+                     extra_base_dirs: Optional[List[str]] = None,
+                     extra_label_repeat: int = 1,
+                     primary_label_repeat: int = 1,
+                     max_primary_samples: Optional[int] = None,
+                     primary_sample_seed: int = 1337) -> DataLoader:
     """Convenience builder returning a ready DataLoader for a labels file."""
     dataset = OCRLineDataset(
         labels_path=labels_path, charset=charset, base_dir=base_dir,
         height=height, max_width=max_width, channels=channels,
         extra_label_paths=extra_label_paths,
         extra_base_dirs=extra_base_dirs,
+        extra_label_repeat=extra_label_repeat,
+        primary_label_repeat=primary_label_repeat,
+        max_primary_samples=max_primary_samples,
+        primary_sample_seed=primary_sample_seed,
     )
     return DataLoader(
         dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers,

@@ -1,9 +1,13 @@
-﻿# Fine-tune on real poem lines (inherits configs/local.yaml).
+# Fine-tune on real poem lines (inherits configs/local.yaml).
 _inherits: local.yaml
 
 train:
-  epochs: 10
-  lr: 0.0001
+  epochs: 20
+  lr: 0.00005
+  extra_label_repeat: 50
+  synthetic_train_max: 3000
+  finetune_real_only: false
+  finetune_real_only_epochs: 30
 
 paths:
   poem_labels: data/real/labels/poem_kanyawee.txt
@@ -11,3 +15,9 @@ paths:
   resume_checkpoint: models/crnn_best.pth
   finetune_best: models/crnn_finetuned.pth
   finetune_last: models/crnn_finetuned_last.pth
+  baseline_best: models/crnn_best.pth
+
+inference:
+  image_height: 64
+  decode: beam
+  beam_width: 10

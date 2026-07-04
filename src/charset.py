@@ -124,6 +124,52 @@ class Charset:
             data = json.load(f)
         return cls(data["chars"])
 
+
+    def ctc_beam_search_decode(
+        self,
+        log_probs,
+        beam_width: int = 10,
+        blank_index: int | None = None,
+    ) -> str:
+        """CTC prefix beam search on log-probabilities (T, num_classes)."""
+        import math
+
+        blank = self.BLANK_INDEX if blank_index is None else blank_index
+        if hasattr(log_probs, "detach"):
+            log_probs = log_probs.detach().cpu().numpy()
+        T, C = log_probs.shape
+        beam: dict[tuple, tuple[float, float]] = {(): (0.0, -math.inf)}
+        for t in range(T):
+            nxt: dict[tuple, tuple[float, float]] = {}
+            for prefix, (p_b, p_nb) in beam.items():
+                for c in range(C):
+                    lp = float(log_probs[t, c])
+                    if c == blank:
+                        nb, nn = nxt.get(prefix, (-math.inf, -math.inf))
+                        nxt[prefix] = (max(p_b + lp, nb), max(p_nb + lp, nn))
+                        continue
+                    new_prefix = prefix + (c,)
+                    pb, pnb = nxt.get(new_prefix, (-math.inf, -math.inf))
+                    if prefix and prefix[-1] == c:
+                        nxt[new_prefix] = (
+                            max(pb, p_b + lp),
+                            max(pnb, p_nb + lp),
+                        )
+                    else:
+                        nxt[new_prefix] = (
+                            max(pb, p_b + lp),
+                            max(pnb, p_b + lp, p_nb + lp),
+                        )
+            beam = {
+                pref: (math.logaddexp(pb, pnb), -math.inf)
+                for pref, (pb, pnb) in nxt.items()
+            }
+            beam = dict(sorted(beam.items(), key=lambda kv: kv[1][0], reverse=True)[: max(1, beam_width)])
+        if not beam:
+            return ""
+        best = max(beam.items(), key=lambda kv: kv[1][0])[0]
+        return "".join(self.idx_to_char[i] for i in best if i in self.idx_to_char)
+
     @classmethod
     def build_default(cls) -> "Charset":
         """Construct the standard Sinhala + ASCII + punctuation charset."""

@@ -156,6 +156,20 @@ def get_device(preference: str = "auto"):
     return torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 
+
+
+def resolve_recognition_checkpoint(cfg: Dict[str, Any], repo_root: Optional[os.PathLike] = None) -> str:
+    """Prefer finetuned weights when present, else baseline best checkpoint."""
+    paths = cfg.get("paths") or {}
+    models_dir = paths.get("models_dir", "models")
+    root = os.fspath(repo_root) if repo_root is not None else os.getcwd()
+    finetune_name = paths.get("finetune_best") or "crnn_finetuned.pth"
+    baseline_name = paths.get("baseline_best") or "crnn_best.pth"
+    finetune_path = os.path.join(root, models_dir, os.path.basename(finetune_name))
+    if os.path.isfile(finetune_path):
+        return finetune_path
+    return os.path.join(root, models_dir, os.path.basename(baseline_name))
+
 def save_checkpoint(path: str, model, optimizer=None, epoch: int = 0,
                     extra: Optional[Dict[str, Any]] = None) -> None:
     """Save a model (and optional optimizer) checkpoint."""

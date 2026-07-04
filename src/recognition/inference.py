@@ -162,4 +162,6 @@ def inference_options_from_config(cfg: Optional[Dict[str, Any]]) -> Dict[str, An
         "min_model_width": int(inf.get("min_model_width", 0)),
         "pad_to_height": bool(inf.get("pad_to_height", True)),
         "mode": "auto" if inf.get("auto_invert", True) else "none",
+        "decode": str(inf.get("decode", "greedy")).lower(),
+        "beam_width": int(inf.get("beam_width", 10)),
     }
