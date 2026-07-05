@@ -4,7 +4,7 @@ _inherits: local.yaml
 train:
   epochs: 20
   lr: 0.00005
-  extra_label_repeat: 50
+  extra_label_repeat: 15
   synthetic_train_max: 3000
   finetune_real_only: false
   finetune_real_only_epochs: 30
@@ -19,5 +19,7 @@ paths:
 
 inference:
   image_height: 64
-  decode: beam
+  decode: greedy
   beam_width: 10
+
+

@@ -1,4 +1,4 @@
-﻿# Local (Windows + Jupyter) overrides - use with:
+# Local (Windows + Jupyter) overrides - use with:
 #   python scripts/generate_data.py --config configs/local.yaml --large
 #   python -m src.recognition.train --config configs/local.yaml
 
@@ -83,6 +83,7 @@ postprocess:
 
 inference:
   auto_invert: true
+  decode: greedy
   use_grayscale: true
   binarize: false
   denoise: false

@@ -239,6 +239,8 @@ powershell -ExecutionPolicy Bypass -File scripts/run_finetune.ps1
 
 Outputs: `data/real/images/poem_line_*.png`, `data/real/labels/poem_kanyawee.txt`, `models/crnn_finetuned.pth`.
 
+Inference defaults to **greedy** CTC decode (`inference.decode: greedy`). Beam search is optional once verified; incorrect beam state merging previously caused doubled characters in predictions.
+
 The local notebook (`notebooks/local_pipeline.ipynb`) has **Step A** (synthetic generate/train), **Section 8** (digital scan / upload OCR), **Section B** (fine-tune on `data/real/labels/poem_kanyawee.txt`, 50× poem repeat → `crnn_finetuned.pth`), and **Section C** (real phone-camera photo test).
 
 ### Section C — real captured photo (notebook)

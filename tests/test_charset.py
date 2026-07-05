@@ -74,6 +74,51 @@ def test_save_load():
         assert loaded.num_classes == cs.num_classes
 
 
+
+
+def test_ctc_greedy_decode_repetition_cases():
+    cs = Charset.build_default()
+    a = cs.char_to_idx["a"]
+    b = cs.char_to_idx["b"]
+    blank = cs.BLANK_INDEX
+    assert cs.ctc_greedy_decode([blank, a, a, blank, b]) == "ab"
+    assert cs.ctc_greedy_decode([a, a, a, b, b]) == "ab"
+    assert cs.ctc_greedy_decode([a, blank, a]) == "aa"
+
+
+def test_ctc_beam_search_collapses_repeats():
+    import numpy as np
+
+    cs = Charset.build_default()
+    a = cs.char_to_idx["a"]
+    b = cs.char_to_idx["b"]
+    blank = cs.BLANK_INDEX
+    T, C = 6, cs.num_classes
+    log_probs = np.full((T, C), -50.0, dtype=np.float64)
+    seq = [a, a, blank, blank, b, b]
+    for t, idx in enumerate(seq):
+        log_probs[t, idx] = 0.0
+    assert cs.ctc_beam_search_decode(log_probs, beam_width=5) == "ab"
+    assert cs.ctc_greedy_decode(seq) == "ab"
+
+
+def test_ctc_beam_matches_greedy_on_peaked_path():
+    import numpy as np
+
+    cs = Charset.build_default()
+    a = cs.char_to_idx["x"]
+    b = cs.char_to_idx["y"]
+    blank = cs.BLANK_INDEX
+    seq = [blank, a, a, blank, b, b, blank]
+    T, C = len(seq), cs.num_classes
+    log_probs = np.full((T, C), -50.0, dtype=np.float64)
+    for t, idx in enumerate(seq):
+        log_probs[t, idx] = 0.0
+    greedy = cs.ctc_greedy_decode(seq)
+    beam = cs.ctc_beam_search_decode(log_probs, beam_width=3)
+    assert beam == greedy == "xy"
+
+
 if __name__ == "__main__":
     try:
         sys.stdout.reconfigure(encoding="utf-8")

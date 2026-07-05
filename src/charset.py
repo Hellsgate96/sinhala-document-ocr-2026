@@ -110,17 +110,16 @@ class Charset:
         return "".join(self.idx_to_char[i] for i in indices if i in self.idx_to_char)
 
     def ctc_greedy_decode(self, indices: Sequence[int]) -> str:
-        """Collapse a raw CTC frame sequence: merge repeats, then drop blanks."""
-        collapsed: List[int] = []
-        prev = None
-        for i in indices:
-            if i != prev:
-                collapsed.append(i)
-            prev = i
-        return "".join(
-            self.idx_to_char[i] for i in collapsed
-            if i != self.BLANK_INDEX and i in self.idx_to_char
-        )
+        """Greedy CTC decode: drop blanks, merge repeats within the same run."""
+        blank = self.BLANK_INDEX
+        chars: List[str] = []
+        for t, idx in enumerate(indices):
+            if idx == blank or idx not in self.idx_to_char:
+                continue
+            if t > 0 and indices[t - 1] == idx and indices[t - 1] != blank:
+                continue
+            chars.append(self.idx_to_char[idx])
+        return "".join(chars)
 
     # -- persistence -------------------------------------------------------
     def save(self, path: str) -> None:
@@ -143,44 +142,63 @@ class Charset:
         beam_width: int = 10,
         blank_index: int | None = None,
     ) -> str:
-        """CTC prefix beam search on log-probabilities (T, num_classes)."""
+        """CTC prefix beam search on log-probabilities (T, num_classes).
+
+        Prefixes store the collapsed label sequence. Repeated frame labels extend
+        non-blank scores on the same prefix instead of appending duplicate chars.
+        """
         import math
 
         blank = self.BLANK_INDEX if blank_index is None else blank_index
+        neg_inf = -math.inf
         if hasattr(log_probs, "detach"):
             log_probs = log_probs.detach().cpu().numpy()
         T, C = log_probs.shape
-        beam: dict[tuple, tuple[float, float]] = {(): (0.0, -math.inf)}
+        beam: dict[tuple, tuple[float, float]] = {(): (0.0, neg_inf)}
+
         for t in range(T):
             nxt: dict[tuple, tuple[float, float]] = {}
+
+            def scores(prefix: tuple) -> tuple[float, float]:
+                return nxt.get(prefix, (neg_inf, neg_inf))
+
             for prefix, (p_b, p_nb) in beam.items():
                 for c in range(C):
                     lp = float(log_probs[t, c])
                     if c == blank:
-                        nb, nn = nxt.get(prefix, (-math.inf, -math.inf))
-                        nxt[prefix] = (max(p_b + lp, nb), max(p_nb + lp, nn))
+                        pb, pnb = scores(prefix)
+                        nxt[prefix] = (
+                            _logaddexp(p_b + lp, pb),
+                            _logaddexp(p_nb + lp, pnb),
+                        )
                         continue
-                    new_prefix = prefix + (c,)
-                    pb, pnb = nxt.get(new_prefix, (-math.inf, -math.inf))
+
                     if prefix and prefix[-1] == c:
-                        nxt[new_prefix] = (
-                            max(pb, p_b + lp),
-                            max(pnb, p_nb + lp),
-                        )
-                    else:
-                        nxt[new_prefix] = (
-                            max(pb, p_b + lp),
-                            max(pnb, p_b + lp, p_nb + lp),
-                        )
-            beam = {
-                pref: (_logaddexp(pb, pnb), -math.inf)
-                for pref, (pb, pnb) in nxt.items()
-            }
-            beam = dict(sorted(beam.items(), key=lambda kv: kv[1][0], reverse=True)[: max(1, beam_width)])
+                        pb, pnb = scores(prefix)
+                        nxt[prefix] = (pb, _logaddexp(p_nb + lp, pnb))
+                        continue
+
+                    new_prefix = prefix + (c,)
+                    pb, pnb = scores(new_prefix)
+                    extend = _logaddexp(p_b + lp, p_nb + lp)
+                    nxt[new_prefix] = (pb, _logaddexp(extend, pnb))
+
+            beam = dict(
+                sorted(
+                    nxt.items(),
+                    key=lambda kv: _logaddexp(kv[1][0], kv[1][1]),
+                    reverse=True,
+                )[: max(1, beam_width)]
+            )
+
         if not beam:
             return ""
-        best = max(beam.items(), key=lambda kv: kv[1][0])[0]
+        best = max(
+            beam.items(),
+            key=lambda kv: _logaddexp(kv[1][0], kv[1][1]),
+        )[0]
         return "".join(self.idx_to_char[i] for i in best if i in self.idx_to_char)
+
 
     @classmethod
     def build_default(cls) -> "Charset":
