@@ -131,127 +131,27 @@ Verify the GPU is visible:
 python -c "import torch; print('version:', torch.__version__); print('CUDA:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
 ```
 
-The local notebook (`notebooks/local_pipeline.ipynb`) picks `cuda` automatically when available and uses `train.batch_size: 32` from `configs/local.yaml`. `train.device: auto` in that config is overridden by the notebook during interactive runs.
+### Typical workflow (`notebooks/local_pipeline.ipynb`)
 
-- Sinhala-capable fonts: **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`) ships with Windows
+Use **Section 4 — Pipeline control** (`RUN_*` flags) so you do not re-train on every test run.
 
-### One-time setup
+| Goal | Flags (Section 4) |
+|------|-------------------|
+| **First full run** | `RUN_GENERATE`, `RUN_BASELINE_TRAIN`, `RUN_FINETUNE`, `RUN_UPLOAD_TEST`, `RUN_REAL_PHOTO` all `True` |
+| **Inference / testing only** | All training flags `False`; enable `RUN_UPLOAD_TEST` and/or `RUN_REAL_PHOTO` |
+| **Refresh synthetic data** | `RUN_GENERATE=True` only |
 
-From the project root in PowerShell:
+Notebook sections: setup → pipeline flags → optional generate → optional baseline train → synthetic eval → optional poem fine-tune → poem CER table → digital upload test → real phone photo → optional debug export.
 
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/setup_local.ps1
-# optional virtual environment:
-powershell -ExecutionPolicy Bypass -File scripts/setup_local.ps1 -CreateVenv
-```
+Checkpoints: `models/crnn_best.pth` (baseline), `models/crnn_finetuned.pth` (poem fine-tune, inference height **64**, greedy decode).
 
-This installs `requirements.txt`, registers the **Sinhala OCR** Jupyter kernel, and creates the `data/` layout.
+### Real captured photo (notebook Section 10)
 
-Core setup does **not** require `editdistance`. On **Windows with Python 3.13**, `editdistance` often has no prebuilt wheel and needs [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) to compile. CER/WER still work via a pure-Python Levenshtein fallback in `src/evaluation/metrics.py`.
-
-- **Default:** run setup without optional native metrics extensions.
-- **Optional speedup:** `pip install -r requirements-optional.txt` (includes `rapidfuzz`, which has Python 3.13 wheels, and `editdistance` when a wheel or compiler is available).
-- **If you need `editdistance` specifically:** install Visual C++ Build Tools, or use **Python 3.11** where wheels are more common.
-
-
-### Sinhala display in Jupyter
-
-Training, evaluation, and OCR use Unicode label files and PNG line images. **Missing tofu boxes in plots do not block OCR** — they only affect how matplotlib/IPython render Sinhala in notebook titles and prints.
-
-For readable Sinhala in previews:
-
-1. **Windows:** `setup_matplotlib_sinhala()` registers **Nirmala UI** (`C:\Windows\Fonts\Nirmala.ttc`) automatically (Latin + Sinhala).
-2. **Linux / Colab:** install `fonts-noto-core` or let `notebooks/colab_pipeline.ipynb` download Noto Sans Sinhala into `fonts/`.
-3. **Fallback:** `powershell -ExecutionPolicy Bypass -File scripts/download_fonts.ps1` saves `fonts/NotoSansSinhala-Regular.ttf`.
-
-Notebooks call `from src.utils.display import setup_matplotlib_sinhala` after font detection. `scripts/setup_local.ps1` prints the resolved font path.
-
-Quick check:
-
-```powershell
-python -c "from src.utils.display import setup_matplotlib_sinhala; print(setup_matplotlib_sinhala())"
-```
-
-### Start the local notebook
-
-```powershell
-cd C:\path\to\sinhala-document-ocr
-jupyter notebook notebooks/local_pipeline.ipynb
-```
-
-Work through the cells in order: synthetic data generation, training, evaluation, and upload OCR.
-
-### Data layout (local)
-
-| Path | Purpose |
-|------|---------|
-| `data/synthetic/` | Generated training lines (`images/`, `train_labels.txt`, …) — **gitignored** after generation |
-| `data/uploads/` | Place test photos/scans for Section 8 |
-| `data/real/images/` + `data/real/labels/` | Future real annotated documents (your local collection) |
-| `data/debug/` | Optional inference debug dumps from the notebook |
-| `models/` | `crnn_best.pth`, `crnn_last.pth`, `charset.json` (checkpoints gitignored) |
-
-The first local run **generates synthetic samples** into `data/synthetic/` (default **15000** lines (GPU baseline) via `configs/local.yaml`).
-
-### Train without Jupyter
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/run_local_train.ps1
-# or
-python scripts/run_local_train.py
-```
-
-Uses `configs/local.yaml` (15 epochs, batch size 16 by default).
-
-
-
-## Baseline + Fine-tuning workflow
-
-**Step A — GPU baseline training** (synthetic data only):
-
-```powershell
-python scripts/generate_data.py --config configs/local.yaml --large --num-samples 15000
-python -m src.recognition.train --config configs/local.yaml
-```
-
-Defaults in `configs/local.yaml`: **15 000** synthetic lines, **25** epochs, batch **32**, `num_workers: 0` on Windows.
-
-Or run both steps:
-
-```powershell
-python scripts/run_local_train.py
-```
-
-**Step B — Fine-tune on the Kanyawee poem** (real line crops + ground truth):
-
-1. Place the poem page at `data/uploads/test2.png` (or pass `--image`).
-2. Build crops and labels:
-
-```powershell
-python scripts/prepare_poem_dataset.py --image data/uploads/test2.png
-```
-
-3. Fine-tune from the baseline checkpoint (merges poem labels with synthetic train split):
-
-```powershell
-powershell -ExecutionPolicy Bypass -File scripts/run_finetune.ps1
-```
-
-Outputs: `data/real/images/poem_line_*.png`, `data/real/labels/poem_kanyawee.txt`, `models/crnn_finetuned.pth`.
-
-Inference defaults to **greedy** CTC decode (`inference.decode: greedy`). Beam search is optional once verified; incorrect beam state merging previously caused doubled characters in predictions.
-
-The local notebook (`notebooks/local_pipeline.ipynb`) has **Step A** (synthetic generate/train), **Section 8** (digital scan / upload OCR), **Section B** (fine-tune on `data/real/labels/poem_kanyawee.txt`, 50× poem repeat → `crnn_finetuned.pth`), and **Section C** (real phone-camera photo test).
-
-### Section C — real captured photo (notebook)
-
-1. Run setup cells (Section 1–4) and train or load checkpoints.
-2. Open **Section C** in `notebooks/local_pipeline.ipynb`.
-3. Set `TEST_MODE = "upload"` and run the config cell — a **tkinter** file dialog picks your photo; a copy is saved under `data/uploads/real_capture_<timestamp>.jpg`.
-   Or set `TEST_MODE = "file_path"` and `REAL_PHOTO_PATH` to an image already on disk.
-4. Set `USE_FINETUNED = True` to prefer `models/crnn_finetuned.pth` when present.
-5. Run the pipeline cell: line boxes, per-line crops, Sinhala predictions (height **64**, auto-invert). Results go to `data/debug/real_capture_<timestamp>/`.
-6. Set `COMPARE_TO_POEM_GT = True` only when the photo is the same Kanyawee poem page (10 lines) to print CER vs `data/real/labels/poem_kanyawee.txt`.
+1. Run Sections **1–4** (setup + pipeline flags); leave training flags `False` if checkpoints already exist.
+2. Set `RUN_REAL_PHOTO=True`, `TEST_MODE="upload"` (tkinter picker) or `file_path` + `REAL_PHOTO_PATH`.
+3. Set `USE_FINETUNED=True` to load `crnn_finetuned.pth` when present.
+4. Run Section 10 cells; debug output under `data/debug/real_capture_<timestamp>/`.
+5. Set `COMPARE_TO_POEM_GT=True` only for the same Kanyawee poem page (10 lines).
 
 ## Google Colab
 
