@@ -239,7 +239,17 @@ powershell -ExecutionPolicy Bypass -File scripts/run_finetune.ps1
 
 Outputs: `data/real/images/poem_line_*.png`, `data/real/labels/poem_kanyawee.txt`, `models/crnn_finetuned.pth`.
 
-The local notebook (`notebooks/local_pipeline.ipynb`) has **Step A** cells for generate/train and **Section B** for prepare, fine-tune, and before/after CER on the upload.
+The local notebook (`notebooks/local_pipeline.ipynb`) has **Step A** (synthetic generate/train), **Section 8** (digital scan / upload OCR), **Section B** (fine-tune on `data/real/labels/poem_kanyawee.txt`, 50× poem repeat → `crnn_finetuned.pth`), and **Section C** (real phone-camera photo test).
+
+### Section C — real captured photo (notebook)
+
+1. Run setup cells (Section 1–4) and train or load checkpoints.
+2. Open **Section C** in `notebooks/local_pipeline.ipynb`.
+3. Set `TEST_MODE = "upload"` and run the config cell — a **tkinter** file dialog picks your photo; a copy is saved under `data/uploads/real_capture_<timestamp>.jpg`.
+   Or set `TEST_MODE = "file_path"` and `REAL_PHOTO_PATH` to an image already on disk.
+4. Set `USE_FINETUNED = True` to prefer `models/crnn_finetuned.pth` when present.
+5. Run the pipeline cell: line boxes, per-line crops, Sinhala predictions (height **64**, auto-invert). Results go to `data/debug/real_capture_<timestamp>/`.
+6. Set `COMPARE_TO_POEM_GT = True` only when the photo is the same Kanyawee poem page (10 lines) to print CER vs `data/real/labels/poem_kanyawee.txt`.
 
 ## Google Colab
 

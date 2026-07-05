@@ -16,16 +16,16 @@ from src.detection.text_detection import OpenCVLineDetector, crop_lines
 from src.utils.common import configure_stdout_utf8, get_logger, load_config
 
 GROUND_TRUTH = [
-    "Kanyawee - කන්\u200dයාවී",
-    "මිනිසා මරණ තුනක් ඇති මිනිසා බලා සිටී.",
-    "නිරුවත් දෑසින් බලන්න කන්\u200dයාවී",
-    "ලිහිල් සළුව අනතුරේ වැටෙද්දී",
-    "පයෝධර තුඩු ඉකිබිඳිද්දී සංත්\u200dරාසයෙන්",
-    "අසංවාදී සුසුම් වේගේ.. රිද්\u200dමයෙන් වයන්න වීණා කන්\u200dයාවී",
-    "නියඟලා මල් පාට දේදුණු දෙබෑ කර එන ගිරා කොවුවන්",
-    "පියුම් කැකුළක් තුඩින් පාරා බලෙන් පුබුදන හංසයා",
-    "බලන්න නිරුවත් දෑසින් ඔකඳ වී රිද්\u200dමයෙන්",
-    "රසා තලය කලඑළි ගන්වා වයන්න වීණා කන්\u200dයා.වී",
+    'Kanyawee - කන්\u200dයාවී',
+    'මිනිසා මරණ තුනක් ඇති මිනිසා බලා සිටී',
+    'නිරුවත් දෑසින් බලන්න කන්\u200dයාවී',
+    'ලිහිල් සළුව අනතුරේ වැටෙද්දී',
+    'පයෝධර තුඩු ඉකිබිඳිද්දී සංත්\u200dරාසයෙන්',
+    'අසංවාදී සුසුම් වේගේ රිද්\u200dමයෙන් වයන්න වීණා කන්\u200dයාවී',
+    'නියඟලා මල් පාට දේදුණු දෙබෑ කර එන ගිරා කොවුවන්',
+    'පියුම් කැකුළක් තුඩින් පාරා බලෙන් පුබුදන හංසයා',
+    'බලන්න නිරුවත් දෑසින් ඔකඳ වී රිද්\u200dමයෙන්',
+    'රසා තලය කලඑළි ගන්වා වයන්න වීණා කන්\u200dයාවී',
 ]
 
 
@@ -107,7 +107,10 @@ def main() -> int:
     for i, (crop, text) in enumerate(zip(line_crops, transcripts), start=1):
         name = f"poem_line_{i:03d}.png"
         out_path = os.path.join(out_images, name)
-        cv2.imwrite(out_path, crop)
+        if os.path.isfile(out_path):
+            logger.info("Keeping existing crop %s", out_path)
+        else:
+            cv2.imwrite(out_path, crop)
         rows.append(f"{rel_prefix}/{name}\t{text}")
         logger.info("Wrote %s", out_path)
 
