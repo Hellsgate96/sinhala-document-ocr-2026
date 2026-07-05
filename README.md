@@ -145,7 +145,7 @@ Notebook sections: setup → pipeline flags → optional generate → optional b
 
 Checkpoints: `models/crnn_best.pth` (baseline), `models/crnn_finetuned.pth` (poem fine-tune, inference height **64**, greedy decode).
 
-### Real captured photo (notebook Section 10)
+### Real captured photo (notebook Section 11)
 
 1. Run Sections **1–4** (setup + pipeline flags); leave training flags `False` if checkpoints already exist.
 2. Set `RUN_REAL_PHOTO=True`, `TEST_MODE="upload"` (tkinter picker) or `file_path` + `REAL_PHOTO_PATH`.
