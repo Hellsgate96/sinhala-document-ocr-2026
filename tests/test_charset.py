@@ -1,5 +1,6 @@
 """Unit tests for the Sinhala charset (encode/decode round-trip + persistence)."""
 
+import pytest
 import os
 import sys
 import tempfile
@@ -33,6 +34,34 @@ def test_ctc_greedy_decode_collapses():
     # frames: a a <blank> a b b -> "aab"
     frames = [a, a, 0, a, b, b]
     assert cs.ctc_greedy_decode(frames) == "aab"
+
+
+
+
+def test_logaddexp_helper():
+    import math
+
+    from src.charset import _logaddexp
+
+    assert _logaddexp(-math.inf, 1.0) == 1.0
+    assert _logaddexp(0.0, 0.0) == pytest.approx(math.log(2.0))
+
+
+def test_ctc_beam_search_decode_small():
+    import numpy as np
+
+    from src.charset import _logaddexp
+
+    cs = Charset.build_default()
+    rng = np.random.default_rng(0)
+    T, C = 5, min(8, cs.num_classes)
+    log_probs = rng.standard_normal((T, C)).astype(np.float64)
+    log_probs -= log_probs.max(axis=1, keepdims=True)
+    out = cs.ctc_beam_search_decode(log_probs, beam_width=3)
+    assert isinstance(out, str)
+    a, b = -1.2, -0.5
+    np_val = np.logaddexp(a, b)
+    assert _logaddexp(a, b) == pytest.approx(float(np_val))
 
 
 def test_save_load():

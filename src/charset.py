@@ -15,6 +15,18 @@ import json
 import os
 from typing import Iterable, List, Sequence
 
+def _logaddexp(a: float, b: float) -> float:
+    """log(exp(a)+exp(b)) stable; works without math.logaddexp."""
+    import math
+
+    if a == -math.inf:
+        return b
+    if b == -math.inf:
+        return a
+    if a > b:
+        return a + math.log1p(math.exp(b - a))
+    return b + math.log1p(math.exp(a - b))
+
 # --- Unicode ranges -------------------------------------------------------
 SINHALA_START = 0x0D80
 SINHALA_END = 0x0DFF
@@ -161,7 +173,7 @@ class Charset:
                             max(pnb, p_b + lp, p_nb + lp),
                         )
             beam = {
-                pref: (math.logaddexp(pb, pnb), -math.inf)
+                pref: (_logaddexp(pb, pnb), -math.inf)
                 for pref, (pb, pnb) in nxt.items()
             }
             beam = dict(sorted(beam.items(), key=lambda kv: kv[1][0], reverse=True)[: max(1, beam_width)])
