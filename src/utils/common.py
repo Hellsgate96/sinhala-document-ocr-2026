@@ -1,4 +1,4 @@
-﻿"""Shared utilities: seeding, logging, config loading, image IO, checkpoints.
+"""Shared utilities: seeding, logging, config loading, image IO, checkpoints.
 
 Heavy dependencies (``torch``) are imported lazily inside the functions that need
 them so this module can be imported in a CPU-only / torch-less environment.

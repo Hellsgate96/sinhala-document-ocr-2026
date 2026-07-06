@@ -1,10 +1,17 @@
 """Synthetic Sinhala text-line image generator (SynthTIGER-style).
 
-Renders random Sinhala (and mixed Sinhala-English/numeric) text lines using PIL
+Renders diverse Sinhala (and mixed Sinhala-English/numeric) text lines using PIL
 fonts, then applies phone-capture style degradations (rotation, blur, noise,
 brightness/contrast jitter, JPEG compression, perspective, shadow). Produces
 ``image`` + ``transcript`` pairs and tab-separated labels files with a seedable
 train/val/test split.
+
+Text sampling (v2): lines are drawn primarily from a large real-text corpus
+(``src/data/corpus_sinhala.txt`` - thousands of distinct Sinhala sentences),
+mixed with random sentence spans, word recombinations from the legacy word
+lists, and synthetic numbers/dates/IDs. Rendering varies font face (all faces
+in a .ttc collection), size, text colour, background (plain / textured /
+gradient) and padding.
 
 This module scales from a tiny smoke-test (a handful of images) up to a large
 training corpus (tens of thousands of images). It runs on CPU with only Pillow +
@@ -28,6 +35,9 @@ import numpy as np
 from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 
 DEFAULT_WINDOWS_SINHALA_FONT = "C:/Windows/Fonts/Nirmala.ttc"
+DEFAULT_CORPUS_PATH = os.path.join(
+    os.path.dirname(os.path.abspath(__file__)), "corpus_sinhala.txt"
+)
 
 # Additional well-known Sinhala-capable fonts probed as a fallback when no
 # configured font exists (covers both Windows and Linux/Colab installs).
@@ -43,12 +53,13 @@ FALLBACK_FONT_CANDIDATES = (
 
 
 # --------------------------------------------------------------------------
-# Word list + text sampling
+# Word list / corpus loading + text sampling
 # --------------------------------------------------------------------------
 def load_word_list(path: str) -> List[str]:
-    """Read a UTF-8 word/phrase list (one entry per non-empty line)."""
+    """Read a UTF-8 word/phrase list (one entry per non-empty, non-comment line)."""
     with open(path, "r", encoding="utf-8") as f:
-        return [ln.strip() for ln in f if ln.strip()]
+        return [ln.strip() for ln in f
+                if ln.strip() and not ln.lstrip().startswith("#")]
 
 
 def load_word_lists(paths: Sequence[str], warn=print) -> List[str]:
@@ -60,6 +71,15 @@ def load_word_lists(paths: Sequence[str], warn=print) -> List[str]:
         elif p:
             warn(f"[words] missing, skipping: {p}")
     return words
+
+
+def load_corpus(path: Optional[str] = None, warn=print) -> List[str]:
+    """Load the Sinhala sentence corpus (one line per row); [] when missing."""
+    path = path or DEFAULT_CORPUS_PATH
+    if not os.path.isfile(path):
+        warn(f"[corpus] missing: {path} (run scripts/build_corpus.py)")
+        return []
+    return load_word_list(path)
 
 
 # -- numeric / mixed token synthesis ---------------------------------------
@@ -108,15 +128,38 @@ def random_mixed_token(rng: random.Random) -> str:
     return f"{rng.choice(['A/L', 'O/L', 'Grade', 'Ref'])} {rng.randint(1, 2026)}"
 
 
+def clamp_words(text: str, max_words: int, rng: random.Random) -> str:
+    """Cut a random contiguous span of at most ``max_words`` words."""
+    words = text.split()
+    if len(words) <= max_words:
+        return text
+    start = rng.randint(0, len(words) - max_words)
+    return " ".join(words[start:start + max_words])
+
+
 def compose_line(words: Sequence[str], min_words: int, max_words: int,
                  rng: random.Random, numeric_ratio: float = 0.12,
-                 mixed_ratio: float = 0.10) -> str:
-    """Compose a random line by joining 1..N sampled tokens.
+                 mixed_ratio: float = 0.10,
+                 corpus: Optional[Sequence[str]] = None,
+                 corpus_ratio: float = 0.65) -> str:
+    """Compose one training line.
 
-    Each token is usually a sampled word/phrase, but with small probabilities a
-    synthetic number/date or a Sinhala-English mixed token is injected to mimic
-    real documents (amounts, dates, IDs, reference codes).
+    With probability ``corpus_ratio`` (and a non-empty ``corpus``) the line is a
+    real corpus sentence: either the full sentence or a random contiguous span,
+    clamped to ``max_words`` words. Otherwise the line is built token-by-token
+    from the word list, with small probabilities of synthetic numbers/dates and
+    Sinhala-English mixed tokens (amounts, dates, IDs, reference codes).
     """
+    if corpus and rng.random() < corpus_ratio:
+        sentence = rng.choice(corpus)
+        n_words = len(sentence.split())
+        if n_words > 1 and rng.random() < 0.35:
+            # random span: 1..min(max_words, n) words
+            span = rng.randint(1, min(max_words, n_words))
+            start = rng.randint(0, n_words - span)
+            return " ".join(sentence.split()[start:start + span])
+        return clamp_words(sentence, max_words, rng)
+
     n = rng.randint(min_words, max_words)
     tokens: List[str] = []
     for _ in range(n):
@@ -168,23 +211,98 @@ def discover_fonts(font_paths: Sequence[str], warn=print) -> List[str]:
     return available
 
 
+def discover_font_faces(font_paths: Sequence[str], warn=print,
+                        probe_text: str = "\u0d9c\u0dd4") -> List[Tuple[str, int]]:
+    """Expand font files into (path, face_index) pairs.
+
+    ``.ttc`` collections (e.g. Nirmala UI Regular/Bold/Semilight + Nirmala Text
+    faces) are enumerated so every face that renders Sinhala becomes an extra
+    rendering style for free.
+    """
+    faces: List[Tuple[str, int]] = []
+    for path in discover_fonts(font_paths, warn=warn):
+        if path.lower().endswith(".ttc"):
+            index = 0
+            while True:
+                try:
+                    font = ImageFont.truetype(path, 24, index=index)
+                except Exception:
+                    break
+                try:
+                    bbox = font.getbbox(probe_text)
+                    renders = bbox[2] > bbox[0]
+                except Exception:
+                    renders = True
+                if renders:
+                    faces.append((path, index))
+                index += 1
+                if index > 15:
+                    break
+        else:
+            faces.append((path, 0))
+    if not faces:
+        raise RuntimeError("No usable font faces found.")
+    return faces
+
+
 # --------------------------------------------------------------------------
 # Rendering
 # --------------------------------------------------------------------------
+def _make_background(w: int, h: int, bg_color: Tuple[int, int, int],
+                     rng: random.Random) -> Image.Image:
+    """Plain / subtle-gradient / lightly-textured light background."""
+    style = rng.random()
+    if style < 0.6:
+        return Image.new("RGB", (w, h), bg_color)
+    base = np.full((h, w, 3), bg_color, dtype=np.float32)
+    if style < 0.85:  # subtle linear gradient
+        drop = rng.uniform(4, 22)
+        axis = rng.random() < 0.5
+        ramp = np.linspace(0.0, drop, w if axis else h, dtype=np.float32)
+        if rng.random() < 0.5:
+            ramp = ramp[::-1]
+        base -= ramp[None, :, None] if axis else ramp[:, None, None]
+    else:  # light paper texture
+        sigma = rng.uniform(2.0, 7.0)
+        base += np.random.normal(0.0, sigma, (h, w, 1)).astype(np.float32)
+    return Image.fromarray(np.clip(base, 0, 255).astype(np.uint8))
+
+
 def render_text_image(text: str, font: ImageFont.FreeTypeFont,
                       text_color: Tuple[int, int, int],
                       bg_color: Tuple[int, int, int],
-                      padding: int = 8) -> Image.Image:
-    """Render ``text`` onto a tight RGB background with the given font."""
-    # Measure with a scratch draw context.
+                      padding: int = 8,
+                      rng: Optional[random.Random] = None) -> Image.Image:
+    """Render ``text`` onto a light background with the given font.
+
+    When ``rng`` is provided, the horizontal/vertical padding is jittered and
+    the background may carry a subtle gradient or paper texture. Extra
+    horizontal padding (with the ink placed centre or off-centre) mimics
+    centered lines on wider layouts.
+    """
     scratch = Image.new("RGB", (4, 4), bg_color)
     draw = ImageDraw.Draw(scratch)
     bbox = draw.textbbox((0, 0), text, font=font)
-    w = max(1, bbox[2] - bbox[0]) + 2 * padding
-    h = max(1, bbox[3] - bbox[1]) + 2 * padding
-    img = Image.new("RGB", (w, h), bg_color)
+    text_w = max(1, bbox[2] - bbox[0])
+    text_h = max(1, bbox[3] - bbox[1])
+
+    if rng is None:
+        pad_x = pad_y = padding
+        w = text_w + 2 * pad_x
+        h = text_h + 2 * pad_y
+        img = Image.new("RGB", (w, h), bg_color)
+        x0 = pad_x
+    else:
+        pad_y = rng.randint(4, max(5, int(text_h * 0.45)))
+        pad_x = rng.randint(4, 24)
+        extra = int(text_w * rng.uniform(0.0, 0.5)) if rng.random() < 0.3 else 0
+        w = text_w + 2 * pad_x + extra
+        h = text_h + 2 * pad_y
+        img = _make_background(w, h, bg_color, rng)
+        # centre or left-align the ink inside the extra space
+        x0 = pad_x + (extra // 2 if rng.random() < 0.6 else 0)
     draw = ImageDraw.Draw(img)
-    draw.text((padding - bbox[0], padding - bbox[1]), text, font=font, fill=text_color)
+    draw.text((x0 - bbox[0], pad_y - bbox[1]), text, font=font, fill=text_color)
     return img
 
 
@@ -291,12 +409,40 @@ def aug_jpeg(img: Image.Image, rng: random.Random) -> Image.Image:
 # Dataset generation
 # --------------------------------------------------------------------------
 def _random_colors(rng: random.Random) -> Tuple[Tuple[int, int, int], Tuple[int, int, int]]:
-    """Return (text_color, bg_color) with a readable contrast (dark text)."""
+    """Return (text_color, bg_color): dark ink on a light background.
+
+    Text is black / dark gray most of the time, occasionally a dark hue (blue,
+    brown, green, maroon) as on printed cards and letterheads.
+    """
     bg = rng.randint(200, 255)
-    fg = rng.randint(0, 80)
     bg_color = (bg, bg, rng.randint(max(180, bg - 20), 255))
-    text_color = (fg, fg, fg)
+    style = rng.random()
+    if style < 0.6:  # black / dark gray
+        fg = rng.randint(0, 70)
+        text_color = (fg, fg, fg)
+    else:  # dark hue: one channel lifted slightly
+        base = [rng.randint(0, 60) for _ in range(3)]
+        base[rng.randint(0, 2)] = rng.randint(40, 110)
+        text_color = tuple(base)
     return text_color, bg_color
+
+
+def check_charset_coverage(texts: Sequence[str], warn=print) -> List[str]:
+    """Warn about characters in ``texts`` missing from the default charset.
+
+    Returns the sorted list of missing characters (empty when fully covered).
+    Encoding silently drops unknown characters at train time, so any hit here
+    means labels and rendered pixels would disagree - fix the charset instead.
+    """
+    from src.charset import Charset
+
+    charset = Charset.build_default()
+    used = set("".join(texts))
+    missing = sorted(c for c in used if c not in charset.char_to_idx)
+    if missing:
+        codes = ", ".join(f"U+{ord(c):04X}" for c in missing)
+        warn(f"[charset] {len(missing)} character(s) missing from charset: {codes}")
+    return missing
 
 
 def _progress(iterable, total, enabled, desc="generate"):
@@ -316,13 +462,16 @@ def generate(out_dir: str,
              font_sizes: Sequence[int],
              words: Sequence[str],
              min_words: int = 1,
-             max_words: int = 4,
+             max_words: int = 12,
              augment: Optional[Dict] = None,
              split: Sequence[float] = (0.7, 0.15, 0.15),
              seed: int = 1337,
              logger=None,
              numeric_ratio: float = 0.12,
              mixed_ratio: float = 0.10,
+             corpus: Optional[Sequence[str]] = None,
+             corpus_path: Optional[str] = None,
+             corpus_ratio: float = 0.65,
              progress: bool = True) -> Dict[str, int]:
     """Generate a synthetic line-image dataset and write labels files.
 
@@ -330,7 +479,9 @@ def generate(out_dir: str,
     ``train_labels.txt`` / ``val_labels.txt`` / ``test_labels.txt`` files (each row
     ``relative_image_path<TAB>transcript``). Returns the per-split sample counts.
 
-    The same ``seed`` reproduces both the rendered images and the split exactly.
+    ``corpus`` (or ``corpus_path``) supplies real Sinhala sentences; when
+    omitted, ``src/data/corpus_sinhala.txt`` is loaded automatically. The same
+    ``seed`` reproduces both the rendered images and the split exactly.
     """
     warn = (logger.warning if logger else print)
     info = (logger.info if logger else print)
@@ -339,29 +490,38 @@ def generate(out_dir: str,
     np.random.seed(seed)
     augment = augment or {}
 
-    fonts = discover_fonts(font_paths, warn=warn)
+    if corpus is None:
+        corpus = load_corpus(corpus_path, warn=warn)
+    corpus = list(corpus or [])
+
+    faces = discover_font_faces(font_paths, warn=warn)
     font_sizes = list(font_sizes)
-    info(f"[fonts] using {len(fonts)} font(s); {len(words)} vocab entries; "
-         f"{num_samples} samples")
+    info(f"[fonts] using {len(faces)} font face(s); {len(words)} vocab entries; "
+         f"{len(corpus)} corpus lines; {num_samples} samples")
+
+    check_charset_coverage(list(corpus) + list(words), warn=warn)
+
     images_dir = os.path.join(out_dir, "images")
     os.makedirs(images_dir, exist_ok=True)
 
-    # Pre-load font objects keyed by (path, size).
-    font_cache: Dict[Tuple[str, int], ImageFont.FreeTypeFont] = {}
+    # Pre-load font objects keyed by (path, face_index, size).
+    font_cache: Dict[Tuple[str, int, int], ImageFont.FreeTypeFont] = {}
 
-    def get_font(path: str, size: int) -> ImageFont.FreeTypeFont:
-        key = (path, size)
+    def get_font(path: str, index: int, size: int) -> ImageFont.FreeTypeFont:
+        key = (path, index, size)
         if key not in font_cache:
-            font_cache[key] = ImageFont.truetype(path, size)
+            font_cache[key] = ImageFont.truetype(path, size, index=index)
         return font_cache[key]
 
     records: List[Tuple[str, str]] = []
     for i in _progress(range(num_samples), num_samples, progress, desc="render"):
         text = compose_line(words, min_words, max_words, rng,
-                            numeric_ratio=numeric_ratio, mixed_ratio=mixed_ratio)
-        font = get_font(rng.choice(fonts), rng.choice(font_sizes))
+                            numeric_ratio=numeric_ratio, mixed_ratio=mixed_ratio,
+                            corpus=corpus, corpus_ratio=corpus_ratio)
+        path, face_index = rng.choice(faces)
+        font = get_font(path, face_index, rng.choice(font_sizes))
         text_color, bg_color = _random_colors(rng)
-        img = render_text_image(text, font, text_color, bg_color)
+        img = render_text_image(text, font, text_color, bg_color, rng=rng)
         img = apply_augmentations(img, augment, bg_color, rng)
 
         rel_path = os.path.join("images", f"line_{i:06d}.png")

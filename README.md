@@ -95,6 +95,44 @@ Character Error Rate (CER), Word Error Rate (WER), field-level accuracy, and ave
 **CPU inference time** (see `src/evaluation/metrics.py`).
 
 
+## v2 training: diverse corpus + projection detection
+
+The v2 overhaul targets **one general baseline model** that reads arbitrary Sinhala
+documents (no per-document fine-tuning):
+
+* **Diverse real-text corpus** — `src/data/corpus_sinhala.txt` (3000+ distinct Sinhala
+  lines: everyday/news sentences, names, addresses, verse, religious/formal phrases,
+  school text, greetings, mixed Sinhala-English, wide grapheme coverage incl. ්‍ර / ්‍ය
+  conjuncts, ඳ ඟ ඬ ෘ ...). Rebuild with `python scripts/build_corpus.py`.
+* **Generator v2** — ~65% of lines sampled from the corpus (full sentences + random
+  spans), rest word recombinations / numbers / dates; every available Sinhala font
+  face (all 6 Nirmala UI/Text faces on Windows), sizes 24–72, dark-colour text,
+  plain/gradient/textured light backgrounds, centered vs left layouts.
+* **Projection line detection** (default `detection.method: projection`) — background-
+  subtracted contrast binarization (drops faint watermarks), border/frame suppression,
+  horizontal ink-profile bands, per-band ink extent (handles centered short lines).
+  The legacy morphology detector remains available via `detection.method: contours`.
+* **Training regime** — 40 epochs, ReduceLROnPlateau on val CER, early stopping
+  (patience 8), per-epoch val CER logging.
+
+### Retrain (required after upgrading to v2)
+
+```powershell
+# 1) rebuild the corpus (optional; committed file is current)
+python scripts/build_corpus.py
+
+# 2) generate 30000 diverse synthetic lines (GPU box; use --num 5000 on CPU-only)
+python scripts/generate_data.py --config configs/local.yaml --large
+
+# 3) train the general baseline (40 epochs, early stopping)
+python -m src.recognition.train --config configs/local.yaml
+```
+
+Or in `notebooks/local_pipeline.ipynb`: set `RUN_GENERATE=True` and
+`RUN_BASELINE_TRAIN=True` in Section 4 (defaults: `NUM_SAMPLES=30000`,
+`BASELINE_EPOCHS=40`, `CHECKPOINT_MODE="baseline"`, `DETECTION_METHOD="projection"`)
+and run Sections 5–7. Section 8 (poem fine-tune) is an **optional experiment** only.
+
 ## Running Locally (Windows + Jupyter)
 
 Run the full baseline pipeline on your laptop without Google Colab.

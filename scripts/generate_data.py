@@ -1,4 +1,4 @@
-﻿"""CLI wrapper: generate synthetic Sinhala line data from the config.
+"""CLI wrapper: generate synthetic Sinhala line data from the config.
 
 Two paths are supported:
 
@@ -26,7 +26,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT not in sys.path:
     sys.path.insert(0, ROOT)
 
-from src.data.synthetic_generator import generate, load_word_lists  # noqa: E402
+from src.data.synthetic_generator import generate, load_corpus, load_word_lists  # noqa: E402
 from src.utils.common import configure_stdout_utf8, get_logger, load_config  # noqa: E402
 
 
@@ -66,6 +66,9 @@ def main():
     words = load_word_lists(word_sources, warn=logger.warning)
     logger.info(f"loaded {len(words)} vocab entries from {word_sources}")
 
+    corpus = load_corpus(cfg["paths"].get("corpus"), warn=logger.warning)
+    logger.info(f"loaded {len(corpus)} corpus lines")
+
     counts = generate(
         out_dir=out_dir,
         num_samples=num,
@@ -80,6 +83,8 @@ def main():
         logger=logger,
         numeric_ratio=float(syn.get("numeric_ratio", 0.12)),
         mixed_ratio=float(syn.get("mixed_ratio", 0.10)),
+        corpus=corpus,
+        corpus_ratio=float(syn.get("corpus_ratio", 0.65)),
         progress=not args.no_progress,
     )
     logger.info(f"counts = {counts}")

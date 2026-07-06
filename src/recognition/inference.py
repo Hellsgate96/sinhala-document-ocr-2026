@@ -1,4 +1,4 @@
-﻿"""Recognition inference preprocessing — match training normalization in dataset.py.
+"""Recognition inference preprocessing — match training normalization in dataset.py.
 
 Training expects grayscale line images: dark text on a light background, resized
 to a fixed height, pixel values scaled to [0, 1] then normalized to roughly [-1, 1].

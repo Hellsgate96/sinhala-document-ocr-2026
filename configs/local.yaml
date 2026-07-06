@@ -17,6 +17,7 @@ paths:
   models_dir: models
   charset_path: models/charset.json
   word_list: src/data/sample_words.txt
+  corpus: src/data/corpus_sinhala.txt       # real-sentence corpus (scripts/build_corpus.py)
   form_vocab: src/data/form_vocab.txt
 
 image:
@@ -26,16 +27,17 @@ image:
   pad_value: 255
 
 synthetic:
-  num_samples: 15000
+  num_samples: 30000             # GPU baseline; use 5000 on CPU-only machines
   large:
-    num_samples: 15000
+    num_samples: 30000             # for --large / full GPU baseline (5000 CPU fallback)
     output_dir: data/synthetic
   split: [0.70, 0.15, 0.15]
-  min_words: 3
-  max_words: 15
+  min_words: 1                   # words_per_line lower bound
+  max_words: 12                  # words_per_line upper bound
+  corpus_ratio: 0.65             # P(line sampled from the real-sentence corpus)
   numeric_ratio: 0.12
   mixed_ratio: 0.10
-  font_sizes: [22, 26, 30, 34, 40]
+  font_sizes: [24, 28, 32, 36, 40, 48, 56, 64, 72]
   fonts:
     - "C:/Windows/Fonts/Nirmala.ttc"
     - "C:/Windows/Fonts/iskpota.ttf"
@@ -58,24 +60,35 @@ model:
   dropout: 0.1
 
 train:
-  epochs: 25
+  epochs: 40                      # GPU baseline (early stopping usually ends sooner)
   batch_size: 32
   lr: 0.001
   optimizer: adam
   weight_decay: 0.0
   num_workers: 0
   grad_clip: 5.0
+  lr_scheduler: plateau    # plateau (ReduceLROnPlateau on val CER) | cosine | none
+  lr_factor: 0.5
+  lr_patience: 3
+  min_lr: 0.000001
+  early_stopping_patience: 8   # stop after N validations without val CER improvement
   val_every: 1
   save_best_metric: cer
   device: auto
 
 detection:
+  method: projection       # projection (robust: borders/watermarks/centered lines) | contours
   min_line_height: 8
   min_line_width: 20
   dilate_kernel: [25, 3]
   crop_padding_x: 10
   crop_padding_y: 5
   min_crop_height: 14
+  min_contrast: 25         # projection: ignore ink fainter than this vs background (watermarks)
+  suppress_borders: true   # projection: mask decorative frames / margin ornaments
+  min_ink_frac: 0.004      # projection: row is text when >= this fraction of width is ink
+  min_ink_density: 0.01    # projection: drop boxes with less ink than this
+  min_height_frac: 0.35    # projection: drop boxes shorter than this x median line height
 
 postprocess:
   vocab_path: src/data/sample_words.txt

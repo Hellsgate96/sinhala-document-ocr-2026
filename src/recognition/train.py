@@ -34,6 +34,29 @@ def build_optimizer(model, cfg):
     return torch.optim.Adam(model.parameters(), lr=lr, weight_decay=wd)
 
 
+def build_scheduler(optimizer, cfg, total_epochs: int):
+    """LR scheduler from ``train.lr_scheduler``: plateau (default) | cosine | none.
+
+    * ``plateau`` - ReduceLROnPlateau on val CER (factor 0.5, patience 3).
+    * ``cosine`` - CosineAnnealingLR over the full run.
+    Returns (scheduler, kind) where kind is "plateau", "cosine" or None.
+    """
+    kind = str(cfg.get("lr_scheduler", "plateau")).lower()
+    if kind in ("none", "off", ""):
+        return None, None
+    if kind == "cosine":
+        min_lr = float(cfg.get("min_lr", 1e-5))
+        sched = torch.optim.lr_scheduler.CosineAnnealingLR(
+            optimizer, T_max=max(1, total_epochs), eta_min=min_lr)
+        return sched, "cosine"
+    sched = torch.optim.lr_scheduler.ReduceLROnPlateau(
+        optimizer, mode="min",
+        factor=float(cfg.get("lr_factor", 0.5)),
+        patience=int(cfg.get("lr_patience", 3)),
+        min_lr=float(cfg.get("min_lr", 1e-6)))
+    return sched, "plateau"
+
+
 def train_one_epoch(model, loader, criterion, optimizer, device, grad_clip, logger):
     model.train()
     running = 0.0
@@ -182,6 +205,10 @@ def main():
     model = build_crnn(charset.num_classes, cfg.get("model"), in_channels=cfg["image"]["channels"]).to(device)
     criterion = nn.CTCLoss(blank=Charset.BLANK_INDEX, zero_infinity=True)
     optimizer = build_optimizer(model, cfg["train"])
+    scheduler, scheduler_kind = build_scheduler(
+        optimizer, cfg["train"], int(cfg["train"]["epochs"]))
+    if scheduler_kind:
+        logger.info(f"lr scheduler = {scheduler_kind}")
 
     resume_path = args.resume or cfg.get("paths", {}).get("resume_checkpoint")
     start_epoch = 0
@@ -201,6 +228,8 @@ def main():
 
     best_cer = float("inf")
     total_epochs = cfg["train"]["epochs"]
+    patience = int(cfg["train"].get("early_stopping_patience", 0))
+    epochs_without_improvement = 0
     for epoch in range(1, total_epochs + 1):
         loss = train_one_epoch(
             model,
@@ -211,7 +240,8 @@ def main():
             cfg["train"].get("grad_clip", 0),
             logger,
         )
-        logger.info(f"epoch {epoch:03d} | train_loss = {loss:.4f}")
+        current_lr = optimizer.param_groups[0]["lr"]
+        logger.info(f"epoch {epoch:03d} | train_loss = {loss:.4f} | lr = {current_lr:.2e}")
 
         if epoch % cfg["train"].get("val_every", 1) == 0:
             report = evaluate_model(model, val_loader, charset, device=device, measure_cpu_time=False)
@@ -221,8 +251,21 @@ def main():
             save_checkpoint(last_path, model, optimizer, epoch, extra={"cer": report["cer"]})
             if report["cer"] < best_cer:
                 best_cer = report["cer"]
+                epochs_without_improvement = 0
                 save_checkpoint(best_path, model, optimizer, epoch, extra={"cer": best_cer})
                 logger.info(f"  -> new best CER {best_cer:.4f} (saved {os.path.basename(best_path)})")
+            else:
+                epochs_without_improvement += 1
+                if patience and epochs_without_improvement >= patience:
+                    logger.info(
+                        f"early stopping: no val CER improvement in {patience} validations "
+                        f"(best {best_cer:.4f})"
+                    )
+                    break
+            if scheduler_kind == "plateau":
+                scheduler.step(report["cer"])
+        if scheduler_kind == "cosine":
+            scheduler.step()
 
     logger.info(f"training complete. best val CER = {best_cer:.4f}")
 

@@ -1,4 +1,4 @@
-﻿"""Jupyter / matplotlib helpers for Sinhala Unicode in notebooks."""
+"""Jupyter / matplotlib helpers for Sinhala Unicode in notebooks."""
 
 from __future__ import annotations
 

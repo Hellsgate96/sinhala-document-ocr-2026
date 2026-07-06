@@ -1,13 +1,20 @@
 """Text-line / region detection (pipeline stage 3).
 
-Provides a dependency-light OpenCV baseline (morphological dilation + contour
-analysis) that returns line bounding boxes, and a documented adapter interface
-showing where a learned detector (DBNet / CRAFT / PP-OCRv3 det head) would plug in.
+Two strategies:
+
+* :class:`ProjectionLineDetector` (default) - watermark-robust binarization,
+  border/frame suppression, then horizontal projection-profile segmentation.
+  Handles decorated pages (greeting cards, certificates) with centered lines.
+* :class:`OpenCVLineDetector` (fallback) - morphological dilation + contours.
+  Suitable for clean printed pages; tends to fragment decorated layouts.
+
+Select via ``detection.method: "projection" | "contours"`` in the config or the
+:func:`build_detector` factory. Core steps are pure functions for unit testing.
 """
 
 from __future__ import annotations
 
-from typing import List, Tuple
+from typing import Dict, List, Optional, Tuple
 
 import cv2
 import numpy as np
@@ -27,11 +34,213 @@ class TextDetector:
         raise NotImplementedError
 
 
+# ---------------------------------------------------------------------------
+# Pure helpers (unit-testable)
+# ---------------------------------------------------------------------------
+def binarize_for_detection(gray: np.ndarray,
+                           min_contrast: int = 25) -> np.ndarray:
+    """Binarize a page image so ink is 255 on 0, dropping faint watermarks.
+
+    Estimates the local background with a large median blur, takes the darkness
+    relative to that background, and thresholds with Otsu. A ``min_contrast``
+    floor keeps low-contrast elements (faint watermark logos, paper texture,
+    subtle gradients) out of the ink mask.
+    """
+    if gray.ndim == 3:
+        gray = cv2.cvtColor(gray, cv2.COLOR_BGR2GRAY)
+    h, w = gray.shape[:2]
+    # Background estimate: median blur with a window larger than glyph strokes.
+    k = max(15, (min(h, w) // 20) | 1)
+    background = cv2.medianBlur(gray, min(k, 255))
+    # Darkness relative to background (text is darker than its surroundings).
+    diff = cv2.subtract(background, gray)
+    otsu_thr, _ = cv2.threshold(diff, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)
+    thr = max(float(otsu_thr), float(min_contrast))
+    binary = (diff >= thr).astype(np.uint8) * 255
+    return binary
+
+
+def suppress_border_structures(binary: np.ndarray,
+                               margin_frac: float = 0.04,
+                               max_aspect: float = 8.0,
+                               frame_frac: float = 0.75) -> np.ndarray:
+    """Remove decorative borders/frames from an ink mask (255 = ink).
+
+    A connected component is erased when it either
+    * spans most of the page (``frame_frac`` of width or height) - a frame, or
+    * touches the page margin band and is long-and-thin (aspect ratio above
+      ``max_aspect``) - border rules and ornaments.
+    """
+    h, w = binary.shape[:2]
+    margin_x = max(2, int(w * margin_frac))
+    margin_y = max(2, int(h * margin_frac))
+    n, labels, stats, _ = cv2.connectedComponentsWithStats(binary, connectivity=8)
+    out = binary.copy()
+    for i in range(1, n):
+        x, y, bw, bh, _area = stats[i]
+        spans_page = bw >= frame_frac * w or bh >= frame_frac * h
+        touches_margin = (x <= margin_x or y <= margin_y
+                          or x + bw >= w - margin_x or y + bh >= h - margin_y)
+        aspect = max(bw / max(1, bh), bh / max(1, bw))
+        if spans_page or (touches_margin and aspect >= max_aspect):
+            out[labels == i] = 0
+    return out
+
+
+def horizontal_projection_bands(binary: np.ndarray,
+                                min_ink_frac: float = 0.004,
+                                smooth_frac: float = 0.004,
+                                merge_gap_frac: float = 0.4,
+                                min_band_frac: float = 0.35) -> List[Tuple[int, int]]:
+    """Find (y0, y1) text bands from the horizontal ink-density profile.
+
+    * profile: ink pixels per row, lightly smoothed.
+    * rows with at least ``min_ink_frac`` of the page width in ink are "text".
+    * a neighbouring band is merged into the previous one only when the gap is
+      small (``merge_gap_frac`` x median band height) AND one of the two bands
+      is a fragment (shorter than half the median) - dots/diacritics split
+      across rows. Two full-height lines are never merged.
+    * bands shorter than ``min_band_frac`` x median band height are dropped.
+    """
+    h, w = binary.shape[:2]
+    profile = (binary > 0).sum(axis=1).astype(np.float32)
+    k = max(1, int(round(h * smooth_frac)))
+    if k > 1:
+        kernel = np.ones(k, dtype=np.float32) / k
+        profile = np.convolve(profile, kernel, mode="same")
+    threshold = max(1.0, w * min_ink_frac)
+
+    bands: List[Tuple[int, int]] = []
+    start: Optional[int] = None
+    for y, value in enumerate(profile):
+        if value >= threshold and start is None:
+            start = y
+        elif value < threshold and start is not None:
+            bands.append((start, y))
+            start = None
+    if start is not None:
+        bands.append((start, h))
+    if not bands:
+        return []
+
+    heights = sorted(y1 - y0 for y0, y1 in bands)
+    median_h = heights[len(heights) // 2]
+
+    merged: List[Tuple[int, int]] = [bands[0]]
+    max_gap = max(1, int(median_h * merge_gap_frac))
+    frag_h = max(2, median_h // 2)
+    for y0, y1 in bands[1:]:
+        py0, py1 = merged[-1]
+        gap = y0 - py1
+        fragment_pair = (y1 - y0) < frag_h or (py1 - py0) < frag_h
+        if gap <= max_gap and fragment_pair:
+            merged[-1] = (py0, y1)
+        else:
+            merged.append((y0, y1))
+
+    heights = sorted(y1 - y0 for y0, y1 in merged)
+    median_h = heights[len(heights) // 2]
+    min_h = max(3, int(median_h * min_band_frac))
+    kept = [(y0, y1) for y0, y1 in merged if (y1 - y0) >= min_h]
+    return kept or merged
+
+
+def band_to_box(binary: np.ndarray, y0: int, y1: int,
+                min_ink_density: float = 0.01,
+                pad_x: int = 4) -> Optional[BBox]:
+    """Horizontal ink extent of one text band -> box, or None when too sparse.
+
+    Handles centered/short lines: the box hugs the ink instead of the page.
+    """
+    h, w = binary.shape[:2]
+    strip = binary[y0:y1]
+    cols = (strip > 0).sum(axis=0)
+    xs = np.flatnonzero(cols)
+    if xs.size == 0:
+        return None
+    x0, x1 = int(xs[0]), int(xs[-1]) + 1
+    box_w, box_h = x1 - x0, y1 - y0
+    if box_w < 2 or box_h < 2:
+        return None
+    ink = float((strip[:, x0:x1] > 0).sum()) / float(box_w * box_h)
+    if ink < min_ink_density:
+        return None
+    x0 = max(0, x0 - pad_x)
+    x1 = min(w, x1 + pad_x)
+    return (x0, y0, x1 - x0, y1 - y0)
+
+
+def filter_boxes_relative(boxes: List[BBox],
+                          min_height_frac: float = 0.35,
+                          max_aspect: float = 80.0) -> List[BBox]:
+    """Drop boxes much shorter than the median line height or absurdly thin."""
+    if not boxes:
+        return []
+    heights = sorted(b[3] for b in boxes)
+    median_h = heights[len(heights) // 2]
+    min_h = max(3, int(median_h * min_height_frac))
+    out = []
+    for x, y, w, h in boxes:
+        if h < min_h:
+            continue
+        if w / max(1, h) > max_aspect:
+            continue
+        out.append((x, y, w, h))
+    return out
+
+
+class ProjectionLineDetector(TextDetector):
+    """Line detector: watermark-robust binarize -> border suppression ->
+    horizontal projection bands -> per-band ink extent boxes.
+
+    Designed for real pages: decorative frames, faint watermarks and centered
+    short lines (greeting cards, certificates, letters).
+    """
+
+    def __init__(self,
+                 min_line_height: int = 8,
+                 min_line_width: int = 20,
+                 min_contrast: int = 25,
+                 suppress_borders: bool = True,
+                 min_ink_frac: float = 0.004,
+                 min_ink_density: float = 0.01,
+                 min_height_frac: float = 0.35):
+        self.min_line_height = min_line_height
+        self.min_line_width = min_line_width
+        self.min_contrast = min_contrast
+        self.suppress_borders = suppress_borders
+        self.min_ink_frac = min_ink_frac
+        self.min_ink_density = min_ink_density
+        self.min_height_frac = min_height_frac
+
+    def ink_mask(self, image: np.ndarray) -> np.ndarray:
+        """Binarized, border-suppressed ink mask (for debugging/tests)."""
+        gray = image if image.ndim == 2 else cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+        binary = binarize_for_detection(gray, min_contrast=self.min_contrast)
+        if self.suppress_borders:
+            binary = suppress_border_structures(binary)
+        return binary
+
+    def detect(self, image: np.ndarray) -> List[BBox]:
+        binary = self.ink_mask(image)
+        bands = horizontal_projection_bands(binary, min_ink_frac=self.min_ink_frac)
+        boxes: List[BBox] = []
+        for y0, y1 in bands:
+            box = band_to_box(binary, y0, y1, min_ink_density=self.min_ink_density)
+            if box is None:
+                continue
+            if box[3] >= self.min_line_height and box[2] >= self.min_line_width:
+                boxes.append(box)
+        boxes = filter_boxes_relative(boxes, min_height_frac=self.min_height_frac)
+        boxes.sort(key=lambda b: (b[1], b[0]))
+        return boxes
+
+
 class OpenCVLineDetector(TextDetector):
     """Baseline line detector using morphology + connected components.
 
-    No deep-learning dependency; suitable for clean printed pages and as a fallback
-    before a DBNet/CRAFT model is trained.
+    No deep-learning dependency; suitable for clean printed pages and as a
+    fallback when the projection method under-segments unusual layouts.
     """
 
     def __init__(self, dilate_kernel: Tuple[int, int] = (25, 3),
@@ -60,6 +269,32 @@ class OpenCVLineDetector(TextDetector):
         return boxes
 
 
+def build_detector(detection_cfg: Optional[Dict] = None) -> TextDetector:
+    """Factory: build the detector selected by ``detection.method`` config.
+
+    ``method: "projection"`` (default) or ``"contours"``.
+    """
+    cfg = detection_cfg or {}
+    method = str(cfg.get("method", "projection")).lower()
+    min_h = int(cfg.get("min_line_height", 8))
+    min_w = int(cfg.get("min_line_width", 20))
+    if method == "contours":
+        return OpenCVLineDetector(
+            dilate_kernel=tuple(cfg.get("dilate_kernel", (25, 3))),
+            min_line_height=min_h,
+            min_line_width=min_w,
+        )
+    return ProjectionLineDetector(
+        min_line_height=min_h,
+        min_line_width=min_w,
+        min_contrast=int(cfg.get("min_contrast", 25)),
+        suppress_borders=bool(cfg.get("suppress_borders", True)),
+        min_ink_frac=float(cfg.get("min_ink_frac", 0.004)),
+        min_ink_density=float(cfg.get("min_ink_density", 0.01)),
+        min_height_frac=float(cfg.get("min_height_frac", 0.35)),
+    )
+
+
 class DBNetDetector(TextDetector):
     """Adapter placeholder for a learned detector (DBNet / CRAFT / PP-OCRv3).
 
@@ -70,7 +305,7 @@ class DBNetDetector(TextDetector):
       3. Return axis-aligned boxes (or extend the interface to return polygons).
 
     Until weights are wired in, this raises ``NotImplementedError`` so callers can
-    fall back to :class:`OpenCVLineDetector`.
+    fall back to :class:`ProjectionLineDetector` / :class:`OpenCVLineDetector`.
     """
 
     def __init__(self, weights_path: str | None = None):
@@ -80,10 +315,8 @@ class DBNetDetector(TextDetector):
     def detect(self, image: np.ndarray) -> List[BBox]:
         raise NotImplementedError(
             "DBNetDetector is a placeholder. Load weights and implement the "
-            "forward + post-processing, or use OpenCVLineDetector."
+            "forward + post-processing, or use ProjectionLineDetector."
         )
-
-
 
 
 def filter_line_boxes(
@@ -135,16 +368,38 @@ def merge_adjacent_line_boxes(
     return merged
 
 
+def merge_vertically_overlapping_boxes(boxes: List[BBox],
+                                       min_overlap_frac: float = 0.5) -> List[BBox]:
+    """Merge boxes whose vertical spans overlap substantially (same text band)."""
+    if len(boxes) < 2:
+        return list(boxes)
+    boxes = sorted(boxes, key=lambda b: (b[1], b[0]))
+    out: List[BBox] = [boxes[0]]
+    for x, y, w, h in boxes[1:]:
+        px, py, pw, ph = out[-1]
+        overlap = min(py + ph, y + h) - max(py, y)
+        if overlap > 0 and overlap >= min_overlap_frac * min(h, ph):
+            nx, ny = min(px, x), min(py, y)
+            nx2, ny2 = max(px + pw, x + w), max(py + ph, y + h)
+            out[-1] = (nx, ny, nx2 - nx, ny2 - ny)
+        else:
+            out.append((x, y, w, h))
+    return out
+
+
 def refine_document_boxes(
     boxes: List[BBox],
     min_line_height: int = 8,
     min_line_width: int = 20,
     merge_short: bool = True,
+    merge_overlapping: bool = True,
 ) -> List[BBox]:
-    """Filter tiny boxes and optionally merge adjacent short fragments."""
+    """Filter tiny boxes and merge same-row / same-band fragments."""
     boxes = filter_line_boxes(boxes, min_line_height, min_line_width)
     if merge_short:
         boxes = merge_adjacent_line_boxes(boxes)
+    if merge_overlapping:
+        boxes = merge_vertically_overlapping_boxes(boxes)
     boxes.sort(key=lambda b: (b[1], b[0]))
     return boxes
 

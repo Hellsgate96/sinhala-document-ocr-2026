@@ -1,4 +1,4 @@
-﻿"""Run inference with a trained CRNN: greedy CTC decoding on image(s).
+"""Run inference with a trained CRNN: greedy CTC decoding on image(s).
 
 Usage:
     python -m src.recognition.predict --checkpoint models/crnn_best.pth \

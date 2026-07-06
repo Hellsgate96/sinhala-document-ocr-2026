@@ -16,8 +16,6 @@ def main() -> int:
             "--config",
             "configs/local.yaml",
             "--large",
-            "--num-samples",
-            "15000",
         ],
         [sys.executable, "-m", "src.recognition.train", "--config", "configs/local.yaml"],
     ]

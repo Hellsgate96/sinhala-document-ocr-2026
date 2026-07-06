@@ -1,4 +1,4 @@
-﻿"""Quick local checks for prepare_line_for_recognition (CPU, no training)."""
+"""Quick local checks for prepare_line_for_recognition (CPU, no training)."""
 
 from __future__ import annotations
 
