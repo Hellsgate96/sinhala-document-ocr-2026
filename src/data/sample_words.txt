@@ -401,3 +401,13 @@ www.gov.lk
 හදවතේ සැඟවුණු හීනයක්
 අහසේ තරුවක් වැනි ඇය
 Kanyawee - කන්‍යාවී
+
+# LaTeX / general document vocabulary (baseline training hints)
+මාතෘකාව මෙතන ලියන්න
+අසංක සායක්කාර
+2016-08-06
+1. සිංහල
+2. English
+අංශය
+කර්තෘ
+දිනය

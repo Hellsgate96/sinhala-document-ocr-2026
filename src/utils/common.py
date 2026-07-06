@@ -158,17 +158,50 @@ def get_device(preference: str = "auto"):
 
 
 
-def resolve_recognition_checkpoint(cfg: Dict[str, Any], repo_root: Optional[os.PathLike] = None) -> str:
-    """Prefer finetuned weights when present, else baseline best checkpoint."""
+CheckpointMode = str  # "auto" | "baseline" | "finetuned"
+
+
+def _recognition_checkpoint_paths(cfg: Dict[str, Any], repo_root: Optional[os.PathLike] = None) -> tuple[str, str]:
     paths = cfg.get("paths") or {}
     models_dir = paths.get("models_dir", "models")
     root = os.fspath(repo_root) if repo_root is not None else os.getcwd()
     finetune_name = paths.get("finetune_best") or "crnn_finetuned.pth"
     baseline_name = paths.get("baseline_best") or "crnn_best.pth"
     finetune_path = os.path.join(root, models_dir, os.path.basename(finetune_name))
-    if os.path.isfile(finetune_path):
+    baseline_path = os.path.join(root, models_dir, os.path.basename(baseline_name))
+    return baseline_path, finetune_path
+
+
+def resolve_recognition_checkpoint(
+    cfg: Dict[str, Any],
+    repo_root: Optional[os.PathLike] = None,
+    *,
+    mode: CheckpointMode = "auto",
+    compare_to_poem_gt: bool = False,
+    use_poem_finetune: bool = False,
+) -> str:
+    """Pick CRNN weights for inference.
+
+    * **baseline** — always ``crnn_best.pth`` (general documents).
+    * **finetuned** — ``crnn_finetuned.pth`` when present, else baseline.
+    * **auto** (default) — finetuned only for poem evaluation
+      (``compare_to_poem_gt`` or ``use_poem_finetune``); otherwise baseline.
+    """
+    mode = (mode or "auto").lower()
+    if mode not in {"auto", "baseline", "finetuned"}:
+        raise ValueError(f"Invalid checkpoint mode: {mode!r}")
+
+    baseline_path, finetune_path = _recognition_checkpoint_paths(cfg, repo_root)
+
+    if mode == "baseline":
+        return baseline_path
+    if mode == "finetuned":
+        return finetune_path if os.path.isfile(finetune_path) else baseline_path
+
+    use_finetune = bool(compare_to_poem_gt or use_poem_finetune)
+    if use_finetune and os.path.isfile(finetune_path):
         return finetune_path
-    return os.path.join(root, models_dir, os.path.basename(baseline_name))
+    return baseline_path
 
 def save_checkpoint(path: str, model, optimizer=None, epoch: int = 0,
                     extra: Optional[Dict[str, Any]] = None) -> None:

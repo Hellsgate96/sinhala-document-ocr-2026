@@ -149,9 +149,20 @@ Checkpoints: `models/crnn_best.pth` (baseline), `models/crnn_finetuned.pth` (poe
 
 1. Run Sections **1–4** (setup + pipeline flags); leave training flags `False` if checkpoints already exist.
 2. Set `RUN_REAL_PHOTO=True`, `TEST_MODE="upload"` (tkinter picker) or `file_path` + `REAL_PHOTO_PATH`.
-3. Set `USE_FINETUNED=True` to load `crnn_finetuned.pth` when present.
-4. Run Section 10 cells; debug output under `data/debug/real_capture_<timestamp>/`.
-5. Set `COMPARE_TO_POEM_GT=True` only for the same Kanyawee poem page (10 lines).
+3. Set **`CHECKPOINT_MODE="baseline"`** for new LaTeX/general documents (default `auto` uses `crnn_best.pth` unless poem flags are set).
+4. Use **`CHECKPOINT_MODE="finetuned"`** or `USE_POEM_FINETUNE=True` (with `auto`) only for the Kanyawee poem crops/page.
+5. Run Section 10/11 cells; each run prints which checkpoint loaded. Debug output under `data/debug/real_capture_<timestamp>/`.
+6. Set `COMPARE_TO_POEM_GT=True` only for the same Kanyawee poem page (10 lines) — also selects finetuned weights in `auto` mode.
+
+
+### Baseline vs poem fine-tuned checkpoint
+
+| Checkpoint | When to use |
+|------------|-------------|
+| `models/crnn_best.pth` | **Default** for arbitrary uploads, LaTeX PDFs, forms, mixed Sinhala–English documents. |
+| `models/crnn_finetuned.pth` | **Kanyawee poem only** (~10 repeated training lines). Using it on general documents often yields garbage OCR. |
+
+In `notebooks/local_pipeline.ipynb` Section 4: `CHECKPOINT_MODE="auto"` (default) loads finetuned weights only when `COMPARE_TO_POEM_GT=True` or `USE_POEM_FINETUNE=True`; otherwise baseline.
 
 ## Google Colab
 
