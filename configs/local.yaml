@@ -9,6 +9,8 @@ project:
 paths:
   data_dir: data
   synthetic_dir: data/synthetic
+  synthetic_pages_dir: data/synthetic_pages   # detector-in-the-loop training supplement (scripts/generate_pages.py)
+  eval_pages_dir: data/eval_pages             # realistic held-out eval pages (scripts/build_eval_pages.py)
   uploads_dir: data/uploads
   real_dir: data/real
   debug_dir: data/debug
@@ -42,6 +44,9 @@ synthetic:
     - "C:/Windows/Fonts/Nirmala.ttc"
     - "C:/Windows/Fonts/iskpota.ttf"
     - "fonts/NotoSansSinhala-Regular.ttf"
+    - "fonts/NotoSerifSinhala-Regular.ttf"
+    - "fonts/AbhayaLibre-Regular.ttf"
+    - "fonts/Yaldevi-Variable.ttf"
   augment:
     rotation: true
     rotation_max_deg: 3.0
@@ -51,6 +56,12 @@ synthetic:
     brightness_contrast: true
     jpeg_compression: true
     shadow: true
+    # v3 domain-gap augmentations (camera-photo realism, see src/data/synthetic_generator.py)
+    defocus_blur: true      # box/motion blur instead of plain Gaussian (optics, not resampling)
+    paper_texture: true     # correlated grain overlay (paper fibre / scan noise)
+    moire: true             # rare low-amplitude interference pattern (screen re-photograph)
+    edge_artifact: true     # rare rule-fragment / adjacent-line sliver at a crop edge
+    multi_jpeg: true        # occasional second JPEG re-encode pass (multi-generation compression)
 
 model:
   name: crnn

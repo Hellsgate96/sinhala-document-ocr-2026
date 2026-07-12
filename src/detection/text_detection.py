@@ -1,4 +1,4 @@
-"""Text-line / region detection (pipeline stage 3).
+﻿"""Text-line / region detection (pipeline stage 3).
 
 Two strategies:
 
@@ -87,11 +87,55 @@ def suppress_border_structures(binary: np.ndarray,
     return out
 
 
+def _split_tall_band(profile: np.ndarray, y0: int, y1: int, median_h: float,
+                     min_sub_frac: float = 0.55,
+                     valley_ratio: float = 0.6) -> List[Tuple[int, int]]:
+    """Recursively split an anomalously tall band at local profile valleys.
+
+    Two touching text lines (matras/descenders bridging the gap so the row
+    ink count never drops below the global threshold) show up as one band
+    much taller than the page's median line height. Within such a band we
+    look for the row with the lowest ink count (a local valley) and split
+    there when the valley is a real dip - i.e. clearly lower than the ink
+    level on both sides - and both halves would still be a reasonable
+    fraction of a normal line height. Genuine single tall lines (large
+    titles, decorative caps) have no such valley and are left intact.
+    """
+    height = y1 - y0
+    min_sub = max(3, int(median_h * min_sub_frac))
+    if height < 2 * min_sub:
+        return [(y0, y1)]
+    segment = profile[y0:y1]
+    # Search for the valley away from the very edges (avoid trivial splits).
+    lo = min_sub
+    hi = height - min_sub
+    if hi <= lo:
+        return [(y0, y1)]
+    window = segment[lo:hi]
+    if window.size == 0:
+        return [(y0, y1)]
+    rel_idx = int(np.argmin(window))
+    valley_y = lo + rel_idx
+    valley_val = float(segment[valley_y])
+    left_peak = float(segment[:valley_y].max()) if valley_y > 0 else valley_val
+    right_peak = float(segment[valley_y:].max()) if valley_y < height else valley_val
+    surrounding_peak = min(left_peak, right_peak) if left_peak and right_peak else max(left_peak, right_peak)
+    if surrounding_peak <= 0:
+        return [(y0, y1)]
+    if valley_val > valley_ratio * surrounding_peak:
+        return [(y0, y1)]
+    split_y = y0 + valley_y
+    left = _split_tall_band(profile, y0, split_y, median_h, min_sub_frac, valley_ratio)
+    right = _split_tall_band(profile, split_y, y1, median_h, min_sub_frac, valley_ratio)
+    return left + right
+
+
 def horizontal_projection_bands(binary: np.ndarray,
                                 min_ink_frac: float = 0.004,
                                 smooth_frac: float = 0.004,
                                 merge_gap_frac: float = 0.4,
-                                min_band_frac: float = 0.35) -> List[Tuple[int, int]]:
+                                min_band_frac: float = 0.35,
+                                split_tall_frac: float = 1.2) -> List[Tuple[int, int]]:
     """Find (y0, y1) text bands from the horizontal ink-density profile.
 
     * profile: ink pixels per row, lightly smoothed.
@@ -100,6 +144,9 @@ def horizontal_projection_bands(binary: np.ndarray,
       small (``merge_gap_frac`` x median band height) AND one of the two bands
       is a fragment (shorter than half the median) - dots/diacritics split
       across rows. Two full-height lines are never merged.
+    * bands more than ``split_tall_frac`` x median height are re-split at an
+      internal profile valley (handles adjacent lines whose glyphs touch
+      vertically so the ink count never drops below threshold between them).
     * bands shorter than ``min_band_frac`` x median band height are dropped.
     """
     h, w = binary.shape[:2]
@@ -137,6 +184,19 @@ def horizontal_projection_bands(binary: np.ndarray,
             merged[-1] = (py0, y1)
         else:
             merged.append((y0, y1))
+
+    heights = sorted(y1 - y0 for y0, y1 in merged)
+    median_h = heights[len(heights) // 2]
+
+    if median_h > 0 and split_tall_frac > 0:
+        split_out: List[Tuple[int, int]] = []
+        tall_thresh = split_tall_frac * median_h
+        for y0, y1 in merged:
+            if (y1 - y0) > tall_thresh:
+                split_out.extend(_split_tall_band(profile, y0, y1, median_h))
+            else:
+                split_out.append((y0, y1))
+        merged = split_out
 
     heights = sorted(y1 - y0 for y0, y1 in merged)
     median_h = heights[len(heights) // 2]

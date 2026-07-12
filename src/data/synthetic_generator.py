@@ -346,11 +346,19 @@ def _perspective_coeffs(src: Sequence[Tuple[float, float]],
     return res.reshape(8).tolist()
 
 
-def aug_perspective(img: Image.Image, bg_color, rng: random.Random) -> Image.Image:
-    """Apply a slight perspective warp (corner jitter) for camera-angle realism."""
+def aug_perspective(img: Image.Image, bg_color, rng: random.Random,
+                    mx_range=(0.01, 0.05), my_range=(0.01, 0.06)) -> Image.Image:
+    """Apply a slight perspective warp (corner jitter) for camera-angle realism.
+
+    ``mx_range``/``my_range`` are fractions of width/height and default to
+    values tuned for small line crops. Full PAGE images (see
+    :mod:`src.data.page_synth`) are hundreds of pixels taller/wider, so the
+    same fraction would move a corner by 50-100px - pass smaller fractions
+    for whole-page perspective (mild camera tilt, not a wild skew).
+    """
     w, h = img.size
-    mx = rng.uniform(0.01, 0.05)
-    my = rng.uniform(0.01, 0.06)
+    mx = rng.uniform(*mx_range)
+    my = rng.uniform(*my_range)
     jitter = lambda d: rng.uniform(-d, d)
     src = [(0, 0), (w, 0), (w, h), (0, h)]
     dst = [
@@ -378,22 +386,129 @@ def aug_shadow(img: Image.Image, rng: random.Random) -> Image.Image:
     return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
 
 
+def aug_defocus_blur(img: Image.Image, rng: random.Random) -> Image.Image:
+    """Camera-like defocus blur: box/disc blur, occasionally a slight motion streak.
+
+    Distinct from :func:`aug_blur` (plain Gaussian) - simulates an out-of-focus
+    phone camera rather than image resampling blur.
+    """
+    if rng.random() < 0.65:
+        radius = rng.uniform(0.6, 2.2)
+        return img.filter(ImageFilter.BoxBlur(radius))
+    # short directional motion blur (hand shake)
+    arr = np.asarray(img).astype(np.float32)
+    length = rng.randint(3, 7)
+    kernel = np.zeros((length, length), dtype=np.float32)
+    if rng.random() < 0.5:
+        kernel[length // 2, :] = 1.0
+    else:
+        np.fill_diagonal(kernel, 1.0)
+    kernel /= kernel.sum()
+    try:
+        import cv2
+        blurred = cv2.filter2D(arr, -1, kernel)
+    except Exception:
+        return img
+    return Image.fromarray(np.clip(blurred, 0, 255).astype(np.uint8))
+
+
+def aug_paper_texture(img: Image.Image, rng: random.Random) -> Image.Image:
+    """Overlay correlated grain (paper fibre / scan noise) across the whole crop,
+    including ink pixels - plain Gaussian noise (:func:`aug_gaussian_noise`) is
+    applied later at a lighter, uncorrelated level; this simulates paper grain
+    that survives print + photograph."""
+    arr = np.asarray(img).astype(np.float32)
+    h, w = arr.shape[:2]
+    sigma = rng.uniform(3.0, 10.0)
+    grain = np.random.normal(0.0, sigma, (max(1, h // 2), max(1, w // 2)))
+    grain = np.asarray(Image.fromarray(grain.astype(np.float32)).resize((w, h), Image.BILINEAR))
+    if arr.ndim == 3:
+        grain = grain[:, :, None]
+    arr = np.clip(arr + grain, 0, 255).astype(np.uint8)
+    return Image.fromarray(arr)
+
+
+def aug_moire(img: Image.Image, rng: random.Random) -> Image.Image:
+    """Low-amplitude sinusoidal interference pattern (screen/re-photograph moire)."""
+    arr = np.asarray(img).astype(np.float32)
+    h, w = arr.shape[:2]
+    freq = rng.uniform(0.15, 0.5)
+    angle = rng.uniform(0, np.pi)
+    amp = rng.uniform(4.0, 14.0)
+    yy, xx = np.mgrid[0:h, 0:w]
+    phase = xx * np.cos(angle) * freq + yy * np.sin(angle) * freq
+    pattern = amp * np.sin(phase)
+    if arr.ndim == 3:
+        pattern = pattern[:, :, None]
+    arr = np.clip(arr + pattern, 0, 255).astype(np.uint8)
+    return Image.fromarray(arr)
+
+
+def aug_edge_artifact(img: Image.Image, rng: random.Random) -> Image.Image:
+    """Simulate an imperfect detector crop: a thin rule/border fragment or a
+    sliver of an adjacent line's strokes bleeding into the top/bottom edge."""
+    arr = np.asarray(img).astype(np.float32).copy()
+    h, w = arr.shape[:2]
+    dark = float(rng.randint(20, 90))
+    if rng.random() < 0.5:
+        # straight rule fragment (table/border edge) near one border
+        thickness = rng.randint(1, 3)
+        band = rng.choice(["top", "bottom", "left", "right"])
+        if band == "top":
+            arr[0:thickness, :] = dark
+        elif band == "bottom":
+            arr[h - thickness:h, :] = dark
+        elif band == "left":
+            arr[:, 0:thickness] = dark
+        else:
+            arr[:, w - thickness:w] = dark
+    else:
+        # sliver of adjacent-line strokes: a few short dark dashes near top/bottom
+        edge_h = max(2, int(h * rng.uniform(0.06, 0.16)))
+        band = rng.choice(["top", "bottom"])
+        n_dashes = rng.randint(2, 6)
+        for _ in range(n_dashes):
+            dash_w = rng.randint(max(2, w // 30), max(3, w // 10))
+            x0 = rng.randint(0, max(1, w - dash_w))
+            y0 = 0 if band == "top" else h - edge_h
+            y1 = edge_h if band == "top" else h
+            yy = rng.randint(y0, max(y0, y1 - 1))
+            arr[yy:yy + 1, x0:x0 + dash_w] = dark
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8))
+
+
 def apply_augmentations(img: Image.Image, augment: Dict, bg_color,
                         rng: random.Random) -> Image.Image:
+    """Apply phone-capture-style degradations, roughly in physical order:
+    geometry (rotation/perspective) -> crop-edge artifacts -> lighting ->
+    optics (defocus/blur) -> surface (paper texture/moire) -> sensor noise ->
+    (re-)compression. Every step is independently probabilistic so the
+    aggregate distribution is broad rather than "every image gets every
+    degradation applied the same way"."""
     if augment.get("rotation") and rng.random() < 0.7:
         img = aug_rotate(img, float(augment.get("rotation_max_deg", 3.0)), bg_color, rng)
     if augment.get("perspective") and rng.random() < 0.4:
         img = aug_perspective(img, bg_color, rng)
+    if augment.get("edge_artifact", True) and rng.random() < 0.22:
+        img = aug_edge_artifact(img, rng)
     if augment.get("shadow") and rng.random() < 0.5:
         img = aug_shadow(img, rng)
     if augment.get("brightness_contrast") and rng.random() < 0.6:
         img = aug_brightness_contrast(img, rng)
-    if augment.get("blur") and rng.random() < 0.5:
+    if augment.get("defocus_blur", True) and rng.random() < 0.35:
+        img = aug_defocus_blur(img, rng)
+    elif augment.get("blur") and rng.random() < 0.4:
         img = aug_blur(img, rng)
-    if augment.get("gaussian_noise") and rng.random() < 0.6:
+    if augment.get("paper_texture", True) and rng.random() < 0.45:
+        img = aug_paper_texture(img, rng)
+    if augment.get("gaussian_noise") and rng.random() < 0.55:
         img = aug_gaussian_noise(img, rng)
-    if augment.get("jpeg_compression") and rng.random() < 0.5:
+    if augment.get("moire", True) and rng.random() < 0.08:
+        img = aug_moire(img, rng)
+    if augment.get("jpeg_compression") and rng.random() < 0.55:
         img = aug_jpeg(img, rng)
+        if augment.get("multi_jpeg", True) and rng.random() < 0.25:
+            img = aug_jpeg(img, rng)
     return img
 
 

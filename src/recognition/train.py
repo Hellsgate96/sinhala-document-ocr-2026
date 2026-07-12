@@ -78,6 +78,22 @@ def train_one_epoch(model, loader, criterion, optimizer, device, grad_clip, logg
     return running / max(1, len(loader))
 
 
+def _infer_extra_base_dir(extra_path: str, real_dir: str) -> str:
+    """Base dir for an extra label file's relative image paths.
+
+    Files living under ``real_dir`` use ``real_dir`` itself as the base (the
+    poem fine-tune convention: ``real_dir/labels/*.txt`` references images under
+    the sibling ``real_dir/images/``). Anything else (e.g. a generator's own
+    output dir, such as ``data/synthetic_pages``) uses its own directory,
+    matching the primary synthetic dataset convention.
+    """
+    abs_extra = os.path.abspath(extra_path)
+    abs_real = os.path.abspath(real_dir)
+    if abs_extra == abs_real or abs_extra.startswith(abs_real + os.sep):
+        return abs_real
+    return os.path.dirname(abs_extra)
+
+
 def _resolve_extra_label_paths(cfg: Dict[str, Any], cli_paths: Optional[List[str]]) -> List[str]:
     paths: List[str] = []
     if cli_paths:
@@ -135,7 +151,12 @@ def main():
     train_labels = os.path.join(syn, "train_labels.txt")
     extra_paths = _resolve_extra_label_paths(cfg, args.extra_labels)
     real_dir = cfg["paths"].get("real_dir", "data/real")
-    extra_base_dirs = [real_dir] * len(extra_paths) if extra_paths else None
+    # Base dir per extra-labels file: labels living under `real_dir` (the poem
+    # fine-tune convention - images/ is a SIBLING of labels/, not label file's own
+    # dir) resolve there; any other extra-labels file (e.g. the v3 detector-in-the-
+    # loop page supplement) resolves relative to its OWN directory, matching the
+    # primary synthetic dataset convention.
+    extra_base_dirs = [_infer_extra_base_dir(p, real_dir) for p in extra_paths] if extra_paths else None
 
     train_cfg = cfg["train"]
     extra_repeat = int(train_cfg.get("extra_label_repeat", 1))

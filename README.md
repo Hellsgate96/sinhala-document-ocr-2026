@@ -35,15 +35,20 @@ sinhala-document-ocr/
   configs/default.yaml          central configuration
   src/
     charset.py                  Sinhala Unicode charset + CTC encode/decode
-    data/                       synthetic generator + PyTorch Dataset
+    data/                       synthetic line generator, page_synth.py (v3 full-page +
+                                 detector-in-the-loop generator), PyTorch Dataset
     preprocessing/              document preprocessing
-    detection/                  text-line detection (OpenCV baseline + adapter)
+    detection/                  text-line detection (projection profile default + contours)
     recognition/                CRNN model, train, predict
-    evaluation/                 CER / WER / field accuracy / timing
+    evaluation/                 CER / WER / field accuracy / timing, pipeline_eval.py
+                                 (shared detect+recognize path for all eval scripts)
     postprocess/                dictionary + LM correction
     utils/                      seeding, logging, IO, config loader
-  notebooks/colab_pipeline.ipynb  end-to-end Colab notebook
-  scripts/                      CLI wrappers
+  notebooks/local_pipeline.ipynb   Windows/Jupyter end-to-end notebook (primary)
+  notebooks/colab_pipeline.ipynb   Google Colab end-to-end notebook
+  scripts/                      CLI wrappers (generate_data.py, generate_pages.py,
+                                 build_eval_pages.py, build_adversarial_pages.py,
+                                 eval_real_images.py, run_realistic_eval.py, ...)
   data/  models/  tests/
 ```
 
@@ -132,6 +137,138 @@ Or in `notebooks/local_pipeline.ipynb`: set `RUN_GENERATE=True` and
 `RUN_BASELINE_TRAIN=True` in Section 4 (defaults: `NUM_SAMPLES=30000`,
 `BASELINE_EPOCHS=40`, `CHECKPOINT_MODE="baseline"`, `DETECTION_METHOD="projection"`)
 and run Sections 5–7. Section 8 (poem fine-tune) is an **optional experiment** only.
+
+## v3: closing the synthetic-to-real domain gap
+
+**Symptom:** after the v2 overhaul (diverse corpus + projection detector), synthetic
+line-crop validation CER reached ~4% by epoch 16 - yet real full-page photos were
+still "not acceptable". Line-crop CER on its own is **not sufficient evidence** of
+real-world quality; see the before/after numbers below.
+
+**Root causes found (with evidence, not guesses):**
+
+1. **Only one font family was actually on disk.** The v2 generator supports many
+   font *faces*, but on this machine only `C:/Windows/Fonts/Nirmala.ttc` existed
+   (`iskpota.ttf` and the Noto fallback were both missing) - every training image
+   used one of 6 faces from a single family. Fixed by downloading 4 more Sinhala
+   font families into `fonts/` (`scripts/download_fonts.ps1`, extended) - Noto Sans
+   Sinhala, Noto Serif Sinhala, Abhaya Libre, Yaldevi - now 10 font faces total.
+2. **Training only ever saw idealised single-line crops.** The generator renders one
+   tightly-cropped line at a time; real inference runs `ProjectionLineDetector` over
+   a whole photographed *page* and crops whatever imperfect box the detector
+   produces (mis-padding, a border/watermark sliver at the edge, occasional
+   merge/split of adjacent lines). A model that never saw that kind of crop during
+   training has no reason to be robust to it. Fixed with a new
+   **detector-in-the-loop page generator** (`src/data/page_synth.py`,
+   `scripts/generate_pages.py`): render a full synthetic page (paragraph / bordered
+   card / poem / mixed Sinhala-English / letterhead), run the *real* detector on it,
+   and train on the detector's actual output crops paired with their transcript
+   (pages where the detector's line count doesn't match ground truth are discarded,
+   not mislabeled - the discard rate itself is logged as a per-layout detector
+   health metric).
+3. **Line-crop augmentation under-modelled the physical capture process.** Added
+   paper-texture grain, camera-like defocus/motion blur (distinct from the existing
+   Gaussian resampling blur), rare moire (screen re-photograph), rare rule/adjacent-
+   line edge artifacts (simulating an imperfect detector crop), and multi-generation
+   JPEG re-encoding (`src/data/synthetic_generator.py`, `augment.*` in
+   `configs/*.yaml`).
+4. **A scoring bug inflated real-world CER measurements.** The CLI "low confidence"
+   warning prefix (meant for human-facing display) was being fed into the CER
+   calculation in the evaluation scripts, making otherwise-correct numeric-heavy
+   lines (dates, amounts, IDs) look wildly wrong. Fixed in
+   `src/evaluation/pipeline_eval.py` (raw text is always scored; the warning prefix
+   is display-only).
+5. **Whole-page augmentation reused line-crop perspective jitter unscaled**, which
+   for a ~1500px-tall page could shift a corner by 100+px and merge unrelated lines
+   into one detected band. Fixed by scaling `aug_perspective`'s jitter fraction down
+   for page-level use (`src/data/page_synth.apply_page_augmentations`); average
+   detector exact-line-count match rate across the 5 page layouts on augmented pages
+   went from ~0.63 to ~0.80 after the fix (`scripts/generate_pages.py` logs).
+6. **The projection detector silently merged adjacent lines whose glyphs touch
+   vertically** (a descender or matra bridging the gap keeps every row's ink count
+   above the "is text" threshold, so the profile never dips to zero between the two
+   lines) - this under-counted lines by 30-50% on poem-style and numeric-heavy mixed
+   Sinhala/English layouts specifically. Fixed by re-splitting any band taller than
+   1.2x the page's median line height at its lowest internal ink-profile valley
+   (`_split_tall_band` in `src/detection/text_detection.py`, regression test in
+   `tests/test_page_detection.py::test_tall_band_is_split_at_internal_valley`).
+   Very short isolated marker/label lines (a handful of characters, e.g. a lone
+   page/section tag) can still be dropped by the relative-height filter - a
+   remaining known limitation, not yet hit on the realistic eval set's main content
+   lines.
+
+**What did NOT need fixing:** the CRNN+CTC architecture, charset/ZWJ handling,
+`resize_keep_height`'s LANCZOS up/down-scaling, and the projection detector's
+watermark/border suppression were all verified correct and left alone.
+
+### New realistic evaluation (this is what actually proves a fix worked)
+
+Line-crop CER on the synthetic val set is kept as a training-time signal, but the
+real acceptance test is **full-pipeline** (detection errors count against you):
+
+```powershell
+# Build a small held-out set of full synthetic pages (different font/colour mix
+# than training) and score the whole detect+recognize pipeline end to end:
+python scripts/build_eval_pages.py --config configs/local.yaml --num-pages 10
+python scripts/run_realistic_eval.py --images-dir data/eval_pages --checkpoint models/crnn_best.pth
+
+# 3 hand-built adversarial acceptance-test pages (decorative bordered card with a
+# watermark, LaTeX-article-style page, heavily phone-camera-degraded paragraph):
+python scripts/build_adversarial_pages.py --config configs/local.yaml
+python scripts/run_realistic_eval.py --images-dir data/eval_real/adversarial --checkpoint models/crnn_best.pth
+```
+
+`scripts/eval_real_images.py` still works the same way for a single real image with
+an optional ground-truth labels file; all three scripts share one detect+recognize
+code path (`src/evaluation/pipeline_eval.py`) so there is no drift between "what
+gets evaluated" and "what a real upload goes through".
+
+### Retrain results (this run)
+
+Warm-started from the pre-v3 checkpoint (`models/crnn_best_pre_domaingap.pth`,
+epoch 16, synthetic val CER 0.0442) with the v3 line-crop augmentation, extra font
+faces, and a 25,545-crop detector-in-the-loop page supplement (4,000 synthetic
+pages, ~81.6% detector exact-match rate) merged in via `--extra-labels`. Trained
+40 epochs (`train.num_workers=6`, plateau LR schedule), ~4h11m on an RTX 4060:
+best synthetic val CER **0.0311** at epoch 37 (`models/train_v3.log`).
+
+End-to-end full-pipeline corpus CER, BEFORE (`crnn_best_pre_domaingap.pth`) vs
+AFTER (`crnn_best.pth`, this run) - detection errors count against the score:
+
+| Eval set | BEFORE | AFTER |
+| --- | --- | --- |
+| `data/eval_pages` (10 held-out synthetic pages, 5 layouts) | 0.2880 | **0.0976** |
+| `data/eval_real/adversarial` (3 hand-built acceptance pages) | 0.0745 | **0.0655** |
+
+8 of the 10 realistic eval pages (paragraph/card/letterhead/one poem layout) score
+at or near **0.00 CER** after the fix. The remaining error is concentrated in two
+layouts with short interjected/numeric lines (poem interjections, dense
+registration-form-style mixed Sinhala/English/numeric text) where the detector
+still occasionally under-counts lines - see fix #6 above and the "known limitation"
+note; because scoring aligns lines positionally, one missed line inflates that
+page's CER disproportionately even though most of its words are read correctly.
+
+### Regenerate training data + retrain with the v3 fixes
+
+```powershell
+# 1) extra Sinhala font families (best-effort; safe to skip if offline)
+powershell -ExecutionPolicy Bypass -File scripts/download_fonts.ps1
+
+# 2) line-crop dataset (now with the richer augmentation + font list)
+python scripts/generate_data.py --config configs/local.yaml --large
+
+# 3) detector-in-the-loop page supplement (the actual domain-gap fix)
+python scripts/generate_pages.py --config configs/local.yaml --num-pages 4000
+
+# 4) train, merging the page supplement and warm-starting from the existing checkpoint
+python -m src.recognition.train --config configs/local.yaml \
+    --extra-labels data/synthetic_pages/train_labels.txt --resume models/crnn_best.pth
+```
+
+Or in `notebooks/local_pipeline.ipynb`: `RUN_GENERATE=True`, `RUN_GENERATE_PAGES=True`,
+`RUN_BASELINE_TRAIN=True` in Section 4, then run Sections 5-7 (Section 5b is the new
+page supplement). `RESUME_FROM_PRE_V3_CKPT=True` (default) warm-starts from the
+existing `crnn_best.pth` instead of random init.
 
 ## Running Locally (Windows + Jupyter)
 

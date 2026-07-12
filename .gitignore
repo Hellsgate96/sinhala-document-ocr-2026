@@ -31,6 +31,10 @@ data/debug/*
 !data/debug/.gitkeep
 data/raw/**
 data/preprocessed/**
+data/synthetic_pages/**
+data/eval_pages/**
+data/eval_real/**
+data/synthetic_sample/**
 !data/.gitkeep
 !data/real/.gitkeep
 !data/synthetic/train/.gitkeep
@@ -39,6 +43,10 @@ data/preprocessed/**
 
 models/*
 !models/.gitkeep
+
+# Downloaded font files (fetched via scripts/download_fonts.ps1, not committed)
+fonts/*.ttf
+fonts/*.ttc
 
 # OS / editor
 .DS_Store
@@ -51,6 +59,3 @@ Thumbs.db
 runs/
 
 
-
-# Generated sample datasets
-data/synthetic_sample/**
