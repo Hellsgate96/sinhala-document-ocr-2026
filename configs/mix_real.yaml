@@ -1,0 +1,33 @@
+# Continue-train the general CRNN with real poem lines mixed in.
+# Writes models/crnn_best.pth (NOT a separate finetuned checkpoint).
+#
+# Usage:
+#   python scripts/augment_poem_dataset.py --copies 80
+#   python -m src.recognition.train --config configs/mix_real.yaml \
+#       --extra-labels data/synthetic_pages/train_labels.txt \
+#       --extra-labels data/real/labels/poem_kanyawee_aug.txt \
+#       --resume models/crnn_best.pth
+_inherits: local.yaml
+
+train:
+  epochs: 15
+  lr: 0.0001
+  batch_size: 32
+  early_stopping_patience: 5
+  lr_scheduler: plateau
+  lr_patience: 2
+  # poem_aug already expanded; pages stay at 1x
+  extra_label_repeat: 1
+  # Cap synthetic volume so real/page extras stay influential
+  synthetic_train_max: 12000
+
+paths:
+  resume_checkpoint: models/crnn_best.pth
+  # Explicitly keep writing the general checkpoint
+  finetune_best: models/crnn_best.pth
+  finetune_last: models/crnn_last.pth
+
+inference:
+  image_height: 48
+  decode: greedy
+  auto_invert: true

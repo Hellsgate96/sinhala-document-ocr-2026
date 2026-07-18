@@ -25,8 +25,13 @@ data/uploads/*
 !data/uploads/.gitkeep
 data/real/images/*
 !data/real/images/.gitkeep
+# Keep the small Kanyawee poem crops + labels in git (demo / thesis reproducibility)
+!data/real/images/poem_line_*.png
+data/real/images_aug/
 data/real/labels/*
 !data/real/labels/.gitkeep
+!data/real/labels/poem_kanyawee.txt
+# poem_kanyawee_aug.txt is regenerated locally (images_aug/ is large / gitignored)
 data/debug/*
 !data/debug/.gitkeep
 data/raw/**
@@ -43,6 +48,7 @@ data/synthetic_sample/**
 
 models/*
 !models/.gitkeep
+!models/charset.json
 
 # Downloaded font files (fetched via scripts/download_fonts.ps1, not committed)
 fonts/*.ttf

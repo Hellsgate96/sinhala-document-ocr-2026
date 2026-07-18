@@ -133,10 +133,9 @@ python scripts/generate_data.py --config configs/local.yaml --large
 python -m src.recognition.train --config configs/local.yaml
 ```
 
-Or in `notebooks/local_pipeline.ipynb`: set `RUN_GENERATE=True` and
-`RUN_BASELINE_TRAIN=True` in Section 4 (defaults: `NUM_SAMPLES=30000`,
-`BASELINE_EPOCHS=40`, `CHECKPOINT_MODE="baseline"`, `DETECTION_METHOD="projection"`)
-and run Sections 5–7. Section 8 (poem fine-tune) is an **optional experiment** only.
+Or in `notebooks/local_pipeline.ipynb`: set `RUN_GENERATE=True` /
+`RUN_GENERATE_PAGES=True` / `RUN_TRAIN=True` in Section 4 once, then
+**Restart & Run All**. Later testing leaves those flags `False`.
 
 ## v3: closing the synthetic-to-real domain gap
 
@@ -306,38 +305,48 @@ Verify the GPU is visible:
 python -c "import torch; print('version:', torch.__version__); print('CUDA:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
 ```
 
-### Typical workflow (`notebooks/local_pipeline.ipynb`)
+### Typical workflow (`notebooks/local_pipeline.ipynb`) — Monday demo path
 
-Use **Section 4 — Pipeline control** (`RUN_*` flags) so you do not re-train on every test run.
+**One general model:** always use `models/crnn_best.pth`. Real Kanyawee poem lines are
+mixed into general training (with heavy augmentation) via `--extra-labels`; there is
+no required second-stage poem fine-tune.
 
 | Goal | Flags (Section 4) |
 |------|-------------------|
-| **First full run** | `RUN_GENERATE`, `RUN_BASELINE_TRAIN`, `RUN_FINETUNE`, `RUN_UPLOAD_TEST`, `RUN_REAL_PHOTO` all `True` |
-| **Inference / testing only** | All training flags `False`; enable `RUN_UPLOAD_TEST` and/or `RUN_REAL_PHOTO` |
-| **Refresh synthetic data** | `RUN_GENERATE=True` only |
+| **Test a real image only** | Leave `RUN_GENERATE` / `RUN_GENERATE_PAGES` / `RUN_TRAIN` as `False`; set `TEST_IMAGE_PATH` or use the file picker; **Kernel → Restart & Run All** |
+| **First full train** | Set generate/train flags `True` once (auto-skips later when data/checkpoint exist) |
+| **Refresh synthetic data** | `RUN_GENERATE=True` (and optionally `RUN_GENERATE_PAGES=True`) |
 
-Notebook sections: setup → pipeline flags → optional generate → optional baseline train → synthetic eval → optional poem fine-tune → poem CER table → digital upload test → real phone photo → optional debug export.
+Notebook sections: setup → install → fonts → **one control cell** → optional generate → optional page-synth → optional train → **test real image** → optional poem CER → optional debug.
 
-Checkpoints: `models/crnn_best.pth` (baseline), `models/crnn_finetuned.pth` (poem fine-tune, inference height **64**, greedy decode).
+Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
+Optional legacy: `models/crnn_finetuned.pth` is **not** used by the cleaned notebook.
 
-### Real captured photo (notebook Section 11)
+### Mix real poem lines into the general model
 
-1. Run Sections **1–4** (setup + pipeline flags); leave training flags `False` if checkpoints already exist.
-2. Set `RUN_REAL_PHOTO=True`, `TEST_MODE="upload"` (tkinter picker) or `file_path` + `REAL_PHOTO_PATH`.
-3. Set **`CHECKPOINT_MODE="baseline"`** for new LaTeX/general documents (default `auto` uses `crnn_best.pth` unless poem flags are set).
-4. Use **`CHECKPOINT_MODE="finetuned"`** or `USE_POEM_FINETUNE=True` (with `auto`) only for the Kanyawee poem crops/page.
-5. Run Section 10/11 cells; each run prints which checkpoint loaded. Debug output under `data/debug/real_capture_<timestamp>/`.
-6. Set `COMPARE_TO_POEM_GT=True` only for the same Kanyawee poem page (10 lines) — also selects finetuned weights in `auto` mode.
+```powershell
+python scripts/prepare_poem_dataset.py --image data/uploads/test2.png
+python scripts/augment_poem_dataset.py --copies 80
+python -m src.recognition.train --config configs/mix_real.yaml `
+  --extra-labels data/synthetic_pages/train_labels.txt `
+  --extra-labels data/real/labels/poem_kanyawee_aug.txt `
+  --resume models/crnn_best.pth
+```
 
+**Note:** `*.pth` checkpoints are gitignored. After training, keep a local
+`models/crnn_best.pth` (and optionally back up `models/crnn_best_pre_poem_mix.pth`).
+`models/charset.json` is tracked.
 
-### Baseline vs poem fine-tuned checkpoint
+On the Kanyawee poem crops (in-train after mix), corpus CER dropped from ~0.19
+(pre-mix general model) to ~0.008. Held-out `data/eval_pages` overall CER stayed
+~0.098 (no regression vs the prior general checkpoint).
 
-| Checkpoint | When to use |
-|------------|-------------|
-| `models/crnn_best.pth` | **Default** for arbitrary uploads, LaTeX PDFs, forms, mixed Sinhala–English documents. |
-| `models/crnn_finetuned.pth` | **Kanyawee poem only** (~10 repeated training lines). Using it on general documents often yields garbage OCR. |
+### Real image test (notebook Section 8)
 
-In `notebooks/local_pipeline.ipynb` Section 4: `CHECKPOINT_MODE="auto"` (default) loads finetuned weights only when `COMPARE_TO_POEM_GT=True` or `USE_POEM_FINETUNE=True`; otherwise baseline.
+1. Open `notebooks/local_pipeline.ipynb`.
+2. In Section 4, leave train flags `False` if `models/crnn_best.pth` already exists.
+3. Set `TEST_IMAGE_PATH` to a page/photo path, or leave it empty and use the picker / demo fallback.
+4. **Kernel → Restart & Run All** — detect lines, show crops + Sinhala predictions + full transcription.
 
 ## Google Colab
 

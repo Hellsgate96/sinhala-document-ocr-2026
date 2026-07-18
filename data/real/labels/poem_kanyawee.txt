@@ -1,0 +1,10 @@
+images/poem_line_001.png	Kanyawee - කන්‍යාවී
+images/poem_line_002.png	මිනිසා මරණ තුනක් ඇති මිනිසා බලා සිටී
+images/poem_line_003.png	නිරුවත් දෑසින් බලන්න කන්‍යාවී
+images/poem_line_004.png	ලිහිල් සළුව අනතුරේ වැටෙද්දී
+images/poem_line_005.png	පයෝධර තුඩු ඉකිබිඳිද්දී සංත්‍රාසයෙන්
+images/poem_line_006.png	අසංවාදී සුසුම් වේගේ රිද්‍මයෙන් වයන්න වීණා කන්‍යාවී
+images/poem_line_007.png	නියඟලා මල් පාට දේදුණු දෙබෑ කර එන ගිරා කොවුවන්
+images/poem_line_008.png	පියුම් කැකුළක් තුඩින් පාරා බලෙන් පුබුදන හංසයා
+images/poem_line_009.png	බලන්න නිරුවත් දෑසින් ඔකඳ වී රිද්‍මයෙන්
+images/poem_line_010.png	රසා තලය කලඑළි ගන්වා වයන්න වීණා කන්‍යාවී
