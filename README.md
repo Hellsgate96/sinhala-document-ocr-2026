@@ -322,16 +322,51 @@ Notebook sections: setup → install → fonts → **one control cell** → opti
 Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
 Optional legacy: `models/crnn_finetuned.pth` is **not** used by the cleaned notebook.
 
+### Adding real labeled lines (where files go)
+
+Put **line crops** (not full pages) here:
+
+| What | Path |
+|------|------|
+| Images | `data/real/images/` (e.g. `my_line_001.png`) |
+| Labels | `data/real/labels/<name>.txt` |
+
+**Labels format** (UTF-8, one row per line crop):
+
+```text
+images/my_line_001.png	exact Sinhala transcript here
+images/my_line_002.png	another line
+```
+
+- Separator is a **tab** (`path\ttranscript`).
+- Image paths are **relative to `data/real/`** (so `images/...`, not `data/real/images/...`).
+- Absolute paths also work, but relative is preferred.
+- Naming: `poem_line_###.png` or any stable prefix; keep IDs unique.
+- **How many help:** tens of diverse real lines already move the needle (this repo’s 10 Kanyawee lines + 80× aug mixed into general training); aim for **30–100+** unique lines across fonts/paper/lighting if you can. Prefer variety over many near-duplicates.
+
+**Full pages for testing only** go under `data/uploads/` (or set `TEST_IMAGE_PATH`); they are not training labels until you crop + transcribe them into `data/real/`.
+
 ### Mix real poem lines into the general model
+
+Kanyawee shortcut (auto-crop a known page + hard-coded GT):
 
 ```powershell
 python scripts/prepare_poem_dataset.py --image data/uploads/test2.png
-python scripts/augment_poem_dataset.py --copies 80
+```
+
+Or add your own crops/labels as above, then augment + continue-train the **same** `crnn_best.pth`:
+
+```powershell
+python scripts/augment_poem_dataset.py --labels data/real/labels/poem_kanyawee.txt --copies 80
 python -m src.recognition.train --config configs/mix_real.yaml `
   --extra-labels data/synthetic_pages/train_labels.txt `
   --extra-labels data/real/labels/poem_kanyawee_aug.txt `
   --resume models/crnn_best.pth
 ```
+
+**Notebook:** after `*_aug.txt` exists, set `RUN_TRAIN=True` in Section 4 and Restart & Run All — training uses `configs/mix_real.yaml` and passes `--extra-labels` for page-synth + poem aug automatically.
+
+**Test after:** leave train flags `False`, set `TEST_IMAGE_PATH` to a held-out page, Run All; optionally keep `RUN_POEM_CER=True` for the labeled crops (in-train CER if those lines were mixed).
 
 **Note:** `*.pth` checkpoints are gitignored. After training, keep a local
 `models/crnn_best.pth` (and optionally back up `models/crnn_best_pre_poem_mix.pth`).
