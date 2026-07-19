@@ -57,6 +57,11 @@ def main() -> int:
     )
     parser.add_argument("--out-images", default="data/real/images_aug")
     parser.add_argument("--copies", type=int, default=80, help="Augmented copies per source line")
+    parser.add_argument(
+        "--name-prefix",
+        default="poem_aug",
+        help="Filename prefix for augmented crops (e.g. user_aug)",
+    )
     parser.add_argument("--seed", type=int, default=1337)
     parser.add_argument(
         "--include-original",
@@ -98,7 +103,7 @@ def main() -> int:
         bg = (255, 255, 255)
         for j in range(1, args.copies + 1):
             aug = apply_augmentations(base.copy(), AUGMENT, bg, rng).convert("L")
-            name = f"poem_aug_{i:03d}_{j:03d}.png"
+            name = f"{args.name_prefix}_{i:03d}_{j:03d}.png"
             aug_path = os.path.join(out_images, name)
             aug.save(aug_path)
             # Paths under real_dir: images_aug/ is a sibling of images/

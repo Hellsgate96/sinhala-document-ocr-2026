@@ -31,7 +31,19 @@ data/real/images_aug/
 data/real/labels/*
 !data/real/labels/.gitkeep
 !data/real/labels/poem_kanyawee.txt
-# poem_kanyawee_aug.txt is regenerated locally (images_aug/ is large / gitignored)
+!data/real/labels/user_batch1.txt
+!data/real/labels/user_batch1_holdout.txt
+!data/real/labels/user_batch1_gt.json
+# poem_kanyawee_aug.txt / user_batch1_aug.txt are regenerated locally (images_aug/ is large / gitignored)
+# Keep a few example user_batch1 crops for demo reproducibility (not full pages/)
+!data/real/images/user_p01_line_*.png
+!data/real/images/user_p02_line_*.png
+!data/real/images/user_p05_line_*.png
+!data/real/images/user_p11_line_*.png
+# Full pages stay local (may be large); inventory is small and tracked
+!data/real/pages/user_batch1/INVENTORY.md
+!data/real/pages/user_batch1/inventory.json
+
 data/debug/*
 !data/debug/.gitkeep
 data/raw/**
@@ -64,4 +76,7 @@ Thumbs.db
 *.log
 runs/
 
+
+
+data/real/pages/**/*.png
 

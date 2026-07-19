@@ -1,0 +1,507 @@
+{
+  "pages": [
+    {
+      "file": "page_01_julius.png",
+      "stem": "page_01_julius",
+      "prefix": "user_p01",
+      "mode": "detect",
+      "holdout": false,
+      "detected_lines": 1,
+      "labeled_lines": 1,
+      "crops": [
+        {
+          "file": "user_p01_line_001.png",
+          "transcript": "ජූලියස් රත්නසිරි"
+        }
+      ]
+    },
+    {
+      "file": "page_02_uyai.png",
+      "stem": "page_02_uyai",
+      "prefix": "user_p02",
+      "mode": "detect",
+      "holdout": false,
+      "detected_lines": 2,
+      "labeled_lines": 2,
+      "crops": [
+        {
+          "file": "user_p02_line_001.png",
+          "transcript": "උයයි"
+        },
+        {
+          "file": "user_p02_line_002.png",
+          "transcript": "අම්මා බත්."
+        }
+      ]
+    },
+    {
+      "file": "page_03_athdakima.png",
+      "stem": "page_03_athdakima",
+      "prefix": "user_p03",
+      "mode": "detect",
+      "holdout": false,
+      "detected_lines": 20,
+      "labeled_lines": 19,
+      "crops": [
+        {
+          "file": "user_p03_line_001.png",
+          "transcript": "අත්දැකීම"
+        },
+        {
+          "file": "user_p03_line_002.png",
+          "transcript": "හුරු බසින් දෙසන දම් රොන් මේ බිම ඇවුණා"
+        },
+        {
+          "file": "user_p03_line_003.png",
+          "transcript": "මහ මාරුතයෙන් නිරතුරු ව අග සැනහුණා"
+        },
+        {
+          "file": "user_p03_line_004.png",
+          "transcript": "නිල් මලල දෙළ දිය අඹුර නැහැවුණා"
+        },
+        {
+          "file": "user_p03_line_005.png",
+          "transcript": "සුමදුර කතාවක කෙළවර ද මේ මහ වළා"
+        },
+        {
+          "file": "user_p03_line_006.png",
+          "transcript": "සුදු දියළු හැදී මහා තුරු පෙළ"
+        },
+        {
+          "file": "user_p03_line_007.png",
+          "transcript": "මල් පත් පිටි සේක අත් ඔසවා"
+        },
+        {
+          "file": "user_p03_line_008.png",
+          "transcript": "දෙළ දියට නමන සුමුදු මල්"
+        },
+        {
+          "file": "user_p03_line_009.png",
+          "transcript": "තව තව පහළට නැවෙන සැටි"
+        },
+        {
+          "file": "user_p03_line_010.png",
+          "transcript": "නිලන්ත අර දේදුන්නක හැපෙන හ඼ දිය රැල්ල"
+        },
+        {
+          "file": "user_p03_line_011.png",
+          "transcript": "පුංචි පුංචි දිය බිඳු ඉහළ රැඳී සිහිනෙක"
+        },
+        {
+          "file": "user_p03_line_012.png",
+          "transcript": "දිය මිදුල මැදින් අතින් අල්ලන දිය වැල්දා"
+        },
+        {
+          "file": "user_p03_line_013.png",
+          "transcript": "අත් පිසින එ උතුම් සුන්දර මොහොත අදීසී!"
+        },
+        {
+          "file": "user_p03_line_014.png",
+          "transcript": "තෙද බලැති පණ නළ රන් කෝකිලයන් සේ ම"
+        },
+        {
+          "file": "user_p03_line_015.png",
+          "transcript": "මල් පෙති තුරණ තණ අගින් මෙහි මෙහි එන"
+        },
+        {
+          "file": "user_p03_line_016.png",
+          "transcript": "දිය සුදු සිනහව ම සිනහව ම විඳින හැටි!"
+        },
+        {
+          "file": "user_p03_line_017.png",
+          "transcript": "වික්ෂෝපයි මහ වළා මිදුනු මෙහි තවත් වෙලා"
+        },
+        {
+          "file": "user_p03_line_018.png",
+          "transcript": "සුන්දරයි පෑන මේ ද මේ ජීවිතය"
+        },
+        {
+          "file": "user_p03_line_019.png",
+          "transcript": "ජයසේකර මලවිආරච්චි"
+        }
+      ]
+    },
+    {
+      "file": "page_04_viplavaya.png",
+      "stem": "page_04_viplavaya",
+      "prefix": "user_p04",
+      "mode": "equal_bands",
+      "holdout": false,
+      "detected_lines": 6,
+      "labeled_lines": 6,
+      "crops": [
+        {
+          "file": "user_p04_line_001.png",
+          "transcript": "මාගේ විප්ලවය"
+        },
+        {
+          "file": "user_p04_line_002.png",
+          "transcript": "රුවකුරු ඇන්ඩ්‍රොයිඩ්"
+        },
+        {
+          "file": "user_p04_line_003.png",
+          "transcript": "දුරකතනයක භාවිතා"
+        },
+        {
+          "file": "user_p04_line_004.png",
+          "transcript": "කරන අයුරු මට කියා"
+        },
+        {
+          "file": "user_p04_line_005.png",
+          "transcript": "දුන් සුසන්ත"
+        },
+        {
+          "file": "user_p04_line_006.png",
+          "transcript": "සොයුරාට පින්."
+        }
+      ]
+    },
+    {
+      "file": "page_05_dl_paras.png",
+      "stem": "page_05_dl_paras",
+      "prefix": "user_p05",
+      "mode": "detect",
+      "holdout": false,
+      "detected_lines": 2,
+      "labeled_lines": 2,
+      "crops": [
+        {
+          "file": "user_p05_line_001.png",
+          "transcript": "Font: DL Paras"
+        },
+        {
+          "file": "user_p05_line_002.png",
+          "transcript": "සිංහල අකුරු"
+        }
+      ]
+    },
+    {
+      "file": "page_06_jayashri.png",
+      "stem": "page_06_jayashri",
+      "prefix": "user_p06",
+      "mode": "manual_y",
+      "holdout": false,
+      "detected_lines": 5,
+      "labeled_lines": 5,
+      "crops": [
+        {
+          "file": "user_p06_line_001.png",
+          "transcript": "ඕන සිංහල"
+        },
+        {
+          "file": "user_p06_line_002.png",
+          "transcript": "වැඩකට"
+        },
+        {
+          "file": "user_p06_line_003.png",
+          "transcript": "අකුරු"
+        },
+        {
+          "file": "user_p06_line_004.png",
+          "transcript": "Jayashri.otf"
+        },
+        {
+          "file": "user_p06_line_005.png",
+          "transcript": "6 Sinhala fonts styles"
+        }
+      ]
+    },
+    {
+      "file": "page_07_font_list.png",
+      "stem": "page_07_font_list",
+      "prefix": "user_p07",
+      "mode": "detect",
+      "holdout": true,
+      "detected_lines": 26,
+      "labeled_lines": 20,
+      "crops": [
+        {
+          "file": "user_p07_line_001.png",
+          "transcript": "1. තේජානී ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_002.png",
+          "transcript": "2. තේජානී බෝල්ඩ්"
+        },
+        {
+          "file": "user_p07_line_003.png",
+          "transcript": "3. බඹර ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_004.png",
+          "transcript": "4. යශෝධරා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_005.png",
+          "transcript": "5. ලංකාතිලක ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_006.png",
+          "transcript": "6. සකියා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_007.png",
+          "transcript": "7. ස්වර්ණා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_008.png",
+          "transcript": "8. භාරතී ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_009.png",
+          "transcript": "9. වසභ ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_010.png",
+          "transcript": "10. ලක්හ඼ ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_011.png",
+          "transcript": "11. මකරන්ද ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_012.png",
+          "transcript": "12. දේදුනු ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_013.png",
+          "transcript": "13. දුර්ගා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_014.png",
+          "transcript": "14. බේමා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_015.png",
+          "transcript": "15. ඉසුරුමුණි ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_016.png",
+          "transcript": "16. අසනි ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_017.png",
+          "transcript": "17. ජේතවන ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_018.png",
+          "transcript": "18. උදුම්බරා ෆොන්ටුව"
+        },
+        {
+          "file": "user_p07_line_019.png",
+          "transcript": "19. ගඩලාදෙණිය"
+        },
+        {
+          "file": "user_p07_line_020.png",
+          "transcript": "20. දිවුල්වැව ෆොන්ටුව"
+        }
+      ]
+    },
+    {
+      "file": "page_08_sri_lanka.png",
+      "stem": "page_08_sri_lanka",
+      "prefix": "user_p08",
+      "mode": "equal_bands",
+      "holdout": false,
+      "detected_lines": 2,
+      "labeled_lines": 2,
+      "crops": [
+        {
+          "file": "user_p08_line_001.png",
+          "transcript": "ශ්‍රී"
+        },
+        {
+          "file": "user_p08_line_002.png",
+          "transcript": "ලංකා"
+        }
+      ]
+    },
+    {
+      "file": "page_09_kaviyak.png",
+      "stem": "page_09_kaviyak",
+      "prefix": "user_p09",
+      "mode": "equal_bands",
+      "holdout": false,
+      "detected_lines": 3,
+      "labeled_lines": 3,
+      "crops": [
+        {
+          "file": "user_p09_line_001.png",
+          "transcript": "මටත්"
+        },
+        {
+          "file": "user_p09_line_002.png",
+          "transcript": "කවියක්"
+        },
+        {
+          "file": "user_p09_line_003.png",
+          "transcript": "ලියන්න"
+        }
+      ]
+    },
+    {
+      "file": "page_10_kekara.png",
+      "stem": "page_10_kekara",
+      "prefix": "user_p10",
+      "mode": "manual_y",
+      "holdout": false,
+      "detected_lines": 3,
+      "labeled_lines": 3,
+      "crops": [
+        {
+          "file": "user_p10_line_001.png",
+          "transcript": "Kekara"
+        },
+        {
+          "file": "user_p10_line_002.png",
+          "transcript": "මල්ල"
+        },
+        {
+          "file": "user_p10_line_003.png",
+          "transcript": "අකුරු"
+        }
+      ]
+    },
+    {
+      "file": "page_11_languages.png",
+      "stem": "page_11_languages",
+      "prefix": "user_p11",
+      "mode": "detect",
+      "holdout": false,
+      "detected_lines": 7,
+      "labeled_lines": 7,
+      "crops": [
+        {
+          "file": "user_p11_line_001.png",
+          "transcript": "ශ්‍රී ලංකාවේ කතා කරන භාෂා එහි විවිධ"
+        },
+        {
+          "file": "user_p11_line_002.png",
+          "transcript": "සංස්කෘතික උරුමයන් සහ ඓතිහාසික"
+        },
+        {
+          "file": "user_p11_line_003.png",
+          "transcript": "බලපෑම් පිළිබිඹු කරයි. නිල තත්ත්වය හිමි"
+        },
+        {
+          "file": "user_p11_line_004.png",
+          "transcript": "සිංහල සහ දෙමළ භාෂාවේ සිට ද්විතියික"
+        },
+        {
+          "file": "user_p11_line_005.png",
+          "transcript": "භාෂාවක් ලෙස සේවය කරන ඉංග්‍රීසි දක්වා ශ්‍රී"
+        },
+        {
+          "file": "user_p11_line_006.png",
+          "transcript": "ලංකාවේ භාෂාමය භූ දර්ශනය පොහොසත්"
+        },
+        {
+          "file": "user_p11_line_007.png",
+          "transcript": "සහ බහුවිධ වේ."
+        }
+      ]
+    },
+    {
+      "file": "page_12_hitigama.png",
+      "stem": "page_12_hitigama",
+      "prefix": "user_p12",
+      "mode": "detect",
+      "holdout": true,
+      "detected_lines": 21,
+      "labeled_lines": 21,
+      "crops": [
+        {
+          "file": "user_p12_line_001.png",
+          "transcript": "ප්‍රශ්න සියල්ලටම පිළිතුරු සපයන්න"
+        },
+        {
+          "file": "user_p12_line_002.png",
+          "transcript": "හිටිගම අන්දරේ"
+        },
+        {
+          "file": "user_p12_line_003.png",
+          "transcript": "හිටිගම කොට්ඨාස අධ්‍යාපන අධ්‍යක්ෂවරයා ශ්‍රී ලංකා ගුරු සේවයේ ප්‍රථම රාජකාරි අරඹා අධ්‍යාපන පරිපාලන සේවා"
+        },
+        {
+          "file": "user_p12_line_004.png",
+          "transcript": "සීමිත විභාගය සමත් වූ අයෙකි. ඔහු සමඟ එකට රාජකාරි කළ නවතනාරත්න මහතා ගණිතය විෂය"
+        },
+        {
+          "file": "user_p12_line_005.png",
+          "transcript": "උගන්වයි. හිටිගම කොට්ඨාස අධ්‍යක්ෂවරයා විසින් නවතනාරත්න මහතා සේවය කරන විදුහල ඇතුළු"
+        },
+        {
+          "file": "user_p12_line_006.png",
+          "transcript": "කොට්ඨාසයේ සෑම විදුහලකම ගණිතය උගන්වන ගුරුවරුන් සඳහා පුහුණු වැඩසටහනක් සංවිධානය කළේය."
+        },
+        {
+          "file": "user_p12_line_007.png",
+          "transcript": "සුපුරුදු පරිදි දිනය උදාවත්ම නවතනාරත්න මහතා වැඩමුළුව සඳහා සහභාගී විය. හිටිගම කොට්ඨාස"
+        },
+        {
+          "file": "user_p12_line_008.png",
+          "transcript": "අධ්‍යාපන අධ්‍යක්ෂවරයා වැඩමුළුව ආරම්භයේ දීම තම අත්දැකීම් විස්තර කරයි. නවතනාරත්න මහතා හිටිගම"
+        },
+        {
+          "file": "user_p12_line_009.png",
+          "transcript": "අධ්‍යාපන අධ්‍යක්ෂවරයා ගැන හොඩින් ම දන්නා පුද්ගලයාය. ඔහු හිටිගම අධ්‍යක්ෂවරයාගේ අත්දැකීම් අසන විට"
+        },
+        {
+          "file": "user_p12_line_010.png",
+          "transcript": "තමා සමග එකට පත්වීම් ගත් මිතුරා ගැන නොදන්නා දෙයක් නැත."
+        },
+        {
+          "file": "user_p12_line_011.png",
+          "transcript": "හිටිගම අධ්‍යාපන අධ්‍යක්ෂවරයා කතාව නොනවත්වාම කරයි. අත්දැකීම් රැසක් විස්තර කරයි. මේ සමගම"
+        },
+        {
+          "file": "user_p12_line_012.png",
+          "transcript": "නවතනාරත්න මහතා ආසනයෙන් නැගිට, සර් යන හ඼ින් කතා කළේය. ආ..... නවතනාරත්න මම දැන් නේ"
+        },
+        {
+          "file": "user_p12_line_013.png",
+          "transcript": "දැක්කේ. වැඩමුළුවට ඇවිත් ඉන්නවානේ. මීට කලින් එවට ආවේ නෑ නේද යැයි පවසනවාත් සමඟම නෑ සර්...... සර්"
+        },
+        {
+          "file": "user_p12_line_014.png",
+          "transcript": "හැමදාම කළේ අත්දැකීම් කියපු එකනේ. එ නිසා එන්න හිතුණෙ නෑ. අද සර් එයි කියලා හිතුවේ නෑ. සර් එනවා"
+        },
+        {
+          "file": "user_p12_line_015.png",
+          "transcript": "කියලා හිතුවා නම් එන්නේ නෑ. යැයි කී විට සෙසු ගුරු සියල්ලෝම එකිනෙකාගේ මුහුණ දෙස බැලීය. හිටිගම"
+        },
+        {
+          "file": "user_p12_line_016.png",
+          "transcript": "අධ්‍යක්ෂවරයා වැඩමුළුව පටන් ගත්තේය. ඔහුගේ පළමු පත්වීම කෘෂිකර්මය විෂයභාර ආචාර්යවරයෙකු බව නවකතා-"
+        },
+        {
+          "file": "user_p12_line_017.png",
+          "transcript": "රත්න මහතාගෙන් සෙසු ගණිත ගුරුවරුන්ට දැන ගන්නට ද ලැබුණි. හිටිගම අධ්‍යක්ෂවරයා තමා මුහුණ දුන්"
+        },
+        {
+          "file": "user_p12_line_018.png",
+          "transcript": "අපහසුතාව ගැන කලාප අධ්‍යාපන අධ්‍යක්ෂවරයා දැනුවත් කළේය. එ වන විටත් නවතනාරත්න මහතා දුරකතනයෙන්"
+        },
+        {
+          "file": "user_p12_line_019.png",
+          "transcript": "තම සගයෙකු වූ කලාප අධ්‍යක්ෂවරයා අමතා දැනුවත් කර තිබුණි. කලාප අධ්‍යාපන අධ්‍යක්ෂවරයා හිටිගම අධ්‍යක්ෂ"
+        },
+        {
+          "file": "user_p12_line_020.png",
+          "transcript": "ගැන හොඩින් දන්නා බැවින් හිටිගම අධ්‍යාපන අධ්‍යක්ෂවරයා ට ඕවා ඔහොම තමයි යන පිළිතුර පමණක් ලබා දුනි."
+        },
+        {
+          "file": "user_p12_line_021.png",
+          "transcript": "එය ද නවතනාරත්න මහතාට කලාප අධ්‍යක්ෂගෙන් ම දැනගන්නට ලැබුණි."
+        }
+      ]
+    }
+  ],
+  "meta": {
+    "holdout_pages": [
+      "page_07_font_list",
+      "page_12_hitigama"
+    ],
+    "notes": "Hold out font-list + Hitigama. Decorative pages use equal_bands/manual_y."
+  }
+}

@@ -358,13 +358,20 @@ Or add your own crops/labels as above, then augment + continue-train the **same*
 
 ```powershell
 python scripts/augment_poem_dataset.py --labels data/real/labels/poem_kanyawee.txt --copies 80
+python scripts/prepare_real_pages.py --gt-json data/real/labels/user_batch1_gt.json
+python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt `
+  --out-labels data/real/labels/user_batch1_aug.txt --name-prefix user_aug --copies 50
 python -m src.recognition.train --config configs/mix_real.yaml `
   --extra-labels data/synthetic_pages/train_labels.txt `
   --extra-labels data/real/labels/poem_kanyawee_aug.txt `
+  --extra-labels data/real/labels/user_batch1_aug.txt `
   --resume models/crnn_best.pth
 ```
 
-**Notebook:** after `*_aug.txt` exists, set `RUN_TRAIN=True` in Section 4 and Restart & Run All — training uses `configs/mix_real.yaml` and passes `--extra-labels` for page-synth + poem aug automatically.
+**Holdout:** `page_07_font_list` + `page_12_hitigama` are kept out of training
+(`data/real/labels/user_batch1_holdout.txt`) for a honest check.
+
+**Notebook:** after `*_aug.txt` exists, set `RUN_TRAIN=True` in Section 4 and Restart & Run All — training uses `configs/mix_real.yaml` and passes `--extra-labels` for page-synth + poem aug + `user_batch1_aug` automatically.
 
 **Test after:** leave train flags `False`, set `TEST_IMAGE_PATH` to a held-out page, Run All; optionally keep `RUN_POEM_CER=True` for the labeled crops (in-train CER if those lines were mixed).
 

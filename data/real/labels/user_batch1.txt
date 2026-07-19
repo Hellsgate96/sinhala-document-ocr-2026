@@ -1,0 +1,50 @@
+images/user_p01_line_001.png	ජූලියස් රත්නසිරි
+images/user_p02_line_001.png	උයයි
+images/user_p02_line_002.png	අම්මා බත්.
+images/user_p03_line_001.png	අත්දැකීම
+images/user_p03_line_002.png	හුරු බසින් දෙසන දම් රොන් මේ බිම ඇවුණා
+images/user_p03_line_003.png	මහ මාරුතයෙන් නිරතුරු ව අග සැනහුණා
+images/user_p03_line_004.png	නිල් මලල දෙළ දිය අඹුර නැහැවුණා
+images/user_p03_line_005.png	සුමදුර කතාවක කෙළවර ද මේ මහ වළා
+images/user_p03_line_006.png	සුදු දියළු හැදී මහා තුරු පෙළ
+images/user_p03_line_007.png	මල් පත් පිටි සේක අත් ඔසවා
+images/user_p03_line_008.png	දෙළ දියට නමන සුමුදු මල්
+images/user_p03_line_009.png	තව තව පහළට නැවෙන සැටි
+images/user_p03_line_010.png	නිලන්ත අර දේදුන්නක හැපෙන හ඼ දිය රැල්ල
+images/user_p03_line_011.png	පුංචි පුංචි දිය බිඳු ඉහළ රැඳී සිහිනෙක
+images/user_p03_line_012.png	දිය මිදුල මැදින් අතින් අල්ලන දිය වැල්දා
+images/user_p03_line_013.png	අත් පිසින එ උතුම් සුන්දර මොහොත අදීසී!
+images/user_p03_line_014.png	තෙද බලැති පණ නළ රන් කෝකිලයන් සේ ම
+images/user_p03_line_015.png	මල් පෙති තුරණ තණ අගින් මෙහි මෙහි එන
+images/user_p03_line_016.png	දිය සුදු සිනහව ම සිනහව ම විඳින හැටි!
+images/user_p03_line_017.png	වික්ෂෝපයි මහ වළා මිදුනු මෙහි තවත් වෙලා
+images/user_p03_line_018.png	සුන්දරයි පෑන මේ ද මේ ජීවිතය
+images/user_p03_line_019.png	ජයසේකර මලවිආරච්චි
+images/user_p04_line_001.png	මාගේ විප්ලවය
+images/user_p04_line_002.png	රුවකුරු ඇන්ඩ්‍රොයිඩ්
+images/user_p04_line_003.png	දුරකතනයක භාවිතා
+images/user_p04_line_004.png	කරන අයුරු මට කියා
+images/user_p04_line_005.png	දුන් සුසන්ත
+images/user_p04_line_006.png	සොයුරාට පින්.
+images/user_p05_line_001.png	Font: DL Paras
+images/user_p05_line_002.png	සිංහල අකුරු
+images/user_p06_line_001.png	ඕන සිංහල
+images/user_p06_line_002.png	වැඩකට
+images/user_p06_line_003.png	අකුරු
+images/user_p06_line_004.png	Jayashri.otf
+images/user_p06_line_005.png	6 Sinhala fonts styles
+images/user_p08_line_001.png	ශ්‍රී
+images/user_p08_line_002.png	ලංකා
+images/user_p09_line_001.png	මටත්
+images/user_p09_line_002.png	කවියක්
+images/user_p09_line_003.png	ලියන්න
+images/user_p10_line_001.png	Kekara
+images/user_p10_line_002.png	මල්ල
+images/user_p10_line_003.png	අකුරු
+images/user_p11_line_001.png	ශ්‍රී ලංකාවේ කතා කරන භාෂා එහි විවිධ
+images/user_p11_line_002.png	සංස්කෘතික උරුමයන් සහ ඓතිහාසික
+images/user_p11_line_003.png	බලපෑම් පිළිබිඹු කරයි. නිල තත්ත්වය හිමි
+images/user_p11_line_004.png	සිංහල සහ දෙමළ භාෂාවේ සිට ද්විතියික
+images/user_p11_line_005.png	භාෂාවක් ලෙස සේවය කරන ඉංග්‍රීසි දක්වා ශ්‍රී
+images/user_p11_line_006.png	ලංකාවේ භාෂාමය භූ දර්ශනය පොහොසත්
+images/user_p11_line_007.png	සහ බහුවිධ වේ.

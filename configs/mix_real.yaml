@@ -1,11 +1,15 @@
-# Continue-train the general CRNN with real poem lines mixed in.
+# Continue-train the general CRNN with real poem + user_batch1 lines mixed in.
 # Writes models/crnn_best.pth (NOT a separate finetuned checkpoint).
 #
 # Usage:
 #   python scripts/augment_poem_dataset.py --copies 80
+#   python scripts/prepare_real_pages.py --gt-json data/real/labels/user_batch1_gt.json
+#   python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt \
+#       --out-labels data/real/labels/user_batch1_aug.txt --name-prefix user_aug --copies 50
 #   python -m src.recognition.train --config configs/mix_real.yaml \
 #       --extra-labels data/synthetic_pages/train_labels.txt \
 #       --extra-labels data/real/labels/poem_kanyawee_aug.txt \
+#       --extra-labels data/real/labels/user_batch1_aug.txt \
 #       --resume models/crnn_best.pth
 _inherits: local.yaml
 
