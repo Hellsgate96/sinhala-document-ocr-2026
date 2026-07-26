@@ -233,12 +233,22 @@ def main():
 
     resume_path = args.resume or cfg.get("paths", {}).get("resume_checkpoint")
     start_epoch = 0
+    resumed_cer: Optional[float] = None
     if resume_path:
         if not os.path.isfile(resume_path):
             raise FileNotFoundError(f"Resume checkpoint not found: {resume_path}")
         ckpt = load_checkpoint(resume_path, model, optimizer=None, map_location=str(device))
         start_epoch = int(ckpt.get("epoch", 0))
-        logger.info(f"resumed weights from {resume_path} (checkpoint epoch {start_epoch})")
+        if ckpt.get("cer") is not None:
+            try:
+                resumed_cer = float(ckpt["cer"])
+            except (TypeError, ValueError):
+                resumed_cer = None
+        logger.info(
+            f"resumed weights from {resume_path} (checkpoint epoch {start_epoch}"
+            + (f", cer={resumed_cer:.4f}" if resumed_cer is not None else "")
+            + ")"
+        )
 
     models_dir = cfg["paths"]["models_dir"]
     os.makedirs(models_dir, exist_ok=True)
@@ -247,7 +257,9 @@ def main():
     best_path = os.path.join(models_dir, os.path.basename(best_name))
     last_path = os.path.join(models_dir, os.path.basename(last_name))
 
-    best_cer = float("inf")
+    # Preserve prior best CER across continue-train so a worse first epoch cannot
+    # overwrite a stronger resumed checkpoint.
+    best_cer = resumed_cer if resumed_cer is not None else float("inf")
     total_epochs = cfg["train"]["epochs"]
     patience = int(cfg["train"].get("early_stopping_patience", 0))
     epochs_without_improvement = 0

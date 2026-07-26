@@ -368,16 +368,46 @@ python -m src.recognition.train --config configs/mix_real.yaml `
   --resume models/crnn_best.pth
 ```
 
-**Holdout:** `page_07_font_list` + `page_12_hitigama` are kept out of training
-(`data/real/labels/user_batch1_holdout.txt`) for a honest check.
+**Holdout (updated Jul 2026):** prior `page_07_font_list` + `page_12_hitigama` lines
+were moved **into training** for accuracy. The honest check is now
+`data/real/labels/web_batch1_holdout.txt` (fresh hard-style renders). Historical copy:
+`user_batch1_holdout_SUPERSEDED.txt`.
 
-**Notebook:** after `*_aug.txt` exists, set `RUN_TRAIN=True` in Section 4 and Restart & Run All — training uses `configs/mix_real.yaml` and passes `--extra-labels` for page-synth + poem aug + `user_batch1_aug` automatically.
+### Web / hard-case mix (`configs/mix_web.yaml`)
 
-**Test after:** leave train flags `False`, set `TEST_IMAGE_PATH` to a held-out page, Run All; optionally keep `RUN_POEM_CER=True` for the labeled crops (in-train CER if those lines were mixed).
+Adds pill/dark/coloured title lines, the Jul-26 exam-cover crops, and (optionally)
+CC-BY-4.0 Sri Lankan Acts pages from Hugging Face. Provenance:
+`data/real/pages/web_batch1/SOURCES.md`.
 
-**Note:** `*.pth` checkpoints are gitignored. After training, keep a local
-`models/crnn_best.pth` (and optionally back up `models/crnn_best_pre_poem_mix.pth`).
-`models/charset.json` is tracked.
+```powershell
+python scripts/prepare_web_batch1.py
+python scripts/generate_hard_lines.py --num 4000
+python scripts/download_hf_acts.py --max-pages 200   # optional; CC-BY-4.0
+python scripts/augment_poem_dataset.py --copies 80
+python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt `
+  --out-labels data/real/labels/user_batch1_aug.txt --name-prefix user_aug --copies 40
+python scripts/augment_poem_dataset.py --labels data/real/labels/web_batch1.txt `
+  --out-labels data/real/labels/web_batch1_aug.txt --name-prefix web_aug --copies 80
+copy models\crnn_best.pth models\crnn_best_pre_web.pth
+python -m src.recognition.train --config configs/mix_web.yaml `
+  --extra-labels data/synthetic_pages/train_labels.txt `
+  --extra-labels data/synthetic_hard/train_labels.txt `
+  --extra-labels data/real/labels/poem_kanyawee_aug.txt `
+  --extra-labels data/real/labels/user_batch1_aug.txt `
+  --extra-labels data/real/labels/web_batch1_aug.txt `
+  --resume models/crnn_best.pth
+```
+
+**Notebook:** after any `data/real/labels/*_aug.txt` exists, set `RUN_TRAIN=True` and
+Restart & Run All — prefers `configs/mix_web.yaml` and auto-includes every `*_aug.txt`
+plus `data/synthetic_hard/train_labels.txt` / `web_batch1_acts.txt` when present.
+
+**Test after:** leave train flags `False`, set `TEST_IMAGE_PATH` to a page (e.g. the
+exam cover), Run All; keep `RUN_POEM_CER=True` for poem crops.
+
+**Note:** `*.pth` checkpoints and large page/hard images are gitignored. Keep a local
+`models/crnn_best.pth` (backup: `models/crnn_best_pre_web.pth`). Labels + `SOURCES.md`
+are tracked; regenerate aug images locally.
 
 On the Kanyawee poem crops (in-train after mix), corpus CER dropped from ~0.19
 (pre-mix general model) to ~0.008. Held-out `data/eval_pages` overall CER stayed

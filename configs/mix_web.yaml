@@ -1,0 +1,46 @@
+# Continue-train with web_batch1 + hard synth + prior real mixes.
+# Writes models/crnn_best.pth
+#
+# Usage:
+#   python scripts/prepare_web_batch1.py
+#   python scripts/generate_hard_lines.py --num 4000
+#   python scripts/download_hf_acts.py --max-pages 200 --save-pages
+#   python scripts/augment_poem_dataset.py --copies 80
+#   python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt \
+#       --out-labels data/real/labels/user_batch1_aug.txt --name-prefix user_aug --copies 40
+#   python scripts/augment_poem_dataset.py --labels data/real/labels/web_batch1.txt \
+#       --out-labels data/real/labels/web_batch1_aug.txt --name-prefix web_aug --copies 60
+#   copy models\crnn_best.pth models\crnn_best_pre_web.pth
+#   python -m src.recognition.train --config configs/mix_web.yaml \
+#       --extra-labels data/synthetic_pages/train_labels.txt \
+#       --extra-labels data/synthetic_hard/train_labels.txt \
+#       --extra-labels data/real/labels/poem_kanyawee_aug.txt \
+#       --extra-labels data/real/labels/user_batch1_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_aug.txt \
+#       --resume models/crnn_best.pth
+_inherits: local.yaml
+
+train:
+  epochs: 25
+  lr: 0.00008
+  batch_size: 32
+  # Domain-mix runs often worsen synthetic val CER while improving real CER.
+  # Use a higher patience; train.py preserves resumed best CER so a worse
+  # synthetic epoch cannot overwrite a stronger prior checkpoint.
+  early_stopping_patience: 8
+  lr_scheduler: plateau
+  lr_patience: 2
+  extra_label_repeat: 1
+  synthetic_train_max: 10000
+  # When true (default via train.py resume), keep resumed CER as the bar for
+  # overwriting crnn_best.pth. Always inspect crnn_last.pth on real holdouts.
+
+paths:
+  resume_checkpoint: models/crnn_best.pth
+  finetune_best: models/crnn_best.pth
+  finetune_last: models/crnn_last.pth
+
+inference:
+  image_height: 48
+  decode: greedy
+  auto_invert: true

@@ -1,0 +1,14 @@
+images/web_holdout_line_001.png	11 ශ්‍රේණිය
+images/web_holdout_line_002.png	දෙවන වාර පරීක්ෂණය
+images/web_holdout_line_003.png	සිංහල සාහිත්‍ය
+images/web_holdout_line_004.png	රසාස්වාදය
+images/web_holdout_line_005.png	දකුණු පළාත
+images/web_holdout_line_006.png	2024
+images/web_holdout_line_007.png	ප්‍රශ්න පත්‍රය
+images/web_holdout_line_008.png	පිළිතුරු පත්‍රය
+images/web_holdout_line_009.png	ශ්‍රී ලංකාව
+images/web_holdout_line_010.png	අධ්‍යාපන දෙපාර්තමේන්තුව
+images/web_holdout_line_011.png	පළමු වාර පරීක්ෂණය
+images/web_holdout_line_012.png	තෙවන වාර පරීක්ෂණය
+images/web_holdout_line_013.png	ගණිතය
+images/web_holdout_line_014.png	විද්‍යාව

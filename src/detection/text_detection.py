@@ -501,13 +501,21 @@ def crop_is_mostly_numeric(
 def crop_lines(
     image: np.ndarray,
     boxes: List[BBox],
-    padding: int | None = None,
+    padding: int | dict | None = None,
     padding_x: int = 10,
     padding_y: int = 5,
     min_crop_height: int = 14,
 ) -> List[np.ndarray]:
-    """Crop each detected box from the page (with padding and minimum height)."""
-    if padding is not None:
+    """Crop each detected box from the page (with padding and minimum height).
+
+    ``padding`` may be an int (applied to both axes) or a detection-config
+    dict with ``crop_padding_x`` / ``crop_padding_y`` / ``min_crop_height``.
+    """
+    if isinstance(padding, dict):
+        padding_x = int(padding.get("crop_padding_x", padding_x))
+        padding_y = int(padding.get("crop_padding_y", padding_y))
+        min_crop_height = int(padding.get("min_crop_height", min_crop_height))
+    elif padding is not None:
         padding_x = padding_y = int(padding)
     h, w = image.shape[:2]
     crops: List[np.ndarray] = []
