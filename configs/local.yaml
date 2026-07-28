@@ -100,6 +100,9 @@ detection:
   min_ink_frac: 0.004      # projection: row is text when >= this fraction of width is ink
   min_ink_density: 0.01    # projection: drop boxes with less ink than this
   min_height_frac: 0.35    # projection: drop boxes shorter than this x median line height
+  deskew: true             # estimate page skew from the ink mask and rotate upright before detection
+  deskew_max_angle: 5.0    # search range (degrees) for the skew estimate
+  deskew_min_angle: 0.3    # ignore corrections smaller than this (page already upright)
 
 postprocess:
   vocab_path: src/data/sample_words.txt

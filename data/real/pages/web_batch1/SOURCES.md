@@ -12,6 +12,7 @@
 | Asset | Source | License |
 |---|---|---|
 | `data/synthetic_hard/` | Rendered from project corpus + `src/data/exam_style_lines.txt` using Noto Sans/Serif Sinhala, Abhaya Libre, Yaldevi (OFL), Nirmala UI | Font OFL / system fonts; text from project corpus |
+| `data/synthetic_hard/` (Jul-27 regen, 9000 lines) | Same sources; adds `book_serif` style (grey-paper serif book print) and a tiny/low-res degradation pass targeting failures on a real photographed poem page | Same |
 | `web_holdout_line_*.png` | Fresh hard-style renders held out of training | Same |
 
 ## Training policy this round

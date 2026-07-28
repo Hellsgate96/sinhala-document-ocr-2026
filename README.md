@@ -381,7 +381,7 @@ CC-BY-4.0 Sri Lankan Acts pages from Hugging Face. Provenance:
 
 ```powershell
 python scripts/prepare_web_batch1.py
-python scripts/generate_hard_lines.py --num 4000
+python scripts/generate_hard_lines.py --num 9000
 python scripts/download_hf_acts.py --max-pages 200   # optional; CC-BY-4.0
 python scripts/augment_poem_dataset.py --copies 80
 python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt `
@@ -412,6 +412,50 @@ are tracked; regenerate aug images locally.
 On the Kanyawee poem crops (in-train after mix), corpus CER dropped from ~0.19
 (pre-mix general model) to ~0.008. Held-out `data/eval_pages` overall CER stayed
 ~0.098 (no regression vs the prior general checkpoint).
+
+### Jul-27: page deskew + book-print/tiny-text training styles
+
+Diagnosis on a new real photographed poem page (serif book print) and the held-out
+eval pages showed two independent failure classes:
+
+1. **Detection — rotated photos merged adjacent lines.** At ~1.5° skew over a
+   ~600 px column the vertical drift exceeds the inter-line gap, so the projection
+   profile never dips between lines; a missed/merged line then shifts the
+   order-aligned scoring and inflates page CER past 1.0.
+   Fix: `estimate_page_skew` + `rotate_page` in `src/detection/text_detection.py`
+   (projection-profile sharpness search, applied automatically in
+   `run_pipeline_on_gray` when `detection.deskew: true`), plus a percentile-robust
+   valley test in `_split_tall_band` so strike-through/underline rules no longer
+   cause false splits. Regression tests: `tests/test_page_detection.py`.
+2. **Recognition — real serif book print + tiny text.** Vowel-sign drops and
+   ත/න, ට/ව confusions on photographed book/poem print; very small footer lines
+   decoded as garbage. Fix: `scripts/generate_hard_lines.py` gained a
+   `book_serif` style (grey paper, serif faces) and a low-res degradation pass
+   (crush to 10–22 px height and back), then a continue-train with all real+hard
+   extras (`models/train_jul27.log`).
+
+Held-out evaluation lives in `data/eval_real/print_photos/` (never trained on;
+see its `SOURCES.md`). Detection-only gains (same checkpoint, deskew on):
+`data/eval_pages` overall CER 0.098 → 0.020 (all 76 lines found exactly),
+adversarial pages 0.063 → 0.034.
+
+Results after the Jul-27 continue-train (25 epochs, `models/train_jul27.log`;
+backup of the prior checkpoint: `models/crnn_best_pre_jul27.pth`):
+
+| Eval set | Before (Jul-26 ckpt + old detector) | After (Jul-27 ckpt + deskew) |
+|---|---|---|
+| `data/eval_pages` end-to-end CER (held-out synth pages) | 0.0981 | **0.0192** |
+| Adversarial pages end-to-end CER | 0.0629 | **0.0339** |
+| `print_photos` poem page end-to-end CER (held-out real) | 0.1533 | **0.1400** |
+| `user_batch1_holdout.txt` line CER (41 crops) | 0.0338 | **0.0055** |
+| `web_batch1_holdout.txt` line CER (14 crops) | 0.0000 | 0.0000 |
+| Kanyawee poem line CER (in-train) | 0.0110 | **0.0055** |
+| Synthetic val CER (trainer) | 0.0332* | 0.0356 |
+
+\* mix runs trade a little synthetic val CER for real-image accuracy; the real
+holdout rows are the signal. Remaining known weakness: very small text
+(≈10 px x-height footers) is still unreliable, and the ු/ූ (short/long -u)
+distinction on traditional serif book faces.
 
 ### Real image test (notebook Section 8)
 

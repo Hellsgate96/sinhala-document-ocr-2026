@@ -61,6 +61,9 @@ data/preprocessed/**
 data/synthetic_pages/**
 data/eval_pages/**
 data/eval_real/**
+# ...but keep the small held-out real print-photo eval page + GT (thesis reproducibility)
+!data/eval_real/print_photos/
+!data/eval_real/print_photos/**
 data/synthetic_sample/**
 !data/.gitkeep
 !data/real/.gitkeep

@@ -7,6 +7,10 @@ Covers failure modes seen on real exam/cover pages and decorative fonts:
   - large bold title sizes
   - mixed English + Sinhala
   - short centred headings
+  - traditional serif book print on grey paper (jul27: photographed poem page
+    showed vowel-sign drops and Tha/Na, Ta/Va confusions on this style)
+  - tiny low-resolution text (jul27: small footer line came out as garbage) -
+    simulated by crushing rendered lines down to 10-22 px and scaling back up
 
 Writes ``data/synthetic_hard/images/*.png`` and ``train_labels.txt``.
 """
@@ -78,7 +82,14 @@ def render_styled(
     x0 = pad_x + (extra // 2 if rng.random() < 0.7 else 0)
     y0 = pad_y
 
-    if style == "dark":
+    if style == "book_serif":
+        # Photographed book/poem print: grey paper, soft dark ink.
+        g = rng.randint(185, 225)
+        bg = (g, g + rng.randint(-4, 4), g + rng.randint(-4, 4))
+        ink = rng.randint(15, 75)
+        fg = (ink, ink + rng.randint(-6, 6), ink + rng.randint(-6, 6))
+        img = Image.new("RGB", (w, h), bg)
+    elif style == "dark":
         bg = (rng.randint(8, 40), rng.randint(8, 40), rng.randint(8, 50))
         fg = (rng.randint(220, 255), rng.randint(220, 255), rng.randint(220, 255))
         img = Image.new("RGB", (w, h), bg)
@@ -106,6 +117,30 @@ def render_styled(
     return img, bg
 
 
+def degrade_low_res(img: Image.Image, rng: random.Random,
+                    min_h: int = 10, max_h: int = 22) -> Image.Image:
+    """Simulate tiny/low-resolution text (small footers, thumbnails, distant
+    photos): crush the render down to a few pixels of x-height and scale it
+    back up, so the model sees the same soft, aliased strokes at train time
+    that the detector's upscaled small crops have at inference time."""
+    w, h = img.size
+    target = rng.randint(min_h, max_h)
+    if h <= target:
+        return img
+    scale = target / float(h)
+    down = img.resize((max(8, int(w * scale)), target),
+                      Image.BILINEAR if rng.random() < 0.5 else Image.LANCZOS)
+    return down.resize((w, h), Image.BILINEAR)
+
+
+SERIF_HINTS = ("serif", "abhaya", "iskpota")
+
+
+def _serif_faces(faces):
+    hits = [f for f in faces if any(hint in os.path.basename(f[0]).lower() for hint in SERIF_HINTS)]
+    return hits or faces
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate hard-case Sinhala OCR lines.")
     parser.add_argument("--config", default="configs/local.yaml")
@@ -130,9 +165,10 @@ def main() -> int:
     corpus = list(exam_lines) + list(load_corpus(cfg["paths"].get("corpus"), warn=logger.warning))
 
     faces = discover_font_faces(syn["fonts"], warn=logger.warning)
+    serif_faces = _serif_faces(faces)
     sizes = list(syn["font_sizes"]) + [80, 96]
-    styles = ["dark", "colored", "pill", "blue_title", "plain_bold"]
-    style_weights = [0.18, 0.22, 0.25, 0.15, 0.20]
+    styles = ["dark", "colored", "pill", "blue_title", "plain_bold", "book_serif"]
+    style_weights = [0.14, 0.17, 0.19, 0.11, 0.15, 0.24]
     rng = random.Random(args.seed)
     np.random.seed(args.seed)
     augment = dict(syn.get("augment") or {})
@@ -159,12 +195,17 @@ def main() -> int:
                 corpus=corpus,
                 corpus_ratio=0.75,
             )
-        path, face_index = rng.choice(faces)
+        style = rng.choices(styles, weights=style_weights, k=1)[0]
+        face_pool = serif_faces if style == "book_serif" else faces
+        path, face_index = rng.choice(face_pool)
         size_choices = [s for s in sizes if s >= 32] if len(text) < 40 else sizes
         font = get_font(path, face_index, rng.choice(size_choices or sizes))
-        style = rng.choices(styles, weights=style_weights, k=1)[0]
         img, bg = render_styled(text, font, style, rng)
         img = apply_augmentations(img, augment, bg, rng)
+        # Tiny-text degradation on a fraction of every style (small footers,
+        # low-res photos) - the jul27 real page's footer line failed on this.
+        if rng.random() < (0.35 if style == "book_serif" else 0.15):
+            img = degrade_low_res(img, rng)
         rel = f"images/hard_{i:06d}.png"
         img.save(os.path.join(out_dir, rel.replace("/", os.sep)))
         labels.append((rel, text))

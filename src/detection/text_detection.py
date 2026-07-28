@@ -87,6 +87,99 @@ def suppress_border_structures(binary: np.ndarray,
     return out
 
 
+def estimate_page_skew(binary: np.ndarray,
+                       max_angle: float = 5.0,
+                       coarse_step: float = 0.5,
+                       fine_step: float = 0.1,
+                       target_height: int = 700,
+                       min_gain: float = 1.02) -> float:
+    """Estimate the global text-skew angle (degrees) of an ink mask.
+
+    Classic projection-profile method: the angle that maximizes the sharpness
+    (sum of squares) of the horizontal ink profile is the one that makes text
+    rows align with pixel rows. Slightly rotated photos are the main cause of
+    adjacent-line merges in projection segmentation: at ~1.5 degrees over a
+    ~600px-wide column the vertical drift (~16px) exceeds the inter-line gap,
+    so the profile never drops between lines.
+
+    Returns 0.0 when there is too little ink or when no candidate angle beats
+    the unrotated profile by at least ``min_gain`` (avoids jittering upright
+    pages). The returned value is the correction angle: pass it straight to
+    :func:`rotate_page` to deskew the page.
+    """
+    if binary.ndim == 3:
+        binary = cv2.cvtColor(binary, cv2.COLOR_BGR2GRAY)
+    if int((binary > 0).sum()) < 50:
+        return 0.0
+    h, w = binary.shape[:2]
+    scale = min(1.0, target_height / float(h))
+    if scale < 1.0:
+        mask = cv2.resize(binary, (max(1, int(w * scale)), max(1, int(h * scale))),
+                          interpolation=cv2.INTER_NEAREST)
+    else:
+        mask = binary
+    mask = (mask > 0).astype(np.float32)
+    mh, mw = mask.shape[:2]
+    center = (mw / 2.0, mh / 2.0)
+
+    def sharpness(angle: float) -> float:
+        if angle == 0.0:
+            rot = mask
+        else:
+            m = cv2.getRotationMatrix2D(center, angle, 1.0)
+            rot = cv2.warpAffine(mask, m, (mw, mh), flags=cv2.INTER_NEAREST, borderValue=0)
+        profile = rot.sum(axis=1)
+        return float((profile * profile).sum())
+
+    base = sharpness(0.0)
+    best_angle, best_score = 0.0, base
+    a = -max_angle
+    while a <= max_angle + 1e-9:
+        if abs(a) > 1e-9:
+            s = sharpness(a)
+            if s > best_score:
+                best_score, best_angle = s, a
+        a += coarse_step
+    if best_angle != 0.0:
+        a = best_angle - coarse_step
+        stop = best_angle + coarse_step
+        while a <= stop + 1e-9:
+            if abs(a) > 1e-9:
+                s = sharpness(a)
+                if s > best_score:
+                    best_score, best_angle = s, a
+            a += fine_step
+    if base <= 0 or best_score < min_gain * base:
+        return 0.0
+    return float(best_angle)
+
+
+def rotate_page(image: np.ndarray, angle: float) -> np.ndarray:
+    """Rotate a page image by ``angle`` degrees around its center (deskew).
+
+    Border pixels are replicated so no black wedges appear at the corners
+    (they would otherwise be binarized as ink and detected as fake lines).
+    """
+    if abs(angle) < 1e-6:
+        return image
+    h, w = image.shape[:2]
+    m = cv2.getRotationMatrix2D((w / 2.0, h / 2.0), angle, 1.0)
+    # Fill uncovered corners with the page's border median (paper tone).
+    # BORDER_REPLICATE would smear dark edge/vignette pixels into long
+    # streaks that binarize as fake ink columns and stretch line boxes to
+    # the full page width.
+    if image.ndim == 2:
+        border = np.concatenate([image[0, :], image[-1, :], image[:, 0], image[:, -1]])
+        fill: float | Tuple[float, ...] = float(np.median(border))
+    else:
+        border = np.concatenate(
+            [image[0, :, :], image[-1, :, :], image[:, 0, :], image[:, -1, :]], axis=0
+        )
+        fill = tuple(float(np.median(border[:, c])) for c in range(image.shape[2]))
+    return cv2.warpAffine(image, m, (w, h), flags=cv2.INTER_LINEAR,
+                          borderMode=cv2.BORDER_CONSTANT, borderValue=fill)
+
+
 def _split_tall_band(profile: np.ndarray, y0: int, y1: int, median_h: float,
                      min_sub_frac: float = 0.55,
                      valley_ratio: float = 0.6) -> List[Tuple[int, int]]:
@@ -117,8 +210,11 @@ def _split_tall_band(profile: np.ndarray, y0: int, y1: int, median_h: float,
     rel_idx = int(np.argmin(window))
     valley_y = lo + rel_idx
     valley_val = float(segment[valley_y])
-    left_peak = float(segment[:valley_y].max()) if valley_y > 0 else valley_val
-    right_peak = float(segment[valley_y:].max()) if valley_y < height else valley_val
+    # Robust peaks: a single spiked row (a strike-through rule or underline
+    # crossing the line) must not make normal text rows look like valleys,
+    # so compare against the 90th percentile instead of the maximum.
+    left_peak = float(np.percentile(segment[:valley_y], 90)) if valley_y > 0 else valley_val
+    right_peak = float(np.percentile(segment[valley_y:], 90)) if valley_y < height else valley_val
     surrounding_peak = min(left_peak, right_peak) if left_peak and right_peak else max(left_peak, right_peak)
     if surrounding_peak <= 0:
         return [(y0, y1)]

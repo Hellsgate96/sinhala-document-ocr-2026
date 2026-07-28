@@ -15,7 +15,13 @@ from typing import Any, Dict, List, Optional, Sequence
 import cv2
 import numpy as np
 
-from src.detection.text_detection import build_detector, crop_lines
+from src.detection.text_detection import (
+    binarize_for_detection,
+    build_detector,
+    crop_lines,
+    estimate_page_skew,
+    rotate_page,
+)
 from src.evaluation.metrics import corpus_cer, corpus_wer, cer as cer_fn
 from src.recognition.predict import format_prediction_with_warning, predict_line_array
 
@@ -29,7 +35,22 @@ def run_pipeline_on_gray(
     det_cfg: Dict[str, Any],
     device,
 ) -> Dict[str, Any]:
-    """Detect lines on a grayscale page and recognize each: returns boxes, crops, texts."""
+    """Detect lines on a grayscale page and recognize each: returns boxes, crops, texts.
+
+    When ``detection.deskew`` is enabled (default) the page skew is estimated
+    from the ink mask and the page is rotated upright before detection -
+    slightly rotated photos otherwise merge adjacent lines in the projection
+    profile. Returned boxes/crops (and the ``gray`` key) refer to the
+    deskewed image; ``deskew_angle`` reports the applied correction.
+    """
+    angle = 0.0
+    if bool(det_cfg.get("deskew", True)):
+        mask = detector.ink_mask(gray) if hasattr(detector, "ink_mask") else binarize_for_detection(gray)
+        angle = estimate_page_skew(mask, max_angle=float(det_cfg.get("deskew_max_angle", 5.0)))
+        if abs(angle) >= float(det_cfg.get("deskew_min_angle", 0.3)):
+            gray = rotate_page(gray, angle)
+        else:
+            angle = 0.0
     boxes = detector.detect(gray)
     crops = crop_lines(
         gray, boxes,
@@ -50,7 +71,14 @@ def run_pipeline_on_gray(
         )
         texts.append(text)
         display_texts.append(format_prediction_with_warning(text))
-    return {"boxes": boxes, "crops": crops, "texts": texts, "display_texts": display_texts}
+    return {
+        "boxes": boxes,
+        "crops": crops,
+        "texts": texts,
+        "display_texts": display_texts,
+        "gray": gray,
+        "deskew_angle": angle,
+    }
 
 
 def run_pipeline_on_image_path(
@@ -67,7 +95,9 @@ def run_pipeline_on_image_path(
         raise FileNotFoundError(f"Could not read image: {image_path}")
     gray = cv2.cvtColor(bgr, cv2.COLOR_BGR2GRAY)
     result = run_pipeline_on_gray(model, charset, gray, detector, inf_opts, det_cfg, device)
-    result["bgr"] = bgr
+    # Keep the debug overlay aligned with the (possibly deskewed) boxes/crops.
+    angle = result.get("deskew_angle", 0.0)
+    result["bgr"] = rotate_page(bgr, angle) if angle else bgr
     result["image_path"] = image_path
     return result
 
