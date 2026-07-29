@@ -62,6 +62,28 @@ python scripts/eval_real_images.py --image path/to/page.jpg --checkpoint models/
 python scripts/run_eval_suite.py --checkpoint models/crnn_best.pth
 ```
 
+### ⚠ The trained model is not in git
+
+`models/*.pth` is gitignored (≈120 MB per checkpoint), so **cloning this
+repository is not enough to run the demo.** The file that must travel with the
+handover is:
+
+| File | Why |
+|---|---|
+| **`models/crnn_best.pth`** | the delivered model — Section 8 of the notebook and every eval script need it |
+| `models/crnn_best_jul28_e12.pth` | identical byte-for-byte copy, kept as the restore point |
+| `models/crnn_best_pre_jul28.pth` | the previous checkpoint, for before/after comparison |
+
+Copy them onto a USB stick / cloud drive alongside the repo, or rebuild the
+model from scratch with *Reproducing the trained model* below (~6 h on a GPU).
+`models/charset.json` **is** in git and must match the checkpoint — do not
+regenerate it separately.
+
+Everything else degrades gracefully: a clean clone with no checkpoint and no
+generated data still passes all 63 tests, and the notebook runs top to bottom
+printing what is missing until Section 8, which stops with an explicit message
+pointing back here.
+
 **Headline accuracy** (end-to-end, detection errors included; full table and
 methodology in [`RESULTS.md`](RESULTS.md)):
 

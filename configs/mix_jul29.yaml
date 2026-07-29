@@ -1,0 +1,39 @@
+# Jul-29 round: short continue-train from the Jul-28 checkpoint with a second
+# all-tiny set whose confusion pool also covers word-FINAL ේ / ් / ූ / ී - the
+# graphemes that still dominate the residual real-photo errors.
+#
+# Writes crnn_jul29_best.pth / crnn_jul29_last.pth so the delivered
+# models/crnn_best.pth cannot be overwritten by a run that wins on synthetic
+# validation but loses on the held-out real photos. Promote only after
+# scripts/run_eval_suite.py says it is better.
+#
+# Usage:
+#   python scripts/generate_hard_lines.py --num 10000 --out data/synthetic_small2 \
+#       --name-prefix small2 --seed 20260730 --tiny-ratio 1.0 \
+#       --tiny-min-h 11 --tiny-max-h 26
+#   python -m src.recognition.train --config configs/mix_jul29.yaml \
+#       --extra-labels data/synthetic_pages/train_labels.txt \
+#       --extra-labels data/synthetic_hard/train_labels.txt \
+#       --extra-labels data/synthetic_small/train_labels.txt \
+#       --extra-labels data/synthetic_small2/train_labels.txt \
+#       --extra-labels data/real/labels/poem_kanyawee_aug.txt \
+#       --extra-labels data/real/labels/user_batch1_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_acts_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_acts.txt \
+#       --resume models/crnn_best.pth
+_inherits: mix_jul28.yaml
+
+train:
+  # Already converged at this LR by Jul-28 epoch 12, so halve it and run a short
+  # schedule; this must finish the same day.
+  epochs: 8
+  lr: 0.00004
+  early_stopping_patience: 8
+  lr_scheduler: plateau
+  lr_patience: 2
+
+paths:
+  resume_checkpoint: models/crnn_best.pth
+  finetune_best: models/crnn_jul29_best.pth
+  finetune_last: models/crnn_jul29_last.pth

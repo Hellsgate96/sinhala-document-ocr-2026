@@ -41,6 +41,7 @@ paths:
   finetune_last: models/crnn_last.pth
 
 inference:
+  # Decoder settings are inherited from local.yaml (decode: beam_lm) so every
+  # config evaluates the delivered configuration; training ignores them.
   image_height: 48
-  decode: greedy
   auto_invert: true
