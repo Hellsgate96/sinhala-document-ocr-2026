@@ -110,10 +110,29 @@ postprocess:
 
 inference:
   auto_invert: true
-  decode: greedy
+  # CTC prefix beam search with character n-gram LM shallow fusion:
+  #   score = log P_ctc(y|x) + lm_weight * log P_lm(y) + insertion_bonus * |y|
+  # The LM (src/postprocess/char_lm.py) is built at load time from training-side
+  # Sinhala text only - no held-out ground truth - and fixes the orthographic
+  # confusions that dominate low-resolution lines (ේ/ී, ්/ි). At weight 0.2 it
+  # improved or tied EVERY held-out set (real photos 0.0990 -> 0.0877,
+  # eval_pages 0.0100 -> 0.0088, adversarial unchanged); weights above ~0.5
+  # overfit the LM corpus and wreck out-of-domain text such as song lyrics.
+  # Set decode: greedy for the fastest path (~35% quicker, slightly worse).
+  decode: beam_lm
+  lm_weight: 0.2
+  insertion_bonus: 0.6
+  beam_width: 12
+  beam_top_k: 8
+  lm_order: 6
   use_grayscale: true
   binarize: false
   denoise: false
   image_height: 48
   min_model_width: 32
-  pad_to_height: true
+  # Upscale short crops to the model height instead of white-padding them.
+  # Training always resizes to image.height (dataset.resize_keep_height), so
+  # padding tiny crops was a train/infer mismatch: an ~18px lyric line kept
+  # its glyphs at 1/3 input height and decoded as garbage (jul28 diagnosis;
+  # flipping this halved held-out real-photo CER with the same checkpoint).
+  pad_to_height: false

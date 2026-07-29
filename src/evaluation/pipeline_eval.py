@@ -23,6 +23,7 @@ from src.detection.text_detection import (
     rotate_page,
 )
 from src.evaluation.metrics import corpus_cer, corpus_wer, cer as cer_fn
+from src.recognition.inference import decode_kwargs_from_options
 from src.recognition.predict import format_prediction_with_warning, predict_line_array
 
 
@@ -60,14 +61,15 @@ def run_pipeline_on_gray(
     )
     texts: List[str] = []
     display_texts: List[str] = []
+    decode_kwargs = decode_kwargs_from_options(inf_opts)
     for crop in crops:
         text = predict_line_array(
             model, charset, crop,
             height=inf_opts["height"], max_width=inf_opts["max_width"], channels=inf_opts["channels"],
             device=device, auto_invert=inf_opts["auto_invert"], denoise=inf_opts["denoise"],
             min_model_width=inf_opts.get("min_model_width", 0), pad_to_height=inf_opts.get("pad_to_height", True),
-            decode_mode=inf_opts.get("decode", "greedy"),
             warn_garbage=False,  # raw text for scoring - the CLI warning prefix must never pollute CER/WER
+            **decode_kwargs,
         )
         texts.append(text)
         display_texts.append(format_prediction_with_warning(text))

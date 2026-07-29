@@ -51,8 +51,12 @@ data/real/labels/*
 !data/real/pages/user_batch1/INVENTORY.md
 !data/real/pages/user_batch1/inventory.json
 !data/real/pages/web_batch1/SOURCES.md
-# Hard synthetic images stay local; labels optional to regenerate
+# Hard / small-text synthetic images stay local (tens of thousands of PNGs).
+# Regenerate with scripts/generate_hard_lines.py - see README "Reproducing the
+# trained model" for the exact seeds and flags.
 data/synthetic_hard/**
+data/synthetic_small/**
+data/synthetic_small2/**
 
 data/debug/*
 !data/debug/.gitkeep

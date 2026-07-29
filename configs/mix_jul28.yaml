@@ -1,0 +1,41 @@
+# Jul-28 round: continue-train on the full real+hard mix plus the dedicated
+# all-tiny set. Writes models/crnn_last.pth every epoch (and crnn_best.pth only
+# if synthetic val CER beats the resumed 0.0356 - the real decision is made on
+# the held-out sets with scripts/run_eval_suite.py).
+#
+# Why this round exists: with inference.pad_to_height flipped to false, the
+# remaining real-photo errors were concentrated on ~15-20 px lyric lines
+# (ණේ -> ෙණී, ම් -> මි, ඟ -> ග, ූ -> ු) plus unseen "...//" refrain notation.
+# data/synthetic_small is 10k lines rendered then crushed to 11-26 px, half of
+# them left small so OCRLineDataset performs the same upscale inference does.
+#
+# Usage:
+#   python scripts/generate_hard_lines.py --num 12000 --out data/synthetic_hard \
+#       --seed 20260728
+#   python scripts/generate_hard_lines.py --num 10000 --out data/synthetic_small \
+#       --name-prefix small --seed 20260729 --tiny-ratio 1.0 \
+#       --tiny-min-h 11 --tiny-max-h 26
+#   copy models\crnn_best.pth models\crnn_best_pre_jul28.pth
+#   python -m src.recognition.train --config configs/mix_jul28.yaml \
+#       --extra-labels data/synthetic_pages/train_labels.txt \
+#       --extra-labels data/synthetic_hard/train_labels.txt \
+#       --extra-labels data/synthetic_small/train_labels.txt \
+#       --extra-labels data/real/labels/poem_kanyawee_aug.txt \
+#       --extra-labels data/real/labels/user_batch1_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_acts_aug.txt \
+#       --extra-labels data/real/labels/web_batch1_acts.txt \
+#       --resume models/crnn_best.pth
+_inherits: mix_web.yaml
+
+train:
+  # ~70k merged rows at batch 32 is ~2.2k steps/epoch; 12 epochs from an already
+  # converged checkpoint is where the tiny-text adaptation saturates.
+  epochs: 12
+  lr: 0.00008
+  batch_size: 32
+  early_stopping_patience: 6
+  lr_scheduler: plateau
+  lr_patience: 2
+  extra_label_repeat: 1
+  synthetic_train_max: 10000

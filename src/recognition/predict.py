@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import glob
 import os
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
 
 import numpy as np
@@ -19,10 +20,26 @@ import torch
 from PIL import Image
 
 from src.charset import Charset
+from src.recognition.decode import decode_log_probs
 from src.recognition.inference import inference_options_from_config, prepare_line_tensor
 from src.recognition.model import build_crnn
 from src.utils.common import (configure_stdout_utf8, get_device, load_checkpoint,
                               load_config)
+
+ROOT = Path(__file__).resolve().parents[2]
+
+LM_DECODE_MODES = {"beam_lm", "lm_beam", "lm"}
+
+
+def resolve_decoder_lm(decode_mode: str, lm: Any = None, lm_order: int = 6):
+    """Return the character LM for LM-fused decoding (memoised), else ``None``."""
+    if lm is not None:
+        return lm
+    if str(decode_mode).lower() not in LM_DECODE_MODES:
+        return None
+    from src.postprocess.char_lm import build_char_lm
+
+    return build_char_lm(str(ROOT), order=lm_order)
 
 
 
@@ -99,14 +116,28 @@ def predict_tensor(
     device,
     decode_mode: str = "greedy",
     beam_width: int = 10,
+    lm: Any = None,
+    lm_weight: float = 0.0,
+    insertion_bonus: float = 0.0,
+    beam_top_k: int = 8,
+    lm_order: int = 6,
 ) -> str:
     tensor = tensor.to(device)
-    log_probs = model(tensor)
-    if decode_mode == "beam":
-        frame = log_probs[:, 0, :].cpu()
-        return charset.ctc_beam_search_decode(frame, beam_width=beam_width)
-    indices = log_probs.argmax(2).squeeze(1)
-    return charset.ctc_greedy_decode(indices.tolist())
+    log_probs = model(tensor)  # (T, B, C)
+    decode_mode = str(decode_mode).lower()
+    if decode_mode == "greedy":
+        indices = log_probs.argmax(2).squeeze(1)
+        return charset.ctc_greedy_decode(indices.tolist())
+    return decode_log_probs(
+        log_probs[:, 0, :].cpu(),
+        charset,
+        mode=decode_mode,
+        beam_width=beam_width,
+        lm=resolve_decoder_lm(decode_mode, lm, lm_order),
+        lm_weight=lm_weight,
+        insertion_bonus=insertion_bonus,
+        top_k=beam_top_k,
+    )
 
 
 @torch.no_grad()
@@ -125,6 +156,10 @@ def predict_image(
     warn_garbage: bool = True,
     decode_mode: str = "greedy",
     beam_width: int = 10,
+    lm_weight: float = 0.0,
+    insertion_bonus: float = 0.0,
+    beam_top_k: int = 8,
+    lm_order: int = 6,
 ) -> str:
     """Predict the transcript of one line image file."""
     tensor = image_to_tensor(
@@ -132,7 +167,12 @@ def predict_image(
         auto_invert=auto_invert, denoise=denoise,
         min_model_width=min_model_width, pad_to_height=pad_to_height,
     )
-    text = predict_tensor(model, charset, tensor, device, decode_mode=decode_mode, beam_width=beam_width)
+    text = predict_tensor(
+        model, charset, tensor, device,
+        decode_mode=decode_mode, beam_width=beam_width,
+        lm_weight=lm_weight, insertion_bonus=insertion_bonus,
+        beam_top_k=beam_top_k, lm_order=lm_order,
+    )
     if warn_garbage:
         return format_prediction_with_warning(text)
     return text
@@ -155,6 +195,10 @@ def predict_line_array(
     ground_truth: Optional[str] = None,
     decode_mode: str = "greedy",
     beam_width: int = 10,
+    lm_weight: float = 0.0,
+    insertion_bonus: float = 0.0,
+    beam_top_k: int = 8,
+    lm_order: int = 6,
 ) -> str:
     """Predict from an in-memory line crop (BGR, grayscale, or PIL)."""
     tensor = prepare_line_tensor(
@@ -167,7 +211,12 @@ def predict_line_array(
         min_model_width=min_model_width,
         pad_to_height=pad_to_height,
     )
-    text = predict_tensor(model, charset, tensor, device, decode_mode=decode_mode, beam_width=beam_width)
+    text = predict_tensor(
+        model, charset, tensor, device,
+        decode_mode=decode_mode, beam_width=beam_width,
+        lm_weight=lm_weight, insertion_bonus=insertion_bonus,
+        beam_top_k=beam_top_k, lm_order=lm_order,
+    )
     if warn_garbage:
         return format_prediction_with_warning(text, ground_truth=ground_truth)
     return text

@@ -10,9 +10,17 @@ Covers failure modes seen on real exam/cover pages and decorative fonts:
   - traditional serif book print on grey paper (jul27: photographed poem page
     showed vowel-sign drops and Tha/Na, Ta/Va confusions on this style)
   - tiny low-resolution text (jul27: small footer line came out as garbage) -
-    simulated by crushing rendered lines down to 10-22 px and scaling back up
+    simulated by crushing rendered lines down to 10-22 px
 
 Writes ``data/synthetic_hard/images/*.png`` and ``train_labels.txt``.
+
+A dedicated all-tiny set (jul28: a lyrics card whose every line is ~15-20 px
+tall drove most of the remaining real-photo CER) is the same generator with
+``--tiny-ratio 1.0``:
+
+    python scripts/generate_hard_lines.py --num 10000 --out data/synthetic_small \\
+        --name-prefix small --seed 20260729 --tiny-ratio 1.0 \\
+        --tiny-min-h 11 --tiny-max-h 26
 """
 
 from __future__ import annotations
@@ -82,7 +90,15 @@ def render_styled(
     x0 = pad_x + (extra // 2 if rng.random() < 0.7 else 0)
     y0 = pad_y
 
-    if style == "book_serif":
+    if style == "lyrics_small":
+        # Low-res lyrics-site card: white-ish page, soft dark text, later
+        # crushed to a small pixel height + JPEG (see main loop).
+        g = rng.randint(238, 255)
+        bg = (g, g, g - rng.randint(0, 6))
+        ink = rng.randint(0, 60)
+        fg = (ink, ink, ink + rng.randint(0, 30))
+        img = Image.new("RGB", (w, h), bg)
+    elif style == "book_serif":
         # Photographed book/poem print: grey paper, soft dark ink.
         g = rng.randint(185, 225)
         bg = (g, g + rng.randint(-4, 4), g + rng.randint(-4, 4))
@@ -118,11 +134,20 @@ def render_styled(
 
 
 def degrade_low_res(img: Image.Image, rng: random.Random,
-                    min_h: int = 10, max_h: int = 22) -> Image.Image:
+                    min_h: int = 10, max_h: int = 22,
+                    keep_small_prob: float = 0.5) -> Image.Image:
     """Simulate tiny/low-resolution text (small footers, thumbnails, distant
-    photos): crush the render down to a few pixels of x-height and scale it
-    back up, so the model sees the same soft, aliased strokes at train time
-    that the detector's upscaled small crops have at inference time."""
+    photos): crush the render down to a few pixels of x-height, so the model
+    sees the same soft, aliased strokes at train time that the detector's
+    small crops have at inference time.
+
+    Half the time the crushed image is returned as-is, so ``OCRLineDataset``
+    performs the upscale to the model height exactly the way inference does
+    (``inference.pad_to_height=false`` -> ``resize_keep_height``). The other
+    half is scaled back up here, which keeps some samples at the blur level of
+    an already-upscaled scan. Aspect ratio is preserved either way, so the
+    width after the model-height resize is unchanged.
+    """
     w, h = img.size
     target = rng.randint(min_h, max_h)
     if h <= target:
@@ -130,6 +155,8 @@ def degrade_low_res(img: Image.Image, rng: random.Random,
     scale = target / float(h)
     down = img.resize((max(8, int(w * scale)), target),
                       Image.BILINEAR if rng.random() < 0.5 else Image.LANCZOS)
+    if rng.random() < keep_small_prob:
+        return down
     return down.resize((w, h), Image.BILINEAR)
 
 
@@ -141,12 +168,71 @@ def _serif_faces(faces):
     return hits or faces
 
 
+# Jul-28 real-page confusions (low-res lyrics/poem photos): word-final ණේ/නේ
+# misread as ණී/නී, hal-m ම් vs මි, short/long -u (ු/ූ), ඩ/ඬ and ද/ඳ pairs.
+# Oversampling corpus words that contain these graphemes gives CTC many more
+# clean examples of the exact distinctions that were failing.
+CONFUSION_SUBSTRINGS = ("ණේ", "නේ", "ම්", "මි", "ූ", "ඬ", "ඳ", "ඟ", "ැයි")
+
+# Word-FINAL graphemes, which is where the jul28/jul29 confusions actually live:
+# the kombuva of a word-final "ේ" is the sign that gets re-attached to the wrong
+# consonant, and a word-final hal kirima "්" is what gets read as "ි".
+CONFUSION_SUFFIXES = ("ේ", "්", "ූ", "ී")
+
+# Lyrics/poem pages end refrain lines with dot-runs and repeat marks;
+# these sequences never appeared in the training text, so the model emitted
+# garbage like ".Ll" for "...//".
+NOTATION_SUFFIXES = ("...//", "...//", "..//", "...", "..", ".//")
+
+
+def _is_confusable(word: str) -> bool:
+    stripped = word.strip(".,:;!?()[]\"'")
+    if any(s in word for s in CONFUSION_SUBSTRINGS):
+        return True
+    return bool(stripped) and stripped.endswith(CONFUSION_SUFFIXES)
+
+
+def build_confusion_pool(corpus: List[str], words: List[str]) -> List[str]:
+    """Words from the corpus/word-lists containing hard confusion graphemes."""
+    pool: List[str] = []
+    seen = set()
+    for line in corpus:
+        for w in line.split():
+            if w in seen or len(w) < 2:
+                continue
+            if _is_confusable(w):
+                seen.add(w)
+                pool.append(w)
+    for w in words:
+        if w not in seen and _is_confusable(w):
+            seen.add(w)
+            pool.append(w)
+    return pool
+
+
+def compose_confusion_line(pool: List[str], rng: random.Random) -> str:
+    n = rng.randint(3, 7)
+    return " ".join(rng.choice(pool) for _ in range(n))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Generate hard-case Sinhala OCR lines.")
     parser.add_argument("--config", default="configs/local.yaml")
     parser.add_argument("--num", type=int, default=4000)
     parser.add_argument("--out", default="data/synthetic_hard")
     parser.add_argument("--seed", type=int, default=20260726)
+    parser.add_argument(
+        "--tiny-ratio", type=float, default=None,
+        help="force this fraction of every style through the low-res degradation "
+             "(default: per-style 0.35 book_serif / 0.15 others). Use 1.0 to build "
+             "a dedicated small-text set.",
+    )
+    parser.add_argument("--tiny-min-h", type=int, default=10)
+    parser.add_argument("--tiny-max-h", type=int, default=22)
+    parser.add_argument(
+        "--name-prefix", default="hard",
+        help="image filename prefix (keeps separate sets from colliding)",
+    )
     args = parser.parse_args()
 
     configure_stdout_utf8()
@@ -166,9 +252,11 @@ def main() -> int:
 
     faces = discover_font_faces(syn["fonts"], warn=logger.warning)
     serif_faces = _serif_faces(faces)
+    confusion_pool = build_confusion_pool(corpus, words)
+    logger.info(f"confusion word pool: {len(confusion_pool)} words")
     sizes = list(syn["font_sizes"]) + [80, 96]
-    styles = ["dark", "colored", "pill", "blue_title", "plain_bold", "book_serif"]
-    style_weights = [0.14, 0.17, 0.19, 0.11, 0.15, 0.24]
+    styles = ["dark", "colored", "pill", "blue_title", "plain_bold", "book_serif", "lyrics_small"]
+    style_weights = [0.11, 0.13, 0.15, 0.09, 0.12, 0.22, 0.18]
     rng = random.Random(args.seed)
     np.random.seed(args.seed)
     augment = dict(syn.get("augment") or {})
@@ -182,7 +270,9 @@ def main() -> int:
 
     labels: List[Tuple[str, str]] = []
     for i in range(args.num):
-        if exam_lines and rng.random() < 0.25:
+        if confusion_pool and rng.random() < 0.22:
+            text = compose_confusion_line(confusion_pool, rng)
+        elif exam_lines and rng.random() < 0.25:
             text = rng.choice(exam_lines)
         else:
             text = compose_line(
@@ -195,6 +285,9 @@ def main() -> int:
                 corpus=corpus,
                 corpus_ratio=0.75,
             )
+        # Refrain/dot-run notation seen on real lyric/poem pages.
+        if rng.random() < 0.15:
+            text = text.rstrip(".") + rng.choice(NOTATION_SUFFIXES)
         style = rng.choices(styles, weights=style_weights, k=1)[0]
         face_pool = serif_faces if style == "book_serif" else faces
         path, face_index = rng.choice(face_pool)
@@ -204,9 +297,14 @@ def main() -> int:
         img = apply_augmentations(img, augment, bg, rng)
         # Tiny-text degradation on a fraction of every style (small footers,
         # low-res photos) - the jul27 real page's footer line failed on this.
-        if rng.random() < (0.35 if style == "book_serif" else 0.15):
+        if args.tiny_ratio is not None:
+            if rng.random() < args.tiny_ratio:
+                img = degrade_low_res(img, rng, min_h=args.tiny_min_h, max_h=args.tiny_max_h)
+        elif style == "lyrics_small":
+            img = degrade_low_res(img, rng, min_h=12, max_h=24)
+        elif rng.random() < (0.35 if style == "book_serif" else 0.15):
             img = degrade_low_res(img, rng)
-        rel = f"images/hard_{i:06d}.png"
+        rel = f"images/{args.name_prefix}_{i:06d}.png"
         img.save(os.path.join(out_dir, rel.replace("/", os.sep)))
         labels.append((rel, text))
         if (i + 1) % 500 == 0:

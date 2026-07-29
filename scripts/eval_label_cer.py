@@ -13,7 +13,7 @@ sys.path.insert(0, str(ROOT))
 from src.charset import Charset
 from src.data.dataset import read_labels
 from src.evaluation.metrics import cer, corpus_cer
-from src.recognition.inference import inference_options_from_config
+from src.recognition.inference import decode_kwargs_from_options, inference_options_from_config
 from src.recognition.model import build_crnn
 from src.recognition.predict import predict_image
 from src.utils.common import get_device, load_checkpoint, load_config
@@ -41,7 +41,9 @@ def eval_one(model, charset, opts, device, labels_path: Path, base_dir: Path) ->
             auto_invert=opts["auto_invert"],
             denoise=opts["denoise"],
             min_model_width=opts.get("min_model_width", 0),
+            pad_to_height=opts.get("pad_to_height", True),
             warn_garbage=False,
+            **decode_kwargs_from_options(opts),
         )
         preds.append(pred)
         gts.append(gt)

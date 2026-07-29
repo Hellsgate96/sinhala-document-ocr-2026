@@ -1,13 +1,81 @@
 ﻿# Sinhala Document OCR
 
-An end-to-end Optical Character Recognition (OCR) pipeline for **printed (primary)**
-and **handwritten (secondary)** Sinhala documents â€” forms, invoices and ID-style
-fields â€” with support for mixed **Sinhalaâ€“English** layouts.
+An end-to-end Optical Character Recognition (OCR) pipeline for **printed** Sinhala
+documents — poems, forms, book pages, exam covers and lyric cards — with support
+for mixed **Sinhala–English** layouts.
 
-This repository is the implementation scaffold for an MSc research project. The design
-follows the approved proposal (Sinhala only; Tamil is out of scope) and is built to be
-trained on **Google Colab (GPU)** with data captured from a **phone camera / flatbed
-scanner** (no expensive hardware required).
+Give it a photograph or scan of a Sinhala page; it deskews the page, finds the
+text lines, recognises each line with a CRNN+CTC model trained for Sinhala, and
+returns the transcription.
+
+This repository is the implementation of an MSc research project (Sinhala only;
+Tamil is out of scope). It trains on a single consumer GPU (developed on an
+RTX 4060 laptop) with data captured from a phone camera / flatbed scanner plus a
+synthetic Sinhala text-line generator.
+
+---
+
+## Quick start (examiner / supervisor)
+
+**Final results, methodology and honest limitations: [`RESULTS.md`](RESULTS.md).**
+
+```powershell
+git clone <repo> && cd sinhala-document-ocr
+python -m venv .venv; .venv\Scripts\activate
+pip install -r requirements.txt
+# GPU (optional, much faster):
+pip install torch torchvision --index-url https://download.pytorch.org/whl/cu124
+```
+
+Then place the trained checkpoint at **`models/crnn_best.pth`** (≈120 MB — it is
+gitignored, so it is handed over separately; see *Reproducing the trained model*
+below to rebuild it instead).
+
+**Test an image:**
+
+```powershell
+jupyter lab notebooks/local_pipeline.ipynb
+```
+
+In Section 4 leave `RUN_GENERATE` / `RUN_GENERATE_PAGES` / `RUN_TRAIN` as `False`,
+set `TEST_IMAGE_PATH` to your image (or leave it empty to get a file picker, or
+set the `OCR_TEST_IMAGE` environment variable), then **Kernel → Restart & Run All**.
+Section 8 shows the detected line boxes, each line crop with its prediction, and
+the full transcription. With no image chosen it falls back to a bundled demo page
+under `data/eval_real/print_photos/`.
+
+The whole notebook runs in well under a minute on a GPU when the training flags
+are `False`. It is verified to run headlessly:
+
+```powershell
+$env:OCR_TEST_IMAGE="data/eval_real/print_photos/page_poem_print.jpg"
+jupyter nbconvert --to notebook --execute --inplace notebooks/local_pipeline.ipynb
+```
+
+**Command line instead of the notebook:**
+
+```powershell
+# one page, with the detected boxes and transcription
+python scripts/eval_real_images.py --image path/to/page.jpg --checkpoint models/crnn_best.pth
+
+# the full honest evaluation suite (held-out vs in-train is labelled per set)
+python scripts/run_eval_suite.py --checkpoint models/crnn_best.pth
+```
+
+**Headline accuracy** (end-to-end, detection errors included; full table and
+methodology in [`RESULTS.md`](RESULTS.md)):
+
+| Evaluation set | Status | Corpus CER |
+|---|---|---|
+| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0877** |
+| Synthetic eval pages (10 pages, 76 lines) | held out | **0.0088** |
+| Adversarial acceptance pages (3) | held out | 0.0351 |
+| Real line crops (`user_batch1`, 41) | *in training* | 0.0035 |
+| Kanyawee poem lines (10) | *in training* | 0.0000 |
+
+Line detection is exact on every page in the suite (76/76, 9/9, 23/23).
+
+---
 
 ## Pipeline (5 stages)
 
@@ -48,9 +116,26 @@ sinhala-document-ocr/
   notebooks/colab_pipeline.ipynb   Google Colab end-to-end notebook
   scripts/                      CLI wrappers (generate_data.py, generate_pages.py,
                                  build_eval_pages.py, build_adversarial_pages.py,
-                                 eval_real_images.py, run_realistic_eval.py, ...)
+                                 eval_real_images.py, run_realistic_eval.py,
+                                 run_eval_suite.py, report_errors.py,
+                                 check_holdout_leakage.py, ...)
   data/  models/  tests/
+  RESULTS.md                    final metrics, methodology, limitations
 ```
+
+### Where things live
+
+| Path | Tracked in git? | What |
+|---|---|---|
+| `src/`, `scripts/`, `tests/`, `configs/`, `notebooks/` | yes | all code |
+| `src/data/corpus_sinhala.txt`, `sample_words.txt`, `form_vocab.txt` | yes | Sinhala text used by the generator and the character LM |
+| `data/real/labels/*.txt` | yes | real line-crop transcriptions |
+| `data/eval_pages/`, `data/eval_real/` | yes | evaluation pages + ground truth + `SOURCES.md` |
+| `models/charset.json` | yes | character set (224 chars + CTC blank) |
+| **`models/*.pth`** | **no** | trained checkpoints, ~120 MB each |
+| **`data/synthetic*/`, `data/real/images/`, `data/uploads/`, `data/debug/`** | **no** | generated / captured images |
+
+Everything untracked is regenerable — see *Reproducing the trained model*.
 
 ## Setup
 
@@ -368,10 +453,14 @@ python -m src.recognition.train --config configs/mix_real.yaml `
   --resume models/crnn_best.pth
 ```
 
-**Holdout (updated Jul 2026):** prior `page_07_font_list` + `page_12_hitigama` lines
-were moved **into training** for accuracy. The honest check is now
-`data/real/labels/web_batch1_holdout.txt` (fresh hard-style renders). Historical copy:
-`user_batch1_holdout_SUPERSEDED.txt`.
+**Holdout (audited Jul-28 2026):** `user_batch1_holdout.txt` is **no longer a
+holdout** — all 41 of its transcripts were folded into training in a later round
+(historical copy: `user_batch1_holdout_SUPERSEDED.txt`).
+`web_batch1_holdout.txt` is only a partial holdout (6 of its 14 transcripts are
+also in training). The only fully clean real-image evidence is
+`data/eval_real/print_photos/`. Run `python scripts/check_holdout_leakage.py` to
+re-verify this at any time; `scripts/run_eval_suite.py` prints the status next to
+every number.
 
 ### Web / hard-case mix (`configs/mix_web.yaml`)
 
@@ -457,12 +546,152 @@ holdout rows are the signal. Remaining known weakness: very small text
 (≈10 px x-height footers) is still unreliable, and the ු/ූ (short/long -u)
 distinction on traditional serif book faces.
 
+**Correction (Jul-28 audit):** the `user_batch1_holdout.txt` row above is *not*
+a holdout — all 41 of its transcripts were folded into the training mix in an
+earlier round. `scripts/check_holdout_leakage.py` now proves this automatically
+and `scripts/run_eval_suite.py` labels every set accordingly. See `RESULTS.md`.
+
+### Jul-28: the small-text round (final delivered model)
+
+Two independent fixes, measured separately. Full tables in
+[`RESULTS.md`](RESULTS.md).
+
+1. **A train/inference mismatch on short crops.** `inference.pad_to_height`
+   white-padded a crop shorter than the 48 px model input, while training always
+   *resized* to 48 px. An 18 px lyric line therefore reached the model with its
+   glyphs at 18 px — a scale it had never been trained on. Setting
+   `pad_to_height: false` (upscale instead) improved every single evaluation set
+   with the checkpoint completely unchanged: real photos 0.1688 → 0.1218,
+   `eval_pages` 0.0192 → 0.0120. Pinned by
+   `tests/test_small_text_path.py`.
+2. **A dedicated small-text curriculum.** `scripts/report_errors.py` showed the
+   residual errors were specific graphemes, not generic blur — dominated by
+   `ේ → ී` always paired with a spurious inserted `ෙ`. Sinhala renders `ේ` with
+   a *pre-base* kombuva sitting visually between two consonants; at ~16 px the
+   model attached it to the wrong consonant (`දෙරණේ` → `දෙරෙණී`). Also, the
+   `...//` refrain notation on lyric pages had never appeared in training text.
+   `scripts/generate_hard_lines.py` gained a `lyrics_small` style, a
+   `--tiny-ratio` flag (used to build `data/synthetic_small`: 10,000 lines all
+   crushed to 11–26 px, half left small so the dataset performs the same upscale
+   inference does), oversampling of confusable graphemes, and refrain notation.
+   A 12-epoch continue-train (`configs/mix_jul28.yaml`, ~70k rows, 3.5 h on an
+   RTX 4060, `models/train_jul28.log`) took real photos 0.1218 → **0.0990** and
+   `eval_pages` 0.0120 → **0.0100**. The `...//` errors disappeared entirely.
+
+3. **Character n-gram LM fused into CTC beam search**
+   (`src/postprocess/char_lm.py`, `src/recognition/decode.py`). A 6-gram
+   character model built at load time from training-side Sinhala text only
+   is combined with the acoustic score as
+   `log P_ctc + lm_weight·log P_lm + insertion_bonus·|y|`. At the swept optimum
+   `lm_weight: 0.2` it **improves or ties every held-out set** — real photos
+   0.0990 → **0.0877**, `eval_pages` 0.0100 → **0.0088**, adversarial unchanged
+   — so it is the shipped default (`decode: beam_lm`). It costs ~50% more
+   inference time; set `decode: greedy` for the fast path. Weights above ~0.5
+   overfit the LM corpus and badly damage out-of-domain text.
+
+Sole regression across the whole round: the 3-page adversarial set,
+0.0339 → 0.0351. Kept, because it moved against a 48% improvement on the real
+photographs, which are the only fully clean real-image evidence in the project.
+
+## Reproducing the trained model
+
+Checkpoints and generated images are gitignored. From a fresh clone, on a
+CUDA GPU (~6 h end to end; the continue-train alone is ~3.5 h on an RTX 4060):
+
+```powershell
+# 1) extra Sinhala font families (best-effort; safe to skip if offline)
+powershell -ExecutionPolicy Bypass -File scripts/download_fonts.ps1
+
+# 2) synthetic line crops and detector-in-the-loop page crops
+python scripts/generate_data.py  --config configs/local.yaml --large
+python scripts/generate_pages.py --config configs/local.yaml --num-pages 4000
+
+# 3) hard-case + all-tiny supplements (the Jul-27 / Jul-28 rounds)
+python scripts/generate_hard_lines.py --num 12000 --out data/synthetic_hard --seed 20260728
+python scripts/generate_hard_lines.py --num 10000 --out data/synthetic_small `
+    --name-prefix small --seed 20260729 --tiny-ratio 1.0 --tiny-min-h 11 --tiny-max-h 26
+
+# 4) real line crops: images are not in git, the transcriptions are.
+#    Re-crop them, then rebuild the augmented copies:
+python scripts/prepare_poem_dataset.py --image data/uploads/test2.png
+python scripts/prepare_real_pages.py --gt-json data/real/labels/user_batch1_gt.json
+python scripts/prepare_web_batch1.py
+python scripts/download_hf_acts.py --max-pages 200        # optional, CC-BY-4.0
+python scripts/augment_poem_dataset.py --copies 80
+python scripts/augment_poem_dataset.py --labels data/real/labels/user_batch1.txt `
+    --out-labels data/real/labels/user_batch1_aug.txt --name-prefix user_aug --copies 40
+python scripts/augment_poem_dataset.py --labels data/real/labels/web_batch1.txt `
+    --out-labels data/real/labels/web_batch1_aug.txt --name-prefix web_aug --copies 60
+
+# 5) base model, then the Jul-28 continue-train
+python -m src.recognition.train --config configs/local.yaml
+copy models\crnn_best.pth models\crnn_best_pre_jul28.pth
+python -m src.recognition.train --config configs/mix_jul28.yaml `
+    --extra-labels data/synthetic_pages/train_labels.txt `
+    --extra-labels data/synthetic_hard/train_labels.txt `
+    --extra-labels data/synthetic_small/train_labels.txt `
+    --extra-labels data/real/labels/poem_kanyawee_aug.txt `
+    --extra-labels data/real/labels/user_batch1_aug.txt `
+    --extra-labels data/real/labels/web_batch1_aug.txt `
+    --extra-labels data/real/labels/web_batch1_acts_aug.txt `
+    --extra-labels data/real/labels/web_batch1_acts.txt `
+    --resume models/crnn_best.pth
+
+# 6) verify
+python scripts/run_eval_suite.py --checkpoint models/crnn_best.pth
+```
+
+The trainer only overwrites `models/crnn_best.pth` when *synthetic validation*
+CER improves; it writes `models/crnn_last.pth` every epoch. Because a
+domain-mix run can trade synthetic CER for real accuracy, always decide which
+one to keep with `scripts/run_eval_suite.py` on the held-out sets, and back up
+the previous checkpoint first (`models/crnn_best_pre_*.pth`).
+
 ### Real image test (notebook Section 8)
 
 1. Open `notebooks/local_pipeline.ipynb`.
 2. In Section 4, leave train flags `False` if `models/crnn_best.pth` already exists.
 3. Set `TEST_IMAGE_PATH` to a page/photo path, or leave it empty and use the picker / demo fallback.
+   The `OCR_TEST_IMAGE` environment variable does the same thing for a headless run.
 4. **Kernel → Restart & Run All** — detect lines, show crops + Sinhala predictions + full transcription.
+
+If `models/crnn_best.pth` is missing, Sections 5–7 print a clear NOTE and skip
+(they will *not* silently start hours of data generation or training) and
+Section 8 raises a message telling you where to get the checkpoint.
+
+## Architecture summary
+
+| Stage | Implementation | Key settings (`configs/local.yaml`) |
+|---|---|---|
+| Deskew | Projection-profile sharpness search over ±5°, applied before detection | `detection.deskew`, `deskew_max_angle: 5.0` |
+| Line detection | Contrast-binarised ink mask (drops watermarks), border/frame suppression, horizontal ink-profile bands, tall-band re-split at the lowest internal valley | `detection.method: projection` |
+| Line crops | Padded boxes, minimum crop height 14 px | `crop_padding_x: 10`, `crop_padding_y: 5` |
+| Recognition | CRNN — CNN backbone (512 ch) → 2-layer BiLSTM (256 hidden) → CTC over 224 Sinhala/ASCII characters + blank, fixed input height 48 px | `model.*`, `image.height: 48` |
+| Inference prep | Grayscale, auto polarity inversion, **upscale** (not pad) to 48 px, LANCZOS | `inference.pad_to_height: false` |
+| Decoding | CTC greedy (default); optional prefix beam search with character-LM shallow fusion | `inference.decode: greedy \| beam \| beam_lm` |
+| Post-processing | Edit-distance dictionary correction available; character n-gram LM in the decoder | `src/postprocess/` |
+
+One shared code path (`src/evaluation/pipeline_eval.py`) runs detection +
+recognition for the notebook, the CLI scripts and every evaluation script, so
+"what gets measured" and "what a user's upload goes through" cannot drift apart.
+
+## Known limitations
+
+Measured, not guessed — see [`RESULTS.md`](RESULTS.md) §4 for the error counts.
+
+1. Fully held-out **real** evaluation data is only 2 photographs / 32 lines.
+   More photographed pages with verified ground truth is the highest-value
+   addition anyone could make next.
+2. On very low-resolution lines (~16 px) the `ේ` / `ී` confusion — the pre-base
+   kombuva being attached to the wrong consonant — is reduced but not solved.
+3. Long `ූ` vs short `ු` on traditional serif book faces is still wrong on the
+   poem page (4 occurrences); the character LM cannot help because the corpus
+   itself prefers the short form.
+4. Logos, decorative display fonts and graphic regions are not suppressed — the
+   detector emits a box and the recogniser produces noise.
+5. Very short isolated marker/label lines can be dropped by the detector's
+   relative-height filter.
+6. Handwriting is out of scope for the delivered model (printed text only).
 
 ## Google Colab
 

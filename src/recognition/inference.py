@@ -164,4 +164,22 @@ def inference_options_from_config(cfg: Optional[Dict[str, Any]]) -> Dict[str, An
         "mode": "auto" if inf.get("auto_invert", True) else "none",
         "decode": str(inf.get("decode", "greedy")).lower(),
         "beam_width": int(inf.get("beam_width", 10)),
+        # Character-LM shallow fusion (used only by decode: beam_lm).
+        "lm_weight": float(inf.get("lm_weight", 0.0)),
+        "insertion_bonus": float(inf.get("insertion_bonus", 0.0)),
+        "beam_top_k": int(inf.get("beam_top_k", 8)),
+        "lm_order": int(inf.get("lm_order", 6)),
     }
+
+
+DECODE_KEYS = ("beam_width", "lm_weight", "insertion_bonus", "beam_top_k", "lm_order")
+
+
+def decode_kwargs_from_options(opts: Optional[Dict[str, Any]]) -> Dict[str, Any]:
+    """Extract the decoder knobs to splat into ``predict_*`` calls."""
+    opts = opts or {}
+    kwargs: Dict[str, Any] = {"decode_mode": str(opts.get("decode", "greedy")).lower()}
+    defaults = inference_options_from_config(None)
+    for key in DECODE_KEYS:
+        kwargs[key] = opts.get(key, defaults[key])
+    return kwargs
