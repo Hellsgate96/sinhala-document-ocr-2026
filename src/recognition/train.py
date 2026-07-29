@@ -12,6 +12,7 @@ from tqdm import tqdm
 from src.charset import Charset
 from src.data.dataset import build_dataloader
 from src.evaluation.metrics import evaluate_model
+from src.evaluation.train_curves import append_history_epoch
 from src.recognition.model import build_crnn
 from src.utils.common import (
     apply_overrides,
@@ -263,6 +264,7 @@ def main():
     total_epochs = cfg["train"]["epochs"]
     patience = int(cfg["train"].get("early_stopping_patience", 0))
     epochs_without_improvement = 0
+    history_path = os.path.join(models_dir, "train_history.json")
     for epoch in range(1, total_epochs + 1):
         loss = train_one_epoch(
             model,
@@ -276,14 +278,18 @@ def main():
         current_lr = optimizer.param_groups[0]["lr"]
         logger.info(f"epoch {epoch:03d} | train_loss = {loss:.4f} | lr = {current_lr:.2e}")
 
+        val_cer: Optional[float] = None
+        val_wer: Optional[float] = None
         if epoch % cfg["train"].get("val_every", 1) == 0:
             report = evaluate_model(model, val_loader, charset, device=device, measure_cpu_time=False)
+            val_cer = float(report["cer"])
+            val_wer = float(report["wer"])
             logger.info(
-                f"epoch {epoch:03d} | val CER = {report['cer']:.4f} | val WER = {report['wer']:.4f}"
+                f"epoch {epoch:03d} | val CER = {val_cer:.4f} | val WER = {val_wer:.4f}"
             )
-            save_checkpoint(last_path, model, optimizer, epoch, extra={"cer": report["cer"]})
-            if report["cer"] < best_cer:
-                best_cer = report["cer"]
+            save_checkpoint(last_path, model, optimizer, epoch, extra={"cer": val_cer})
+            if val_cer < best_cer:
+                best_cer = val_cer
                 epochs_without_improvement = 0
                 save_checkpoint(best_path, model, optimizer, epoch, extra={"cer": best_cer})
                 logger.info(f"  -> new best CER {best_cer:.4f} (saved {os.path.basename(best_path)})")
@@ -294,13 +300,31 @@ def main():
                         f"early stopping: no val CER improvement in {patience} validations "
                         f"(best {best_cer:.4f})"
                     )
+                    append_history_epoch(
+                        history_path,
+                        epoch=epoch,
+                        train_loss=float(loss),
+                        val_cer=val_cer,
+                        val_wer=val_wer,
+                        lr=float(current_lr),
+                    )
                     break
             if scheduler_kind == "plateau":
-                scheduler.step(report["cer"])
+                scheduler.step(val_cer)
         if scheduler_kind == "cosine":
             scheduler.step()
 
+        append_history_epoch(
+            history_path,
+            epoch=epoch,
+            train_loss=float(loss),
+            val_cer=val_cer,
+            val_wer=val_wer,
+            lr=float(current_lr),
+        )
+
     logger.info(f"training complete. best val CER = {best_cer:.4f}")
+    logger.info(f"epoch metrics written to {history_path}")
 
 
 if __name__ == "__main__":

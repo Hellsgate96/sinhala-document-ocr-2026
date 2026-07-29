@@ -278,7 +278,25 @@ need the raw CTC+LM string.
 
 ---
 
-## 5. Reproducing these numbers
+## 5. Training curves & metric graphs
+
+Notebooks plot training dynamics and a held-out CER bar chart (no GPU needed):
+
+- **Curves source:** `models/train_jul28.log` when present (delivered continue-train,
+  12 epochs, best synthetic val CER **0.0348**). Otherwise
+  `models/train_history.json` (written each epoch by `src/recognition/train.py`) or
+  the bundled `data/metrics/train_history_jul28.json`.
+- **Bar chart:** `data/metrics/eval_summary.json` — same end-to-end CER figures as §2.
+- **Where:** `notebooks/local_pipeline.ipynb` §12 and `notebooks/colab_pipeline.ipynb` §7
+  (“Evaluation metrics & training curves”). Helpers live in
+  `src/evaluation/train_curves.py`.
+
+Restart & Run All on either notebook is enough; Section 11/6 still prints the
+per-image CER/WER text report.
+
+---
+
+## 6. Reproducing these numbers
 
 ```powershell
 # honest suite, all sets, with the held-out/in-train status column

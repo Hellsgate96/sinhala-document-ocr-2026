@@ -1,0 +1,63 @@
+{
+  "checkpoint": "models/crnn_best.pth",
+  "source": "RESULTS.md section 2 Final numbers (AFTER + matra fix)",
+  "note": "End-to-end corpus CER. Green = held out; grey = in-training reference only.",
+  "sets": [
+    {
+      "id": "print_photos",
+      "label": "Real photos (held out)",
+      "cer": 0.0552,
+      "held_out": true,
+      "n_pages": 2,
+      "n_lines": 32
+    },
+    {
+      "id": "eval_pages",
+      "label": "Synthetic pages (held out)",
+      "cer": 0.0088,
+      "held_out": true,
+      "n_pages": 10,
+      "n_lines": 76
+    },
+    {
+      "id": "adversarial",
+      "label": "Adversarial (held out)",
+      "cer": 0.0351,
+      "held_out": true,
+      "n_pages": 3,
+      "n_lines": null
+    },
+    {
+      "id": "synth_val",
+      "label": "Synthetic val (trainer)",
+      "cer": 0.0348,
+      "held_out": true,
+      "n_pages": null,
+      "n_lines": null
+    },
+    {
+      "id": "user_batch1",
+      "label": "user_batch1 (in train)",
+      "cer": 0.0035,
+      "held_out": false,
+      "n_pages": null,
+      "n_lines": 41
+    },
+    {
+      "id": "web_batch1",
+      "label": "web_batch1 (partial leak)",
+      "cer": 0.0,
+      "held_out": false,
+      "n_pages": null,
+      "n_lines": 14
+    },
+    {
+      "id": "poem_kanyawee",
+      "label": "poem_kanyawee (in train)",
+      "cer": 0.0,
+      "held_out": false,
+      "n_pages": null,
+      "n_lines": 10
+    }
+  ]
+}

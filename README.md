@@ -213,6 +213,10 @@ python -m src.evaluation.metrics --checkpoint models/crnn_best.pth \
 Character Error Rate (CER), Word Error Rate (WER), field-level accuracy, and average
 **CPU inference time** (see `src/evaluation/metrics.py`).
 
+Training loss / val CER–WER curves and a held-out CER bar chart are plotted in
+`notebooks/local_pipeline.ipynb` §12 and `notebooks/colab_pipeline.ipynb` §7
+(`src/evaluation/train_curves.py`; details in [`RESULTS.md`](RESULTS.md) §5).
+
 
 ## v2 training: diverse corpus + projection detection
 
@@ -431,7 +435,7 @@ no required second-stage poem fine-tune.
 | **First full train** | Set generate/train flags `True` once (auto-skips later when data/checkpoint exist) |
 | **Refresh synthetic data** | `RUN_GENERATE=True` (and optionally `RUN_GENERATE_PAGES=True`) |
 
-Notebook sections: setup → install → fonts → **one control cell** → optional generate → optional page-synth → optional train → **test real image** → optional poem CER → optional debug.
+Notebook sections: setup → install → fonts → **one control cell** → optional generate → optional page-synth → optional train → **test real image** → optional poem CER → optional debug → **eval text report** → **training curves / CER bar chart**.
 
 Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
 Optional legacy: `models/crnn_finetuned.pth` is **not** used by the cleaned notebook.

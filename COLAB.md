@@ -18,6 +18,7 @@ From the project root, include at least:
 | `notebooks/colab_pipeline.ipynb` | the Colab entry point |
 | `requirements.txt` | deps |
 | `data/eval_real/print_photos/` | demo images + `.gt.txt` for CER/WER |
+| `data/metrics/` | bundled train curves + eval CER bar-chart numbers |
 | `fonts/` (optional) | Sinhala fonts; Colab can also `apt-get` Noto |
 
 You do **not** need synthetic training data, old checkpoints, or `data/debug/`.
@@ -25,7 +26,7 @@ You do **not** need synthetic training data, old checkpoints, or `data/debug/`.
 Example (PowerShell, from the repo root):
 
 ```powershell
-Compress-Archive -Path src,configs,notebooks,models,requirements.txt,fonts,data\eval_real,README.md,COLAB.md,RESULTS.md `
+Compress-Archive -Path src,configs,notebooks,models,requirements.txt,fonts,data\eval_real,data\metrics,README.md,COLAB.md,RESULTS.md `
   -DestinationPath sinhala-document-ocr-colab.zip -Force
 ```
 
@@ -74,6 +75,8 @@ My Drive/
 3. Load `models/crnn_best.pth` + `models/charset.json`
 4. Detect lines, recognise with beam+LM + matra post-correction
 5. Print the **Evaluation metrics** block (CER/WER when GT exists)
+6. Plot **training curves** (loss / val CER–WER / LR) and a held-out CER bar chart
+   from `data/metrics/` (no retrain; see `RESULTS.md` §5)
 
 ## 5. Adding your own test image
 
