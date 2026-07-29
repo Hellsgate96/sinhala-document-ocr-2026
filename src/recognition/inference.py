@@ -127,6 +127,40 @@ def prepare_line_tensor(
     return line_image_to_tensor(prepared, height, max_width, channels)
 
 
+# Test-time augmentation. Every variant keeps the crop's aspect ratio, so all of
+# them resize to the same width and therefore the same CTC sequence length - that
+# is what makes their log-probabilities averageable in predict_tensor.
+TTA_VARIANTS = ("none", "sharpen", "contrast")
+
+
+def apply_tta_variant(gray: np.ndarray, variant: str) -> np.ndarray:
+    """Photometric-only variant of a grayscale crop (shape is never changed)."""
+    if variant == "none":
+        return gray
+    if variant == "sharpen":
+        # Unsharp mask. On a 16 px line upscaled to 48 px the interpolation has
+        # smeared the pre-base vowel signs into the consonant; this pulls the
+        # stroke edges back apart.
+        blur = cv2.GaussianBlur(gray, (0, 0), sigmaX=1.2)
+        return cv2.addWeighted(gray, 1.6, blur, -0.6, 0)
+    if variant == "contrast":
+        return cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8, 8)).apply(gray)
+    raise ValueError(f"unknown TTA variant: {variant!r}")
+
+
+def prepare_line_tensor_variants(
+    image: ArrayLike,
+    variants=TTA_VARIANTS,
+    **kwargs: Any,
+) -> torch.Tensor:
+    """Stack the TTA variants of one crop into a single (N, C, H, W) batch."""
+    gray = _to_gray_uint8(image)
+    tensors = [
+        prepare_line_tensor(apply_tta_variant(gray, v), **kwargs) for v in variants
+    ]
+    return torch.cat(tensors, dim=0)
+
+
 def prepared_line_for_display(
     image: ArrayLike,
     height: int = 48,
@@ -169,10 +203,15 @@ def inference_options_from_config(cfg: Optional[Dict[str, Any]]) -> Dict[str, An
         "insertion_bonus": float(inf.get("insertion_bonus", 0.0)),
         "beam_top_k": int(inf.get("beam_top_k", 8)),
         "lm_order": int(inf.get("lm_order", 6)),
+        "tta": bool(inf.get("tta", False)),
+        "tta_variants": tuple(inf.get("tta_variants") or TTA_VARIANTS),
     }
 
 
-DECODE_KEYS = ("beam_width", "lm_weight", "insertion_bonus", "beam_top_k", "lm_order")
+DECODE_KEYS = (
+    "beam_width", "lm_weight", "insertion_bonus", "beam_top_k", "lm_order",
+    "tta", "tta_variants",
+)
 
 
 def decode_kwargs_from_options(opts: Optional[Dict[str, Any]]) -> Dict[str, Any]:

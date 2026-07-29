@@ -21,7 +21,8 @@ from PIL import Image
 
 from src.charset import Charset
 from src.recognition.decode import decode_log_probs
-from src.recognition.inference import inference_options_from_config, prepare_line_tensor
+from src.recognition.inference import (inference_options_from_config, prepare_line_tensor,
+                                       prepare_line_tensor_variants)
 from src.recognition.model import build_crnn
 from src.utils.common import (configure_stdout_utf8, get_device, load_checkpoint,
                               load_config)
@@ -79,25 +80,18 @@ def image_to_tensor(
     denoise: bool = False,
     min_model_width: int = 0,
     pad_to_height: bool = True,
+    tta: bool = False,
+    tta_variants=None,
 ) -> torch.Tensor:
-    """Load a line image, apply inference preprocessing, return (1, C, H, W)."""
+    """Load a line image, apply inference preprocessing, return (N, C, H, W)."""
     import cv2
 
     bgr = cv2.imread(path, cv2.IMREAD_COLOR)
-    if bgr is not None:
-        return prepare_line_tensor(
-            bgr,
-            height=height,
-            max_width=max_width,
-            channels=channels,
-            auto_invert=auto_invert,
-            denoise=denoise,
-            min_model_width=min_model_width,
-            pad_to_height=pad_to_height,
-        )
-    img = Image.open(path)
-    return prepare_line_tensor(
-        img,
+    image = bgr if bgr is not None else Image.open(path)
+    build = prepare_line_tensor_variants if tta else prepare_line_tensor
+    return build(
+        image,
+        **({"variants": tta_variants} if tta and tta_variants else {}),
         height=height,
         max_width=max_width,
         channels=channels,
@@ -124,6 +118,11 @@ def predict_tensor(
 ) -> str:
     tensor = tensor.to(device)
     log_probs = model(tensor)  # (T, B, C)
+    if log_probs.shape[1] > 1:
+        # A TTA batch: average the per-variant distributions in probability space
+        # (a mean of log-probs would be a geometric mean, which lets any single
+        # variant that is confidently wrong veto the others).
+        log_probs = log_probs.exp().mean(dim=1, keepdim=True).clamp_min(1e-12).log()
     decode_mode = str(decode_mode).lower()
     if decode_mode == "greedy":
         indices = log_probs.argmax(2).squeeze(1)
@@ -160,12 +159,15 @@ def predict_image(
     insertion_bonus: float = 0.0,
     beam_top_k: int = 8,
     lm_order: int = 6,
+    tta: bool = False,
+    tta_variants=None,
 ) -> str:
     """Predict the transcript of one line image file."""
     tensor = image_to_tensor(
         path, height, max_width, channels,
         auto_invert=auto_invert, denoise=denoise,
         min_model_width=min_model_width, pad_to_height=pad_to_height,
+        tta=tta, tta_variants=tta_variants,
     )
     text = predict_tensor(
         model, charset, tensor, device,
@@ -199,10 +201,14 @@ def predict_line_array(
     insertion_bonus: float = 0.0,
     beam_top_k: int = 8,
     lm_order: int = 6,
+    tta: bool = False,
+    tta_variants=None,
 ) -> str:
     """Predict from an in-memory line crop (BGR, grayscale, or PIL)."""
-    tensor = prepare_line_tensor(
+    build = prepare_line_tensor_variants if tta else prepare_line_tensor
+    tensor = build(
         image,
+        **({"variants": tta_variants} if tta and tta_variants else {}),
         height=height,
         max_width=max_width,
         channels=channels,

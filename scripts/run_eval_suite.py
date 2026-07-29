@@ -155,6 +155,9 @@ def main() -> int:
     p.add_argument("--lm-weight", type=float, default=None)
     p.add_argument("--insertion-bonus", type=float, default=None)
     p.add_argument("--beam-width", type=int, default=None)
+    p.add_argument("--tta", default=None, help="override inference.tta (true|false)")
+    p.add_argument("--tta-variants", default=None,
+                   help="comma-separated subset of none,sharpen,contrast")
     p.add_argument("--only", action="append", default=None, help="restrict to named set(s)")
     p.add_argument("--det", action="append", default=None,
                    help="override a detection config key, e.g. --det crop_padding_y=3")
@@ -174,6 +177,10 @@ def main() -> int:
         inf_opts["insertion_bonus"] = args.insertion_bonus
     if args.beam_width is not None:
         inf_opts["beam_width"] = args.beam_width
+    if args.tta is not None:
+        inf_opts["tta"] = _as_bool(args.tta)
+    if args.tta_variants:
+        inf_opts["tta_variants"] = tuple(v.strip() for v in args.tta_variants.split(","))
 
     charset = Charset.load(str(ROOT / args.charset))
     model = build_crnn(charset.num_classes, cfg.get("model"), in_channels=cfg["image"]["channels"]).to(device)
@@ -199,6 +206,7 @@ def main() -> int:
         "lm_weight": inf_opts.get("lm_weight"),
         "insertion_bonus": inf_opts.get("insertion_bonus"),
         "beam_width": inf_opts.get("beam_width"),
+        "tta": inf_opts.get("tta"),
         "sets": {},
     }
     for name, rel_dir in PAGE_SETS.items():
@@ -222,7 +230,8 @@ def main() -> int:
 
     print(f"\n=== {args.name or os.path.basename(ckpt)} "
           f"(pad_to_height={inf_opts['pad_to_height']}, decode={inf_opts.get('decode')}, "
-          f"lm_weight={inf_opts.get('lm_weight')}, bonus={inf_opts.get('insertion_bonus')}) ===")
+          f"lm_weight={inf_opts.get('lm_weight')}, bonus={inf_opts.get('insertion_bonus')}, "
+          f"tta={inf_opts.get('tta')}) ===")
     print(f"{'set':<22} {'n':>4}  {'CER':>8}  status")
     for name, res in report["sets"].items():
         cer_val = res["corpus_cer"]

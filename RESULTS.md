@@ -174,6 +174,39 @@ The one in-train reference set moves the other way (`user_batch1` 0.0030 →
 
 ---
 
+## 3d. Things that were measured and rejected
+
+Recorded because the negative results are part of the evidence, and because
+the code is still in the repository behind a flag.
+
+**Test-time augmentation** (`inference.tta`, `src/recognition/inference.py`).
+Each crop is decoded as several photometric variants — unaltered, unsharp
+masked, and CLAHE contrast-equalised — whose per-frame distributions are
+averaged before decoding. Every variant keeps the aspect ratio, so all of them
+produce the same CTC sequence length and can be averaged in one batched forward
+pass.
+
+| Variants | real photos | `eval_pages` |
+|---|---|---|
+| *off (shipped)* | **0.0877** | **0.0088** |
+| none + contrast | 0.0844 | 0.0100 |
+| none + sharpen | 0.0877 | 0.0104 |
+| none + sharpen + contrast | 0.0893 | 0.0100 |
+
+The best variant pair buys about three characters on the real photographs and
+costs more than that on the synthetic pages. Unlike the LM fusion in §3c it is
+a *trade*, not a strict improvement, so by the same rule used everywhere else in
+this project it was not promoted. Enable it with `tta: true` under `inference:`
+if real photographs are the only thing that matters.
+
+**A second continue-training round** (`configs/mix_jul29.yaml`) on a further
+10,000 all-tiny lines whose confusion pool was widened to word-final `ේ`, `්`,
+`ූ` and `ී`. Synthetic validation CER stayed flat (0.0348 → 0.0349) and the
+held-out sets moved the wrong way, so the Jul-28 checkpoint was kept. The
+config and data generator are committed so the run can be repeated; see §5.
+
+---
+
 ## 4. Known limitations (honest)
 
 1. **Held-out real data is 2 pages / 32 lines.** Everything else is either
@@ -212,6 +245,10 @@ python scripts/report_errors.py data/debug/suite_final.json --set print_photos
 # compare against the previous checkpoint
 python scripts/run_eval_suite.py --checkpoint models/crnn_best_pre_jul28.pth `
     --pad-to-height true --name "before"
+
+# the rejected levers from section 3d
+python scripts/run_eval_suite.py --checkpoint models/crnn_best.pth `
+    --tta true --tta-variants none,contrast --name "tta"
 ```
 
 `models/*.pth` and the generated image datasets are gitignored; see
