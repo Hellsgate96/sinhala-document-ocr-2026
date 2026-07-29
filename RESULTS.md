@@ -49,13 +49,17 @@ checkpoint `models/crnn_best_pre_jul28.pth` with the previous inference config;
 
 ### Held out
 
-| Evaluation set | BEFORE (Jul-27) | AFTER (delivered) | Change |
-|---|---|---|---|
-| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | **0.0877** | **−48%** |
-| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | **0.0533** | −62% |
-| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | **0.0987** | −45% |
-| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **−54%** |
-| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | +3.5% ⚠ |
+| Evaluation set | BEFORE (Jul-27) | AFTER beam+LM | AFTER + matra fix | Change vs Jul-27 |
+|---|---|---|---|---|
+| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | 0.0877 | **0.0552** | **−67%** |
+| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | 0.0533 | **0.0533** | −62% |
+| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | 0.0987 | **0.0558** | −69% |
+| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **0.0088** | **−54%** |
+| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | 0.0351 | +3.5% ⚠ |
+
+The matra/modifier post-corrector (`src/postprocess/sinhala_fix.py`, §3e)
+is on by default (`inference.post_correct: true`). Same checkpoint — no retrain.
+It does not change `eval_pages` or `adversarial`.
 
 ### In training (reference only — not generalisation evidence)
 
@@ -66,9 +70,8 @@ checkpoint `models/crnn_best_pre_jul28.pth` with the previous inference config;
 | `poem_kanyawee` (10 line crops) | 0.0055 | 0.0000 |
 | Synthetic validation CER (trainer's own metric) | 0.0356 | 0.0348 |
 
-"AFTER (delivered)" is `models/crnn_best.pth` with the shipped
-`configs/local.yaml`, which is the combination of all three changes in §3.
-Intermediate stages are broken out there so each change is attributable.
+"AFTER beam+LM" is `models/crnn_best.pth` with the shipped decode settings
+(§3a–3c). "AFTER + matra fix" adds §3e on the same weights.
 
 Line detection is exact on every page in the suite: 76/76 lines on
 `eval_pages`, 9/9 and 23/23 on the two real photos.
@@ -223,6 +226,33 @@ The wider lesson for anyone continuing this work: **the synthetic validation
 split has saturated and is no longer a useful model-selection signal.** Further
 accuracy has to come from more real labelled photographs, not from more
 synthetic data or longer schedules on the existing mix.
+
+### 3e. Matra / modifier post-correction (no retrain, 2026-07-29)
+
+Error analysis on the delivered decode still showed the same orthographic
+cluster on real photos: mis-attached pre-base kombuva (`ෙCී` / word-final
+`ෙණ්` → should be `Cේ` / `ණේ`), word-final `ණී`→`ණේ`, dangling `ේී`, and
+occasional illegal pre-base order (`දිෙන` → `දිනෙ`). A short continue-train
+was **not** promoted — Jul-29 (§3d) already showed synthetic-val wins can
+regress every held-out set.
+
+`src/postprocess/sinhala_fix.py` applies only rules that improve or tie
+every held-out set when measured on the suite JSON:
+
+| Rule | Effect on `print_photos` |
+|---|---|
+| `ෙCී` → `Cේ`, word-final `ෙණ්` → `ණේ`, `ේී` → `ේ`, word-final `ණී` → `ණේ` | main gain |
+| illegal pre-base reorder + orphan `ේ`→`්` | helps user uploads; no held-out change |
+| LM-gated word-final `මි`→`ම්` | small extra gain; blind `මි`/`ස්සු` rules rejected (regress `eval_pages`) |
+
+| Set | before §3e | after §3e |
+|---|---|---|
+| real photos | 0.0877 | **0.0552** |
+| `eval_pages` | 0.0088 | 0.0088 |
+| adversarial | 0.0351 | 0.0351 |
+
+Enabled by default via `inference.post_correct: true`. Disable in config if you
+need the raw CTC+LM string.
 
 ---
 

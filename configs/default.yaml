@@ -137,5 +137,6 @@ inference:
   image_height: 48        # must match image.height / training
   min_model_width: 32     # pad short lines instead of stretching
   pad_to_height: true     # pad small crops before upscale
+  post_correct: true      # Sinhala matra / modifier post-correction after CTC decode
 
 

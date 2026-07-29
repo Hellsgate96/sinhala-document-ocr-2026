@@ -102,6 +102,14 @@ def image_to_tensor(
     )
 
 
+def _maybe_post_correct(text: str, post_correct: bool = True) -> str:
+    if not post_correct or not text:
+        return text
+    from src.postprocess.sinhala_fix import fix_sinhala_ocr
+
+    return fix_sinhala_ocr(text)
+
+
 @torch.no_grad()
 def predict_tensor(
     model,
@@ -115,6 +123,7 @@ def predict_tensor(
     insertion_bonus: float = 0.0,
     beam_top_k: int = 8,
     lm_order: int = 6,
+    post_correct: bool = True,
 ) -> str:
     tensor = tensor.to(device)
     log_probs = model(tensor)  # (T, B, C)
@@ -126,17 +135,19 @@ def predict_tensor(
     decode_mode = str(decode_mode).lower()
     if decode_mode == "greedy":
         indices = log_probs.argmax(2).squeeze(1)
-        return charset.ctc_greedy_decode(indices.tolist())
-    return decode_log_probs(
-        log_probs[:, 0, :].cpu(),
-        charset,
-        mode=decode_mode,
-        beam_width=beam_width,
-        lm=resolve_decoder_lm(decode_mode, lm, lm_order),
-        lm_weight=lm_weight,
-        insertion_bonus=insertion_bonus,
-        top_k=beam_top_k,
-    )
+        text = charset.ctc_greedy_decode(indices.tolist())
+    else:
+        text = decode_log_probs(
+            log_probs[:, 0, :].cpu(),
+            charset,
+            mode=decode_mode,
+            beam_width=beam_width,
+            lm=resolve_decoder_lm(decode_mode, lm, lm_order),
+            lm_weight=lm_weight,
+            insertion_bonus=insertion_bonus,
+            top_k=beam_top_k,
+        )
+    return _maybe_post_correct(text, post_correct=post_correct)
 
 
 @torch.no_grad()
@@ -161,6 +172,7 @@ def predict_image(
     lm_order: int = 6,
     tta: bool = False,
     tta_variants=None,
+    post_correct: bool = True,
 ) -> str:
     """Predict the transcript of one line image file."""
     tensor = image_to_tensor(
@@ -174,6 +186,7 @@ def predict_image(
         decode_mode=decode_mode, beam_width=beam_width,
         lm_weight=lm_weight, insertion_bonus=insertion_bonus,
         beam_top_k=beam_top_k, lm_order=lm_order,
+        post_correct=post_correct,
     )
     if warn_garbage:
         return format_prediction_with_warning(text)
@@ -203,6 +216,7 @@ def predict_line_array(
     lm_order: int = 6,
     tta: bool = False,
     tta_variants=None,
+    post_correct: bool = True,
 ) -> str:
     """Predict from an in-memory line crop (BGR, grayscale, or PIL)."""
     build = prepare_line_tensor_variants if tta else prepare_line_tensor
@@ -222,6 +236,7 @@ def predict_line_array(
         decode_mode=decode_mode, beam_width=beam_width,
         lm_weight=lm_weight, insertion_bonus=insertion_bonus,
         beam_top_k=beam_top_k, lm_order=lm_order,
+        post_correct=post_correct,
     )
     if warn_garbage:
         return format_prediction_with_warning(text, ground_truth=ground_truth)

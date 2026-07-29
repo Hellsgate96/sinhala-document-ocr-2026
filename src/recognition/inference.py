@@ -205,12 +205,14 @@ def inference_options_from_config(cfg: Optional[Dict[str, Any]]) -> Dict[str, An
         "lm_order": int(inf.get("lm_order", 6)),
         "tta": bool(inf.get("tta", False)),
         "tta_variants": tuple(inf.get("tta_variants") or TTA_VARIANTS),
+        # Measured Sinhala matra / modifier post-correction (see sinhala_fix.py).
+        "post_correct": bool(inf.get("post_correct", True)),
     }
 
 
 DECODE_KEYS = (
     "beam_width", "lm_weight", "insertion_bonus", "beam_top_k", "lm_order",
-    "tta", "tta_variants",
+    "tta", "tta_variants", "post_correct",
 )
 
 

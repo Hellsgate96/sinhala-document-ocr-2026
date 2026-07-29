@@ -136,3 +136,7 @@ inference:
   # its glyphs at 1/3 input height and decoded as garbage (jul28 diagnosis;
   # flipping this halved held-out real-photo CER with the same checkpoint).
   pad_to_height: false
+  # Measured matra / modifier post-correction (ෙCී→Cේ, ණී→ණේ, illegal
+  # pre-base reorder, LM-gated මි→ම්). Improves held-out real photos
+  # 0.0877 → ~0.055 with no regression on eval_pages / adversarial.
+  post_correct: true

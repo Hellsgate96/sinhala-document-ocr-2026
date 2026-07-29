@@ -92,11 +92,15 @@ methodology in [`RESULTS.md`](RESULTS.md)):
 
 | Evaluation set | Status | Corpus CER |
 |---|---|---|
-| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0877** |
+| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0552** |
 | Synthetic eval pages (10 pages, 76 lines) | held out | **0.0088** |
 | Adversarial acceptance pages (3) | held out | 0.0351 |
 | Real line crops (`user_batch1`, 41) | *in training* | 0.0035 |
 | Kanyawee poem lines (10) | *in training* | 0.0000 |
+
+*(Real-photo CER was 0.0877 after beam+LM; a measured matra/modifier post-corrector
+in `src/postprocess/sinhala_fix.py` brings it to **0.0552** with no regression on
+the other held-out sets. Same checkpoint — no retrain.)*
 
 Line detection is exact on every page in the suite (76/76, 9/9, 23/23).
 
@@ -724,10 +728,19 @@ Measured, not guessed — see [`RESULTS.md`](RESULTS.md) §4 for the error count
    relative-height filter.
 6. Handwriting is out of scope for the delivered model (printed text only).
 
-## Google Colab
+## Google Colab / Google Drive
 
-See `notebooks/colab_pipeline.ipynb` for an end-to-end run: mount Drive, install deps,
-generate synthetic data, train the CRNN, evaluate (CER/WER) and run an inference demo.
+Step-by-step upload checklist (what must be in the zip, especially the gitignored
+checkpoint): **[`COLAB.md`](COLAB.md)**.
+
+Quick path:
+
+1. Zip the project **including** `models/crnn_best.pth` + `models/charset.json`
+   (see `COLAB.md` for the exact file list).
+2. Upload to Drive, e.g. `My Drive/sinhala-document-ocr/`.
+3. Open `notebooks/colab_pipeline.ipynb` with Colaboratory (GPU runtime).
+4. Set `DRIVE_PROJECT_DIR` / `TEST_IMAGE_PATH` in the config cell → **Runtime → Run all**.
+5. The last section prints evaluation metrics (CER/WER when a `.gt.txt` is present).
 
 ## Reference methods (2021+)
 
