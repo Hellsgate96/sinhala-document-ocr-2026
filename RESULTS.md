@@ -201,9 +201,28 @@ if real photographs are the only thing that matters.
 
 **A second continue-training round** (`configs/mix_jul29.yaml`) on a further
 10,000 all-tiny lines whose confusion pool was widened to word-final `ේ`, `්`,
-`ූ` and `ී`. Synthetic validation CER stayed flat (0.0348 → 0.0349) and the
-held-out sets moved the wrong way, so the Jul-28 checkpoint was kept. The
-config and data generator are committed so the run can be repeated; see §5.
+`ූ` and `ී`. This is the clearest result in the whole project, and it is a
+negative one: at epoch 4 the run reached **0.0343 synthetic validation CER, the
+best number this model has ever produced** — better than the delivered
+checkpoint's 0.0348 — and was worse on *every* held-out set.
+
+| | synthetic val | real photos | `eval_pages` | adversarial |
+|---|---|---|---|---|
+| delivered (Jul-28 epoch 12) | 0.0348 | **0.0877** | **0.0088** | **0.0351** |
+| Jul-29 epoch 4 | **0.0343** | 0.0909 | 0.0100 | 0.0364 |
+
+The trainer promotes checkpoints on synthetic validation CER, so had this run
+been allowed to write to `models/crnn_best.pth` it would have silently replaced
+a better model with a worse one on the strength of a metric that measures the
+generator rather than the task. That is why `mix_jul29.yaml` writes to
+`crnn_jul29_best.pth` instead, and why the promotion decision is made from
+`run_eval_suite.py` output by hand. The run was stopped after this comparison;
+the delivered checkpoint is unchanged.
+
+The wider lesson for anyone continuing this work: **the synthetic validation
+split has saturated and is no longer a useful model-selection signal.** Further
+accuracy has to come from more real labelled photographs, not from more
+synthetic data or longer schedules on the existing mix.
 
 ---
 

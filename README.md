@@ -70,9 +70,12 @@ handover is:
 
 | File | Why |
 |---|---|
-| **`models/crnn_best.pth`** | the delivered model — Section 8 of the notebook and every eval script need it |
-| `models/crnn_best_jul28_e12.pth` | identical byte-for-byte copy, kept as the restore point |
-| `models/crnn_best_pre_jul28.pth` | the previous checkpoint, for before/after comparison |
+| **`models/crnn_best.pth`** | **the delivered model** — Section 8 of the notebook and every eval script need it. This is the one that matters. |
+| `models/crnn_best_jul28_e12.pth` | byte-identical copy of it, kept as the restore point |
+| `models/crnn_best_pre_jul28.pth` | the previous checkpoint, only needed to reproduce the "before" column |
+
+`models/crnn_jul29_*.pth` are from the rejected tuning run (`RESULTS.md` §3d)
+and can be deleted.
 
 Copy them onto a USB stick / cloud drive alongside the repo, or rebuild the
 model from scratch with *Reproducing the trained model* below (~6 h on a GPU).
@@ -690,7 +693,8 @@ Section 8 raises a message telling you where to get the checkpoint.
 | Line crops | Padded boxes, minimum crop height 14 px | `crop_padding_x: 10`, `crop_padding_y: 5` |
 | Recognition | CRNN — CNN backbone (512 ch) → 2-layer BiLSTM (256 hidden) → CTC over 224 Sinhala/ASCII characters + blank, fixed input height 48 px | `model.*`, `image.height: 48` |
 | Inference prep | Grayscale, auto polarity inversion, **upscale** (not pad) to 48 px, LANCZOS | `inference.pad_to_height: false` |
-| Decoding | CTC greedy (default); optional prefix beam search with character-LM shallow fusion | `inference.decode: greedy \| beam \| beam_lm` |
+| Decoding | CTC prefix beam search with character-LM shallow fusion (default); greedy available | `inference.decode: beam_lm \| beam \| greedy` |
+| Test-time augmentation | Implemented, measured, **off** — a held-out trade rather than a win | `inference.tta: false` |
 | Post-processing | Edit-distance dictionary correction available; character n-gram LM in the decoder | `src/postprocess/` |
 
 One shared code path (`src/evaluation/pipeline_eval.py`) runs detection +
@@ -704,6 +708,11 @@ Measured, not guessed — see [`RESULTS.md`](RESULTS.md) §4 for the error count
 1. Fully held-out **real** evaluation data is only 2 photographs / 32 lines.
    More photographed pages with verified ground truth is the highest-value
    addition anyone could make next.
+   **The synthetic validation split has saturated and is no longer a usable
+   model-selection signal** — a later run reached the best synthetic validation
+   CER this model has ever produced (0.0343 vs 0.0348) while being worse on
+   every held-out set, so it was rejected. Judge candidate checkpoints with
+   `scripts/run_eval_suite.py`, never with the trainer's own metric.
 2. On very low-resolution lines (~16 px) the `ේ` / `ී` confusion — the pre-base
    kombuva being attached to the wrong consonant — is reduced but not solved.
 3. Long `ූ` vs short `ු` on traditional serif book faces is still wrong on the
