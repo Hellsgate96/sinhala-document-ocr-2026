@@ -24,6 +24,14 @@ def test_wer_basic():
     assert abs(wer("the quick fox", "the quick dog") - (1 / 3)) < 1e-9
 
 
+def test_accuracy_pct_from_cer():
+    from src.evaluation.metrics import accuracy_pct
+
+    assert abs(accuracy_pct(0.0455) - 95.45) < 1e-9
+    assert abs(accuracy_pct(0.0) - 100.0) < 1e-9
+    assert abs(accuracy_pct(1.2) - 0.0) < 1e-9  # clamped
+
+
 def test_empty_reference():
     assert cer("", "") == 0.0
     assert cer("", "x") == 1.0

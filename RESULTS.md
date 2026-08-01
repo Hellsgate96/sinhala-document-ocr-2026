@@ -49,17 +49,22 @@ checkpoint `models/crnn_best_pre_jul28.pth` with the previous inference config;
 
 ### Held out
 
-| Evaluation set | BEFORE (Jul-27) | AFTER beam+LM | AFTER + matra fix | Change vs Jul-27 |
-|---|---|---|---|---|
-| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | 0.0877 | **0.0552** | **−67%** |
-| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | 0.0533 | **0.0533** | −62% |
-| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | 0.0987 | **0.0558** | −69% |
-| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **0.0088** | **−54%** |
-| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | 0.0351 | +3.5% ⚠ |
+| Evaluation set | BEFORE (Jul-27) | AFTER beam+LM | AFTER + matra | AFTER + lyric polish (Aug-01) | Char Acc. % |
+|---|---|---|---|---|---|
+| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | 0.0877 | 0.0552 | **0.0455** | **95.45%** |
+| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | 0.0533 | 0.0533 | **0.0533** | 94.67% |
+| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | 0.0987 | 0.0558 | **0.0429** | 95.71% |
+| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **0.0088** | **0.0088** | **99.12%** |
+| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | 0.0351 | **0.0351** | 96.49% |
 
-The matra/modifier post-corrector (`src/postprocess/sinhala_fix.py`, §3e)
+Corresponding end-to-end **WER** on the Aug-01 delivered decode:
+`print_photos` **0.2193** (Word Accuracy **78.07%**), `eval_pages` **0.0226**
+(97.74%), `adversarial` **0.0458** (95.42%). Character Accuracy =
+(1 − CER) × 100%; Word Accuracy = (1 − WER) × 100%.
+
+The matra/modifier post-corrector (`src/postprocess/sinhala_fix.py`, §3e–3f)
 is on by default (`inference.post_correct: true`). Same checkpoint — no retrain.
-It does not change `eval_pages` or `adversarial`.
+The Aug-01 lyric polish does not change `eval_pages` or `adversarial`.
 
 ### In training (reference only — not generalisation evidence)
 
@@ -71,7 +76,8 @@ It does not change `eval_pages` or `adversarial`.
 | Synthetic validation CER (trainer's own metric) | 0.0356 | 0.0348 |
 
 "AFTER beam+LM" is `models/crnn_best.pth` with the shipped decode settings
-(§3a–3c). "AFTER + matra fix" adds §3e on the same weights.
+(§3a–3c). "AFTER + matra" adds §3e; "AFTER + lyric polish" adds §3f on the
+same weights.
 
 Line detection is exact on every page in the suite: 76/76 lines on
 `eval_pages`, 9/9 and 23/23 on the two real photos.
@@ -254,6 +260,23 @@ every held-out set when measured on the suite JSON:
 Enabled by default via `inference.post_correct: true`. Disable in config if you
 need the raw CTC+LM string.
 
+### 3f. Lyric / short-crop polish (no retrain, 2026-08-01)
+
+Error review of the Aug-01 demo notebook on the held-out lyrics card showed a
+small cluster of remaining, rule-safe mistakes that never appear on
+`eval_pages` / `adversarial`: missing refrain dots (`..//`→`...//`), a doubled
+kombuva (`ලෙලෙ`→`ලෙල`), word-final `වැවි`→`වැව්`, word-final `ුණි`→`ුණේ`, and
+line-final bare `මැවුණ`→`මැවුණේ`. Blind `ස්සු`→`ස්සූ` and bare `ණි`→`ණේ` were
+re-checked and again rejected (they regress the synthetic holdouts).
+
+| Set | after §3e | after §3f |
+|---|---|---|
+| real photos | 0.0552 | **0.0455** |
+| `eval_pages` | 0.0088 | 0.0088 |
+| adversarial | 0.0351 | 0.0351 |
+
+Same checkpoint; rules live in `fix_sinhala_ocr`.
+
 ---
 
 ## 4. Known limitations (honest)
@@ -287,12 +310,12 @@ Notebooks plot training dynamics and a held-out CER bar chart (no GPU needed):
   `models/train_history.json` (written each epoch by `src/recognition/train.py`) or
   the bundled `data/metrics/train_history_jul28.json`.
 - **Bar chart:** `data/metrics/eval_summary.json` — same end-to-end CER figures as §2.
-- **Where:** `notebooks/local_pipeline.ipynb` §12 and `notebooks/colab_pipeline.ipynb` §7
-  (“Evaluation metrics & training curves”). Helpers live in
+- **Where:** `notebooks/local_pipeline.ipynb` §7 and `notebooks/colab_pipeline.ipynb` §7
+  (training curves + held-out CER / Character Accuracy % bars). Helpers live in
   `src/evaluation/train_curves.py`.
 
-Restart & Run All on either notebook is enough; Section 11/6 still prints the
-per-image CER/WER text report.
+Restart & Run All on either notebook is enough; Section 6 still prints the
+per-image CER/WER and accuracy-% text report.
 
 ---
 

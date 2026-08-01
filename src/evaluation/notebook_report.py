@@ -2,7 +2,7 @@
 """Notebook-friendly end-of-run evaluation report.
 
 Used by ``notebooks/local_pipeline.ipynb`` and ``notebooks/colab_pipeline.ipynb``
-so both print the same CER/WER summary after inference.
+so both print the same CER/WER / accuracy summary after inference.
 """
 
 from __future__ import annotations
@@ -11,7 +11,13 @@ import time
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Sequence, Union
 
-from src.evaluation.metrics import cer, wer, corpus_cer, corpus_wer
+from src.evaluation.metrics import (
+    accuracy_pct,
+    cer,
+    corpus_cer,
+    corpus_wer,
+    wer,
+)
 
 
 def load_gt_lines(path: Union[str, Path]) -> List[str]:
@@ -94,6 +100,8 @@ def format_run_report(
         n = min(len(gt_lines), len(pred_lines))
         refs = list(gt_lines[:n])
         hyps = list(pred_lines[:n])
+        c_cer = corpus_cer(refs, hyps)
+        c_wer = corpus_wer(refs, hyps)
         lines.append("-" * 72)
         lines.append(f"Ground truth   : yes ({len(gt_lines)} GT lines, scoring {n} aligned)")
         if len(gt_lines) != len(pred_lines):
@@ -101,12 +109,21 @@ def format_run_report(
                 f"NOTE: GT lines ({len(gt_lines)}) != detected ({len(pred_lines)}); "
                 "detection under/over-segmentation affects the score."
             )
-        lines.append(f"corpus CER     : {corpus_cer(refs, hyps):.4f}")
-        lines.append(f"corpus WER     : {corpus_wer(refs, hyps):.4f}")
+        lines.append(
+            f"Character Error Rate (CER) : {c_cer:.4f}  →  Character Accuracy: {accuracy_pct(c_cer):.2f}%"
+        )
+        lines.append(
+            f"Word Error Rate (WER)      : {c_wer:.4f}  →  Word Accuracy: {accuracy_pct(c_wer):.2f}%"
+        )
+        lines.append("  (Character Accuracy = (1 − CER) × 100%; Word Accuracy = (1 − WER) × 100%)")
         lines.append("-" * 72)
-        lines.append("Per-line CER / WER")
+        lines.append("Per-line CER / WER / accuracy")
         for i, (r, h) in enumerate(zip(refs, hyps), 1):
-            lines.append(f"{i:02d}  CER={cer(r, h):.3f}  WER={wer(r, h):.3f}")
+            lc, lw = cer(r, h), wer(r, h)
+            lines.append(
+                f"{i:02d}  CER={lc:.3f} ({accuracy_pct(lc):.1f}%)  "
+                f"WER={lw:.3f} ({accuracy_pct(lw):.1f}%)"
+            )
             if r != h:
                 lines.append(f"    GT: {r}")
                 lines.append(f"    PR: {h}")

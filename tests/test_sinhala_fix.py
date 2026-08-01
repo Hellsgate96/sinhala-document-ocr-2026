@@ -19,7 +19,7 @@ def test_kombuva_misattach_to_ee():
 
 
 def test_word_final_na_ii():
-    assert fix_sinhala_ocr("සරණී..//", use_lm=False) == "සරණේ..//"
+    assert fix_sinhala_ocr("සරණී..//", use_lm=False) == "සරණේ...//"
 
 
 def test_illegal_prebase_reorder():
@@ -35,3 +35,13 @@ def test_orphan_prebase_before_virama():
 def test_legitimate_en_untouched():
     # Word-final ලෙන් must not become නේ.
     assert fix_sinhala_ocr("සිසිලෙන් තෙමුණේ", use_lm=False) == "සිසිලෙන් තෙමුණේ"
+
+
+def test_lyric_short_crop_fixes():
+    assert fix_sinhala_ocr("සිංහල සරණේ..//", use_lm=False) == "සිංහල සරණේ...//"
+    assert fix_sinhala_ocr("ලෙලෙදෙන", use_lm=False) == "ලෙලදෙන"
+    assert fix_sinhala_ocr("වැවි බැඳුණේ..", use_lm=False) == "වැව් බැඳුණේ.."
+    assert fix_sinhala_ocr("නැගුණි...//", use_lm=False) == "නැගුණේ...//"
+    assert fix_sinhala_ocr("ලොව මැවුණ", use_lm=False) == "ලොව මැවුණේ"
+    # Bare ණි (not preceded by ු) must stay — used in correct past forms.
+    assert fix_sinhala_ocr("පිළිගැන්විණි", use_lm=False) == "පිළිගැන්විණි"

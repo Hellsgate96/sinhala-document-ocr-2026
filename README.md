@@ -37,12 +37,15 @@ below to rebuild it instead).
 jupyter lab notebooks/local_pipeline.ipynb
 ```
 
-In Section 4 leave `RUN_GENERATE` / `RUN_GENERATE_PAGES` / `RUN_TRAIN` as `False`,
-set `TEST_IMAGE_PATH` to your image (or leave it empty to get a file picker, or
-set the `OCR_TEST_IMAGE` environment variable), then **Kernel → Restart & Run All**.
-Section 8 shows the detected line boxes, each line crop with its prediction, and
-the full transcription. With no image chosen it falls back to a bundled demo page
-under `data/eval_real/print_photos/`.
+In the config cell leave training/generation flags `False`, set `TEST_IMAGE_PATH`
+to your image (or leave it empty for a file picker, or set `OCR_TEST_IMAGE`), then
+**Kernel → Restart & Run All**. The demo notebook shows detected line boxes, each
+line crop with its Sinhala prediction, CER/WER with **Character/Word Accuracy %**
+when ground truth is available, plus training curves and held-out summary charts.
+With no image chosen it falls back to a bundled demo page under
+`data/eval_real/print_photos/`. Review-panel write-up:
+[`docs/Project_Report.md`](docs/Project_Report.md) and
+[`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md).
 
 The whole notebook runs in well under a minute on a GPU when the training flags
 are `False`. It is verified to run headlessly:
@@ -90,17 +93,19 @@ pointing back here.
 **Headline accuracy** (end-to-end, detection errors included; full table and
 methodology in [`RESULTS.md`](RESULTS.md)):
 
-| Evaluation set | Status | Corpus CER |
-|---|---|---|
-| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0552** |
-| Synthetic eval pages (10 pages, 76 lines) | held out | **0.0088** |
-| Adversarial acceptance pages (3) | held out | 0.0351 |
-| Real line crops (`user_batch1`, 41) | *in training* | 0.0035 |
-| Kanyawee poem lines (10) | *in training* | 0.0000 |
+| Evaluation set | Status | CER | Char Acc. % | WER | Word Acc. % |
+|---|---|---|---|---|---|
+| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0455** | **95.45%** | 0.2193 | 78.07% |
+| Synthetic eval pages (10 pages, 76 lines) | held out | **0.0088** | **99.12%** | 0.0226 | 97.74% |
+| Adversarial acceptance pages (3) | held out | 0.0351 | 96.49% | 0.0458 | 95.42% |
+| Real line crops (`user_batch1`, 41) | *in training* | 0.0035 | 99.65% | 0.0222 | 97.78% |
+| Kanyawee poem lines (10) | *in training* | 0.0000 | 100% | 0.0000 | 100% |
 
-*(Real-photo CER was 0.0877 after beam+LM; a measured matra/modifier post-corrector
-in `src/postprocess/sinhala_fix.py` brings it to **0.0552** with no regression on
-the other held-out sets. Same checkpoint — no retrain.)*
+*(Character Accuracy = (1 − CER) × 100%; Word Accuracy = (1 − WER) × 100%.
+Real-photo CER was 0.0877 after beam+LM; measured matra + lyric post-correction
+in `src/postprocess/sinhala_fix.py` brings it to **0.0455** with no regression
+on the other held-out sets. Same checkpoint — no retrain. Full write-up:
+[`docs/Project_Report.md`](docs/Project_Report.md), numbers in [`RESULTS.md`](RESULTS.md).)*
 
 Line detection is exact on every page in the suite (76/76, 9/9, 23/23).
 

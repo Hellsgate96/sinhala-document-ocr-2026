@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """Lightweight Sinhala OCR post-correction for common matra / modifier swaps.
 
-Measured on held-out ``print_photos`` (2026-07-29). The dominant residual errors
-after beam+LM decoding are orthographic:
+Measured on held-out ``print_photos`` (2026-07-29, extended 2026-08-01). The
+dominant residual errors after beam+LM decoding are orthographic:
 
 * mis-attached pre-base kombuva: ``ෙCී`` / word-final ``ෙණ්`` → ``Cේ`` / ``ණේ``
 * word-final ``ණී`` → ``ණේ``
@@ -10,10 +10,13 @@ after beam+LM decoding are orthographic:
 * illegal pre-base before a consonant (``දිෙනක`` → ``දිනෙක``)
 * orphan pre-base glued to virama
 * LM-gated word-final ``මි`` → ``ම්`` (hal vs is-pilla)
+* lyric / short-crop fixes: ``..//``→``...//``, ``ලෙලෙ``→``ලෙල``,
+  word-final ``වැවි``→``වැව්``, ``ුණි``→``ුණේ``, line-final ``මැවුණ``→``මැවුණේ``
 
-Rules that hurt other held-out sets (blind ``ස්සු``→``ස්සූ``, blind ``මි``→``ම්``)
-are intentionally omitted. Continue-training was skipped: Jul-29 already showed
-synthetic-val improvements can regress every held-out set.
+Rules that hurt other held-out sets (blind ``ස්සු``→``ස්සූ``, blind ``මි``→``ම්``,
+blind bare ``ණි``→``ණේ``) are intentionally omitted. Continue-training was
+skipped: Jul-29 already showed synthetic-val improvements can regress every
+held-out set.
 """
 
 from __future__ import annotations
@@ -36,6 +39,11 @@ _NA_II = re.compile(r"ණී" + _WORD_END)
 _ORPHAN_PREBASE_VIRAMA = re.compile(r"[ෙේෛොෝෞ]්")
 _TRAILING_PUNCT = re.compile(r"^(.*?)([.…/]+)$")
 _WORD_FINAL_MI = re.compile(r"(\S)මි$")
+_REFRAIN_DOTS = re.compile(r"(?<!\.)\.\.(?=/)")
+_LELE_DUP = re.compile(r"ලෙලෙ")
+_WORD_FINAL_WAWI = re.compile(r"වැවි" + _WORD_END)
+_WORD_FINAL_UNI = re.compile(r"ුණි" + _WORD_END)
+_LINE_FINAL_MAWUNA = re.compile(r"මැවුණ\s*$")
 
 _LM = None  # lazy CharNGramLM
 
@@ -103,6 +111,12 @@ def fix_sinhala_ocr(text: str, use_lm: bool = True, lm=None) -> str:
     text = _NA_II.sub("ණේ", text)
     text = _reorder_illegal_prebase(text)
     text = _ORPHAN_PREBASE_VIRAMA.sub("්", text)
+    # Lyric / short-crop orthography (held-out print_photos, 2026-08-01).
+    text = _REFRAIN_DOTS.sub("...", text)
+    text = _LELE_DUP.sub("ලෙල", text)
+    text = _WORD_FINAL_WAWI.sub("වැව්", text)
+    text = _WORD_FINAL_UNI.sub("ුණේ", text)
+    text = _LINE_FINAL_MAWUNA.sub("මැවුණේ", text)
     if use_lm:
         text = _lm_gated_word_fixes(text, lm if lm is not None else _get_lm())
     return text

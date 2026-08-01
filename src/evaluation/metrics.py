@@ -86,6 +86,20 @@ def corpus_wer(references: Sequence[str], hypotheses: Sequence[str]) -> float:
     return total_edits / total_words if total_words else 0.0
 
 
+def accuracy_from_error_rate(error_rate: float) -> float:
+    """Convert CER/WER to accuracy in ``[0, 1]``: ``max(0, 1 - error_rate)``."""
+    try:
+        er = float(error_rate)
+    except (TypeError, ValueError):
+        return 0.0
+    return max(0.0, 1.0 - er)
+
+
+def accuracy_pct(error_rate: float) -> float:
+    """Character/word accuracy as a percentage: ``(1 - CER/WER) * 100``."""
+    return 100.0 * accuracy_from_error_rate(error_rate)
+
+
 # --------------------------------------------------------------------------
 # Field-level accuracy (forms / invoices / ID fields)
 # --------------------------------------------------------------------------

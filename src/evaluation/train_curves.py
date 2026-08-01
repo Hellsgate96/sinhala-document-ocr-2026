@@ -352,11 +352,16 @@ def plot_train_curves(
 def plot_eval_cer_bars(
     summary: Mapping[str, Any],
     *,
-    title: str = "Held-out vs in-train CER (delivered model)",
-    figsize: tuple = (9, 4.5),
+    title: str = "Held-out vs in-train CER / Character Accuracy",
+    figsize: tuple = (9, 5.0),
     show: bool = False,
+    show_accuracy: bool = True,
 ):
-    """Bar chart of end-to-end CER from ``eval_summary.json`` / RESULTS.md numbers."""
+    """Bar chart of end-to-end CER from ``eval_summary.json`` / RESULTS.md numbers.
+
+    When ``show_accuracy`` is True, each bar is also labelled with
+    Character Accuracy = (1 − CER) × 100%.
+    """
     import matplotlib.pyplot as plt
 
     sets = list(summary.get("sets", []))
@@ -376,13 +381,17 @@ def plot_eval_cer_bars(
     ax.set_title(title)
     ax.grid(True, axis="y", alpha=0.3)
     for bar, val in zip(bars, cers):
+        acc = max(0.0, 1.0 - val) * 100.0
+        label = f"{val:.4f}"
+        if show_accuracy:
+            label = f"{val:.4f}\n({acc:.1f}%)"
         ax.text(
             bar.get_x() + bar.get_width() / 2,
             bar.get_height(),
-            f"{val:.4f}",
+            label,
             ha="center",
             va="bottom",
-            fontsize=8,
+            fontsize=7.5,
         )
     # Legend
     from matplotlib.patches import Patch
@@ -396,11 +405,45 @@ def plot_eval_cer_bars(
     )
     note = summary.get("note") or summary.get("checkpoint")
     if note:
-        ax.text(0.01, -0.28, str(note), transform=ax.transAxes, fontsize=8, color="#444444")
+        ax.text(0.01, -0.32, str(note), transform=ax.transAxes, fontsize=8, color="#444444")
+    if show_accuracy:
+        ax.text(
+            0.01,
+            -0.40,
+            "Bar labels: CER (Character Accuracy % = (1 − CER) × 100)",
+            transform=ax.transAxes,
+            fontsize=8,
+            color="#444444",
+        )
     fig.tight_layout()
     if show:
         plt.show()
     return fig
+
+
+def format_eval_summary_table(summary: Mapping[str, Any]) -> str:
+    """Plain-text table with CER, Character Accuracy %, optional WER."""
+    rows = []
+    header = (
+        f"{'set':<28} {'CER':>8} {'CharAcc%':>10} {'WER':>8} {'WordAcc%':>10} {'held_out':>8}"
+    )
+    rows.append(header)
+    rows.append("-" * len(header))
+    for s in summary.get("sets", []):
+        cer_v = float(s["cer"])
+        acc = max(0.0, 1.0 - cer_v) * 100.0
+        wer_v = s.get("wer")
+        if wer_v is None:
+            wer_s, wacc_s = "—", "—"
+        else:
+            wer_f = float(wer_v)
+            wer_s = f"{wer_f:.4f}"
+            wacc_s = f"{max(0.0, 1.0 - wer_f) * 100.0:.2f}"
+        rows.append(
+            f"{s['label']:<28} {cer_v:8.4f} {acc:10.2f} {wer_s:>8} {wacc_s:>10} "
+            f"{str(bool(s.get('held_out', False))):>8}"
+        )
+    return "\n".join(rows)
 
 
 def summary_table_rows(hist: TrainHistory) -> List[Dict[str, Any]]:
