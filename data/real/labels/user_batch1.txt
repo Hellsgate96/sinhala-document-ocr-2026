@@ -1,4 +1,4 @@
-images/user_p01_line_001.png	ජූලියස් රත්නසිරි
+images/user_p01_line_001.png	ජූලියස් රත්නවීර
 images/user_p02_line_001.png	උයයි
 images/user_p02_line_002.png	අම්මා බත්.
 images/user_p03_line_001.png	අත්දැකීම

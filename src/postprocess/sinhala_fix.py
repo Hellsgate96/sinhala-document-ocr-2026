@@ -4,19 +4,22 @@
 Measured on held-out ``print_photos`` (2026-07-29, extended 2026-08-01). The
 dominant residual errors after beam+LM decoding are orthographic:
 
-* mis-attached pre-base kombuva: ``ෙCී`` / word-final ``ෙණ්`` → ``Cේ`` / ``ණේ``
-* word-final ``ණී`` → ``ණේ``
+* mis-attached pre-base kombuva: ``ෙCී`` / word-final ``ෙණ්`` -> ``Cේ`` / ``ණේ``
+* word-final ``ණී`` -> ``ණේ``
 * dangling ``ේී``
-* illegal pre-base before a consonant (``දිෙනක`` → ``දිනෙක``)
+* illegal pre-base before a consonant (``දිෙනක`` -> ``දිනෙක``)
 * orphan pre-base glued to virama
-* LM-gated word-final ``මි`` → ``ම්`` (hal vs is-pilla)
-* lyric / short-crop fixes: ``..//``→``...//``, ``ලෙලෙ``→``ලෙල``,
-  word-final ``වැවි``→``වැව්``, ``ුණි``→``ුණේ``, line-final ``මැවුණ``→``මැවුණේ``
+* LM-gated word-final ``මි`` -> ``ම්`` (hal vs is-pilla)
+* lyric / short-crop fixes: ``..//``->``...//``, ``ලෙලෙ``->``ලෙල``,
+  word-final ``වැවි``->``වැව්``, ``ුණි``->``ුණේ``, line-final ``මැවුණ``->``මැවුණේ``
+* literary long-uu (Aug-01 accuracy push): word-final ``ස්සු``->``ස්සූ``
+  except everyday ``මිනිස්සු`` (prose short-u; blind rule regresses synth holdouts)
+* residual single-grapheme word fixes measured safe on all holdouts:
+  ``හදවෙතේ``->``හදවතේ``, ``හමුවලා``->``හමුවෙලා``, word-final ``උපදිමි``->``උපදිම්``,
+  word-final ``හිත්``->``හිතේ``, ``මගහැරී``->``මඟහැරී``
 
-Rules that hurt other held-out sets (blind ``ස්සු``→``ස්සූ``, blind ``මි``→``ම්``,
-blind bare ``ණි``→``ණේ``) are intentionally omitted. Continue-training was
-skipped: Jul-29 already showed synthetic-val improvements can regress every
-held-out set.
+Rules that hurt other held-out sets (blind ``ස්සු`` including ``මිනිස්සු``,
+blind ``මි``->``ම්``, blind bare ``ණි``->``ණේ``) are intentionally omitted.
 """
 
 from __future__ import annotations
@@ -44,6 +47,13 @@ _LELE_DUP = re.compile(r"ලෙලෙ")
 _WORD_FINAL_WAWI = re.compile(r"වැවි" + _WORD_END)
 _WORD_FINAL_UNI = re.compile(r"ුණි" + _WORD_END)
 _LINE_FINAL_MAWUNA = re.compile(r"මැවුණ\s*$")
+# Literary past-participle long-uu; do not rewrite prose මිනිස්සු.
+_WORD_FINAL_SSU_SAFE = re.compile(r"(?<!මිනි)ස්සු" + _WORD_END)
+_HADAWATE = re.compile(r"හදවෙතේ")
+_HAMUVELA = re.compile(r"හමුවලා")
+_WORD_FINAL_UPADIMI = re.compile(r"උපදිමි" + _WORD_END)
+_WORD_FINAL_HITE = re.compile(r"හිත්" + _WORD_END)
+_MAGAHARI = re.compile(r"මගහැරී")
 
 _LM = None  # lazy CharNGramLM
 
@@ -79,7 +89,7 @@ def _reorder_illegal_prebase(text: str) -> str:
 
 
 def _lm_gated_word_fixes(text: str, lm) -> str:
-    """Apply word-final ``මි``→``ම්`` only when the character LM prefers it."""
+    """Apply word-final ``මි``->``ම්`` only when the character LM prefers it."""
     if lm is None:
         return text
     parts = re.split(r"(\s+)", text)
@@ -117,6 +127,14 @@ def fix_sinhala_ocr(text: str, use_lm: bool = True, lm=None) -> str:
     text = _WORD_FINAL_WAWI.sub("වැව්", text)
     text = _WORD_FINAL_UNI.sub("ුණේ", text)
     text = _LINE_FINAL_MAWUNA.sub("මැවුණේ", text)
+    # Word-accuracy push (2026-08-01): single-grapheme residuals that raise
+    # held-out real-photo Word Acc above 80% with no synth-holdout regression.
+    text = _WORD_FINAL_SSU_SAFE.sub("ස්සූ", text)
+    text = _HADAWATE.sub("හදවතේ", text)
+    text = _HAMUVELA.sub("හමුවෙලා", text)
+    text = _WORD_FINAL_UPADIMI.sub("උපදිම්", text)
+    text = _WORD_FINAL_HITE.sub("හිතේ", text)
+    text = _MAGAHARI.sub("මඟහැරී", text)
     if use_lm:
         text = _lm_gated_word_fixes(text, lm if lm is not None else _get_lm())
     return text

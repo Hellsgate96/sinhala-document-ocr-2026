@@ -1,0 +1,1895 @@
+images/acts_test_0001_line_001.png	2002 අංක 1 දරන පළාත් පාලන ආයතන ඡන්ද විමසීම් 5
+images/acts_test_0001_line_002.png	(සංශෝධන) පනත
+images/acts_test_0001_line_003.png	(ආ) ඒ කාර්යය සඳහා යම් ආගමික
+images/acts_test_0001_line_004.png	රැස්වීමක දී යම් අත්පත්‍රිකාවක්,
+images/acts_test_0001_line_005.png	ප්‍රදානපත්‍රයක්, දැන්වීම් කොළයක්,
+images/acts_test_0001_line_006.png	චිත්‍රයක්, දැන්වීමක්, අපේක්ෂකයකුගේ
+images/acts_test_0001_line_007.png	ඡායාරූපයක්, ලකුණක්, සළකුණක්,
+images/acts_test_0001_line_008.png	කොඩියක් හෝ පතාකයක් බෙදා හරින
+images/acts_test_0001_line_009.png	හෝ ප්‍රදර්ශනය කරන ; හෝ
+images/acts_test_0001_line_010.png	(ඇ) ඒ ඡන්ද විමසීමේ දී යම් පිළිගත්
+images/acts_test_0001_line_011.png	දේශපාලන පක්ෂයක් හෝ ස්වාධීන
+images/acts_test_0001_line_012.png	කණ්ඩායමක් තෝරා පත් කර ගැනීම
+images/acts_test_0001_line_013.png	හෝ යම් පිළිගත් දේශපාලන පක්ෂයක
+images/acts_test_0001_line_014.png	හෝ ස්වාධීන කණ්ඩායමක ඡන්ද
+images/acts_test_0001_line_015.png	ව්‍යාපාරය හෝ ප්‍රවර්ධනය කිරිමේ කාර්ය
+images/acts_test_0001_line_016.png	සඳහා පූජනීය ස්ථානයක මහජන
+images/acts_test_0001_line_017.png	රැස්වීමක් පවත්වන හෝ පැවැත්වීමට
+images/acts_test_0001_line_018.png	සලස්වන,
+images/acts_test_0001_line_019.png	සෑම තැනැත්තකු ම අයුතු බලපෑමේ වරදට වරදකරු
+images/acts_test_0001_line_020.png	විය යුතු ය.
+images/acts_test_0001_line_021.png	(3) මේ ආඥාපනත යටතේ යම් ඡන්ද විමසීමක
+images/acts_test_0001_line_022.png	දී යම් පිළිගත් දේශපාලන පක්ෂයකට හෝ යම්
+images/acts_test_0001_line_023.png	ස්වාධීන කණ්ඩායමකට ඡන්දය දීමට හෝ ඡන්දය
+images/acts_test_0001_line_024.png	දීමෙන් වැළකී සිටීමට හෝ ඒ ඡන්ද විමසීමේ දී
+images/acts_test_0001_line_025.png	යම් පිළිගත් දේශපාලන පක්ෂයකට හෝ ස්වාධීන
+images/acts_test_0001_line_026.png	කණ්ඩායමකට ආධාර දීමට හෝ ආධාර දීමෙන්
+images/acts_test_0001_line_027.png	වැළකී සිටීමට ආගමික, සංස්ථිතියක හෝ
+images/acts_test_0001_line_028.png	සංවිධානයක යම් සාමාජිකයකු හෝ අනුගාමිකයකු
+images/acts_test_0001_line_029.png	පෙළඹවීම සඳහා හෝ ඔහුට බල කිරීම සඳහා,
+images/acts_test_0001_line_030.png	නැතහොත් ඒ සාමාජිකයා හෝ අනුගාමිකයා ඒ
+images/acts_test_0001_line_031.png	ඡන්ද විමසීමේ දී යම් පිළිගත් දේශපාලන
+images/acts_test_0001_line_032.png	පක්ෂයකට හෝ ස්වාධීන කණ්ඩායමකට ඡන්දය
+images/acts_test_0001_line_033.png	දී තිබීම හෝ ඡන්දය දීමෙන් වැළකී සිටීම
+images/acts_test_0001_line_034.png	හේතුකොටගෙන, හෝ ඔහු ඒ ඡන්ද විමසීමේ දී
+images/acts_test_0001_line_035.png	එවැනි යම් පිළිගත් දේශපාලන පක්ෂයකට හෝ
+images/acts_test_0001_line_036.png	ස්වාධීන කණ්ඩායමකට ආධාර දී තිබීම හෝ
+images/acts_test_0001_line_037.png	ආධාර දීමෙන් වැළකී සිටීම හේතුකොටගෙන-
+images/acts_test_0002_line_001.png	16 2012 අංක 8 දරන දේශීය ආදායම්
+images/acts_test_0002_line_002.png	(සංශෝධන) පනත
+images/acts_test_0002_line_003.png	කිරීම සඳහා යම් සේවාවන්
+images/acts_test_0002_line_004.png	සැපයීමේ දී ශ්‍රී ලංකාවෙන් පිටත
+images/acts_test_0002_line_005.png	ගමන් බිමන් යාමේ දී දරන ලද
+images/acts_test_0002_line_006.png	වියදම්; හෝ
+images/acts_test_0002_line_007.png	(ii) (ඈ) ඡේදයේ සඳහන් පරිදි අනුමත
+images/acts_test_0002_line_008.png	වැඩ සටහනක් ක්‍රියාත්මක කිරීමේ
+images/acts_test_0002_line_009.png	කාර්යය සඳහා ශ්‍රී ලංකාවෙන් පිටත
+images/acts_test_0002_line_010.png	ගමන් බිමන් යාමේ දී දරන ලද
+images/acts_test_0002_line_011.png	වියදම්; හෝ
+images/acts_test_0002_line_012.png	(iii) 2012 අප්‍රේල් මස 1 වන දින හෝ
+images/acts_test_0002_line_013.png	ඉන්පසු ආරම්භ වන යම් තක්සේරු
+images/acts_test_0002_line_014.png	වර්ෂයක් සඳහා මෝස‍්තර
+images/acts_test_0002_line_015.png	සංවර්ධනය, නිෂ්පාදන සංවර්ධනය
+images/acts_test_0002_line_016.png	හෝ නිෂ්පාදන නවෝත්පාදනය හා
+images/acts_test_0002_line_017.png	සම්බන්ධ සේවාවන් සැපයීමෙහි ම
+images/acts_test_0002_line_018.png	නිරතව සිටින යම් සමාගමක් විසින්
+images/acts_test_0002_line_019.png	ශ්‍රී ලංකාවෙන් පිටත ගමන් බිමන්
+images/acts_test_0002_line_020.png	යාමේ දී දරන ලද වියදම් ;”
+images/acts_test_0002_line_021.png	අඩු කිරීමෙන් පසු ඒ තැනැත්තා විසින් ශ්‍රී ලංකාවෙහි
+images/acts_test_0002_line_022.png	පවත්වාගෙන යනු ලබන නැතහොත් කරගෙන යනු ලබන
+images/acts_test_0002_line_023.png	යම් වෙළෙඳාමකින් හෝ ව්‍යාපාරයකින් ලාභ හෝ ආදායම්
+images/acts_test_0002_line_024.png	ඉපැයීම පිණිස ශ්‍රී ලංකාවෙන් පිටත ගමන් බිමන් යාමේ
+images/acts_test_0002_line_025.png	දී දරන ලද වියදමේ කොටස ; හෝ
+images/acts_test_0002_line_026.png	(ආ) ඒ වෙළෙඳාමේ හෝ ව්‍යාපාරයේ ඊට පෙරාතුවම වූ
+images/acts_test_0002_line_027.png	තක්සේරු වර්ෂයේ ලාභ සහ ආදායම්වලින් සියයට
+images/acts_test_0002_line_028.png	දෙකකට සමාන ප්‍රමාණයක්,
+images/acts_test_0002_line_029.png	යන්නෙන් අඩු ප්‍රමාණය, එම වෙළෙඳාමෙන් හෝ
+images/acts_test_0002_line_030.png	ව්‍යාපාරයෙන් එකී තක්සේරු වර්ෂය සඳහා ලැබුණ ලාභ
+images/acts_test_0002_line_031.png	සහ ආදායම නිශ්චය කිරීමේ දී අඩු කරනු ලැබිය
+images/acts_test_0002_line_032.png	යුතු ය”;
+images/acts_test_0002_line_033.png	(2) (බ) ඡේදයේ අතුරු විධානයේ "1982 අංක 17 දරන සමාගම්
+images/acts_test_0002_line_034.png	පනතින්" යන වචන සහ ඉලක්කම් වෙනුවට "2007 අංක 7
+images/acts_test_0002_line_035.png	දරන සමාගම් පනතින්" යන වචන සහ ඉලක්කම් ආදේශ
+images/acts_test_0002_line_036.png	කිරීමෙන්;."
+images/acts_test_0003_line_001.png	88 2010 අංක 14 දරන සිවිල් ගුවන් සේවා පනත
+images/acts_test_0003_line_002.png	(ආ) ඉවත් කරන ලද කවර හෝ විධිවිධානයක් යටතේ සාදන
+images/acts_test_0003_line_003.png	ලද සහ නියමිත දිනයේ දී බලාත්මකව පවතින සෑම
+images/acts_test_0003_line_004.png	නියෝගයක්ම හෝ නියමයක්ම, එකී නියෝගය හෝ නියමය
+images/acts_test_0003_line_005.png	මේ පනතේ විධිවිධාන හා පටහැනි නොවන තාක්, මේ
+images/acts_test_0003_line_006.png	පනත යටතේ සාදන ලද නියෝගයක් හෝ නියමයක් ලෙස
+images/acts_test_0003_line_007.png	සලකනු ලැබිය යුතු අතර, මේ පනත යටතේ සාදනු ලබන
+images/acts_test_0003_line_008.png	යම් නියෝගයක් හෝ නියමයක් මගින් සංශෝධනය කිරීම
+images/acts_test_0003_line_009.png	හෝ අවලංගු කිරීම හෝ කළ හැකි ය;
+images/acts_test_0003_line_010.png	(ඇ) ඉවත් කරන ලද විධිවිධාන කිසිවක් යටතේ හෝ ඒ යටතේ
+images/acts_test_0003_line_011.png	සාදන ලද යම් නියෝගයක් යටතේ හෝ නිකුත් කරන ලද
+images/acts_test_0003_line_012.png	හෝ වලංගු භාවයට පත් කරන ලද සහ නියමිත දිනයේ දී
+images/acts_test_0003_line_013.png	බලාත්මකව පවත්නා සෑම බලපත්‍රයක් ම හෝ සහතිකයක්
+images/acts_test_0003_line_014.png	ම මේ පනත යටතේ නිකුත් කරන ලද බලපත්‍රයක් හෝ
+images/acts_test_0003_line_015.png	සහතිකයක් වශයෙන් සැලකිය යුතු අතර, එවැනි බලපත්‍රයක්
+images/acts_test_0003_line_016.png	හෝ සහතිකයක් නිකුත් කරන ලද හෝ වලංගු භාවයට
+images/acts_test_0003_line_017.png	පත් කරන ලද කාල පරිච්ඡේදය අවසන් වන තුරු වලංගුව
+images/acts_test_0003_line_018.png	සහ ක්‍රියාත්මකව පැවතිය යුතු ය;
+images/acts_test_0003_line_019.png	(ඈ) ඉවත් කරන ලද විධිවිධාන කිසිවක් යටතේ සාදන ලද
+images/acts_test_0003_line_020.png	නියෝගයක් යටතේ ප්‍රදානය කරන ලද සෑම අනුමැතියක්
+images/acts_test_0003_line_021.png	හෝ දෙන ලද සෑම ධුරයක්, බලය පැවරීමක් හෝ කරන
+images/acts_test_0003_line_022.png	ලද සෑම පත්කිරීමක්, නිකුත් කරන ලද සෑම විධානයක්,
+images/acts_test_0003_line_023.png	චක්‍රලේඛයක්, අත්පොතක්, උපදෙසක් සහ නිකුත් කරන
+images/acts_test_0003_line_024.png	ලද වෙනත් යම් ප්‍රකාශයක් හෝ පිහිටුවන ලද යම් මණ්ඩල
+images/acts_test_0003_line_025.png	කිසිවක් මේ පනත යටතේ ප්‍රදානය කරන ලද, දෙන ලද,
+images/acts_test_0003_line_026.png	නිකුත් කරන ලද හෝ පිහිටුවන ලද සේ සැලකිය යුතු
+images/acts_test_0003_line_027.png	අතර වෙනත් ආකාරයකින් අවලංගු කරනතුරු හෝ බලරහිත
+images/acts_test_0003_line_028.png	භාවයට පත්කරනතුරු තවදුරටත් බලාත්මකව පැවතිය
+images/acts_test_0003_line_029.png	යුතු ය;
+images/acts_test_0003_line_030.png	(ඉ) සිවිල් ගුවන් සේවා දෙපාර්තමේන්තුවට පක්ෂව හෝ
+images/acts_test_0003_line_031.png	එරෙහිව, කිසියම් උසාවියක් විසින්, විනිශ්චය සභාවක් විසින්
+images/acts_test_0003_line_032.png	හෝ වෙනත් මණ්ඩලයක් විසින් යම් නඩුවක දී, කාරණයක
+images/acts_test_0003_line_033.png	දී, පටිපාටියක දී හෝ දෙයක දී ඇතුළත් කරන ලද හෝ
+images/acts_test_0003_line_034.png	දෙන ලද තීන්දු ප්‍රකාශයක්, නියෝගයක් හෝ ප්‍රදානයක්,
+images/acts_test_0003_line_035.png	නියමිත දිනයේ සිට බලපැවැත්වෙන පරිදි අධිකාරියට පක්ෂව
+images/acts_test_0003_line_036.png	හෝ එරෙහිව හෝ ඇතුළත් කරන ලද හෝ දෙන ලද තීන්දු
+images/acts_test_0003_line_037.png	ප්‍රකාශයක්, නියෝගයක්, හෝ ප්‍රදානයක් වශයෙන් සලකා
+images/acts_test_0003_line_038.png	ඒ අනුව බලාත්මක කළ යුතුය.
+images/acts_test_0004_line_001.png	92 2010 අංක 14 දරන සිවිල් ගුවන් සේවා පනත
+images/acts_test_0004_line_002.png	5 වන ව්‍යවස්ථාව
+images/acts_test_0004_line_003.png	අනියම් පියසර සඳහා අයිතිය
+images/acts_test_0004_line_004.png	ඉහළින් පියාසර කරනු ලබන රාජ්‍යය සතු, ගොඩබැස්සවීමට නියම කිරීමේ
+images/acts_test_0004_line_005.png	අයිතියට යටත්ව සහ මෙම සම්මුතියේ නියමයන්ට අනුකූලව කටයුතු කිරීමේ
+images/acts_test_0004_line_006.png	කොන්දේසිය මත අනෙකුත් ගිවිසුම්ගත රාජ්‍යවලට අයත්, නියමිත ජාත්‍යන්තර
+images/acts_test_0004_line_007.png	ගුවන් ප්‍රවාහන සේවාවන් හි නිරත නොවන සියලුම ගුවන් යානාවන්ට පූර්ව
+images/acts_test_0004_line_008.png	අනුමැතියක් ලබාගැනීමේ අවශ්‍යතාවයෙන් තොරව ස්වකීය දේශය තුළට හෝ,
+images/acts_test_0004_line_009.png	සංක්‍රමණ වශයෙන් ස්වකීය දේශය හරහා නැවතීමකින් තොරව හෝ පියාසර
+images/acts_test_0004_line_010.png	කිරීමේ අයිතියත්, එමෙන්ම ප්‍රවාහන කාර්යයන් නොවන කාර්යයන් සඳහා
+images/acts_test_0004_line_011.png	නැවැත්වීමේ අයිතියත් හිමිවිය යුතු බවට එක් එක් ගිවිසුම්ගත රාජ්‍යය
+images/acts_test_0004_line_012.png	එකඟවන්නේ ය. කෙසේ වුව ද, පියසර නිරුපද්‍රිතතා හේතූන් මත, ප්‍රවිෂ්ට විය
+images/acts_test_0004_line_013.png	නොහැකි හෝ ප්‍රමාණවත් ගුවන් සංතරණ පහසුකම් නොමැති හෝ කලාපවලට
+images/acts_test_0004_line_014.png	ඉහළින් පියාසර කිරීමට අපේක්ෂා කරන ගුවන් යානාවන්ට, නියම කරනු ලබන
+images/acts_test_0004_line_015.png	ගුවන් මාර්ග ඔස්සේ පියාසර කරන ලෙස හෝ එවැනි පියසරයන් සඳහා විශේෂ
+images/acts_test_0004_line_016.png	අවසරයක් ලබාගන්නා ලෙස හෝ නියම කිරීමේ අයිතිය එක් එක් ගිවිසුම්ගත
+images/acts_test_0004_line_017.png	රාජ්‍ය තම තමන් වෙත රඳවාගනු ලැබේ. එවැනි ගුවන් යානා පාරිශ්‍රමිකයක්
+images/acts_test_0004_line_018.png	හෝ කුලියක් හෝ සඳහා මගීන්, ගුවන් භාණ්ඩ හෝ තැපෑල හෝ ප්‍රවාහනය
+images/acts_test_0004_line_019.png	කරන නියමිත ජාත්‍යන්තර ගුවන් ප්‍රවාහන සේවා නොවන වෙනත් සේවාවන්
+images/acts_test_0004_line_020.png	හි නිරත වන්නේ නම් 7 වන ව්‍යවස්ථාවේ විධිවිධානයන්ට සහ ස්වකීය දේශය
+images/acts_test_0004_line_021.png	තුළ දී ගුවන් යානාවන් තුළට පැටවීම සහ ගොඩ බෑම සම්බන්ධයෙන් පැනවීම
+images/acts_test_0004_line_022.png	උචිත යයි තමන් අදහස් කරන නියෝග, කොන්දේසි හෝ සීමා කිරීම් හෝ
+images/acts_test_0004_line_023.png	කිසිවක් පැනවීමට කිසියම් රාජ්‍යයක් සතුව ඇති අයිතියට ද යටත්ව මගීන්,
+images/acts_test_0004_line_024.png	ගුවන් භාණ්ඩ හෝ තැපෑල හෝ පටවා ගැනීමේ හෝ ගොඩබෑමේ හෝ
+images/acts_test_0004_line_025.png	වරප්‍රසාදය ද එකී ගුවන් යානාවන්ට හිමි විය යුතු ය.
+images/acts_test_0004_line_026.png	6 වන ව්‍යවස්ථාව
+images/acts_test_0004_line_027.png	විධිමත් කාලසටහනක් සහිත ගුවන් ප්‍රවාහන සේවා
+images/acts_test_0004_line_028.png	යම් ගිවිසුම්ගත රාජ්‍යයකින් ලබාගත් විශේෂ අවසරයක් හෝ වෙනත් බලය
+images/acts_test_0004_line_029.png	පැවරුමක් හෝ සහිතව සහ එවැනි අවසරයක හෝ බලය පැවරුමක හෝ
+images/acts_test_0004_line_030.png	අන්තර්ගත නියමයන්ට අනුකූලව මිස කිසිම ගිවිසුම්ගත රාජ්‍යයක දේශය තුළට
+images/acts_test_0004_line_031.png	හෝ ඊට ඉහළින් හෝ විධිමත් කාලසටහනක් සහිත ජාත්‍යන්තර ගුවන් ප්‍රවාහන
+images/acts_test_0004_line_032.png	සේවා මෙහෙයවීම සිදු නොකළ යුතු ය.
+images/acts_test_0004_line_033.png	7 වන ව්‍යවස්ථාව
+images/acts_test_0004_line_034.png	අභ්‍යන්තර ප්‍රවාහනය
+images/acts_test_0004_line_035.png	එක් එක් ගිවිසුම්ගත රාජ්‍යයකට අයත් ගුවන් යානාවන්ට ස්වකීය දේශය
+images/acts_test_0004_line_036.png	තුළ පිහිටි තවත් ස්ථානයක් දක්වා පාරිශ්‍රමිකයක් හෝ කුලියක් හෝ අය කිරීම
+images/acts_test_0004_line_037.png	සඳහා මගීන්, ගුවන් භාණ්ඩ සහ තැපෑල ප්‍රවාහනය කිරීමට අවසරදීම ප්‍රතික්ෂේප
+images/acts_test_0004_line_038.png	කිරීමේ අයිතිය වෙනත් ගිවිසුම්ගත රාජ්‍යයකට හිමිවන්නේ ය. එවැනි
+images/acts_test_0004_line_039.png	වරප්‍රසාදයක් නිශ්චිත වශයෙන් වෙනත් කිසියම් රාජ්‍යයකට හෝ වෙනත්
+images/acts_test_0004_line_040.png	රාජ්‍යයකට අයත් ගුවන් ප්‍රවාහන සමාගමකට හෝ තනිකරම පවරාදීමේ ගිවිසුම්
+images/acts_test_0004_line_041.png	කිසිවකට බැඳීමෙන් වලකින බවටත් තමන් ද වෙනත් රාජ්‍යකින් එවැනි තනි
+images/acts_test_0004_line_042.png	වරප්‍රසාදයක් ලබා නොගන්නා බවටත් එක් එක් ගිවිසුම්ගත රාජ්‍යය පොරොන්දු
+images/acts_test_0004_line_043.png	වෙයි.
+images/acts_test_0005_line_001.png	18	1981 අංක 1 දරන පාර්ලිමේන්තු මැතිවරණ පනත
+images/acts_test_0005_line_002.png	(8) තැපැල් ඡන්දදායකයකු ලෙස සලකනු ලැබීම පිණිස කරනු
+images/acts_test_0005_line_003.png	ලබන ඉල්ලීමකට තේරීම් භාර නිලධරයා විසින් ඉඩ දෙනු ලැබූ
+images/acts_test_0005_line_004.png	අවස්ථාවක, මැතිවරණයක කාර්යය සඳහා ඉල්ලුම්කරු තැපැල්
+images/acts_test_0005_line_005.png	ඡන්දදායකයකු ලෙස සලකනු ලැබීමට හිමිකම් ඇති තැනැත්තකු
+images/acts_test_0005_line_006.png	විය යුතු ය.
+images/acts_test_0005_line_007.png	(9) තේරීම් භාර නිලධරයා විසින්, තැපැල් ඡන්දදායකයකු ලෙස
+images/acts_test_0005_line_008.png	සලකනු ලැබීමට හිමිකම් ලත් එක් එක් තැනැත්තා වෙත, ඒ
+images/acts_test_0005_line_009.png	තැනැත්තා විසින් සපයන ලද ලිපිනයට -
+images/acts_test_0005_line_010.png	(අ) ඡන්ද පත්‍රිකාවක්;
+images/acts_test_0005_line_011.png	(ආ) අනන්‍යතා ප්‍රකාශයේ ආකෘතියක්;
+images/acts_test_0005_line_012.png	(ඇ) මේ උපවගන්තියේ (ඈ) ඡේදයෙහි සඳහන් ලියුම් කවරයට
+images/acts_test_0005_line_013.png	වඩා කුඩා විය යුතු වූ ද “ඡන්ද පත්‍රිකා ලියුම් කවරය "
+images/acts_test_0005_line_014.png	යන්න සහ ඒ තැනැත්තා වෙත නිකුත් කරන ලද
+images/acts_test_0005_line_015.png	තැපැල් ඡන්ද පත්‍රිකාවෙහි මුද්‍රණය කර ඇති අංකය ලකුණු
+images/acts_test_0005_line_016.png	කළා වූ ද තැපැල් ඡන්ද පත්‍රිකාව විධිමත් ලෙස ලකුණු
+images/acts_test_0005_line_017.png	කොට එය නැවත එවනු ලබන විට එය බහාලිය යුතු වු ද
+images/acts_test_0005_line_018.png	ලියුම් කවරයක් ; හා
+images/acts_test_0005_line_019.png	(ඈ) ඉහත සඳහන් ලේඛන ආපසු යවනු ලැබීම පිණිස වූ ලියුම්
+images/acts_test_0005_line_020.png	කවරයක්
+images/acts_test_0005_line_021.png	හැකිතාක් ඉක්මණින් තැපෑලෙන් යවනු ලැබිය යුතු ය.
+images/acts_test_0005_line_022.png	(10) තැපැල් ඡන්දදායකයන් ලෙස සලකනු ලැබීමට හිමිකම්ලත්
+images/acts_test_0005_line_023.png	තැනැත්තන් විසින් පාවිච්චි කළ යුතු ඡන්ද පත්‍රිකාවේ ආකෘතිය හා
+images/acts_test_0005_line_024.png	අනන්‍යතා ප්‍රකාශයේ ආකෘතිය සහ ඒවා නිකුත් කිරීමේ දී අනුගම
+images/acts_test_0005_line_025.png	නය කළ යුතු ක්‍රියාමාර්ගය මේ පනතේ දෙවන උපලේඛනයෙහි
+images/acts_test_0005_line_026.png	සඳහන් නියෝග අනුව විය යුතු ය.
+images/acts_test_0005_line_027.png	(14) තැපැල් ඡන්දදායකයකු ලෙස සලකනු ලැබීමට හිමිකම්
+images/acts_test_0005_line_028.png	ලත් තැනැත්තකු වෙත නිකුත් කරනු ලබන ඡන්ද පත්‍රිකාවක් මේ
+images/acts_test_0005_line_029.png	පනතෙහි "තැපැල් ඡන්ද පත්‍රිකාවක් " යනුවෙන් සඳහන් කරනු
+images/acts_test_0005_line_030.png	ලැබේ.
+images/acts_test_0005_line_031.png	(12) මැතිවරණයක් පැවැත්වීමට ඇති යම් මැතිවරණ කොට්ඨාස
+images/acts_test_0005_line_032.png	යක තේරීම් භාර නිලධරයා විසින් තැපැල් ඡන්දදායකයකු ලෙස
+images/acts_test_0005_line_033.png	සලකනු ලැබීමට හිමිකම් ලත් සෑම තැනැත්තකුගේම ඡන්ද හිමි
+images/acts_test_0005_line_034.png	නාමලේඛනයේ සඳහන් නම, ලිපිනය සහ අංකය දැක්වෙන (මේ
+images/acts_test_0005_line_035.png	පනතේ " තැපැල් ඡන්දදායකයන්ගේ ලැයිස් තුව " යනුවෙන්
+images/acts_test_0005_line_036.png	සඳහන් කරනු ලබන) ලැයිස්තුවක් හැකිතාක් ඉක්මණින් පිළියෙළ
+images/acts_test_0005_line_037.png	කළ යුතුය. මේ පනතේ දෙවන උපලේඛනයෙහි ඇතුළත් නියෝග
+images/acts_test_0005_line_038.png	මගින් ලැයිස්තුව පිළියෙළ කිරීම සම්බන්ධයෙන් නියම කර ඇති
+images/acts_test_0005_line_039.png	යම් ආකාරයකින් එය පිළියෙළ කරනු ලැබිය යුතු ය.
+images/acts_test_0006_line_001.png	4 2016 අංක 2 දරන ධීවර සහ ජලජ සම්පත්
+images/acts_test_0006_line_002.png	(සංශෝධන) පනත
+images/acts_test_0006_line_003.png	(3) (අ) දැන්වීම් භාරදෙනු ලැබූ තැනැත්තා එසේ
+images/acts_test_0006_line_004.png	දැන්වීම ලැබුණු දින සිට එක් මාසයක් ඇතුළත
+images/acts_test_0006_line_005.png	ඉදිරිපත්ව දණ්ඩනය පැනවීමට එරෙහිව දැක්විය හැකි
+images/acts_test_0006_line_006.png	හේතු තමා සතු බව සඳහන් කරන අවස්ථාවක දී
+images/acts_test_0006_line_007.png	අධ්‍යක්ෂ-ජනරාල්වරයා විසින් නියම කර ඇති
+images/acts_test_0006_line_008.png	ආකාරයට එම කරුණ අසා තීරණය කිරීමට වහාම
+images/acts_test_0006_line_009.png	ක්‍රියා කළ යුතු ය.
+images/acts_test_0006_line_010.png	(ආ) ඉදිරිපත් කර ඇති හේතු පිළිබඳව අධ්‍යක්ෂ-
+images/acts_test_0006_line_011.png	ජනරාල්වරයා සෑහීමකට පත් නොවන අවස්ථාවක
+images/acts_test_0006_line_012.png	දී ඔහු විසින් ඒ සඳහා හේතු දක්වා මේ වගන්තියේ
+images/acts_test_0006_line_013.png	(2) වන උපවගන්තියේ නිශ්චිතව දැක්වෙන දණ්ඩනය
+images/acts_test_0006_line_014.png	පනවනු ලැබිය හැකි ය.
+images/acts_test_0006_line_015.png	(4) මේ පනතේ 14අ, 14ඉ, 14ඊ හෝ 14උ වන
+images/acts_test_0006_line_016.png	වගන්තිවල විධිවිධාන හෝ මේ පනතේ 61(1)(ත)
+images/acts_test_0006_line_017.png	හෝ 61(1)(ද) වගන්ති යටතේ සාදන ලද යම්
+images/acts_test_0006_line_018.png	නියෝගයක් උල්ලංඝනය කිරීම සම්බන්ධයෙන්
+images/acts_test_0006_line_019.png	අධ්‍යක්ෂ-ජනරාල්වරයා විසින් මේ වගන්තිය යටතේ
+images/acts_test_0006_line_020.png	යම් තැනැත්තකුට මුල්‍යමය දණ්ඩනයක් පනවනු
+images/acts_test_0006_line_021.png	ලබන අවස්ථාවක දී එම තැනැත්තා වෙත නියමිත
+images/acts_test_0006_line_022.png	ආකෘතිය අනුව වූ දැන්වීමක් භාරදීමට අධ්‍යක්ෂ-
+images/acts_test_0006_line_023.png	ජනරාල්වරයා කටයුතු සැළැස්විය යුතු ය.
+images/acts_test_0006_line_024.png	(5) අධ්‍යක්ෂ-ජනරාල්වරයාගේ යම් තීරණයකින්
+images/acts_test_0006_line_025.png	අතෘප්තියට පත්වන යම් තැනැත්තෙක් (3) වන
+images/acts_test_0006_line_026.png	උපවගන්තිය යටතේ කරන ලද එම තීරණය ලැබුණු
+images/acts_test_0006_line_027.png	දින සිට දින තිහක් ඇතුළත (මෙහි මින්මතු
+images/acts_test_0006_line_028.png	"ලේකම්වරයා” යනුවෙන් සඳහන් කරනු ලබන) ධීවර
+images/acts_test_0006_line_029.png	සහ ජලජ සම්පත් සංවර්ධන විෂයභාර
+images/acts_test_0006_line_030.png	අමාත්‍යවරයාගේ අමාත්‍යාංශයේ ලේකම්වරයා වෙත
+images/acts_test_0006_line_031.png	අභියාචනය කළ හැකි ය.
+images/acts_test_0006_line_032.png	(6) ලේකම්වරයා විසින් අධ්‍යක්ෂ-ජනරාල්වරයාගේ
+images/acts_test_0006_line_033.png	තීරණය සහ ඒ වරද කිරීමට අදාළ පරිවේෂණ
+images/acts_test_0007_line_001.png	1984 අංක 3 දරන ඇඟලුම් නිෂ්පාදන කර්මාන්ත  7
+images/acts_test_0007_line_002.png	අභ්‍යාස ආයතනය පනත
+images/acts_test_0007_line_003.png	(2) රජයේ සේවයේ යම් නිලධරයකු ආයතනයේ කාර්ය
+images/acts_test_0007_line_004.png	මණ්ඩලයට තාවකාලිකව පත් කරනු ලැබූ අවස්ථාවක, ජාතික රාජ්‍ය
+images/acts_test_0007_line_005.png	සභාවේ 1978 අංක 19 දරන ගමනාගමන මණ්ඩල පනතේ 13 වන
+images/acts_test_0007_line_006.png	වගන්තියේ (2) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස්
+images/acts_test_0007_line_007.png	කිරීම් සහිතව, ඒ නිලධරයාට සහ ඒ නිලධරයා සම්බන්ධයෙන්
+images/acts_test_0007_line_008.png	අදාළ විය යුතු ය.
+images/acts_test_0007_line_009.png	(3) රජයේ සේවයේ යම් නිලධරයකු ආයතනයේ කාර්ය මණ්ඩල
+images/acts_test_0007_line_010.png	යට ස්ථීරව පත් කරනු ලැබූ අවස්ථාවක, ජාතික රාජ්‍ය සභාවේ 1978
+images/acts_test_0007_line_011.png	අංක 19 දරන ගමනාගමන මණ්ඩල පනතේ 13 වන වගන්තියේ
+images/acts_test_0007_line_012.png	(3) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස් කිරීම් සහිතව,
+images/acts_test_0007_line_013.png	ඒ නිලධරයාට සහ ඒ නිලධරයා සම්බන්ධයෙන් අදාළ විය යුතු ය.
+images/acts_test_0007_line_014.png	(4) යම් නිශ්චිත කාලසීමාවක් ආණ්ඩුවට සේවය කිරීමට එකඟ
+images/acts_test_0007_line_015.png	වෙමින් ආණ්ඩුව සමඟ ගිවිසුමකට එළඹ ඇති යම් තැනැත්තකු
+images/acts_test_0007_line_016.png	ආයතනය විසින් සේවයෙහි නියුක්ත කරනු ලබන අවස්ථාවක, ඒ
+images/acts_test_0007_line_017.png	තැනැත්තා විසින් ආයතනයට සේවය කරනු ලබන යම් සේවා
+images/acts_test_0007_line_018.png	කාලයක් ඒ ගිවිසුමේ බැඳීම් ඉටු කිරීමේ කාර්යය සඳහා ආණ්ඩුවට
+images/acts_test_0007_line_019.png	සේවය කරනු ලබන සේවා කාලයක් ලෙස සලකනු ලැබිය යුතු ය.
+images/acts_test_0007_line_020.png	(5) මණ්ඩලයේ ඉල්ලීම පිට, පළාත් පාලන සේවයේ යම්
+images/acts_test_0007_line_021.png	සමාජිකයකු හෝ යම් පළාත් පාලන ආයතනයක වෙනත් යම්
+images/acts_test_0007_line_022.png	නිලධරයකු හෝ සේවකයකු, අවස්ථාවෝචිත පරිදි, ඒ සාමාජිකයා
+images/acts_test_0007_line_023.png	ගේ, නිලධරයාගේ හෝ සේවකයාගේ සහ පළාත් පාලන සේවා
+images/acts_test_0007_line_024.png	උපදේශක මණ්ඩලයේ හෝ ඒ පළාත් පාලන ආයතනයේ කැමැත්ත
+images/acts_test_0007_line_025.png	ඇතිව, එවැනිම කැමැත්ත ඇතිව මණ්ඩලය විසින් නිශ්චය කරනු
+images/acts_test_0007_line_026.png	ලැබිය හැකි කාලයක් සඳහා ආයතනයේ කාර්ය මණ්ඩලයට තාවකාලි
+images/acts_test_0007_line_027.png	කව පත් කරනු ලැබිය හැකි ය; නැතහොත් මණ්ඩලය සහ පළාත්
+images/acts_test_0007_line_028.png	පාලන සේවා උපදේශක මණ්ඩලය හෝ ඒ පළාත් පාලන ආයත
+images/acts_test_0007_line_029.png	නය එකඟ වන විශ්‍රාම වැටුප් හෝ අර්ථසාධක අරමුදල් පිළිබඳ අයිති
+images/acts_test_0007_line_030.png	වාසිකම්වලට අදාළ යම් නියම හා කොන්දේසිද ඇතුළු යම් නියම
+images/acts_test_0007_line_031.png	හා කොන්දේසි මත ඒ කාර්ය මණ්ඩලයට ස්ථිරව පත් කරනු ලැබිය
+images/acts_test_0007_line_032.png	හැකි ය.
+images/acts_test_0007_line_033.png	(6) මණ්ඩලයේ ඉල්ලීම පිට, රාජ්‍ය සංස්ථාවක යම් නිලධරයකු
+images/acts_test_0007_line_034.png	හෝ සේවකයකු ඒ නිලධරයාගේ හෝ සේවකයාගේ හා රාජ්‍ය
+images/acts_test_0007_line_035.png	සංස්ථාවේ පාලක මණ්ඩලයේ කැමැත්ත ඇතිව, එවැනිම කැමැත්ත
+images/acts_test_0007_line_036.png	ඇතිව මණ්ඩලය විසින් නිශ්චය කරනු ලබන යම් කාලයක් සඳහා
+images/acts_test_0007_line_037.png	ආයතනයේ කාර්ය මණ්ඩලයට තාවකාලිකව පත් කරනු ලැබිය
+images/acts_test_0007_line_038.png	හැකි ය; නැතහොත් මණ්ඩලය සහ රාජ්‍ය සංස්ථාවේ පාලක
+images/acts_test_0007_line_039.png	මණ්ඩලය එකඟ වන විශ්‍රාම වැටුප් හා අර්ථසාධක අරමුදල් පිළිබඳ
+images/acts_test_0007_line_040.png	අයිතිවාසිකම්වලට අදාළ නියම හා කොන්දේසි ද ඇතුළු යම් නියම
+images/acts_test_0007_line_041.png	හා කොන්දේසි මත ඒ කාර්ය මණ්ඩලයට ස්ථිරව පත් කරනු ලැබිය
+images/acts_test_0007_line_042.png	හැකි ය.
+images/acts_test_0007_line_043.png	(7) (5) වන හෝ (6) වන උපවගන්තිය ප්‍රකාර යම් තැනැත්තකු
+images/acts_test_0007_line_044.png	ආයතනයේ කාර්ය මණ්ඩලයට තාවකාලිකව පත් කරනු ලැබූ අවස්
+images/acts_test_0007_line_045.png	ථාවක, ඒ කාර්ය මණ්ඩලයේ වෙනත් යම් සාමාජිකයකු යටත් වන
+images/acts_test_0007_line_046.png	විනය පාලනයට ම ඒ තැනැත්තා ද යටත් විය යුතු ය.
+images/acts_test_0008_line_001.png	78 2000 අංක 43 දරන රක්ෂණ කර්මාන්තය
+images/acts_test_0008_line_002.png	විධිමත් කිරීමේ පනත
+images/acts_test_0008_line_003.png	“රක්ෂණකරුවකු” යන්නෙන්, මේ පනතේ විධිවිධාන යටතේ
+images/acts_test_0008_line_004.png	ශ්‍රි ලංකාවෙහි රක්ෂණ ව්‍යාපාරය කර ගෙන යාමට
+images/acts_test_0008_line_005.png	ලියාපදිංචි කරන ලද සමාගමක් අදහස් වන අතර,
+images/acts_test_0008_line_006.png	113 වන වගන්තියේ (2) වන උපවගන්තිය යටතේ
+images/acts_test_0008_line_007.png	ලියාපදිංචි කරන ලදැයි සලකනු ලබන සමාගමක් ද
+images/acts_test_0008_line_008.png	ඊට ඇතුළත් වේ ;
+images/acts_test_0008_line_009.png	“බලපත්‍රලත් වාණිජ බැංකුව” යන්නෙන්, 1988 අංක 30 දරන
+images/acts_test_0008_line_010.png	බැංකු පනතේ අර්ථානුකූල වූ බලපත්‍රලත් වාණිජ
+images/acts_test_0008_line_011.png	බැංකුවක් අදහස් වේ ;
+images/acts_test_0008_line_012.png	“ පළාත් පාලන ආයතන ඇපය”යන්නෙන්, තත් කාලයේ
+images/acts_test_0008_line_013.png	බලපවත්නා නීතියට අනුකූලව, ශ්‍රී ලංකාවේ යම් පළාත්
+images/acts_test_0008_line_014.png	පාලන ආයතනයක් විසින් නිකුත් කරනු ලබන යම්
+images/acts_test_0008_line_015.png	ඇපයක් අදහස් වේ ;
+images/acts_test_0008_line_016.png	“ගෙවීම හිඟ තබා ඇති ශුද්ධ හිමිකම් පෑම්” යන්නෙන්,
+images/acts_test_0008_line_017.png	රක්ෂිත විසින් දැනුම් දී ඇති සහ රක්ෂණ ඔප්පුවක්
+images/acts_test_0008_line_018.png	හෝ ඔප්පු යටතේ රක්ෂණකරු වගකිව යුතු වන එහෙත්
+images/acts_test_0008_line_019.png	බේරුම් කර නොමැති, හිමිකම් පෑම් වලින් ප්‍රතිරක්ෂණ
+images/acts_test_0008_line_020.png	අය කර ගැනීම් අඩු කිරීමෙන් පසුව වූ සියලු හිමිකම්
+images/acts_test_0008_line_021.png	පෑම් අදහස් වේ ;
+images/acts_test_0008_line_022.png	“ශුද්ධ වාරිකය" යන්නෙන්, දළ වාරිකයෙන්, ඉඩ දෙන ලද
+images/acts_test_0008_line_023.png	ප්‍රතිරක්ෂණය සඳහා රක්ෂණකරු විසින් ගෙවන ලද
+images/acts_test_0008_line_024.png	හෝ ගෙවිය යුතු යම් වාරිකයක් අඩු කිරීමෙන් පසුව,
+images/acts_test_0008_line_025.png	ඵ් දළ වාරිකයෙන් ඉතිරි මුදල අදහස් වේ ;
+images/acts_test_0008_line_026.png	“ශුද්ධ උපයනු නොලැබූ වාරිකය” යන්නෙන්, රක්ෂණකරුවකු
+images/acts_test_0008_line_027.png	ගේ යම් මුදල් වර්ෂයක් අවසානයේ දී, ඵ් මුදල් වර්ෂය
+images/acts_test_0008_line_028.png	අවසානයට පෙර ඇතුළත් වන ලද රක්ෂණ ගිවිසුමක්
+images/acts_test_0008_line_029.png	යටතේ, ඒ මුදල් වර්ෂය අවසන් වීමෙන් පසුව, ඒ
+images/acts_test_0008_line_030.png	රක්ෂණකරු විසින් දැරීමට ඇති අවදානම් සම්බන්ධයෙන්
+images/acts_test_0008_line_031.png	වූ වාරිකවලින් වෙන් කර ඇති මුදල අදහස් වේ ;
+images/acts_test_0008_line_032.png	“ සහභාගි රක්ෂණ ඔප්පු” යන්නෙන්, රක්ෂණකරුවකු විසින්
+images/acts_test_0008_line_033.png	නිකුත් කරන ලද්දා වූ ද, රක්ෂණ ඔප්පු වලින් උද්ගත
+images/acts_test_0008_line_034.png	වන අතිරික්තයේ කොටසකට නිරන්තරයෙන් ම හිමිකම්
+images/acts_test_0008_line_035.png	ලබන්නා වූ ද යම් රක්ෂණ ඔප්පු අදහස් වේ ;
+images/acts_test_0009_line_001.png	4 2017 අංක 7 දරන ආර්ථික සේවා ගාස්තු
+images/acts_test_0009_line_002.png	(සංශෝධන) පනත
+images/acts_test_0009_line_003.png	අඩු කරනු ලැබිය යුතු ය.” යන වචන වෙනුවට "ගෙවිය
+images/acts_test_0009_line_004.png	යුතු ආදායම් බද්දෙන් අඩු කළ හැකි ප්‍රමාණයට අඩු කරනු
+images/acts_test_0009_line_005.png	ලැබිය යුතු ය:
+images/acts_test_0009_line_006.png	එසේ වුව ද තවදුරටත්, 2016 අප්‍රේල් මස 1 වන දින
+images/acts_test_0009_line_007.png	හෝ ඊට පසුව ආරම්භ වන යම් අදාළ කාර්තුවක් සඳහා
+images/acts_test_0009_line_008.png	අවස්ථාවෝචිත පරිදි (1) වන හෝ (2) වන උපවගන්තිවලට
+images/acts_test_0009_line_009.png	අනුකූලව අඩු කිරීමෙන් පසු, ආර්ථික සේවා ගාස්තුව
+images/acts_test_0009_line_010.png	වශයෙන් අය කරනු ලැබූ මුදලේ යම් ශේෂයක් ඇත්නම්,
+images/acts_test_0009_line_011.png	එය පළමුව සඳහන් කළ තක්සේරු වර්ෂයට ඉක්බිතිව ම
+images/acts_test_0009_line_012.png	එළඹෙන අවුරුදු දෙකක කාලයක් ඇතුළත වූ එක් එක්
+images/acts_test_0009_line_013.png	තක්සේරු වර්ෂයට විභජනය කළ හැකි අතර, එසේ
+images/acts_test_0009_line_014.png	විභජනය කරනු ලැබූ මුදල් ප්‍රමාණ එම තැනැත්තා හෝ
+images/acts_test_0009_line_015.png	හවුල් ව්‍යාපාරයේ හවුල්කරු විසින් එම එක් එක් තක්සේරු
+images/acts_test_0009_line_016.png	වර්ෂය සඳහා ගෙවිය යුතු ආදායම් බද්දෙන් අඩු කළ හැකි
+images/acts_test_0009_line_017.png	ප්‍රමාණයට අඩු කරනු ලැබිය යුතු ය.”; සහ
+images/acts_test_0009_line_018.png	(2) එම වගන්තියේ (3ආ) වන උපවගන්තියට ඉක්බිතිව ම
+images/acts_test_0009_line_019.png	පහත දැක්වෙන අලුත් උපවගන්තිය ඇතුළත් කිරීමෙන්:—
+images/acts_test_0009_line_020.png	"(3ඇ) 2 වන වගන්තියේ (1) වන උපවගන්තියේ (ආ)
+images/acts_test_0009_line_021.png	ඡේදය යටතේ සේවා ගාස්තු ගෙවීමට යටත් වන යම්
+images/acts_test_0009_line_022.png	තැනැත්තකු හෝ හවුල් ව්‍යාපාරයක් විසින් ගෙවනු ලැබූ
+images/acts_test_0009_line_023.png	සේවා ගාස්තුවේ ප්‍රමාණය—
+images/acts_test_0009_line_024.png	(අ) 2 වන වගන්තියේ (1) වන උපවගන්තියේ (ආ) ඡේදය
+images/acts_test_0009_line_025.png	යටතේ සේවා ගාස්තුව ගෙවනු ලබන යම් කාර්තුවක්
+images/acts_test_0009_line_026.png	සඳහා 2 වන වගන්තියේ (1) වන උපවගන්තියේ (අ)
+images/acts_test_0009_line_027.png	ඡේදය යටතේ උපචිත වන යම් තැනැත්තකුගේ හෝ
+images/acts_test_0009_line_028.png	හවුල් ව්‍යාපාරයක සේවා ගාස්තු ගෙවීමට ඇති බැඳීමට
+images/acts_test_0009_line_029.png	එරෙහිව බැර කරනු ලැබිය හැකි ය ; සහ
+images/acts_test_0009_line_030.png	(ආ) (අ) ඡේදය යටතේ බැර කරන ලද සේවා ගාස්තුව
+images/acts_test_0009_line_031.png	සහ 2 වන වගන්තියේ (1) වන උපවගන්තියේ (ආ)
+images/acts_test_0009_line_032.png	ඡේදය යටතේ ගෙවා ඇති එහෙත් (අ) ඡේදයේ සඳහන්
+images/acts_test_0009_line_033.png	පරිදි බැර කරනු නොලැබූ සේවා ගාස්තුව මේ
+images/acts_test_0009_line_034.png	වගන්තියේ (1) වන, (2) වන හෝ (3) වන උපවගන්තිවලට
+images/acts_test_0009_line_035.png	අනුකූලව අඩු කරනු ලැබිය යුතු ය.”.
+images/acts_test_0010_line_001.png	2019 අංක 24 දරන ක්‍රීඩාවලට සම්බන්ධ 19
+images/acts_test_0010_line_002.png	වැරදි වැළැක්වීමේ පනත
+images/acts_test_0010_line_003.png	තැනැත්තකුගේ අයිතියේ තිබූ හෝ සන්තකයේ තිබූ
+images/acts_test_0010_line_004.png	සියලු චංචල හෝ නිශ්චල දේපළ පිළිබඳ යම්
+images/acts_test_0010_line_005.png	තොරතුරු ඒකකය විසින් සිදු කරනු ලබන
+images/acts_test_0010_line_006.png	විමර්ශනයකට උපකාරයක් විය හැකි බව විශ්වාස
+images/acts_test_0010_line_007.png	කිරීමට ඒකකයට යුක්ති සහගත හේතු පවත්නා
+images/acts_test_0010_line_008.png	අවස්ථාවක, ඒ චංචල හෝ නිශ්චල දේපළ පිළිබඳ
+images/acts_test_0010_line_009.png	තොරතුරු සඳහන් කර දක්වන්නා වූ ද; සහ
+images/acts_test_0010_line_010.png	(ii) ඒකකයේ මතය අනුව ඒකකය විසින් සිදු කරනු ලබන
+images/acts_test_0010_line_011.png	විමර්ශනයකට අදාළ වෙනත් කාරණා පිළිබඳ විස්තර
+images/acts_test_0010_line_012.png	ඇතුළත් වූ ද,
+images/acts_test_0010_line_013.png	දිවුරුම් ප්‍රකාශයක් ඉදිරිපත් කරන ලෙස යම් තැනැත්තකුට
+images/acts_test_0010_line_014.png	විධාන කිරීම;
+images/acts_test_0010_line_015.png	(එ) ඒකකය විසින් තත්කාර්යය සඳහා ඉදිරිපත් කරන
+images/acts_test_0010_line_016.png	ඉල්ලුම් පත්‍රයක් මත, මහෙස්ත්‍රාත්වරයකු විසින් නිකුත් කරනු
+images/acts_test_0010_line_017.png	ලබන ආඥාවක බලය යටතේ-
+images/acts_test_0010_line_018.png	(i) මේ පනත යටතේ වන වරදක් සම්බන්ධයෙන්
+images/acts_test_0010_line_019.png	විමර්ශනයක් සිදු කරනු ලබන්නේ යම් තැනැත්තකු
+images/acts_test_0010_line_020.png	සම්බන්ධයෙන් ද ඒ තැනැත්තා;
+images/acts_test_0010_line_021.png	(ii) ඒ තැනැත්තාගේ කලත්‍රයා හෝ යම් ළමයකු;
+images/acts_test_0010_line_022.png	(iii) ඒ තැනැත්තා වෙනුවෙන් භාරයක් වශයෙන් යම්
+images/acts_test_0010_line_023.png	දේපළක් දරන වෙනත් යම් තැනැත්තකු;
+images/acts_test_0010_line_024.png	(iv) ඒ තැනැත්තා අධ්‍යක්ෂවරයකු වන සමාගමක්; හෝ
+images/acts_test_0010_line_025.png	(v) ඒ තැනැත්තා හවුල්කරුවකු වන හවුල් ව්‍යාපාරයක්,
+images/acts_test_0010_line_026.png	විසින් ඒ ආඥාවේ නිශ්චිතව සඳහන් යම් චංචල හෝ නිශ්චල
+images/acts_test_0010_line_027.png	දේපළක අයිතිය හෝ ඒ යම් දේපළකට ඇති යම්
+images/acts_test_0010_line_028.png	සම්බන්ධතාවක් ඒ ආඥාව ඒ අධිකරණය විසින් ප්‍රත්‍යාදිෂ්ට
+images/acts_test_0010_line_029.png	කරනු ලබන තෙක් පැවරීම තහනම් කිරීම;
+images/acts_test_0010_line_030.png	(ඒ) ඒකකය විසින් තත්කාර්යය සඳහා ඉදිරිපත් කරන ඉල්ලුම්
+images/acts_test_0010_line_031.png	පත්‍රයක් මත, මහෙස්ත්‍රාත්වරයකු විසින් නිකුත් කරනු ලබන
+images/acts_test_0010_line_032.png	ආඥාවක බලය යටතේ-
+images/acts_test_0011_line_001.png	32 2018 අංක 2 දරන ප්‍රපාතන විරෝධී සහ
+images/acts_test_0011_line_002.png	ප්‍රතිතෝලන බදු පනත
+images/acts_test_0011_line_003.png	(ඈ) මේ පනතේ 11 වන වගන්තියේ (2) වන උපවගන්තියේ
+images/acts_test_0011_line_004.png	විධිවිධාන සලසා ඇති සංසන්දනය කිරීමේ ක්‍රමය භාවිත
+images/acts_test_0011_line_005.png	කරනු ලැබුවහොත් එම උපවගන්තිය මගින් කළ යුතු යැයි
+images/acts_test_0011_line_006.png	නියමිත පැහැදිලි කිරීම;
+images/acts_test_0011_line_007.png	මේ පනතේ 13 වන වගන්තියේ (4) වන උපවගන්තියේ
+images/acts_test_0011_line_008.png	විධිවිධාන සලසා ඇති පරිදි ස්වේච්ඡාවෙන් කරන ලද
+images/acts_test_0011_line_009.png	ප්‍රතිචාරවල පදනම මත යම් පුද්ගල ප්‍රපාතන ආන්තිකයක්
+images/acts_test_0011_line_010.png	තීරණය කිරීම අධ්‍යක්ෂ ජනරාල්වරයා ප්‍රතික්ෂේප කරනු
+images/acts_test_0011_line_011.png	ලැබුවහොත් එම තීරණය සඳහා පදනම;
+images/acts_test_0011_line_012.png	(ඊ) සැලකිල්ලට ගනු ලැබ ඇති ප්‍රපාතන ආනයන හැර වෙනත්
+images/acts_test_0011_line_013.png	සිද්ධිමය කරුණු පිළිබඳ තොරතුරු ඇතුළුව, හානිය සහ
+images/acts_test_0011_line_014.png	හේතුකාරක සබඳතාවය තීරණය කිරීමට හේතු වූ සිද්ධිමය
+images/acts_test_0011_line_015.png	කරුණු;
+images/acts_test_0011_line_016.png	(උ) අපනයනකරුවන් සහ ආනයනකරුවන් විසින් ඉදිරිපත්
+images/acts_test_0011_line_017.png	කරන ලද අදාළ තර්ක හෝ හිමිකම්පැම් පිළිගැනීමට හෝ
+images/acts_test_0011_line_018.png	ප්‍රතික්ෂේප කිරීමට තුඩුදුන් හේතු;
+images/acts_test_0011_line_019.png	(ඌ) මුදල් විෂයය භාර අමාත්‍යවරයා විසින් යම් ප්‍රපාතන විරෝධී
+images/acts_test_0011_line_020.png	බද්දක් පනවනු ලැබ ඇත්නම්, එම බද්දේ ප්‍රමාණය; සහ
+images/acts_test_0011_line_021.png	(එ) අවසාන ප්‍රපාතන විරෝධී බදු අයකර ගැනීමට ඇත්තේ
+images/acts_test_0011_line_022.png	තාවකාලික පියවර අදාළ කරගනු ලැබූ ආනයන
+images/acts_test_0011_line_023.png	සම්බන්ධයෙන් නම්, එසේ තීරණය කිරීම සඳහා වූ හේතු.
+images/acts_test_0011_line_024.png	(5) (3) වන උපවගන්තිය යටතේ වාර්තාව මහජනයා විසින් පරීක්ෂා
+images/acts_test_0011_line_025.png	කිරීම සඳහා ඉඩ ලබා දී දින හතක කාලසීමාවක් ඇතුළත, එම
+images/acts_test_0011_line_026.png	වාර්තාවේ දක්නට ලැබෙන යම් ලිවීමේ දෝෂ පිළිබඳව උනන්දුවක්
+images/acts_test_0011_line_027.png	දක්වන පාර්ශ්වයක් විසින් අධ්‍යක්ෂ ජනරාල්වරයා වෙත දැනුම්
+images/acts_test_0011_line_028.png	දෙන අවස්ථාවක, ඔහු විසින් අවශ්‍ය යයි සලකනු ලබන්නේ නම්,
+images/acts_test_0011_line_029.png	එම දෝෂ නිවැරදි කරනු ලැබිය හැකි ය.
+images/acts_test_0011_line_030.png	(6) (2) වන උපවගන්තිය යටතේ පළ කරන ලද දැන්වීමේ පිටපතක්
+images/acts_test_0011_line_031.png	සහ (3) වන උපවගන්තිය යටතේ සකස් කරන ලද වාර්තාවේ
+images/acts_test_0011_line_032.png	පිටපතක් අවසාන තීරණය සඳහා භාජන වූ නිෂ්පාදනය සිදු කරන
+images/acts_test_0011_line_033.png	ලද රටට හෝ රටවලට සහ අධ්‍යක්ෂ ජනරාල්වරයා විසින් තීරණය
+images/acts_test_0012_line_001.png	2 2008 අංක 15 දරන එකතු කළ අගය මත
+images/acts_test_0012_line_002.png	බදු (සංශෝධන) පනත
+images/acts_test_0012_line_003.png	“(iv) අවස්ථාවෝචිත පරිදි, (iii) වන ඡේදයේ සඳහන්
+images/acts_test_0012_line_004.png	කර ඇති බදු ඉන්වොයිස් පත්‍රය මත හෝ රේගු
+images/acts_test_0012_line_005.png	භාණ්ඩ ප්‍රකාශනය මත යෙදවුම් බද්ද, එකී මාස
+images/acts_test_0012_line_006.png	දොළහක කාල සීමාව ඇතුළත එම බදු අය කළ
+images/acts_test_0012_line_007.png	හැකි කාල සීමාව සඳහා වූ වාර්තාව ඉදිරිපත්
+images/acts_test_0012_line_008.png	කිරීමෙන්, ඒ බදු ඉන්වොයිස් පත්‍රයේ හෝ රේගු
+images/acts_test_0012_line_009.png	භාණ්ඩ ප්‍රකාශනයේ දිනයේ සිට මාස දොළහක්
+images/acts_test_0012_line_010.png	ඉකුත් වන දින හෝ ඊට පෙර අවසන් වන යම් බදු
+images/acts_test_0012_line_011.png	අය කළ හැකි කාල සීමාවක නිමැවුම් බද්දෙන්,
+images/acts_test_0012_line_012.png	මේ පනතේ විධිවිධාන සලසා ඇති පරිදි අඩුකර
+images/acts_test_0012_line_013.png	නොමැති නම් :
+images/acts_test_0012_line_014.png	එසේ වුව ද, (2) වන උපවගන්තියේ විධිවිධාන
+images/acts_test_0012_line_015.png	වල සහ මේ පනතේ පළමුවන උපලේඛනයේ II
+images/acts_test_0012_line_016.png	වන කොටසේ (ඊ) අනු-ඡේදයේ (i) වන අයිතමයේ
+images/acts_test_0012_line_017.png	සහ (ii) වන අයිතමයේ නිදහස් කිරීම්වල කුමක්
+images/acts_test_0012_line_018.png	සඳහන්ව තිබුන ද, අදාළ බදු මුදල් ගෙවීම රජය
+images/acts_test_0012_line_019.png	විසින් දරනු ලබන ඉහත කී අයිතමවල සඳහන්
+images/acts_test_0012_line_020.png	කර ඇති ආකාරයේ යම් ක්‍රමෝපාය සංවර්ධන
+images/acts_test_0012_line_021.png	ව්‍යාපෘතියකට හෝ යම් විශේෂ ව්‍යාපෘතියකට
+images/acts_test_0012_line_022.png	භාණ්ඩ හෝ සේවා සැපයීමට අදාළ සේවා සපයන
+images/acts_test_0012_line_023.png	ලියාපදිංචි ඕනෑම තැනැත්තකුහට එම ව්‍යාපෘතිවලට
+images/acts_test_0012_line_024.png	භාණ්ඩ හෝ සේවා සැපයීමට සම්බන්ධ භාණ්ඩ
+images/acts_test_0012_line_025.png	හා සේවා මිලදී ගැනීම මත යෙදවුම් බදු සඳහා
+images/acts_test_0012_line_026.png	ඉඩදිය හැකි ය.”.
+images/acts_test_0012_line_027.png	(2) ඒ වගන්තියේ (10) වන උපවගන්තියේ, අතුරු විධානයේ
+images/acts_test_0012_line_028.png	අවසානයට පහත සඳහන් අයිතමය එකතු කිරීමෙන් :—
+images/acts_test_0012_line_029.png	“එසේම තවදුරටත්, මේ පනතේ පළමුවන
+images/acts_test_0012_line_030.png	උපලේඛනයේ II වන කොටසේ (ඊ) අනු-ඡේදයේ
+images/acts_test_0012_line_031.png	(i) වන අයිතමයේ සහ (ii) වන අයිතමයේ නිශ්චිතව
+images/acts_test_0012_line_032.png	සඳහන් යම් ක්‍රමෝපාය සංවර්ධන ව්‍යාපෘතියකට
+images/acts_test_0012_line_033.png	හෝ වෙනත් යම් විශේෂ ව්‍යාපෘතියකට භාණ්ඩ
+images/acts_test_0012_line_034.png	හෝ සේවා සපයන යම් තැනැත්තකුට මේ
+images/acts_test_0012_line_035.png	උපවගන්තිය අනුව ඉඩ දියහැකි යෙදවුම් බදු
+images/acts_test_0012_line_036.png	නිසැකව දැනගැනීමේ කාර්යය සඳහා,ඒ
+images/acts_test_0012_line_037.png	ව්‍යාපෘතියේ අදාළ වන කාල සීමාව සඳහා
+images/acts_test_0012_line_038.png	සැපයුම්කරුවකු විසින් සිදු කරන ලද සැපයුම්වල
+images/acts_test_0013_line_001.png	2011 අංක 22 දරන දේශීය ආදායම් 23
+images/acts_test_0013_line_002.png	(සංශෝධන) පනත
+images/acts_test_0013_line_003.png	තිස්තුනයි තුනෙන් එකෙහි” යන වචන දක්වා වූ
+images/acts_test_0013_line_004.png	සියලු වචන වෙනුවට පහත දැක්වෙන වචන හා
+images/acts_test_0013_line_005.png	ඉලක්කම් ආදේශ කිරීමෙන් :-
+images/acts_test_0013_line_006.png	“එම සමාගම විසින්-
+images/acts_test_0013_line_007.png	(අ) එම තක්සේරු වර්ෂය 2011 අප්‍රේල් මස 1
+images/acts_test_0013_line_008.png	වන දිනට පෙරාතුව ආරම්භ වන යම්
+images/acts_test_0013_line_009.png	තක්සේරු වර්ෂයක් වන විට, එම තක්සේරු
+images/acts_test_0013_line_010.png	වර්ෂයට පෙරාතුවම වූ වර්ෂයේදී (මෙහි
+images/acts_test_0013_line_011.png	මින්මතු “පෙරාතුවම වූ වර්ෂය” ලෙස
+images/acts_test_0013_line_012.png	සඳහන් කරනු ලබන) එම පෙරාතුවම වූ
+images/acts_test_0013_line_013.png	වර්ෂය සඳහා බෙදාහැරිය හැකි ලාභයෙන්
+images/acts_test_0013_line_014.png	එම පෙරාතුවම වූ වර්ෂය ආරම්භවී මාස
+images/acts_test_0013_line_015.png	දහ අටක කාලයක් ඇතුළත, සියයට විසි
+images/acts_test_0013_line_016.png	පහකට වඩා අඩු ලාභාංශ ප්‍රමාණයක් බෙදා
+images/acts_test_0013_line_017.png	හැර ඇති අවස්ථාවකදී; හෝ
+images/acts_test_0013_line_018.png	(ආ) එම තක්සේරු වර්ෂය 2011 අප්‍රේල් මස 1
+images/acts_test_0013_line_019.png	වන දින හෝ ඊට පසුව ආරම්භවන යම්
+images/acts_test_0013_line_020.png	තක්සේරු වර්ෂයක් වන විට, එම තක්සේරු
+images/acts_test_0013_line_021.png	වර්ෂයට පෙරාතුවම වූ වර්ෂයේදී (මෙහි
+images/acts_test_0013_line_022.png	මින්මතු පෙරාතු වර්ෂය ලෙස සඳහන්
+images/acts_test_0013_line_023.png	කරනු ලබන) එම පෙරාතුවම වූ වර්ෂය
+images/acts_test_0013_line_024.png	සඳහා බෙදා හැරිය හැකි ලාභයෙන් එම
+images/acts_test_0013_line_025.png	පෙරාතුවම වූ වර්ෂය ආරම්භවී මාස
+images/acts_test_0013_line_026.png	දහඅටක කාලයක් ඇතුළත සියයට
+images/acts_test_0013_line_027.png	දහයකට වඩා අඩු ලාභාංශ ප්‍රමාණයක්
+images/acts_test_0013_line_028.png	බෙදාහැර ඇති අවස්ථාවකදී,
+images/acts_test_0013_line_029.png	එම පෙරාතුවම වූ වර්ෂය සඳහා එම සමාගමේ
+images/acts_test_0013_line_030.png	බෙදාහැරිය හැකි ලාභයෙන් සියයට තිස්තුනයි
+images/acts_test_0013_line_031.png	තුනෙන් එකහි” සහ
+images/acts_test_0013_line_032.png	(ආ) (ii) වන අනුඡේදයේ අතුරු විධානයේ “එම
+images/acts_test_0013_line_033.png	තක්සේරු වර්ෂය සඳහා ඒ සමාගමේ බෙදාහැරිය
+images/acts_test_0013_line_034.png	හැකි ලාභයෙන් සියයට විසි පහක්” යන වචන
+images/acts_test_0013_line_035.png	වෙනුවට පහත දැක්වෙන වචන සහ ඉලක්කම්
+images/acts_test_0013_line_036.png	ආදේශ කිරීමෙන් :-
+images/acts_test_0014_line_001.png	14 2015 අංක 4 දරන අපරාධයක වින්දිතයන් සහ
+images/acts_test_0014_line_002.png	සාක්ෂිකරුවන් හට සහාය දීමේ සහ
+images/acts_test_0014_line_003.png	ආරක්ෂා කිරීමේ පනත
+images/acts_test_0014_line_004.png	(6) වරදක් සිදුකරන ලද බවට සැකකරන හෝ චෝදනා ලබන
+images/acts_test_0014_line_005.png	යම් තැනැත්තකු—
+images/acts_test_0014_line_006.png	(අ) ඒ වරද සිදුකිරීම සම්බන්ධයෙන් ඒ තැනැත්තාට එරෙහිව
+images/acts_test_0014_line_007.png	නඩු කටයුත්තක් පැවරීමට අදහස්කරන හෝ සූදානම්වන;
+images/acts_test_0014_line_008.png	හෝ
+images/acts_test_0014_line_009.png	(ආ) නීතිය බලාත්මක කිරීමේ යම් අධිකාරියකට, කොමිෂන්
+images/acts_test_0014_line_010.png	සභාවකට හෝ අධිකරණයකට ඒ තැනැත්තාට එරෙහිව
+images/acts_test_0014_line_011.png	තොරතුරු හෝ සාක්ෂි සැපයීමට සූදානම් වන,
+images/acts_test_0014_line_012.png	වෙනත් තැනැත්තකුට, ඒ තැනැත්තා විසින් ඒ වරද සිදුකරන ලද
+images/acts_test_0014_line_013.png	බවට සැකකරන හෝ චෝදනා ලබන ඒ පළමුව සඳහන් කළ
+images/acts_test_0014_line_014.png	තැනැත්තාට එරෙහිව නඩු කටයුත්තක් පැවරීමෙන් හෝ සත්‍ය
+images/acts_test_0014_line_015.png	තොරතුරු හෝ සාක්ෂි සැපයීම වැළැක්වීමේ, අධෛර්යට පත්කිරීමේ
+images/acts_test_0014_line_016.png	හෝ අවහිර කිරීමේ අරමුණින්, ඔහුට යම් අල්ලසක් ප්‍රදානය කිරීමෙන්,
+images/acts_test_0014_line_017.png	සැපයීමෙන් හෝ ලබා දීමෙන්, වරදක් සිදු කරනු ලබන අතර,
+images/acts_test_0014_line_018.png	මහාධිකරණය විසින් වරදකරු කරනු ලැබූ විට ඒ තැනැත්තා අවුරුදු
+images/acts_test_0014_line_019.png	හතකට නොවැඩි බන්ධනාගාරගත කිරීමේ දඬුවමකට සහ රුපියල්
+images/acts_test_0014_line_020.png	පහළොස් දහසක දඩයකට, යටත් විය යුතු ය.
+images/acts_test_0014_line_021.png	(7) වින්දිතයන් සහ සාක්ෂිකරුවන්ගේ කොට්ඨාසය, අධිකරණය
+images/acts_test_0014_line_022.png	හෝ කොමිෂන් සභාව ඇතූළුව අධිකාරියෙන්, පොලිසියෙන් යම්
+images/acts_test_0014_line_023.png	ආරක්ෂාවක් හෝ සහයෝගයක් ලබා ගැනීමේ අරමුණින් යම් තැනැත්තකු
+images/acts_test_0014_line_024.png	විසින් දැන දැනම අසත්‍ය තොරතුරු සැපයීම හෝ අසත්‍ය යයි විශ්වාස
+images/acts_test_0014_line_025.png	කිරීමට සාධාරණ හේතු ඇති තොරතුරු කිසිවක් සැපයීමෙන් වරදක්
+images/acts_test_0014_line_026.png	සිදුකරනු ලබන අතර, මහාධිකරණය විසින් වරදකරු කිරීමේ දී ඒ
+images/acts_test_0014_line_027.png	තැනැත්තා අවුරුදු හතකට නොවැඩි බන්ධනාගාරගත කිරීමේ
+images/acts_test_0014_line_028.png	දඬුවමකට සහ රුපියල් පහළොස් දහසක දඩයකට යටත් විය යුතු ය.
+images/acts_test_0014_line_029.png	(8) සද්භාවයෙන් සහ—
+images/acts_test_0014_line_030.png	(i) නීතියෙන් සාදන ලද විධිවිධාන හෝ ක්‍රියා පටිපාටිවලට;
+images/acts_test_0014_line_031.png	(ii) අධිකරණ නිලධරයකු විසින් කරන ලද නියමයක්; හෝ
+images/acts_test_0014_line_032.png	(iii) යම් නීතියක් මගින් හෝ ඒ යටතේ විධානයක් නිකුත්
+images/acts_test_0014_line_033.png	කිරීමට නිසි බලය දෙන ලද තැනැත්තකු විසින් නිකුත්
+images/acts_test_0014_line_034.png	කරනු ලබන විධානවලට,
+images/acts_test_0015_line_001.png	20 2011 අංක 9 දරන එකතු කළ අගය මත බදු
+images/acts_test_0015_line_002.png	(සංශෝධන) පනත
+images/acts_test_0015_line_003.png	(xx) 2011 ජනවාරි මස 1 වන දින සිට බලාත්මක වන
+images/acts_test_0015_line_004.png	පරිදි, විදුලි සංදේශ කර්මාන්තය සඳහාම පමණක්
+images/acts_test_0015_line_005.png	ආනයනය හෝ මිළදී ගනු ලැබූ බවට හඳුනාගත් සහ
+images/acts_test_0015_line_006.png	විදුලි සංදේශ සේවා ක්‍රියාකරුවකු විසින් ආනයනය
+images/acts_test_0015_line_007.png	කරනු ලැබූ හෝ මිළදී ගන්නා ලද යම්
+images/acts_test_0015_line_008.png	යන්ත්‍රෝපකරණ හෝ අධිතාක්ෂණික උපකරණ;
+images/acts_test_0015_line_009.png	(xxi) (2010 අගෝස්තු මස 18 වන දින හෝ ඉන්පසුව
+images/acts_test_0015_line_010.png	කරන ලද ආනයන ද ඇතුළුව) ශ්‍රී ලංකා ප්‍රවාහන
+images/acts_test_0015_line_011.png	මණ්ඩලය සහ ශ්‍රී ලංකා දුම්රිය දෙපාර්තමේන්තුව
+images/acts_test_0015_line_012.png	විසින්ම පමණක් පාවිච්චි කිරීම සඳහා වූ අමතර
+images/acts_test_0015_line_013.png	කොටස් සහ උපාංග,
+images/acts_test_0015_line_014.png	(2) එම කොටසේ (ආ) ඡේදයේ —
+images/acts_test_0015_line_015.png	(අ) (i) වන අයිතමයේ (අ) වන උපඡේදයේ ඇති
+images/acts_test_0015_line_016.png	"(2006 ජනවාරි මස 1 වන දින සිට බලපවත්වන
+images/acts_test_0015_line_017.png	පරිදි) අධ්‍යාපන ආයතනයක් විසින් අධ්‍යාපන
+images/acts_test_0015_line_018.png	සේවා සැපයීම" යන වචන සහ ඉලක්කම්
+images/acts_test_0015_line_019.png	වෙනුවට, පහත දැක්වෙන කොටස ආදේශ
+images/acts_test_0015_line_020.png	කිරීමෙන්—
+images/acts_test_0015_line_021.png	"(අ) (1) (2006 ජනවාරි මස 1 වන දින සිට 2010
+images/acts_test_0015_line_022.png	දෙසැම්බර් මස 31 වන දින දක්වා
+images/acts_test_0015_line_023.png	බලපවත්වන පරිදි) යම් අධ්‍යාපනික
+images/acts_test_0015_line_024.png	ආයතනයක් විසින් සපයනු ලබන
+images/acts_test_0015_line_025.png	අධ්‍යාපනික සේවා; සහ
+images/acts_test_0015_line_026.png	(2) (2011 ජනවාරි මස 1 වන දින සිට
+images/acts_test_0015_line_027.png	බලපවත්වන පරිදි), යම් තැනැත්තකු හෝ
+images/acts_test_0015_line_028.png	හවුල් ව්‍යාපාරයක් විසින් සපයනු ලබන
+images/acts_test_0015_line_029.png	අධ්‍යාපනික සේවා;”
+images/acts_test_0015_line_030.png	(ආ) (ii) අයිතමයේ (ආ) වන ඡේදයේ (අ) උපඡේදය
+images/acts_test_0015_line_031.png	ඉවත්කර ඒ වෙනුවට පහත දැක්වෙන උපඡේදය
+images/acts_test_0015_line_032.png	ආදේශ කිරීමෙන්;
+images/acts_test_0015_line_033.png	"(අ) (i) එම බදු ගිවිසුමට 2004 ජනවාරි මස 1
+images/acts_test_0015_line_034.png	වන දිනට පෙරාතුව ඇතුළත් වී ඇත්නම්,
+images/acts_test_0015_line_035.png	ආසන සංඛ්‍යාව විසි අටකට අඩු
+images/acts_test_0015_line_036.png	නොවන්නා වූ ද, පොදු මගී ප්‍රවාහන
+images/acts_test_0016_line_001.png	2 2017 අංක 10 දරන ඡන්ද හිමියන් ලියාපදිංචි
+images/acts_test_0016_line_002.png	කිරීමේ (විශේෂ විධිවිධාන) පනත
+images/acts_test_0016_line_003.png	(ඇ) 2009 වර්ෂයෙන් පසුව වලංගුව පැවති කවර හෝ
+images/acts_test_0016_line_004.png	නාමලේඛනයක තමාගේ නම ඇතුළත් කරනු ලැබ
+images/acts_test_0016_line_005.png	නොමැති වූ ද,
+images/acts_test_0016_line_006.png	ශ්‍රී ලංකාවේ ඕනෑම පුරවැසියකුට ඉහත (අ), (ආ) සහ (ඇ) යන
+images/acts_test_0016_line_007.png	ඡේදවල නිශ්චිතව දැක්වෙන කරුණු සනාථ කරනු ලැබීම මත සහ
+images/acts_test_0016_line_008.png	ඔහු අභ්‍යන්තර වශයෙන් අවතැන් වූ හෝ අවතැන් වී සිටි තැනැත්තකු
+images/acts_test_0016_line_009.png	බවට ඔහු දැනට පදිංචිව සිටින ප්‍රදේශයේ ග්‍රාම නිලධාරි විසින්
+images/acts_test_0016_line_010.png	නිකුත් කරන ලද සහතිකයක් ඉදිරිපත් කිරීම මත, 2009 මැයි මස
+images/acts_test_0016_line_011.png	18 වන දිනයට පෙර තමා ස්ථිරව පදිංචි වී සිටි මැතිවරණ
+images/acts_test_0016_line_012.png	කොට්ඨාසයේ ඡන්ද හිමි නාමලේඛනයෙහි ලියාපදිංචි කරනු ලැබීම
+images/acts_test_0016_line_013.png	සඳහා එම මැතිවරණ කොට්ඨාසයේ ලියාපදිංචි කිරීමේ නිලධරයා
+images/acts_test_0016_line_014.png	වෙත ඉල්ලීමක් කිරීමට හිමිකම ඇත්තේ ය.
+images/acts_test_0016_line_015.png	(2) (1) වන උපවගන්තියේ සඳහන් ඉල්ලීම, මැතිවරණ කොමිෂන්
+images/acts_test_0016_line_016.png	සභාව විසින් ගැසට් පත්‍රයේ සහ සිංහල, දෙමළ සහ ඉංග්‍රීසි යන
+images/acts_test_0016_line_017.png	එක් එක් භාෂාවලින් පළවන යටත් පිරිසෙයින් එක් පුවත් පතකවත්
+images/acts_test_0016_line_018.png	පළකරනු ලබන දැන්වීමක් මගින් නිශ්චිතව සඳහන් කරනු ලබන
+images/acts_test_0016_line_019.png	දිනයක දී හෝ එදිනට පෙර කරනු ලැබිය යුතු ය.
+images/acts_test_0016_line_020.png	(3) (1) වන උපවගන්තියේ කුමක් සඳහන් වුව ද, ඒ උපවගන්තියේ
+images/acts_test_0016_line_021.png	සඳහන් පුරවැසියකුගේ—
+images/acts_test_0016_line_022.png	(අ) එම පුරවැසියා අභ්‍යන්තර වශයෙන් අවතැන් වූ තැනැත්තකු
+images/acts_test_0016_line_023.png	බවට පත් වූ දිනයේ දී වයස අවුරුදු දහ අටට එළඹ
+images/acts_test_0016_line_024.png	නොසිටියා වූ ද, ඉල්ලීම කරනු ලබන අවස්ථාවේ දී
+images/acts_test_0016_line_025.png	වලංගුව පැවති ඡන්ද හිමි නාමලේඛනය ප්‍රතිශෝධනය
+images/acts_test_0016_line_026.png	කිරීම ආරම්භ කළ දිනයේ දී වයස අවුරුදු දහඅට හෝ
+images/acts_test_0016_line_027.png	ඊට වැඩි වයසකට එළඹ ඇත්තා වූ ද;
+images/acts_test_0016_line_028.png	(ආ) එම පුරවැසියා අභ්‍යන්තර වශයෙන් අවතැන් වූ තැනැත්තකු
+images/acts_test_0016_line_029.png	බවට පත්වීමෙන් පසුව ඉපදී, ඉල්ලීම කරනු ලබන
+images/acts_test_0016_line_030.png	අවස්ථාවේ දී වලංගුව පැවති ඡන්ද හිමි නාමලේඛනය
+images/acts_test_0016_line_031.png	ප්‍රතිශෝධනය කිරීම ආරම්භ කළ දිනයේ දී වයස අවුරුදු
+images/acts_test_0016_line_032.png	දහ අට හෝ ඊට වැඩි වයසකට එළඹ ඇත්තා වූ ද; සහ
+images/acts_test_0016_line_033.png	(ඇ) 2009 වර්ෂයෙන් පසුව වලංගුව පැවති කවර හෝ
+images/acts_test_0016_line_034.png	නාමලේඛනයක තමාගේ නම ඇතුළත් කරනු ලැබ
+images/acts_test_0016_line_035.png	නොමැති වූ ද,
+images/acts_test_0018_line_001.png	6 1982 අංක 2 දරන ගුවන් සංතරණ (විශේෂ විධිවිධාන) පනත
+images/acts_test_0018_line_002.png	(18) (16) වන උපවගන්තිය යටතේ තම
+images/acts_test_0018_line_003.png	ධුරය අහෝසි කරනු ලැබූ යම් රජයේ නිලධරයකු
+images/acts_test_0018_line_004.png	නිශ්චිත කාලසීමාවක් ආණ්ඩුවට සේවය කිරීමට
+images/acts_test_0018_line_005.png	බැඳුම්කරයකට හෝ ගිවිසුමකට යටත්ව සිටින
+images/acts_test_0018_line_006.png	අවස්ථාවක, අනුයෝජිතයාගේ කාර්ය මණ්ඩලයේ
+images/acts_test_0018_line_007.png	ඔහු විසින් සේවය කරනු ලබන යම් කාලයක්, ඒ
+images/acts_test_0018_line_008.png	බැඳුම්කරය හෝ ගිවිසුම සම්පූර්ණ කිරීමේ කාර්ය
+images/acts_test_0018_line_009.png	සඳහා ආණ්ඩුවට සේවය කරන ලද කාලයක් ලෙස
+images/acts_test_0018_line_010.png	සලකනු ලැබිය යුතු ය:
+images/acts_test_0018_line_011.png	එසේ වුව ද, එවැනි යම් නිලධරයකුට අනු
+images/acts_test_0018_line_012.png	යෝජිතයාගේ කාර්ය මණ්ඩලයේ රැකියාව දෙනු
+images/acts_test_0018_line_013.png	ලැබ ඔහු එය භාර නොගත්තේ නම්, ඔහු, ඒ බැඳුම්
+images/acts_test_0018_line_014.png	කරයේ හෝ ගිවිසුමේ හෝ නියම හා කොන්දේසි
+images/acts_test_0018_line_015.png	වලට යටත්ව, ඒ බැඳුම්කරයේ හෝ ගිවිසුම යටතේ
+images/acts_test_0018_line_016.png	සම්පූර්ණ නොකරන ලද යම් සේවා කාලයක් සම්
+images/acts_test_0018_line_017.png	බන්ධයෙන්, ඒ බැඳුම්කරයේ හෝ ගිවිසුමේ නියම
+images/acts_test_0018_line_018.png	අනුව ගණන් බලන ලද මුදල් ප්‍රමාණයක් ආණ්ඩු
+images/acts_test_0018_line_019.png	වට ගෙවීමට යටත් වන්නේ ය.
+images/acts_test_0018_line_020.png	(19) (අ) අනුයෝජිතයාගේ ඉල්ලීම පිට, (16)
+images/acts_test_0018_line_021.png	වන හා (17) වන උපවගන්ති අදාළ වන රජයේ
+images/acts_test_0018_line_022.png	නිලධරයකු නොවන යම් රජයේ නිලධරයකු, ඒ
+images/acts_test_0018_line_023.png	නිලධරයාගේ හා තත්කාලයේ සිවිල් ගුවන් සේවා
+images/acts_test_0018_line_024.png	විෂයය භාර අමාත්‍යවරයාගේ අමාත්‍යාංශයේ
+images/acts_test_0018_line_025.png	ලේකම්වරයාගේ හා රාජ්‍ය පරිපාලන විෂය‍ය භාර
+images/acts_test_0018_line_026.png	අමාත්‍යවරයාගේ අමාත්‍යාංශයේ ලේකම්වරයාගේ
+images/acts_test_0018_line_027.png	කැමැත්ත ඇතිව, එවැනිම කැමැත්ත ඇතිව අනු
+images/acts_test_0018_line_028.png	යෝජිතයා විසින් තීරණය කරනු ලැබිය හැකි කාල
+images/acts_test_0018_line_029.png	යක් සඳහා අනුයෝජිතයාගේ කාර්ය මණ්ඩලයට
+images/acts_test_0018_line_030.png	තාවකාලිකව පත් කරනු ලැබිය හැකි ය. නැතහොත්
+images/acts_test_0018_line_031.png	එවැනිම කැමැත්ත ඇතිව ඒ කාර්ය මණ්ඩලයට
+images/acts_test_0018_line_032.png	ස්ථිරව පත් කරනු ලැබිය හැකි ය.
+images/acts_test_0018_line_033.png	(ආ) රජයේ නිලධරයකු අනුයෝජිතයාගේ
+images/acts_test_0018_line_034.png	කාර්ය මණ්ඩලයට තාවකාලිකව පත් කරනු ලබන
+images/acts_test_0018_line_035.png	අවස්ථාවක, 1978 අංක 19 දරන ගමනාගමන මණ්
+images/acts_test_0018_line_036.png	ඩල පනතේ 13 වන වගන්තියේ (2) වන උප
+images/acts_test_0018_line_037.png	වගන්තියේ විධිවිධාන අවශ්‍ය වෙනස් කිරීම් සහි
+images/acts_test_0018_line_038.png	තව ඒ නිලධරයාට හා ඔහු සම්බන්ධයෙන් අදාළ
+images/acts_test_0018_line_039.png	විය යුතුය.
+images/acts_test_0018_line_040.png	(ඇ) රජයේ නිලධරයකු අනුයෝජිතයාගේ
+images/acts_test_0018_line_041.png	කාර්ය මණ්ඩලයට  ස්ථිරව පත් කරනු ලබන අවස්
+images/acts_test_0018_line_042.png	ථාවක 1978 අංක 19 දරන ගමනාගමන මණ්ඩල
+images/acts_test_0018_line_043.png	පනතේ 13 වන වගන්තියේ (3) වන උප
+images/acts_test_0018_line_044.png	වගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස් කිරීම්
+images/acts_test_0018_line_045.png	සහිතව, ඒ නිලධරයාට හා ඔහු සම්බන්ධයෙන්
+images/acts_test_0018_line_046.png	අදාළ විය යුතු ය.
+images/acts_test_0019_line_001.png	2010 අංක 14 දරන සිවිල් ගුවන් සේවා පනත 91
+images/acts_test_0019_line_002.png	දී ගුවන් යානයේ සිටින තැනැත්තන්ගේ‍ ජීවිතවලට සහ
+images/acts_test_0019_line_003.png	ගුවන්යානයට ද කිසිදු අනතුරක් සිදුනොවිය යුතු ය. මේ විධිවිධානය,
+images/acts_test_0019_line_004.png	එක්සත් ජාතීන්ගේ චාටර් පත්‍රයේ දක්වා ඇති අයිතීන් සහ බැඳීම්
+images/acts_test_0019_line_005.png	කවර ආකාරයකින් හෝ මද වශයෙන් වෙනස් කිරීමක් සිදුකරන
+images/acts_test_0019_line_006.png	බව අර්ථ නිරූපණය නොකළ යුතු ය ;
+images/acts_test_0019_line_007.png	(ආ) සෑම රාජ්‍යයකටම තම ස්වාධිපත්‍යය ක්‍රියාත්මක කිරීමේ දී, අවසර
+images/acts_test_0019_line_008.png	නොමැතිව තම දේශ භූමියට ඉහළින් පියාසර කරන ගුවන් යානයක්,
+images/acts_test_0019_line_009.png	යම් නියමිත ගුවන් තොටුපළකට ගොඩබැස්සවීමට අවශ්‍ය කිරීමට
+images/acts_test_0019_line_010.png	හෝ එකී ගුවන් යානය මේ සම්මුතියේ ඉලක්ක හා අනනුකූලවන්නා
+images/acts_test_0019_line_011.png	වූ යම් කාර්යයන් සඳහා භාවිත කරන බවට තීරණය කිරීමට යුක්ති
+images/acts_test_0019_line_012.png	සහගත හේතු ඇත්තේ නම් එකී උල්ලංඝනය කිරීම නැවැත්වීම
+images/acts_test_0019_line_013.png	සඳහා එකී ගුවන් යානයට යම් වෙනත් උපදෙස් දීමට හෝ හිමිකම
+images/acts_test_0019_line_014.png	ඇති බව ගිවිසුම්ගත රාජ්‍යයන් විසින් පිළිගන්නා අතර ඒ කාර්යය
+images/acts_test_0019_line_015.png	සඳහා විශේෂයෙන් මේ ව්‍යවස්ථාවේ (අ) ඡේදය සමග ද, මේ
+images/acts_test_0019_line_016.png	සම්මුතියේ අදාළ විධිවිධාන ඇතුළත් වූ ජාත්‍යන්තර නීතියේ අදාළ
+images/acts_test_0019_line_017.png	රීති ද හා අනුකූල වන්නා වූ යම් උචිත ක්‍රියාමාර්ගවලට ගිවිසුම්ගත
+images/acts_test_0019_line_018.png	රාජ්‍යයන් හට යොමුවිය හැකි වන්නේ ය. සිවිල් ගුවන් යානයකට
+images/acts_test_0019_line_019.png	බාධාකිරීම සම්බන්ධයෙන් බලපවත්නා තම නියෝග ප්‍රසිද්ධ කිරීමට
+images/acts_test_0019_line_020.png	සෑම ගිවිසුම්ගත රාජ්‍යයක්ම එකඟ වනු ලැබේ ;
+images/acts_test_0019_line_021.png	(ඇ) සෑම ගුවන් යානයක් ම, මේ ව්‍යවස්ථාවේ (අ) ඡේදයට අනුකූලව
+images/acts_test_0019_line_022.png	දෙන ලද යම් නියමයක් පිළිපැදිය යුතු ය. මෙය සාක්ෂාත් කිරීම
+images/acts_test_0019_line_023.png	සඳහා එක් එක් ගිවිසුම්ගත රාජ්‍යයක් විසින් තම රාජ්‍යයේ ලියාපදිංචි
+images/acts_test_0019_line_024.png	වී ඇති යම් සිවිල් ගුවන් යානයක් හෝ, මෙහෙයුම්කරුගේ ප්‍රධාන
+images/acts_test_0019_line_025.png	ව්‍යාපාර ස්ථානය හෝ ස්ථිර නිවාසස්ථානය යම් රාජ්‍යයක් තුළ
+images/acts_test_0019_line_026.png	පිහිටා ඇති විටෙක එකී මෙහෙයුම්කරු විසින් මෙහෙයවනු ලබන
+images/acts_test_0019_line_027.png	යම් සිවිල් ගුවන් යානයක් හෝ සම්බන්ධයෙන් එකී පිළිපැදීම
+images/acts_test_0019_line_028.png	අත්‍යවශ්‍ය කිරීම සඳහා අවශ්‍ය සියලු විධිවිධාන තම ජාතික නීති
+images/acts_test_0019_line_029.png	හෝ නියෝගවල ඇතුළත් කළ යුතු ය. එකී අදාළ නීති හෝ රීති
+images/acts_test_0019_line_030.png	උල්ලංඝනය කිරීම සම්බන්ධයෙන් බරපතල දඬුවම් මගින් දඬුවම්
+images/acts_test_0019_line_031.png	දිය යුතු බවට එක් එක් ගිවිසුම්ගත රාජ්‍ය සැලකිය යුතු අතර,
+images/acts_test_0019_line_032.png	එවැනි නඩු එකී රාජ්‍යයේ නීති සහ නියෝගවලට අනුකූලව නිසි
+images/acts_test_0019_line_033.png	බලධාරීන් වෙත යොමුකළ යුතු ය ;
+images/acts_test_0019_line_034.png	(ඈ) එක් එක් ගිවිසුම්ගත රාජ්‍යයක් විසින්, තම රාජ්‍යයේ ලියාපදිංචි වී
+images/acts_test_0019_line_035.png	ඇති යම් සිවිල් ගුවන් යානයක් හෝ මෙහෙයුම්කරුගේ ප්‍රධාන
+images/acts_test_0019_line_036.png	ව්‍යාපාරික ස්ථානය හෝ ස්ථිර නිවාසස්ථානය එකී රාජ්‍යය තුළ
+images/acts_test_0019_line_037.png	පිහිටා ඇති විටෙක, එකී මෙහෙයුම්කරු විසින් මෙහෙයවනු ලබන
+images/acts_test_0019_line_038.png	යම් සිවිල් ගුවන් යානයක් හෝ මේ සම්මුතියේ ඉලක්ක හා අනනුකූල
+images/acts_test_0019_line_039.png	වූ යම් කාර්යයක් සඳහා හිතාමතාම භාවිත කිරීම තහනම් කිරීම
+images/acts_test_0019_line_040.png	සඳහා උචිත පියවර ගනු ලැබිය යුතු ය. මේ විධිවිධානය මගින් (අ)
+images/acts_test_0019_line_041.png	ඡේදයට බලපෑමක් ඇති නොවිය යුතු ය. මේ ව්‍යවස්ථාවේ (ආ)
+images/acts_test_0019_line_042.png	සහ (ඇ) ඡේද හීන කිරීමක් ද සිදු නොවිය යුතු ය.
+images/acts_test_0019_line_043.png	4 වන ව්‍යවස්ථාව
+images/acts_test_0019_line_044.png	සිවිල් ගුවන් සේවාව අයථා ලෙස භාවිත කිරීම
+images/acts_test_0019_line_045.png	සම්මුතියේ අරමුණුවලට අනුකූල නොවන්නා වූ කිසියම් කාර්යයක් සඳහා
+images/acts_test_0019_line_046.png	සිවිල් ගුවන් සේවාව භාවිත නොකිරීමට එක් එක් ගිවිසුම්ගත රාජ්‍යය එකඟ
+images/acts_test_0019_line_047.png	වනු ලැබේ.
+images/acts_test_0020_line_001.png	2011 අංක 42 දරන මුදල් ව්‍යාපාර පනත 59
+images/acts_test_0020_line_002.png	(අ) ඒ තැනැත්තාගේ වත්කම් හෝ එහි යම් කොටසක් හෝ
+images/acts_test_0020_line_003.png	බැහැර කිරීම තහනම් කිරීම ;
+images/acts_test_0020_line_004.png	(ආ) අධ්‍යක්ෂවරයා විසින් තීරණය කරනු ලැබිය හැකි පරිදි
+images/acts_test_0020_line_005.png	යම් ගනුදෙනුවකට හෝ ගනුදෙනු වර්ගයකට ඒ තැනැත්තා
+images/acts_test_0020_line_006.png	ඇතුළු වීම තහනම් කිරීම ;
+images/acts_test_0020_line_007.png	(ඇ) ඒ තැනැත්තාට තැන්පතු කැඳවීම හෝ රැස් කිරීම තහනම්
+images/acts_test_0020_line_008.png	කිරීම;
+images/acts_test_0020_line_009.png	(ඈ) අධ්‍යක්ෂවරයා විසින් තීරණය කරනු ලැබිය හැකි පරිදි
+images/acts_test_0020_line_010.png	යම් ගිණුමකට, දේපලකට, ආයෝජනයකට හෝ සම්බන්ධ
+images/acts_test_0020_line_011.png	යම් ගනුදෙනුවකට ඇතුළුවීම තහනම් කිරීම.
+images/acts_test_0020_line_012.png	(2) මේ පනතේ 42 වන වගන්තියේ (1) වන උපවගන්තිය ප්‍රකාර
+images/acts_test_0020_line_013.png	තැනැත්තන් මණ්ඩලයක් පිළිබඳව විමර්ශනය කිරීමේ දී, ඕනෑම
+images/acts_test_0020_line_014.png	අවස්ථාවක ඒ තැනැත්තන් මණ්ඩලය —
+images/acts_test_0020_line_015.png	(i) සංස්ථාගත මණ්ඩලයක් නම්, ඒ, සංස්ථාගත මණ්ඩලයේ
+images/acts_test_0020_line_016.png	ඕනෑම අධ්‍යක්ෂවරයකුට හෝ කළමනාකරුවකුට ;
+images/acts_test_0020_line_017.png	(ii) ව්‍යපාර ආයතනයක් නම්, ඒ ව්‍යාපාර ආයතනයේ ඕනෑම
+images/acts_test_0020_line_018.png	හවුල්කරුවකුට ;
+images/acts_test_0020_line_019.png	(iii) ව්‍යාපාර ආයතනයක් නොවන සංස්ථාගත නොකළ
+images/acts_test_0020_line_020.png	මණ්ඩලයක් නම්, ඒ මණ්ඩලයේ ඕනෑම සාමාජිකයකුට
+images/acts_test_0020_line_021.png	හෝ මණ්ඩලයේ කළමනාකරණය හා පාලනය පිළිබඳ
+images/acts_test_0020_line_022.png	වගකීම දරන එහි ඕනෑම නිලධරයකුට,
+images/acts_test_0020_line_023.png	අධ්‍යක්ෂවරයා විසින් පහත සඳහන් එකක් හෝ වැඩි ගණනක්
+images/acts_test_0020_line_024.png	සඳහා ක්‍රියාවිරහිත කිරීමේ නියෝගයක් කරනු ලැබිය හැකි වේ:—
+images/acts_test_0020_line_025.png	(අ) ඒ තැනැත්තාගේ වත්කම් හෝ ඉන් යම් කොටසක් බැහැර
+images/acts_test_0020_line_026.png	කිරීම තහනම් කිරීම;
+images/acts_test_0020_line_027.png	(ආ) අධ්‍යක්ෂවරයා විසින් තීරණය කරනු ලැබිය හැකි පරිදි
+images/acts_test_0020_line_028.png	යම් ගනුදෙනුවකට හෝ ගනුදෙනු වර්ගයකට ඒ තැනැත්තා
+images/acts_test_0020_line_029.png	ඇතුළුවීම තහනම් කිරීම ;
+images/acts_test_0022_line_001.png	6 2004 අංක 12 දරන දේශීය ආදායම්
+images/acts_test_0022_line_002.png	(සංශෝධන) පනත
+images/acts_test_0022_line_003.png	වූ යම් තක්සේරු වර්ෂයක් යන කාලසීමා දෙකෙන් කලින්
+images/acts_test_0022_line_004.png	එළඹෙන දින සිට ගණන් බලනු ලබන අවුරුදු පහක
+images/acts_test_0022_line_005.png	කාලසීමාවක් සඳහා, ආදායම් බද්දෙන් නිදහස් කරනු
+images/acts_test_0022_line_006.png	ලැබිය යුතු ය.
+images/acts_test_0022_line_007.png	(2) (1) වන උපවගන්තියේ කාර්ය සඳහා
+images/acts_test_0022_line_008.png	සමාගමකට අදාළව “නිශ්චිත ව්‍යවසාය” යන්නෙන් :-
+images/acts_test_0022_line_009.png	(අ) (i) එවැනි ව්‍යවසායක ආයෝජනය කළ
+images/acts_test_0022_line_010.png	රුපියල් මිලියන දෙකහමාරක අවම
+images/acts_test_0022_line_011.png	ආයෝජනයක් සහිතව 2002 අප්‍රේල් මස
+images/acts_test_0022_line_012.png	1 වන දිනට පෙර සංස්ථාගත කරන ලද
+images/acts_test_0022_line_013.png	සහ 2002 අප්‍රේල් මස 1 වන දින හෝ
+images/acts_test_0022_line_014.png	එදිනට පසු එහෙත් 2004 අප්‍රේල් මස 1
+images/acts_test_0022_line_015.png	වන දිනට පෙර ව්‍යාපාර කටයුතු
+images/acts_test_0022_line_016.png	ආරම්භ කර ඇති ;
+images/acts_test_0022_line_017.png	(ii) එවැනි ව්‍යවසායක ආයෝජනය කරන
+images/acts_test_0022_line_018.png	ලද රුපියල් මිලියන පණහක අවම
+images/acts_test_0022_line_019.png	ආයෝජනයක් සහිතව 2002 අප්‍රේල් මස
+images/acts_test_0022_line_020.png	1 වන දිනට පෙර සංස්ථාගත කරන ලද
+images/acts_test_0022_line_021.png	සහ 2004 අප්‍රේල් මස 1 වන දින හෝ
+images/acts_test_0022_line_022.png	ඊට පසු ව්‍යාපාර කටයුතු ආරම්භ කර
+images/acts_test_0022_line_023.png	ඇති ;
+images/acts_test_0022_line_024.png	(iii) 2002 අප්‍රේල් මස 1 වන දින හෝ ඊට
+images/acts_test_0022_line_025.png	පසු එහෙත් 2004 අප්‍රේල් මස 1 වන
+images/acts_test_0022_line_026.png	දිනට පෙර සංස්ථාගත කරන ලද සහ
+images/acts_test_0022_line_027.png	ව්‍යාපාර කටයුතු කරගෙන යාම ආරම්භ
+images/acts_test_0022_line_028.png	කර ඇති ; හෝ
+images/acts_test_0022_line_029.png	(iv) එවැනි ව්‍යවසායක ආයෝජනය කරන
+images/acts_test_0022_line_030.png	ලද රුපියල් මිලියන දහයක අවම
+images/acts_test_0022_line_031.png	ආයෝජනයක් සහිතව 2004 අප්‍රේල් මස
+images/acts_test_0022_line_032.png	1 වන දින හෝ එදිනට පසු සංස්ථාගත
+images/acts_test_0022_line_033.png	කරන ලද,
+images/acts_test_0022_line_034.png	සමාගමක් විසින් පවත්වාගෙන යනු ලබන
+images/acts_test_0022_line_035.png	ව්‍යවසායක් වන්නා වූ සහ කෘෂිකර්මාන්තය,
+images/acts_test_0022_line_036.png	කෘෂි පිරිසැකසුම් කිරීම, කාර්මික හා යාන්ත්‍රික
+images/acts_test_0023_line_001.png	1987 අංක 36 දරන සුරැකුම්පත් සභා පනත 13
+images/acts_test_0023_line_002.png	(ඇ) එම සුරැකුම්පත් සම්බන්ධයෙන් පළ නොකළ මිල පිළිබඳ
+images/acts_test_0023_line_003.png	සංවේදී තොරතුරු ලෙස ඔහු දන්නා වූ
+images/acts_test_0023_line_004.png	තොරතුරු ඔහුට ඇත්නම් ඔහු ඒ සමාගමේ ලැයිස්තුගත සුරැකුම්
+images/acts_test_0023_line_005.png	පත් වෙළඳාම් නොකළ යුතු ය.
+images/acts_test_0023_line_006.png	(2) (8) වන සහ (9) වන උපවගන්ති වල විධිවිධානවලට යටත්ව
+images/acts_test_0023_line_007.png	සමාගමක් සමග දැනුවත්ව සම්බන්ධයක් ඇත්තා වූ පුද්ගලයකු
+images/acts_test_0023_line_008.png	විසින් හෝ නියමිත දිනයට ඉහතින් ම වූ මාස හය ඇතුළත යම්
+images/acts_test_0023_line_009.png	අවස්ථාවක සමාගමක් සමග දැනුවත්ව සම්බන්ධයක් තිබුණා වූ
+images/acts_test_0023_line_010.png	පුද්ගලයකු විසින් හෝ වෙනත් සමාගමක ලැයිස්තුගත සුරැකුම්
+images/acts_test_0023_line_011.png	පත් වෙළඳාම් කිරීම -
+images/acts_test_0023_line_012.png	(අ) පළමු සඳහන් සමාගම සමග වූ සම්බන්ධය ප්‍රකාර ඔහු
+images/acts_test_0023_line_013.png	දරන්නා වූ;
+images/acts_test_0023_line_014.png	(ඈ) එවැනි සම්බන්ධයක් දරන්නා වූ ද ඒ සම්බන්ධයට තුඩු
+images/acts_test_0023_line_015.png	දුන් තත්ත්වයක් දරන්නා වූද තැනැත්තකු විසින් තම
+images/acts_test_0023_line_016.png	තත්ත්වයට අනුයුකත කර්තව්‍ය නිසි ලෙස ඉටු කිරීම
+images/acts_test_0023_line_017.png	සඳහා හැර, අනාවරණය නොකළ යුතු යයි යුකතී සහගතව
+images/acts_test_0023_line_018.png	බලාපොරොත්තු විය හැකි වූ;
+images/acts_test_0023_line_019.png	(ඇ) ඒ වෙනත් සමාගමේ සුරැකුම්පත් සම්බන්ධයෙන් පළ නො
+images/acts_test_0023_line_020.png	කළ මිල පිළිබඳ සංවේදී තොරතුරු යැයි ඔහු දරන්නා වූ;
+images/acts_test_0023_line_021.png	සහ
+images/acts_test_0023_line_022.png	(ඈ) පළමු සඳහන් සමාගම සහ ඒ වෙනත් සමාගම යන දෙකම
+images/acts_test_0023_line_023.png	ඇතුළත් වන්නා වූ හෝ ඒවායින් එකක් සහ අනෙක්
+images/acts_test_0023_line_024.png	සමාගමේ සුරැකුම් පත් ඇතුළත් වන්නා වූ හෝ තථ්‍ය
+images/acts_test_0023_line_025.png	නැතහොත් අදහස් කරන ලද යම් ගනුදෙනුවකට අදාළ
+images/acts_test_0023_line_026.png	වූ හෝ එවැනි යම් ගනුදෙනුවක් තවදුරටත් අදහස් නො
+images/acts_test_0023_line_027.png	කෙරෙන බවට වූ
+images/acts_test_0023_line_028.png	තොරතුරු ඔහුට ඇත් නම් නොකළ යුතු ය.
+images/acts_test_0023_line_029.png	(3) (8) වන සහ (9) වන උපවගන්ති වල විධිවිධානවලට
+images/acts_test_0023_line_030.png	යටත් ව -
+images/acts_test_0023_line_031.png	(අ) යම් පුද්ගලයකු විසින් යම් විශේෂිත සමාගමක් සමඟ සම්
+images/acts_test_0023_line_032.png	බන්ධයක් ඇති වෙනත් පුද්ගලයකුගෙන් කෙළින්ම
+images/acts_test_0023_line_033.png	හෝ අන්‍යාකාරයකින් දැනුවත්ව ම ලබා ගන්නා ලද
+images/acts_test_0023_line_034.png	තොරතුරක් ඇත්තා වූ හෝ තොරතුරු ලබා ගැනීමේ
+images/acts_test_0023_line_035.png	දිනයට ඉහතින් ම වූ මාස හය ඇතුළත යම් අවස්ථාවක
+images/acts_test_0023_line_036.png	දී එසේ සම්බන්ධයන් ඇතිව සිටි වෙනත් පුද්ගලයකු
+images/acts_test_0023_line_037.png	ගෙන් කෙළින් ම හෝ අන්‍යාකාරයෙන් දැනුවත්ව ම ලබා
+images/acts_test_0023_line_038.png	ගන්නා ලද තොරතුරක් ඇත්තා වූ සහ ඒ වෙනත් පුද්
+images/acts_test_0023_line_039.png	ගලයකු එසේ සම්බන්ධයක් ඇති ව සිටීම නිසා ඒ
+images/acts_test_0023_line_040.png	තොරතුරු දරන ලද බව කලින් සඳහන් කළ පුද්ගලයා
+images/acts_test_0023_line_041.png	දන්නා වූ හෝ එසේ විශ්වාස කිරීමට යුක්ති සහගත
+images/acts_test_0023_line_042.png	හේතු ඇතතා ව අවස්ථාවක: සහ
+images/acts_test_0024_line_001.png	38 2003 අංක 9 දරන පාරිභෝගික කටයුතු
+images/acts_test_0024_line_002.png	පිළිබඳ අධිකාරිය පනත
+images/acts_test_0024_line_003.png	බන්ධනාගාරගත කිරීමකට හෝ ඒ දඩය සහ
+images/acts_test_0024_line_004.png	බන්ධනාගාරගත කිරීම යන දඬුවම් දෙකටම සහ
+images/acts_test_0024_line_005.png	ඉන් පසුව සිදු කරන වරදක් සම්බන්ධයෙන් වන
+images/acts_test_0024_line_006.png	විට රුපියල් දෙදහසකට නොඅඩු හා රුපියල්
+images/acts_test_0024_line_007.png	දස දහසකට නොවැඩි දඩයකට හෝ මාස
+images/acts_test_0024_line_008.png	හයකට නොවැඩි කාලයක් සඳහා දෙයාකාරයෙන්
+images/acts_test_0024_line_009.png	එක් ආකාරයක බන්ධනාගාරගත කිරීමකට හෝ
+images/acts_test_0024_line_010.png	දඩය සහ බන්ධනාගාරගත කිරීම යන දඩුවම්
+images/acts_test_0024_line_011.png	දෙකටම; හෝ
+images/acts_test_0024_line_012.png	(ii) ඒ තැනැත්තා සංස්ථාවක් වන විට, පළමු වරදක්
+images/acts_test_0024_line_013.png	සම්බන්ධයෙන් රුපියල් පන්දහසකට නොඅඩු හා
+images/acts_test_0024_line_014.png	රුපියල් දස දහසකට නොවැඩි දඩයකට සහ
+images/acts_test_0024_line_015.png	ඉන් පසුව සිදු කරන වරදක් සම්බන්ධයෙන් වන
+images/acts_test_0024_line_016.png	විට රුපියල් දස දහසකට නොඅඩු හා රුපියල්
+images/acts_test_0024_line_017.png	විසිදහසකට නොවැඩි දඩයකට,
+images/acts_test_0024_line_018.png	හෝ යටත් වන්නේ ය.
+images/acts_test_0024_line_019.png	(2) (අ) 41 වන වගන්තියේ (1) වන උපවගන්තියේ (ආ)
+images/acts_test_0024_line_020.png	ඡේදය යටතේ කරන ලද නියමයක් අනුව කටයුතු
+images/acts_test_0024_line_021.png	කිරීම පැහැර හරින හෝ ප්‍රතික්ෂේප කරන හෝ ඒ
+images/acts_test_0024_line_022.png	නියමය උල්ලංඝනය වන පරිදි ක්‍රියා කරන, හෝ
+images/acts_test_0024_line_023.png	යම් තැනැත්තෙක් මේ පනත යටතේ වරදක් කරන
+images/acts_test_0024_line_024.png	අතර, මහෙස්ත්‍රාත්වරයකු ඉදිරියේ පැවැත්වෙන නඩු
+images/acts_test_0024_line_025.png	විභාගයකින් පසු වරදකරු කරනු ලැබූ විට-
+images/acts_test_0024_line_026.png	(i) ඒ තැනැත්තා සංස්ථාවක් නොවන අවස්ථාවක,
+images/acts_test_0024_line_027.png	පළමු වරදක් සම්බන්ධයෙන් වන විට රුපියල්
+images/acts_test_0024_line_028.png	පන්දහසකට නොඅඩු හා රුපියල් පණස් දහසකට
+images/acts_test_0024_line_029.png	නොවැඩි දඩයකට හෝ අවුරුද්දකට නොවැඩි
+images/acts_test_0024_line_030.png	කාලයක් සඳහා දෙයාකාරයෙන් එක් ආකාරයක
+images/acts_test_0024_line_031.png	බන්ධනාගාරගත කිරීමකට හෝ දඩය සහ
+images/acts_test_0024_line_032.png	බන්ධනාගාරගත කිරීම යන දඬුවම් දෙකටම සහ
+images/acts_test_0024_line_033.png	ඉන් පසුව සිදු කරන වරදක් සම්බන්ධයෙන්
+images/acts_test_0024_line_034.png	වන විට රුපියල් දස දහසකට නොඅඩු හා
+images/acts_test_0024_line_035.png	රුපියල් ලක්ෂයකට නොවැඩි දඩයකට හෝ
+images/acts_test_0024_line_036.png	අවුරුදු දෙකකට නොවැඩි කාලයක් සඳහා
+images/acts_test_0024_line_037.png	දෙයාකාරයෙන් එක් ආකාරයක
+images/acts_test_0024_line_038.png	බන්ධනාගාරගත කිරීමකට හෝ ඒ දඩය සහ
+images/acts_test_0024_line_039.png	බන්ධනාගාරගත කිරීම යන දඬුවම් දෙකටම ; හෝ
+images/acts_test_0025_line_001.png	2000 අංක 49 දරන නගර හා ග්‍රාම නිර්මාණ 15
+images/acts_test_0025_line_002.png	(සංශෝධන) පනත
+images/acts_test_0025_line_003.png	(2) උපදේශක සභාවේ යම් සාමාජිකයකු ධුරයෙන්
+images/acts_test_0025_line_004.png	ඉවත් කිරීම යෝග්‍ය යයි අමාත්‍යවරයා සිතන්නේ
+images/acts_test_0025_line_005.png	නම්, අමාත්‍යවරයා විසින් ගැසට් පත්‍රයේ පළ කරනු
+images/acts_test_0025_line_006.png	ලබන නියෝගයක් මගින් ඒ සඳහා හේතු දක්වා ඒ
+images/acts_test_0025_line_007.png	සාමාජිකයා ධුරයෙන් ඉවත් කරනු ලැබිය හැකි ය.
+images/acts_test_0025_line_008.png	(3) උපදේශක සභාවේ සාමාජිකයකු විසින්,
+images/acts_test_0025_line_009.png	අමාත්‍යවරයා අමතා යවනු ලබන ලිපියක් මගින්
+images/acts_test_0025_line_010.png	ඕනෑම අවස්ථාවක ස්වකීය ධුරයෙන් ඉල්ලා අස්විය
+images/acts_test_0025_line_011.png	හැකි ය.
+images/acts_test_0025_line_012.png	(4) උපදේශක කමිටුවේ යම් සාමාජිකයකු
+images/acts_test_0025_line_013.png	මියගියහොත්, ඉල්ලා අස්වුවහොත් හෝ ධුරයෙන්
+images/acts_test_0025_line_014.png	ඉවත් කරනු ලැබුවහොත් අමාත්‍යවරයා විසින් මියගිය,
+images/acts_test_0025_line_015.png	ඉල්ලා අස් වූ හෝ ධුරයෙන් ඉවත් කරනු ලැබූ ඒ
+images/acts_test_0025_line_016.png	සාමාජිකයා වෙනුවට, වෙනත් යම් තැනැත්තකු
+images/acts_test_0025_line_017.png	සාමාජිකයකු වශයෙන් පත් කරනු ලැබිය හැකි ය.
+images/acts_test_0025_line_018.png	(5) (4) වන උපවගන්තිය යටතේ පත් කරනු
+images/acts_test_0025_line_019.png	ලැබූ යම් සාමාජිකයකු ඔහු කලින් ඉල්ලා අස්වීමෙන්
+images/acts_test_0025_line_020.png	හෝ මියයාමෙන් හෝ ධුරයෙන් ඉවත් කරනු ලැබීමෙන්
+images/acts_test_0025_line_021.png	ස්වකීය ධුරය හිස් කරතහොත් මිස, තමාගේ
+images/acts_test_0025_line_022.png	පූර්වගාමියාගේ ධුර කාලයෙන් ඉකුත් නොවී ඇති
+images/acts_test_0025_line_023.png	කාලය සඳහා ධුරය දැරිය යුතු ය.
+images/acts_test_0025_line_024.png	(6) උපදේශක කමිටුවේ සාමාජිකයන් අතර යම්
+images/acts_test_0025_line_025.png	පුරප්පාඩුවක් තිබුණ ද උපදේශක කමිටුව විසින්
+images/acts_test_0025_line_026.png	එහි කර්තව්‍ය ඉටු කරනු ලැබිය හැකි ය.
+images/acts_test_0025_line_027.png	(7) උපදේශක කමිටුවේ යම් රැස්වීමක් සඳහා
+images/acts_test_0025_line_028.png	ගණ පූරණය උපදේශක කමිටුවේ සාමාජිකයන්
+images/acts_test_0025_line_029.png	තිදෙනකුගෙන් සෑදෙන්නේ ය.
+images/acts_test_0025_line_030.png	(8) මේ ආඥාපනතේ විධිවිධානවලට යටත්ව,
+images/acts_test_0025_line_031.png	උපදේශක කමිටුව විසින් එහි රැස්වීම් සහ රැස්වීම්වල
+images/acts_test_0025_line_032.png	කටයුතු කර ගෙන යාම සම්බන්ධයෙන් එහි කාර්ය
+images/acts_test_0025_line_033.png	පටිපාටිය විධිමත් කරගනු ලැබිය හැකි ය.
+images/acts_test_0025_line_034.png	(9) අමාත්‍යවරයා විසින්, මුදල් විෂයය භාර
+images/acts_test_0025_line_035.png	අමාත්‍යවරයාගේ එකඟත්වය ඇතිව නිශ්චය කරනු
+images/acts_test_0025_line_036.png	ලබන යම් ආකාරයකින් උපදේශක කමිටුවේ
+images/acts_test_0025_line_037.png	සාමාජිකයන්ට පාරිශ්‍රමික ගෙවනු ලැබිය හැකි ය.”.
+images/acts_test_0026_line_001.png	56 2011 අංක 42 දරන මුදල් ව්‍යාපාර පනත
+images/acts_test_0026_line_002.png	(8) (අ) ඒ තැනැත්තා (6) වන උපවගන්තිය යටතේ නිකුත් කරන
+images/acts_test_0026_line_003.png	ලද විධාන අනුව කටයුතු කිරීමට පැහැර හරින අවස්ථාවක, ඒ
+images/acts_test_0026_line_004.png	තැනැත්තා ගණන් බේරා වසා දැමීම හෝ අධිකරණයකින් ඒ
+images/acts_test_0026_line_005.png	තැනැත්තා බුන්වත් බව ප්‍රකාශ කිරීම සඳහා ක්‍රියාමාර්ග ගැනීම
+images/acts_test_0026_line_006.png	ඇතුළුව අවශ්‍ය යයි මණ්ඩලය සලකන පියවර මණ්ඩලය විසින්
+images/acts_test_0026_line_007.png	ගනු ලැබිය හැක.
+images/acts_test_0026_line_008.png	(ආ) සමාගමක් ගණන් බේරා වසා දැමීමේ දී, 32 වන වගන්තියේ
+images/acts_test_0026_line_009.png	විධිවිධාන, එහි (3) වන උපවගන්තියේ විධිවිධාන හැර, අවශ්‍ය වෙනස්
+images/acts_test_0026_line_010.png	කිරීම් සහිතව, අදාළ විය යුතු ය.
+images/acts_test_0026_line_011.png	(ඇ) සමාගමක් හැර වෙනත් තැනැත්තන් මණ්ඩලයක් ගණන්
+images/acts_test_0026_line_012.png	බේරා වසා දැමීමේ දී 32 වන වගන්තියේ විධිවිධාන, එහි (2) වන
+images/acts_test_0026_line_013.png	සහ (3) වන උපවගන්තිවල විධිවිධාන හැර අවශ්‍ය වෙනස් කිරීම්
+images/acts_test_0026_line_014.png	සහිතව අදාළ විය යුතු අතර, ඈවරකරු විසින් සුදුසු යයි සලකන
+images/acts_test_0026_line_015.png	ආකාරයට සුදුසු යයි ඔහු සලකන පදනමක් අනුව, ඒ තැනැත්තන්
+images/acts_test_0026_line_016.png	මණ්ඩලයේ වත්කම් සහ බැරකම්වල අගය නිශ්චිතව දැනගත යුතු
+images/acts_test_0026_line_017.png	ය. ගණන් බේරා වසා දැමීම සඳහා ආඥාවක් නිකුත් කිරීමෙන් පසු
+images/acts_test_0026_line_018.png	කවර විටක වුවද, නිසි බලය ඇති අධිකරණය විසින් ඈවරකරුට
+images/acts_test_0026_line_019.png	සියලු වත්කම් මුදල් කර ගැනීමට බලය දෙනු ලැබිය හැකි අතර,
+images/acts_test_0026_line_020.png	යම් තැනැත්තකුට ඔහු සන්තකයේ පවතින ඒ තැනැත්තන් මණ්ඩලයට
+images/acts_test_0026_line_021.png	හිමි යම් මුදල්, දේපල, පොත් සහ වෙනත් ලේඛන වහා ම හෝ
+images/acts_test_0026_line_022.png	විශේෂිතව සඳහන් කළ කාලසීමාවක් තුළ ඈවරකරුට ගෙවීමට,
+images/acts_test_0026_line_023.png	භාරදීමට, යැවීමට, යටතට පැමිණවීමට හෝ පැවරීමට නියම කරනු
+images/acts_test_0026_line_024.png	ලැබිය හැකි ය. ඈවරකරු විසින්, ඒ තැනැත්තන් මණ්ඩලය ගණන්
+images/acts_test_0026_line_025.png	බේරා වසා දැමීමේ කාර්යය සඳහා සැලැස්මක් සකස් කර, නිසි
+images/acts_test_0026_line_026.png	බලය ඇති අධිකරණයේ තහවුරුව සඳහා ඉදිරිපත් කළ යුතු අතර,
+images/acts_test_0026_line_027.png	ඒ තැනැත්තන් මණ්ඩලය ගණන් බේරා වසා දැමීම ඒ සැලැස්මට
+images/acts_test_0026_line_028.png	අනුව ක්‍රියාත්මක කළ යුතු ය.
+images/acts_test_0026_line_029.png	(9) මේ වගන්තියේ (4) වන උපවගන්තිය ප්‍රකාරව තීරණය කරන
+images/acts_test_0026_line_030.png	ලද ඒ තැනැත්තාගේ මුදල් සහ දේපල ආපසු ලබා ගැනීම සඳහා
+images/acts_test_0026_line_031.png	මණ්ඩලය විසින් අවශ්‍ය යයි සලකනු ලබන යම් පියවර ගනු ලැබිය
+images/acts_test_0026_line_032.png	හැකි අතර, මේ පනතේ 51 වන වගන්තියේ විධිවිධාන, අවශ්‍ය
+images/acts_test_0026_line_033.png	වෙනස් කිරීම් සහිතව, ඒ ආපසු ලබා ගැනීම සම්බන්ධයෙන් අදාළ
+images/acts_test_0026_line_034.png	විය යුතු ය.
+images/acts_test_0026_line_035.png	(10) නිශ්චය සඳහන් තැනැත්තා 2 වන වගන්තියේ විධිවිධාන
+images/acts_test_0026_line_036.png	උල්ලංඝනය කරමින් මුදල් ව්‍යාපාර කටයුතු කර ගෙන ගනු ලැබූ
+images/acts_test_0026_line_037.png	බවට හෝ කරගෙන යන බවට හෝ තැන්පතු භාර ගනු ලැබූ බවට
+images/acts_test_0026_line_038.png	හෝ භාර ගන්නා බවට, මණ්ඩලය විසින්, යටත් පිරිසෙයින්, ශ්‍රී
+images/acts_test_0026_line_039.png	ලංකාවේ සංසරණය වන එක් දෛනික සිංහල, දෙමළ සහ ඉංග්‍රීසි
+images/acts_test_0027_line_001.png	12 1988 අංක 78 දරන මුදල් සමාගම් පනත
+images/acts_test_0027_line_002.png	(3) අධ්‍යක්ෂවරයා හෝ ඔහු විසින් බලය දෙන ලද යම් නිලධරයකු
+images/acts_test_0027_line_003.png	විසින් හෝ පහත දැක්වෙන කටයුතු කිරීම නීත්‍යනුකූල වන්නේය-
+images/acts_test_0027_line_004.png	(අ) දිවුරුම් ආඥාපනතට අනුකූලව යම් මුදල සමාගමක යම්
+images/acts_test_0027_line_005.png	අධ්‍යක්ෂවරයෙක්, කළමනාකාරවරයෙක්, ලේකම්වරයෙක්,
+images/acts_test_0027_line_006.png	සේවා නියුක්තයෙක් හෝ විගණකවරයෙක් ලවා දිවුරුම්
+images/acts_test_0027_line_007.png	හෝ ප්‍රතිඥා ගැනීම;
+images/acts_test_0027_line_008.png	(ආ) මෙම පනතේ කාර්යය සඳහා සමාගමේ කටයුතුවලට අදාළ
+images/acts_test_0027_line_009.png	වන්නා වූ ද අධ්‍යක්ෂවරයා හෝ ඔහු විසින් බලය දෙන ලද
+images/acts_test_0027_line_010.png	යම් නිලධරයකු නිසැකව දැන ගැනීමට අවශ්‍ය යයි සලකනු
+images/acts_test_0027_line_011.png	ලබන්නා වූද යම් සියලු තොරතුරු සපයන ලෙස යම් මුදල්
+images/acts_test_0027_line_012.png	සමාගමක අධ්‍යක්ෂවරයකුට, කළමනාකාරවරයකුට,
+images/acts_test_0027_line_013.png	ලේකම්වරයකුට, සේවා නියුක්තයකුට හෝ විගණකවර
+images/acts_test_0027_line_014.png	යකුට නියම කිරීම;
+images/acts_test_0027_line_015.png	(ඇ) එවැනි යම් තොරතුරක ඇතුළත් විය හැකි තමා සන්තකයේ
+images/acts_test_0027_line_016.png	හෝ භාරයේ තිබෙන සමාගමේ කටයුතු වලට අදාළ පොත්
+images/acts_test_0027_line_017.png	වාර්තා හෝ ලේඛන කිසිවක් පරීක්ෂා කිරීම සඳහා ඉදිරි
+images/acts_test_0027_line_018.png	පත් කිරීමට යම් මුදල් සමාගමක යම් අධ්‍යක්ෂවරයකුට,
+images/acts_test_0027_line_019.png	කළමනාකාරවරයකුට, ලේකම් වරයකුට සේවා නියුක්තය
+images/acts_test_0027_line_020.png	කුට හෝ විගණකවරයකුට නියම කිරීම; සහ
+images/acts_test_0027_line_021.png	(ඈ) මුදල සමාගමක් අයථා ලෙස කළමනාකරණය කරනු ලැබ
+images/acts_test_0027_line_022.png	ඇති බවට සාක්ෂි ඇති අවස්ථාවක අධ්‍යක්ෂවරයා විසින්
+images/acts_test_0027_line_023.png	බලය දෙන ලද විගණකවරයකු විසින් විගණනය කිරීම
+images/acts_test_0027_line_024.png	සඳහා මුදල් සමාගමේ ගිණුම් ඉදිරිපත් කරන ලෙස එම
+images/acts_test_0027_line_025.png	මුදල් සමාගමේ යම් අධ්‍යක්ෂවරයකුට, කළමනාකාරවර
+images/acts_test_0027_line_026.png	යකුට හෝ ලේකම්වරයකුට, නියම කිරීම සහ යම් තොර
+images/acts_test_0027_line_027.png	තුරු සපයන ලෙස හෝ යම් පොත්, වාර්තා හෝ ලේඛන
+images/acts_test_0027_line_028.png	ඉදිරිපත් කරන ලෙස හෝ අධ්‍යක්ෂවරයා විසින් නිශ්චය
+images/acts_test_0027_line_029.png	කරනු ලැබිය හැක්කා වූ හෝ බලය දෙනු ලැබිය හැක්කා වූ
+images/acts_test_0027_line_030.png	හෝ යම් ගාස්තු මෙම විගණකවරයාට ගෙවන ලෙස යම්
+images/acts_test_0027_line_031.png	මුදල් සමාගමකට නියම කිරීම.
+images/acts_test_0027_line_032.png	(4) මේ වගන්තිය යටතේ තමන් වෙත නියම කරන ලද යම්
+images/acts_test_0027_line_033.png	නියමයකට අනුකූලව කටයුතු කිරීම සහ අධ්‍යක්ෂවරයාට හෝ ඔහු
+images/acts_test_0027_line_034.png	විසින් බලය දෙන ලද යම් නිලධරයකුට හෝ (3) වන උපවගන්
+images/acts_test_0027_line_035.png	තියේ (ඇ) ඡේදය යටතේ ඔහු විසින් බලය දෙන ලද යම් විගණක
+images/acts_test_0027_line_036.png	වරයකුට හෝ ඒ මුදල් සමාගමේ මුදල ශේෂ, වත්කම් සහ බැරකම්
+images/acts_test_0027_line_037.png	ඇතුළු එහි සියලු පොත් සහ වාර්තා බැලීමේ මාර්ග සැලැස්වීම කළ
+images/acts_test_0027_line_038.png	යුතු යයි අධ්‍යක්ෂවරයා විසින් ඉල්ලා සිටිනු ලබන කවර විටක වුව ද
+images/acts_test_0027_line_039.png	එසේ කිරීම යම් මුදල් සමාගමක සෑම අධ්‍යක්ෂවරයකුගේ ම,
+images/acts_test_0027_line_040.png	කළනාකාරවරයකුගේ ම, ලේකම් වරයකුගේම, සේවානියුක්තයකු
+images/acts_test_0027_line_041.png	ගේම හෝ විගණකවරයකුගේම කාර්යය වන්නේය.
+images/acts_test_0030_line_001.png	2006 අංක 6 දරන මුදල් ගනුදෙනු වාර්තා කිරීමේ පනත 37
+images/acts_test_0030_line_002.png	“අක්වෙරළ ඒකකය” යන්නෙන්, 1988 අංක 30 දරන බැංකු පනතේ
+images/acts_test_0030_line_003.png	IV වන කොටසේ විධිවිධානවලට යටත්ව, අක්වෙරළ බැංකු
+images/acts_test_0030_line_004.png	කටයුතු පිළිබඳව බැංකු ව්‍යාපාරය කරගෙන යන බලපත්‍රලත්
+images/acts_test_0030_line_005.png	වාණිජ බැංකුවක හෝ බලපත්‍රලත් විශේෂ බැංකුවක ඒකකයක්
+images/acts_test_0030_line_006.png	හෝ දෙපාර්තමේන්තුවක් අදහස් වේ ;
+images/acts_test_0030_line_007.png	“තැනැත්තා” යන්නෙන්, නීත්‍යනුකූල පෞරුෂයක් ඇත්තේ වුව ද
+images/acts_test_0030_line_008.png	නොවුව ද පුද්ගල මණ්ඩලයක් ද ඇතුළු යම් ස්වාභාවික හෝ
+images/acts_test_0030_line_009.png	නීත්‍යනුකූල තැනැත්තෙක් අදහස් වන අතර, ඒ තැනැත්තාගේ
+images/acts_test_0030_line_010.png	හෝ ශ්‍රී ලංකාවෙන් පිටත සංස්ථාගත කරන ලද හෝ පිහිටුවන
+images/acts_test_0030_line_011.png	ලද ඒ තැනැත්තාගේ පුද්ගල මණ්ඩලයේ ශාඛාවක් ද ඊට
+images/acts_test_0030_line_012.png	ඇතුළත්වේ ;
+images/acts_test_0030_line_013.png	“නියමිත” යන්නෙන්, මේ පනත යටතේ සාදන ලද නියෝග මගින්
+images/acts_test_0030_line_014.png	නියමිත බව අදහස් වේ ;
+images/acts_test_0030_line_015.png	“මුදල් විශුද්ධිකරණ වරද” යන්නෙන්, 2006 අංක 5 දරන මුදල්
+images/acts_test_0030_line_016.png	විශුද්ධිකරණය වැළැක්වීමේ පනතේ 4 වන වගන්තියේ කර
+images/acts_test_0030_line_017.png	ඇති පරිදි වූ වරදක් වේ ;
+images/acts_test_0030_line_018.png	“ත්‍රස්තවාදය වෙනුවෙන් මුදල් සැපයීමේ වරද යන්නෙන්” 2005 අංක
+images/acts_test_0030_line_019.png	25 දරන ත්‍රස්තවාදය වෙනුවෙන් මුදල් සැපයීම මැඩපැවැත්වීමේ
+images/acts_test_0030_line_020.png	සම්මුති පනත ප්‍රකාර වරදක් සංස්ථාපනය කෙරෙන ක්‍රියාවක්
+images/acts_test_0030_line_021.png	අදහස් වේ ;
+images/acts_test_0030_line_022.png	“දේපළ” යන්නෙන්, යම් ව්‍යවහාර මුදලක් අදහස් වන අතර, එයට
+images/acts_test_0030_line_023.png	ද්‍රව්‍යමය හෝ අද්‍රව්‍යමය, චංචල හෝ නිශ්චල ස්පර්ශ කළ හැකි
+images/acts_test_0030_line_024.png	හෝ නොහැකි, ශ්‍රී ලංකාවේ හෝ අන්තැනක පිහිටි යම්
+images/acts_test_0030_line_025.png	වත්කමක් සහ නීත්‍යනුකූල ලේඛන හෝ ඒ වත්කම්වලට සාක්ෂි
+images/acts_test_0030_line_026.png	වශයෙන් වූ හෝ සම්බන්ධතාවක් ඇත්තා වූ කවර වූ හෝ යම්
+images/acts_test_0030_line_027.png	ආකෘතියක සාධන පත් ඇතුළත් වේ. එහෙත්, ඒවා බැංකු බැර,
+images/acts_test_0030_line_028.png	සංචාරක චෙක්පත්, බැංකු චෙක්පත්, මුදල් ඇණවුම්, කොටස්,
+images/acts_test_0030_line_029.png	ඇප, බැඳුම්කර, අණකර, ණයවර ලිපිවලට සීමා නොවන
+images/acts_test_0030_line_030.png	අතර එවැනි යම් දේපළක යම් නීත්‍යනුකූල හා සාධාරණ
+images/acts_test_0030_line_031.png	පොලියක් ද එයට ඇතුළත් වේ ;
+images/acts_test_0030_line_032.png	“වාර්තාව” යන්නෙන්, දත්ත සටහන් කරනු ලැබ ඇත්තා වූ හෝ
+images/acts_test_0030_line_033.png	ලකුණු කරනු ලැබ ඇත්තා වූ සහ යම් තැනැත්තකු විසින්,
+images/acts_test_0030_line_034.png	පරිගණක පද්ධතියක් හෝ වෙනත් උපක්‍රමයක් මගින් කියවීමේ
+images/acts_test_0030_line_035.png	හා තේරුම් ගැනීමේ හැකියාව ඇත්තා වූ ද යම් උපකරණයක්
+images/acts_test_0030_line_036.png	අදහස් වේ ;
+images/acts_test_0031_line_001.png	2018 අංක 2 දරන ප්‍රපාතන විරෝධී සහ 39
+images/acts_test_0031_line_002.png	ප්‍රතිතෝලන බදු පනත
+images/acts_test_0031_line_003.png	මුදාහැරීමට අකමැති අවස්ථාවක දී, ප්‍රපාතන ආන්තිකය අඩු කරනු
+images/acts_test_0031_line_004.png	ලැබී ඇති බවට හෝ ඉවත් කරනු ලැබ ඇති බවට නිෂ්පාදකයාගෙන්
+images/acts_test_0031_line_005.png	හෝ අපනයනකරුගෙන් ලබා ගත් ප්‍රකාශයක් ඉල්ලුම් පත්‍රයට ඇතුළත්
+images/acts_test_0031_line_006.png	විය යුතු අතර, අදාළ තහවුරු කිරීමේ සාක්ෂි අධ්‍යක්ෂ ජනරාල්වරයාට
+images/acts_test_0031_line_007.png	සෘජුවම ඉදිරිපත් කළ යුතු ය. එම සාක්ෂි සාධාරණ කාල සීමාවක්
+images/acts_test_0031_line_008.png	තුළ අපනයනකරුගෙන් හෝ නිෂ්පාදකයාගෙන් නොලැබෙන
+images/acts_test_0031_line_009.png	අවස්ථාවක දී, ඉල්ලුම් පත්‍රය ප්‍රතික්ෂේප කරනු ලැබිය යුතු ය.
+images/acts_test_0031_line_010.png	(4) බදු ආපසු ගෙවීම සඳහා වූ ඉල්ලුම් පත්‍රයක් විභාග කිරීමේ දී,
+images/acts_test_0031_line_011.png	විමර්ශනයක් පැවැත්වීමට අදාළ මේ පනතේ විධිවිධාන අධ්‍යක්ෂ
+images/acts_test_0031_line_012.png	ජනරාල්වරයා විසින් සිය තීරණය සඳහා අදාළ කරගත යුතු ය.
+images/acts_test_0031_line_013.png	විශේෂයෙන්, අපනයන මිලක් නොමැතිවීම හේතුවෙන් ආනයන
+images/acts_test_0031_line_014.png	නිෂ්පාදන ස්වාධීන මිලදී ගන්නෙකුට ප්‍රථමයෙන් ප්‍රතිවිකුණුම් කරනු
+images/acts_test_0031_line_015.png	ලබන මිල මත අපනයන මිල සංකෝචනය වීමේ දී ආපසු ගෙවීම්
+images/acts_test_0031_line_016.png	කළ යුතු ද සහ කවර ප්‍රමාණයකට කළ යුතු ද යන්න තීරණය
+images/acts_test_0031_line_017.png	කරනු ලබන විටෙක හෝ 9 වන වගන්තියේ (2) වන උපවගන්තිය
+images/acts_test_0031_line_018.png	ප්‍රකාර අපනයන මිල අවිශ්වාස කටයුතු බව පෙනී යන විටෙක,
+images/acts_test_0031_line_019.png	අධ්‍යක්ෂ ජනරාල්වරයා විසින් සාමාන්‍ය වටිනාකමෙහි ඇති යම්
+images/acts_test_0031_line_020.png	වෙනසක් පිළිබඳව , ආනයනය කිරීම සහ ප්‍රතිවිකිණුම අතරතුර දී
+images/acts_test_0031_line_021.png	උපචිත වූ පිරිවැයෙහි යම් වෙනස්වීමක් පිළිබඳව සහ ප්‍රතිවිකුණුම්
+images/acts_test_0031_line_022.png	මිලෙහි යථා පරිදි නිරූපනය ප්‍රතිවිකුණුම් මිලෙහි සිදු වී ඇති
+images/acts_test_0031_line_023.png	චලනයක් පිළිබඳව ද සැලකිල්ලට ගත යුතු අතර, ඉහත සඳහන්
+images/acts_test_0031_line_024.png	කරුණු පිළිබඳ ප්‍රමාණවත් සාක්ෂි සපයනු ලැබූ විට ගෙවන ලද
+images/acts_test_0031_line_025.png	ප්‍රපාතන විරෝධී බදු ප්‍රමාණය සඳහා කිසිදු අඩුකිරීමක් නොමැතිව,
+images/acts_test_0031_line_026.png	අපනයන මිල ගණනය කරනු ලැබිය යුතු ය.
+images/acts_test_0031_line_027.png	(5) බදු ආපසු ගෙවීම සඳහා වූ ඉල්ලීමට අදාළ තීරණය සඳහා වූ
+images/acts_test_0031_line_028.png	හේතු සම්බන්ධයෙන් වූ විස්තරාත්මක කරුණු පැහැදිලි කිරීමක්
+images/acts_test_0031_line_029.png	අධ්‍යක්ෂ ජනරාල්වරයා විසින් ඉල්ලීම ඉදිරිපත් කළ ආනයනකරු
+images/acts_test_0031_line_030.png	වෙත ලබාදිය යුතු ය.
+images/acts_test_0031_line_031.png	(6) බදු ආපසු ගෙවීම සාමාන්‍යයෙන් ආපසු ගෙවීම සඳහා වූ
+images/acts_test_0031_line_032.png	ඉල්ලුම් පත්‍රය ඉදිරිපත් කළ දින සිට මාස දොළහක කාලයක් සහ
+images/acts_test_0031_line_033.png	කිසිසේත් මාස දහඅටක් නොඉක්මවන කාලයක් ඇතුළත දී සිදු
+images/acts_test_0031_line_034.png	කළ යුතු ය. අනුමත කරන ලද ආපසු ගෙවීමක් රේගු අධ්‍යක්ෂ
+images/acts_test_0031_line_035.png	ජනරාල්වරයා විසින්, එසේ ආපසු ගෙවීම් ප්‍රදානය තීරණය කළ
+images/acts_test_0031_line_036.png	දින සිට මාස තුනක කාලයක් ඇතුළත දී සිදු කළ යුතු ය.
+images/acts_test_0032_line_001.png	2009 අංක 8 දරන මෝටර් වාහන (සංශෝධන) පනත 45
+images/acts_test_0032_line_002.png	(ආ) සාමාන්‍ය රියදුරු බලපත්‍රයක් දරන්නකු විසින්
+images/acts_test_0032_line_003.png	133අ වගන්තිය යටතේ තම රියදුරු බලපත්‍රය
+images/acts_test_0032_line_004.png	අවලංගු කිරීමේ හෝ ඒ ප්‍රතිඵලය ඇති කරවන
+images/acts_test_0032_line_005.png	නියමිත රියදුරු අභිවෘද්ධි ලකුණු ප්‍රමාණයට හෝ
+images/acts_test_0032_line_006.png	ඊට වැඩි රියදුරු අභිවෘද්ධි ලකුණු ප්‍රමාණයක්
+images/acts_test_0032_line_007.png	ලබා ගෙන ඇති අවස්ථාවක, කොමසාරිස්-
+images/acts_test_0032_line_008.png	ජනරාල්වරයා විසින් පරිවාස කාලසීමාව තවත්
+images/acts_test_0032_line_009.png	එක් අවුරුද්දකින් දීර්ඝ කරනු ලැබිය යුතු ය.
+images/acts_test_0032_line_010.png	(ඇ) (ආ) ඡේදය යටතේ සාමාන්‍ය රියදුරු බලපත්‍රයක්
+images/acts_test_0032_line_011.png	දරන්නකු එක් අවුරුදු පරිවාස කාලය තුළදී 133අ
+images/acts_test_0032_line_012.png	වගන්තිය යටතේ රියදුරු බලපත්‍රයක් අත්
+images/acts_test_0032_line_013.png	හිටුවීමේ හෝ අවලංගු කිරීමේ ප්‍රතිඵලය ගෙන
+images/acts_test_0032_line_014.png	දෙන නියමිත රියදුරු අභිවෘද්ධි ලකුණු සංඛ්‍යාව
+images/acts_test_0032_line_015.png	ලබා ගෙන ඇති බවට කොමසාරිස
+images/acts_test_0032_line_016.png	ජනරාල්වරයා සෑහීමට පත් වන්නේ නම් ඔහු
+images/acts_test_0032_line_017.png	විසින් එම පරිවාස කාලයට යටත් රියදුරු
+images/acts_test_0032_line_018.png	බලපත්‍රය අවලංගු කරනු ලැබිය යුතු ය.
+images/acts_test_0032_line_019.png	(4) (අ) මේ පනතේ කාර්ය සඳහා සෑම රියදුරු බලපත්‍රයක්ම
+images/acts_test_0032_line_020.png	එය පරිවාස කාලයට යටත් සාමාන්‍ය රියදුරු බලපත්‍රයක්
+images/acts_test_0032_line_021.png	හෝ රියදුරු සාමාන්‍ය බලපත්‍රයක් වුව ද එම කරුණ
+images/acts_test_0032_line_022.png	නොතකා එම රියදුරු බලපත්‍රයේ සඳහන් පන්තියට හෝ
+images/acts_test_0032_line_023.png	පන්තිවලට අයත් මෝටර් වාහන පැදවීම සඳහා එය
+images/acts_test_0032_line_024.png	වලංගු රියදුරු බලපත්‍රයක් ලෙස සලකනු ලැබිය යුතු ය.
+images/acts_test_0032_line_025.png	(ආ) 122 වන වගන්තියේ (1) වන උපවගන්තියේ සඳහන්
+images/acts_test_0032_line_026.png	සෑම බලපත්‍රයක් හෝ අවසර පත්‍රයක්ම නිකුත් කිරීම
+images/acts_test_0032_line_027.png	සම්බන්ධයෙන් කොමසාරිස්-ජනරාල්වරයා විසින් අය
+images/acts_test_0032_line_028.png	කර ගනු ලබන සියලුම අයභාර මේ පනතේ විධිවිධාන
+images/acts_test_0032_line_029.png	යටතේ වලංගු ලෙස අයකර ගෙන ඇති බවට සලකනු
+images/acts_test_0032_line_030.png	ලැබිය යුතු ය.
+images/acts_test_0032_line_031.png	(5) (අ) (1) වන උපවගන්තියේ (අ) ඡේදයේ විධිවිධාන
+images/acts_test_0032_line_032.png	උල්ලංඝනය කරන යම් තැනැත්තෙක් වරදකට වරදකරු
+images/acts_test_0032_line_033.png	වන අතර, වරදකරු කරනු ලැබීමේ දී රුපියල්
+images/acts_test_0032_line_034.png	තුන්දහසකට නොඅඩු සහ රුපියල් හයදහසකට නොවැඩි
+images/acts_test_0033_line_001.png	2011 අංක 42 දරන මුදල් ව්‍යාපාර පනත 5
+images/acts_test_0033_line_002.png	(5) තාවකාලික අනුමතය දී ඇත්තේ යම් ඉල්ලුම්කාර සමාගමක්
+images/acts_test_0033_line_003.png	වෙත ද ඒ සමාගම විසින්, මේ පනත යටතේ බලපත්‍රයක් නිකුත්
+images/acts_test_0033_line_004.png	කරනු ලැබීමට පෙර මුදල් ව්‍යාපාර ආරම්භ කරනු නොලැබිය
+images/acts_test_0033_line_005.png	යුතු ය. (3) වන උපවගන්තියේ (ආ) ඡේදය යටතේ ඒ සමාගමට
+images/acts_test_0033_line_006.png	තාවකාලික අනුමතය ලැබී ඇති බව, යම් ලිඛිත නීතියක් යටතේ
+images/acts_test_0033_line_007.png	එවැනි අනාවරණය කිරීමක් අවශ්‍ය වේ නම් මිස, සමාගම විසින්
+images/acts_test_0033_line_008.png	නිකුත් කරනු ලබන යම් විස්තර පත්‍රිකාවක හෝ දැන්වීමක හෝ
+images/acts_test_0033_line_009.png	සමාගම විසින් පළකරන යම් වෙළෙඳ දැන්වීමක හෝ වෙනත්
+images/acts_test_0033_line_010.png	ප්‍රකාශනයක, සඳහන් කරනු නොලැබිය යුතු ය.
+images/acts_test_0033_line_011.png	(6) (අ) බලපත්‍රයක් සඳහා වූ ඉල්ලීමක අන්තර්ගත තොරතුරක්
+images/acts_test_0033_line_012.png	හෝ එවැනි ඉල්ලීමක් සම්බන්ධයෙන් ඉල්ලුම්කාර සමාගම
+images/acts_test_0033_line_013.png	ඉදිරිපත් කරන ලද යම් තොරතුරක් ව්‍යාජ, අසම්පූර්ණ
+images/acts_test_0033_line_014.png	හෝ සාවද්‍ය බවට හෙළිවුවහොත්;හෝ
+images/acts_test_0033_line_015.png	(ආ) මණ්ඩලය වෙත ඉදිරිපත් කරන ලද යම් තොරතුරක්
+images/acts_test_0033_line_016.png	සලකා බැලීමේ දී ඉල්ලුම්කාර සමාගමට බලපත්‍රයක් ලබා
+images/acts_test_0033_line_017.png	දීම මුල්‍ය පද්ධතියේ යහපතට සහ එහි ස්ථාවර භාවයට
+images/acts_test_0033_line_018.png	අහිතකර බව පෙනී ගියහොත්,
+images/acts_test_0033_line_019.png	මණ්ඩලය විසින් තාවකාලික අනුමතය අස්කර ගත හැකි ය.
+images/acts_test_0033_line_020.png	(7) මේ වගන්තියේ (3) වන උපවගන්තියේ (ආ) ඡේදය යටතේ
+images/acts_test_0033_line_021.png	පනවන ලද නියම හා කොන්දේසි සපුරා ඇති බවට සහ තාවකාලික
+images/acts_test_0033_line_022.png	අනුමතය ලබා දීමෙන් පසු ලැබුණ තොරතුරු මණ්ඩලය විසින්
+images/acts_test_0033_line_023.png	සලකා බැලීමෙන් පසු සහ ඉල්ලුම්කාර සමාගමට බලපත්‍ර දීම
+images/acts_test_0033_line_024.png	මඟින් ණයහිමියන්ගේ සහ අනෙකුත් උනන්දුවක් දක්වන්නන්ගේ
+images/acts_test_0033_line_025.png	යහපතට හෝ මුල්‍ය පද්ධතියේ යහපතට හෝ ස්ථාවරභාවයට හෝ
+images/acts_test_0033_line_026.png	අහිතකර නොවන බවට මණ්ඩලය සෑහීමට පත් වීමෙන් පසු
+images/acts_test_0033_line_027.png	මණ්ඩලය විසින් අවශ්‍ය යයි සලකනු ලබන නියම හා
+images/acts_test_0033_line_028.png	කොන්දේසිවලට යටත්ව ඉල්ලුම්කාර සමාගමට බලපත්‍රයක් නිකුත්
+images/acts_test_0033_line_029.png	කරනු ලැබිය හැකි ය:
+images/acts_test_0033_line_030.png	එසේ වුව ද, තාවකාලික අනුමතය දීමෙන් ඉල්ලුම්කාර සමාගමට
+images/acts_test_0033_line_031.png	බලපත්‍රයක් ලබා දීමට මණ්ඩලයට බැඳීමක් ඇති නොවිය යුතු ය.
+images/acts_test_0033_line_032.png	(8) ඉල්ලුම්කාර සමාගමට බලපත්‍රයක් නිකුත් කිරීමෙන් පසු, ඒ
+images/acts_test_0033_line_033.png	ඉල්ලුම්කාර සමාගමට මුදල් ව්‍යාපාර පවත්වාගෙන යෑම සඳහා
+images/acts_test_0033_line_034.png	බලය දෙමින් බලපත්‍රයක් නිකුත් කළ බව මහජනයාට දැනුම් දෙමින්,
+images/acts_test_0034_line_001.png	52 2018 අංක 2 දරන ප්‍රපාතන විරෝධී සහ
+images/acts_test_0034_line_002.png	ප්‍රතිතෝලන බදු පනත
+images/acts_test_0034_line_003.png	(අ) ප්‍රදානය කිරීමේ අධිකාරය විසින් හෝ ප්‍රදානය කිරීමේ
+images/acts_test_0034_line_004.png	අධිකාරය ක්‍රියාත්මක වන්නේ යම් නීතියක් ප්‍රකාරව ද එම
+images/acts_test_0034_line_005.png	නීතිය මගින් හෝ ඇතැම් ව්‍යවසායවලට සහනාධාරයක්
+images/acts_test_0034_line_006.png	ලබාදීම පැහැදිලිවම සීමා කරන අවස්ථාවක දී, එම
+images/acts_test_0034_line_007.png	සහනාධාරය විශේෂිත විය යුතු ය;
+images/acts_test_0034_line_008.png	(ආ) ප්‍රදානය කිරීමේ අධිකාරය විසින් හෝ ප්‍රදානය කිරීමේ
+images/acts_test_0034_line_009.png	අධිකාරය ක්‍රියාකරනු ලබන්නේ යම් නීතියකට අනුගාමීව
+images/acts_test_0034_line_010.png	ද, එකී නීතිය මගින් හෝ සහනාධාරවලට ඇති සුදුසුබව
+images/acts_test_0034_line_011.png	සහ එහි ප්‍රමාණය ස්ථාපිත කරනු ලබන අවස්ථාවක දී,
+images/acts_test_0034_line_012.png	සුදුසු බව ස්වයංක්‍රීයව ලබා ඇති සහ එහි උපමාන සහ
+images/acts_test_0034_line_013.png	කොන්දේසි සත්‍යායනය කළ හැකි පරිදි එකී නීතියේ
+images/acts_test_0034_line_014.png	හෝ වෙනත් යම් නිල ලේඛනයක පැහැදිලිව ප්‍රකාශ කොට
+images/acts_test_0034_line_015.png	ඇති සහ තදින් ම අනුගමනය කොට ඇති විටක දී,
+images/acts_test_0034_line_016.png	විශේෂත්වයක් නොපැවැතිය යුතු ය.
+images/acts_test_0034_line_017.png	(ඇ) මෙම උපවගන්තියේ (අ) සහ (ආ) ඡේදවල සඳහන් කර
+images/acts_test_0034_line_018.png	ඇති මූලධර්ම අදාළ කර ගැනීමේ ප්‍රතිඵලයක් වශයෙන්,
+images/acts_test_0034_line_019.png	විශේෂතාවක් නොමැති බවක් පෙනී ගිය ද සහනාධාරය
+images/acts_test_0034_line_020.png	ඇත්ත වශයෙන් ම විශේෂිත විය හැකි බවට විශ්වාස
+images/acts_test_0034_line_021.png	කිරීමට හේතු ඇත්නම්, පහත දැක්වෙන සාධක
+images/acts_test_0034_line_022.png	සැලකිල්ලට ගනු ලැබිය හැකි ය. එනම්:-
+images/acts_test_0034_line_023.png	(i) ඇතැම් සීමාසහිත ව්‍යවසාය සංඛ්‍යාවක් විසින්
+images/acts_test_0034_line_024.png	සහනාධාර වැඩ පිළිවෙළක් භාවිත කිරීම, ඇතැම්
+images/acts_test_0034_line_025.png	ව්‍යවසාය විසින් සහනාධාරය කැපී පෙනෙන ලෙස
+images/acts_test_0034_line_026.png	විශාල වශයෙන් භාවිත කිරීම, ඇතැම්
+images/acts_test_0034_line_027.png	ව්‍යවසායවලට සහනාධාර විසමානුපාතිකව විශාල
+images/acts_test_0034_line_028.png	ප්‍රමාණවලින් ලබාදීම සහ සහනාධාරයක් ප්‍රදානය
+images/acts_test_0034_line_029.png	කිරීමට තීරණය කිරීමේ දී ප්‍රදානය කිරීමේ
+images/acts_test_0034_line_030.png	අධිකාරය විසින් අභිමතය ක්‍රියාත්මක කර ඇති
+images/acts_test_0034_line_031.png	ආකාරය; සහ
+images/acts_test_0034_line_032.png	(ii) ප්‍රදානය කිරීමේ අධිකාරයේ බලසීමාව ඇතුළත
+images/acts_test_0034_line_033.png	ආර්ථික කටයුතු විවිධාංගීකරණය කර ඇති
+images/acts_test_0034_line_034.png	ප්‍රමාණය සහ සහනාධාර වැඩපිළිවෙළ ක්‍රියාත්මකව
+images/acts_test_0034_line_035.png	තිබූ කාලසීමාවේ දීර්ඝත්වය.
+images/acts_test_0035_line_001.png	8 2008 අංක 1 දරන මාදක ඖෂධ සහ මනෝ වර්තක
+images/acts_test_0035_line_002.png	නීති විරෝධි ලෙස ජාවාරම් කිරීමට එරෙහි සම්මුති පනත
+images/acts_test_0035_line_003.png	යම් ද්‍රව්‍යයක් හෝ ද්‍රවයක් ප්‍රයෝජනයට ගෙන තිබේ ද ඒ ද්‍රව්‍ය
+images/acts_test_0035_line_004.png	හෝ දෙය;
+images/acts_test_0035_line_005.png	(ආ) ඒ වරද කිරීමෙන් ලැබූ මුදල්,
+images/acts_test_0035_line_006.png	රජය සතු කළ යුතු ය.
+images/acts_test_0035_line_007.png	(2) (1) වන උපවගන්තිය යටතේ කරන ලද ආඥාවක් මගින් රජය
+images/acts_test_0035_line_008.png	සතු කරන ලද යම් දේපළක් සම්පූර්ණයෙන් රජය සතු විය යුතු ය. එම
+images/acts_test_0035_line_009.png	රජය සතු කිරීම—
+images/acts_test_0035_line_010.png	(අ) රජය සතු කිරිමේ ආඥාවට එරෙහිව අභියාචනාධිකරණය වෙත
+images/acts_test_0035_line_011.png	අභියාචනයක් කර නොමැති අවස්ථාවක එවැනි රජය සතු
+images/acts_test_0035_line_012.png	කිරීමේ ආඥාවකට එරෙහිව අභියාචනාධිකරණය වෙත
+images/acts_test_0035_line_013.png	අභියාචනයක් කළ හැකි කාලසිමාව ඉකුත් වූ විට ;
+images/acts_test_0035_line_014.png	(ආ) ඒ රජය සතු කිරීමේ ආඥාවට එරෙහිව අභියාචනාධිකරණය
+images/acts_test_0035_line_015.png	වෙත අභියාචනයක් කර ඇත්තා වූ සහ රජය සතු කිරීමේ එම
+images/acts_test_0035_line_016.png	ආඥාව අභියාචනාධිකරණය විසින් තහවුරු කර ඇත්තා වූ ද,
+images/acts_test_0035_line_017.png	අභියාචනාධිකරණයේ ඒ ආඥාවට එරෙහිව ශ්‍රේෂ්ඨාධිකරණය
+images/acts_test_0035_line_018.png	වෙත අභියාචනයක් කළ හැකි කාලසීමාව ඇතුළත
+images/acts_test_0035_line_019.png	ශ්‍රෙෂ්ඨාධිකරණය වෙත අභියාචනයක් කර නොමැත්තා වූ
+images/acts_test_0035_line_020.png	අවස්ථාවක ශ්‍රේෂ්ඨාධිකරණය වෙත අභියාචනය කළ හැකි
+images/acts_test_0035_line_021.png	කාලසීමාව ඉකුත් වූ විට ; හෝ
+images/acts_test_0035_line_022.png	(ඇ) රජය සතු කිරීමේ ආඥාවට එරෙහිව අභියාචනාධිකරණය වෙත
+images/acts_test_0035_line_023.png	අභියාචනයක් ඉදිරිපත් කර ඇත්තා වූ සහ ඒ අභියාචනය
+images/acts_test_0035_line_024.png	පිළිබඳව අභියාචනාධිකරණයේ තීරණයට එරෙහිව
+images/acts_test_0035_line_025.png	ශ්‍රේෂ්ඨාධිකරණය වෙත අභියාචනයක් කරනු ලැබ ඇත්තා වූ
+images/acts_test_0035_line_026.png	ද අවස්ථාවක එම රජය සතු කිරීමේ ආඥාව තහවුරු කරන
+images/acts_test_0035_line_027.png	හෝ අනුමත කරන තීරණයක් ශ්‍රේෂ්ඨාධිකරණය විසින් දෙනු
+images/acts_test_0035_line_028.png	ලැබූ විට,
+images/acts_test_0035_line_029.png	එම රජය සතු කිරීම බලාත්මක වන්නේ ය.
+images/acts_test_0035_line_030.png	(3) යම් බැංකුවක යම් ගිණුමක බැරට තිබෙන යම් අරමුදල් දෙවන
+images/acts_test_0035_line_031.png	වගන්තිය යටතට ගැනෙන වරදක් සිදු කිරීමෙන් ලැබුණු මුදල් බවට ඒ
+images/acts_test_0035_line_032.png	වරද පිළිබඳ නඩු විභාගයේ දී ඉදිරිපත් වූ සාක්ෂි මත අධිකරණයක්
+images/acts_test_0035_line_033.png	සෑහීමට පත් වූ අවස්ථාවක ඒ වරද පිළිබඳ නඩු විභාගය අවසාන වන
+images/acts_test_0037_line_001.png	1981 අංක 78 දරන ශ්‍රී ලංකා ස්වභාවික සම්පත්,    15
+images/acts_test_0037_line_002.png	බලශක්ති සහ විද්‍යා අධිකාරිය පනත
+images/acts_test_0037_line_003.png	(ආ) සභාව විසින් ගන්නා ලද සියලු තීරණ අධිකාරිය විසින්
+images/acts_test_0037_line_004.png	ගන්නා ලද තීරණ ලෙස සලකනු ලැබිය යුතු ය;
+images/acts_test_0037_line_005.png	(ඈ) සභාව විසින්, සමඟ හෝ සඳහා, දරන ලද සියලු
+images/acts_test_0037_line_006.png	ණය, බැඳීම් හා වගකීම් ද ලියා අත්සන් කරන
+images/acts_test_0037_line_007.png	ලද හෝ ඇතුළත් වුණු සියලු ගිවිසුම්, ඔප්පු, බැඳුම්කර,
+images/acts_test_0037_line_008.png	එකඟවීම් සහ වෙනත් සාධන පත්‍ර ද ඉටු කිරීමට
+images/acts_test_0037_line_009.png	පොරොන්දු වූ සියලු කාරණා හා දේ ද අධිකාරිය විසින්
+images/acts_test_0037_line_010.png	අධිකාරිය සමග හෝ අධිකාරිය සඳහා දරන ලද ලෙස,
+images/acts_test_0037_line_011.png	ලියා අත්සන් කරන ලද ලෙස හෝ ඇතුළත් වූ ලෙස හෝ
+images/acts_test_0037_line_012.png	ඉටු කිරීමට පොරොන්දු වූ ලෙස සලකනු ලැබිය යුතු ය;
+images/acts_test_0037_line_013.png	(ඈ) මේ පනතේ සහ වෙනත් යම් ලිඛිත නීතියක විධිවිධානවලට
+images/acts_test_0037_line_014.png	යටත්ව, සභාව විසින් හෝ සභාවට විරුද්ධව හෝ
+images/acts_test_0037_line_015.png	පවරනු ලැබූ හෝ පවරනු ලැබිය හැකිව තිබූ හෝ සියලු
+images/acts_test_0037_line_016.png	සිවිල් නඩු, අපරාධ නඩු, අභියාචන නැතහොත් සිවිල්
+images/acts_test_0037_line_017.png	වූ හෝ අපරාධ වූ හෝ වෙනත් නඩු කටයුතු අධිකාරිය
+images/acts_test_0037_line_018.png	විසින් හෝ අධිකාරියට විරුද්ධව හෝ, දිගටම පවත්වා
+images/acts_test_0037_line_019.png	ගෙන යනු ලැබිය යුතු ය; නැතහොත් පවරනු ලැබිය
+images/acts_test_0037_line_020.png	යුතු ය;
+images/acts_test_0037_line_021.png	(ඉ) සභාවේ වාසියට හෝ සභාවට විරුද්ධව හෝ නිසි බලය ඇති
+images/acts_test_0037_line_022.png	අධිකරණයක් විසින් කරන ලද සියලු තීන්දු ප්‍රකාශ හෝ
+images/acts_test_0037_line_023.png	ආඥා, අධිකාරියේ වාසියට හෝ අධිකාරියට විරුද්ධව හෝ
+images/acts_test_0037_line_024.png	කරන ලද තීන්දු ප්‍රකාශ හෝ අඥා ලෙස සලකනු ලැබිය
+images/acts_test_0037_line_025.png	යුතු ය;
+images/acts_test_0037_line_026.png	(ඊ) සභාව වෙත සතු කරන ලද හෝ, සභාව විසින් නීත්‍යනු
+images/acts_test_0037_line_027.png	කූලව මිලට ගන්නා ලද නැතහොත් අත්කර ගන්නා ලද
+images/acts_test_0037_line_028.png	හෝ සභාවට බදු දෙන ලද හෝ, සභාවේ පරිහරණය සඳහා
+images/acts_test_0037_line_029.png	දෙනු ලැබූ හෝ වෙනත් කවර හෝ ආකාරයකින් සභාව
+images/acts_test_0037_line_030.png	වෙත පවරන ලද හෝ සභාව සන්තකයෙහි හෝ එහි
+images/acts_test_0037_line_031.png	පාලනය යටතේ ඇති චංචල හෝ නිශ්චල සියලු දේපළ,
+images/acts_test_0037_line_032.png	ඒ දේපළවලට සම්බන්ධ හෝ අනුයුක්ත හෝ අදාළ භාර,
+images/acts_test_0037_line_033.png	අය කිරීම්, වගකීම්, සීමා කිරීම්, පරවශතා හෝ වෙනත්
+images/acts_test_0037_line_034.png	බැඳීම්වලට යටත්ව සහ ඒ දේපළවලට සම්බන්ධ හෝ
+images/acts_test_0037_line_035.png	අනුයුක්ත හෝ අදාළ නියම හා කොන්දේසි මත,
+images/acts_test_0037_line_036.png	අධිකාරිය විසින් හෝ අධිකාරිය වෙනුවෙන් භාරයක් වශ
+images/acts_test_0037_line_037.png	යෙන් හෝ දරනු ලැබිය යුතු ය;
+images/acts_test_0037_line_038.png	(උ) සභාව විසින් සාදන ලද සියලු රීති අධීකාරිය විසින් සාදන
+images/acts_test_0037_line_039.png	ලද රීති ලෙස සලකනු ලැබිය යුතු ය;
+images/acts_test_0037_line_040.png	(ඌ) ජාතික රාජ්‍ය සභාවේ 1975 අංක 36 දරන ශ්‍රී ලංකා ජාතික
+images/acts_test_0037_line_041.png	විද්‍යා සභා පනතේ 22 වන වගන්තිය යටතේ පිහිටුවන
+images/acts_test_0037_line_042.png	ලද, සභාවේ අරමුදල අධිකාරියේ අරමුදල ලෙස සලකනු
+images/acts_test_0037_line_043.png	ලැබිය යුතු ය.
+images/acts_test_0039_line_001.png	4 2011 අංක 10 දරන ජාතිය ගොඩනැගීමේ බදු
+images/acts_test_0039_line_002.png	(සංශෝධන) පනත
+images/acts_test_0039_line_003.png	වෙනුවට” (1) වන උපවගන්තියේ (ආ) ඡේදයේ
+images/acts_test_0039_line_004.png	(ඇ) ඡේදයේ හෝ (ඈ) ඡේදයේ සඳහන්” යන
+images/acts_test_0039_line_005.png	වචන සහ ඉලක්කම් ආදේශ කිරීමෙන්;
+images/acts_test_0039_line_006.png	(ආ) එහි (1) වන ඡේදයේ “එම අදාළ කාර්තුව සඳහා
+images/acts_test_0039_line_007.png	ඒ තැනැත්තාගේ බද්දට යටත් වන පිරිවැටුම”
+images/acts_test_0039_line_008.png	යන වචන වෙනුවට “එම අදාළ කාර්තුව 2011
+images/acts_test_0039_line_009.png	ජනවාරි මස 1 වන දිනට පෙර ආරම්භ වන
+images/acts_test_0039_line_010.png	කාර්තුවක් වන විට එම අදාළ කාර්තුව සඳහා ඒ
+images/acts_test_0039_line_011.png	තැනැත්තාගේ බද්දට යටත් වන පිරිවැටුම” යන
+images/acts_test_0039_line_012.png	වචන සහ ඉලක්කම් ආදේශ කිරීමෙන්;
+images/acts_test_0039_line_013.png	(ඇ) එහි (ii) වන ඡේදයේ—
+images/acts_test_0039_line_014.png	(i) “ඒ තැනැත්තා ඒ අදාළ කාර්තුව සඳහා
+images/acts_test_0039_line_015.png	2002 අංක 14 දරන” යන වචන හා
+images/acts_test_0039_line_016.png	ඉලක්කම් වෙනුවට “ඒ තැනැත්තා විසින්
+images/acts_test_0039_line_017.png	2011 ජනවාරි මස 1 වන දිනට පෙර
+images/acts_test_0039_line_018.png	ආරම්භ වූ ඒ අදාළ කාර්තුව සඳහා 2002
+images/acts_test_0039_line_019.png	අංක 14 දරන” යන වචන සහ ඉලක්කම්
+images/acts_test_0039_line_020.png	ආදේශ කිරීමෙන්;
+images/acts_test_0039_line_021.png	(ii) එහි (ii) වන ඡේදයේ “විකල්ප එකතු
+images/acts_test_0039_line_022.png	කළ අගය මත බද්දක් ගෙවා ඇත්නම්”
+images/acts_test_0039_line_023.png	යන වචන වෙනුවට පහත දැක්වෙන
+images/acts_test_0039_line_024.png	වචන හා ඉලක්කම් ආදේශ කිරීමෙන්
+images/acts_test_0039_line_025.png	“විකල්ප එකතු කළ අගය මත බද්දක්
+images/acts_test_0039_line_026.png	ගෙවා ඇත්නම්;
+images/acts_test_0039_line_027.png	(ඈ) මෙහි (ii) වන ඡේදයට ඉක්බිතිවම පහත සඳහන්
+images/acts_test_0039_line_028.png	අලුත් ඡේද ආදේශ කිරීමෙන්:—
+images/acts_test_0039_line_029.png	(iii) 2011 ජනවාරි මස 1 වන දිනට
+images/acts_test_0039_line_030.png	හෝ එදිනට පසු ආරම්භ වන
+images/acts_test_0039_line_031.png	අදාළ සෑම කාර්තුවකට, යම්
+images/acts_test_0039_line_032.png	තැනැත්තකුගේ (iv) වන සහ (V)
+images/acts_test_0039_line_033.png	වන ඡේදවල සඳහන් භාණ්ඩ හෝ
+images/acts_test_0039_line_034.png	සේවා සැපයුම් නොවන භාණ්ඩ
+images/acts_test_0039_line_035.png	හෝ සේවා සැපයුම්වල යම් බද්දට
+images/acts_test_0039_line_036.png	යටත් පිරිවැටුම, රුපියල් ලක්ෂ
+images/acts_test_0039_line_037.png	පහක් නොඉක්මවන්නේ නම් ; සහ
+images/acts_test_0040_line_001.png	2 1981 අංක 45 දරන සංවර්ධන සභා (සංශෝධන) පනත
+images/acts_test_0040_line_002.png	(ආ) ග්‍රාම සේවා නිලධාරි කොට්ඨාසයෙහි සේවය
+images/acts_test_0040_line_003.png	කරන්නා වූ ද අදාළ අමාත්‍යවරයා විමසා
+images/acts_test_0040_line_004.png	අමාත්‍යවරයා විසින් නමින් හෝ නිල
+images/acts_test_0040_line_005.png	යෙන් නම් කරනු ලබන්නා වූ ද රජයේ
+images/acts_test_0040_line_006.png	නිලධරයන් හෝ රාජ්‍ය සංස්ථා නිලධර
+images/acts_test_0040_line_007.png	යන් යම් සංඛ්‍යාවකින් සමන්විත විය
+images/acts_test_0040_line_008.png	යුතු ය:
+images/acts_test_0040_line_009.png	එසේ වුව ද එවැනි කිසිම නිලධරයකුට
+images/acts_test_0040_line_010.png	ග්‍රාමෝදය මණ්ඩලයේ යම් රැස්වීමක දී
+images/acts_test_0040_line_011.png	ඡන්දය දීමේ හිමිකම නොතිබිය යුතුය.
+images/acts_test_0040_line_012.png	(3) (අ) ග්‍රාමෝදය මණ්ඩලයක සභාපතිවරයා
+images/acts_test_0040_line_013.png	ඡන්දය දීමට හිමිකම් ඇති සාමාජිකයන් විසින්
+images/acts_test_0040_line_014.png	ඔවුන් අතුරින් තෝරා පත් කර ගත යුතු ය.
+images/acts_test_0040_line_015.png	(ආ) ග්‍රාමෝදය මණ්ඩලයක සභාපතිවරයාගේ
+images/acts_test_0040_line_016.png	ධුර කාලය එක් අවුරුද්දක් විය යුතු ය:
+images/acts_test_0040_line_017.png	එසේ වුව ද එවැනි සභාපතිවරයකුගේ ධුරය,—
+images/acts_test_0040_line_018.png	(i) තමා ඉල්ලා අස්වන බව ඔහු විසින් ග්‍රාමෝදය
+images/acts_test_0040_line_019.png	මණ්ඩලයෙහි ලේකම්වරයා වෙත ලියවිල්
+images/acts_test_0040_line_020.png	ලකින් දන්වා යවනු ලැබූ විට;
+images/acts_test_0040_line_021.png	(ii) ඔහු ග්‍රාමෝදය මණ්ඩලයෙහි සාමාජිකයකුව
+images/acts_test_0040_line_022.png	සිටීම අවසන් වූ විට;
+images/acts_test_0040_line_023.png	(iii) ග්‍රාමෝදය මණ්ඩලයේ අවසරය කලින් ලබා
+images/acts_test_0040_line_024.png	නොගෙන එහි යම් අනුක්‍රමික රැස්වීම්
+images/acts_test_0040_line_025.png	තුනකට ඔහු සහභාගි නොවී සිටි විට;
+images/acts_test_0040_line_026.png	හෝ.
+images/acts_test_0040_line_027.png	(iv) ඔහු මීය ගිය විට
+images/acts_test_0040_line_028.png	හිස් වන්නේ ය.
+images/acts_test_0040_line_029.png	(4) සෑම ප්‍රාදේශීය මණ්ඩලයක් ම -
+images/acts_test_0040_line_030.png	(අ) යම් ග්‍රාමෝදය මණ්ඩලයක් පිහිටුවනු ලැබ
+images/acts_test_0040_line_031.png	ඇත්තේ යම් උප දිසාපතිවරයකුගේ
+images/acts_test_0040_line_032.png	කොට්ඨාසය තුළ ද ඒ එක් එක් මණ්ඩල
+images/acts_test_0040_line_033.png	යේ සභාපතිවරයාගෙන් සමන්විත විය
+images/acts_test_0040_line_034.png	යුතු ය; තව ද
+images/acts_test_0040_line_035.png	(ආ) උප දිසාපතිවරයාගේ කොට්ඨාසයෙහි
+images/acts_test_0040_line_036.png	සේවය කරන්නා වූ ද අදාළ අමාත්‍යවරයා
+images/acts_test_0040_line_037.png	විමසා අමාත්‍යවරයා විසින් නමින් හෝ
+images/acts_test_0040_line_038.png	නිලයෙන් නම් කරනු ලබන්නා වූ ද
+images/acts_test_0040_line_039.png	රජයේ නිලධරයන් හෝ රාජ්‍ය සංස්ථා
+images/acts_test_0040_line_040.png	නිලධරයන් යම් සංඛ්‍යාවකින් සමන්විත
+images/acts_test_0040_line_041.png	විය යුතු ය:
+images/acts_test_0040_line_042.png	එසේ වුව ද එවැනි කිසිම නිලධරයකුට
+images/acts_test_0040_line_043.png	ප්‍රාදේශීය මණ්ඩලයේ යම් රැස්වීමක දී
+images/acts_test_0040_line_044.png	ඡන්දය දීමේ හිමිකම නොතිබිය යුතු ය.
+images/acts_test_0041_line_001.png	26 දහහත්වන ආණ්ඩුක්‍රම ව්‍යවස්ථා සංශෝධනය
+images/acts_test_0041_line_002.png	(ආ) එවැනි විධානයකට අනුකූලවීම සහ එය
+images/acts_test_0041_line_003.png	ක්‍රියාත්මක කිරීම, තත්කාලයේ ඒ දේපල භාරව
+images/acts_test_0041_line_004.png	සිටින හෝ ඒ දේපලේ පාලනය දරන හෝ සෑම
+images/acts_test_0041_line_005.png	තැනැත්තකුගේ ම හෝ සෑම නිලධරයකුගේ ම
+images/acts_test_0041_line_006.png	කාර්යය විය යුත්තේ ය.
+images/acts_test_0041_line_007.png	(5) (අ) ඡන්ද විමසීමක් හෝ ජනමත
+images/acts_test_0041_line_008.png	විචාරණයක් පැවැත්වීම විෂයයෙහි ලා නිදහස් හා
+images/acts_test_0041_line_009.png	සාධාරණ ඡන්ද විමසීමක් පැවැත්වීම සහතික කිරීම
+images/acts_test_0041_line_010.png	සඳහා අවශ්‍ය යයි කොමිෂන් සභාව විසින් සලකනු
+images/acts_test_0041_line_011.png	ලබන උපමාන, අවස්ථාවෝචිත පරිදි, කොමිෂන්
+images/acts_test_0041_line_012.png	සභාව විසින් උචිත යයි සලකනු ලබන යම් ගුවන්
+images/acts_test_0041_line_013.png	විදුලි හෝ රූපවාහිනී සේවයක් පවත්වා ගෙන
+images/acts_test_0041_line_014.png	යන්නකු හෝ යම් ප්‍රවෘත්ති පත්‍රයක අයිතිකරුවකු
+images/acts_test_0041_line_015.png	හෝ ප්‍රකාශකයකු වෙත කලින් කල නිකුත් කිරීමේ
+images/acts_test_0041_line_016.png	බලය කොමිෂන් සභාවට ඇත්තේය.
+images/acts_test_0041_line_017.png	(ආ (අ) අනුඡේදය යටතේ, ශ්‍රී ලංකා ගුවන්
+images/acts_test_0041_line_018.png	විදුලි සංස්ථාවේ සභාපතිවරයා වෙත හෝ ශ්‍රී
+images/acts_test_0041_line_019.png	ලංකා රූපවාහිනී සංස්ථාවේ සභාපතිවරයා
+images/acts_test_0041_line_020.png	වෙත නිකුත් කරනු ලැබූ උපමාන අනුව ක්‍රියා
+images/acts_test_0041_line_021.png	කිරීම සහතික කෙරෙන සියලු පියවර ගැනීම ඒ
+images/acts_test_0041_line_022.png	සභාපතිවරයන්ගේ කාර්යය විය යුත්තේය.
+images/acts_test_0041_line_023.png	(ඇ) (අ) අනුඡේදය යටතේ කොමිෂන් සභාව
+images/acts_test_0041_line_024.png	විසින් නිකුත් කරන ලද යම් උපමාන
+images/acts_test_0041_line_025.png	අවස්ථාවෝචිත පරිදි, ශ්‍රී ලංකා ගුවන් විදුලි
+images/acts_test_0041_line_026.png	සංස්ථාව හෝ ශ්‍රී ලංකා රූපවාහිනී සංස්ථාව
+images/acts_test_0041_line_027.png	හෝ විසින් උල්ලංඝනය කරනු ලැබූ අවස්ථාවක
+images/acts_test_0041_line_028.png	දී, නමින් හෝ නිලයෙන් හෝ නිසි බලධරයකු
+images/acts_test_0041_line_029.png	කොමිෂන් සභාව විසින් පත් කරනු ලැබිය හැක්කේ
+images/acts_test_0041_line_030.png	ය. එම නිසි බලධරයා පත් කරනු ලැබූ දින සිට,
+images/acts_test_0041_line_031.png	සියලු ම දේශපාලන විකාශන හෝ ඡන්ද
+images/acts_test_0041_line_032.png	විමසීම කෙරෙහි බලපාන්නේ යයි කොමිෂන්
+images/acts_test_0041_line_033.png	සභාවේ මතය වන වෙනත් යම් විකාශනයක්
+images/acts_test_0042_line_001.png	18 2002 අංක 1 දරන පළාත් පාලන ආයතන ඡන්ද විමසීම්
+images/acts_test_0042_line_002.png	(සංශෝධන) පනත
+images/acts_test_0042_line_003.png	කටයුතු වල දී කරන ලද්දේ නම් හෝ
+images/acts_test_0042_line_004.png	ඇති කර ගනු ලැබුවේ නම්, මේ
+images/acts_test_0042_line_005.png	වගන්තියේ අර්ථානුකූලව එය නීති
+images/acts_test_0042_line_006.png	විරෝධී ක්‍රියාවක් ලෙස සලකනු
+images/acts_test_0042_line_007.png	නොලැබිය යුතු ය ;
+images/acts_test_0042_line_008.png	(ආ) ඡන්ද විමසීමක දී ඡන්ද හිමියන්ට ස්වකීය
+images/acts_test_0042_line_009.png	පදිංචි ස්ථානයෙහි සිට මුහුද හෝ මුහුදෙහි
+images/acts_test_0042_line_010.png	ශාඛාවක් හෝ මුහුදු කඩිත්තක් නැතහොත්
+images/acts_test_0042_line_011.png	ගංගාවක් හරහා නොගොස් තම ඡන්ද
+images/acts_test_0042_line_012.png	පොලවල් කරා ළගාවිය නොහැකි වන
+images/acts_test_0042_line_013.png	අවස්ථාවක, ඒ ඡන්ද හිමියන්ගේ ඡන්ද
+images/acts_test_0042_line_014.png	පොළවල් කරා ඔවුන් මුහුදින් ගෙන යාම
+images/acts_test_0042_line_015.png	පිණිස හෝ ඔවුන්ගේ ඡන්ද පොළවලට
+images/acts_test_0042_line_016.png	ළඟාවීම සඳහා ඔවුන්ට ගඟින් එතෙර
+images/acts_test_0042_line_017.png	විය හැකි වනු පිණිස හෝ විධිවිධාන
+images/acts_test_0042_line_018.png	සලස්වනු ලැබිය හැකි ය ;
+images/acts_test_0042_line_019.png	(ඇ) යම් මහජන ප්‍රවාහන සේවයකින් යම්
+images/acts_test_0042_line_020.png	ඡන්ද විමසීමක දී යම් තැනැත්තකු
+images/acts_test_0042_line_021.png	තමාගේ ම වියදමින් ඡන්දය විමසන
+images/acts_test_0042_line_022.png	ස්ථානයට හෝ ඡන්දය විමසන ස්ථානයේ
+images/acts_test_0042_line_023.png	සිට යාමට සහ ඊමට හෝ නැතහොත්
+images/acts_test_0042_line_024.png	ඡන්ද විමසන ස්ථානයේ සිට තමාට යාමේ
+images/acts_test_0042_line_025.png	සහ ඊමේ කාර්යය සඳහා යම් තැනැත්තකු
+images/acts_test_0042_line_026.png	විසින් තමාගේ වියදමින් එබදු සේවයක්
+images/acts_test_0042_line_027.png	පාවිච්චි කිරිම හෝ මේ වගන්තියෙහි
+images/acts_test_0042_line_028.png	අර්ථානුකූලව නීති විරෝධී ක්‍රියාවක් ලෙස
+images/acts_test_0042_line_029.png	සලකනු නොලැබිය යුතු ය ;
+images/acts_test_0042_line_030.png	(ඈ) යම් ඡන්ද විමසීම් ප්‍රදේශයක යම් ඡන්ද
+images/acts_test_0042_line_031.png	විමසීමක දී ඡන්ද විමසීමක් පවත්වනු
+images/acts_test_0042_line_032.png	ලැබීමට ඇති දිනට දින හතකට පෙර ඒ
+images/acts_test_0042_line_033.png	ඡන්ද විමසීම් ප්‍රදේශය සඳහා වූ තේරීම්
+images/acts_test_0042_line_034.png	භාර නිලධරයාට ලැබෙන පරිදි යම්
+images/acts_test_0042_line_035.png	තැනැත්තකු විසින් හෝ ඒ තැනැත්තා
+images/acts_test_0042_line_036.png	වෙනුවෙන් අපේක්ෂකයකු නොවන වෙනත්
+images/acts_test_0042_line_037.png	යම් තැනැත්තකු විසින් කරනු ලැබූ ලිඛිත
+images/acts_test_0042_line_038.png	ඉල්ලිමක් අනුව, යම් ශාරීරික දුර්වලතාවක්
+images/acts_test_0042_line_039.png	නිසා ඡන්ද විමසන ස්ථානයට සහ ඡන්ද
+images/acts_test_0043_line_001.png	1982 අංක 35 දරන ජාතික ශිල්ප සභාව සහ අනුබද්ධ  27
+images/acts_test_0043_line_002.png	ආයතන පත
+images/acts_test_0043_line_003.png	(4) මණ්ඩලයේ ඉල්ලීම පිට, රජයේ සේවයේ යම් නිලධරයකු
+images/acts_test_0043_line_004.png	එ නිලධරයාගේ සහ රාජ්‍ය පරිපාලන විෂයය භාර අමාත්‍යවරයාගේ
+images/acts_test_0043_line_005.png	අමාත්‍යාංශයේ ලේකම්වරයාගේ කැමැත්ත ඇතිව මධ්‍යස්ථානයේ
+images/acts_test_0043_line_006.png	කාර්ය මණ්ඩලයට එවැනිම කැමැත්ත ඇතිව මණ්ඩලය විසින්
+images/acts_test_0043_line_007.png	නිශ්චය කරනු ලබන කාලසීමාවක් සඳහා තාවකාලිකව පත් කරනු
+images/acts_test_0043_line_008.png	ලැබීම හෝ එවැනිම කැමැත්ත ඇතිව ඒ කාර්ය මණ්ඩලයට ස්ථිර
+images/acts_test_0043_line_009.png	ලෙස පත් කරනු ලැබීම හෝ කරනු ලැබිය හැකි ය.
+images/acts_test_0043_line_010.png	(5) රජයේ සේවයේ යම් නිලධරයකු මධ්‍යස්ථානයේ කාර්ය
+images/acts_test_0043_line_011.png	මණ්ඩලයට තාවකාලිකව පත් කරනු ලැබූ අවසථාවක, ජාතික රාජ්‍ය
+images/acts_test_0043_line_012.png	සභාවේ 1978 අංක 19 දරන ගමනාගමන මණ්ඩල පනතේ 13 වන
+images/acts_test_0043_line_013.png	වගන්තියේ (2) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස්
+images/acts_test_0043_line_014.png	කිරීම් සහිතව, ඔහුට සහ ඔහු සම්බන්ධයෙන් අදාළ විය යුතු ය.
+images/acts_test_0043_line_015.png	(6) රජයෙ සේවයේ යම් නිලධරයෙකු මධ්‍යස්ථානයේ කාර්ය
+images/acts_test_0043_line_016.png	මණ්ඩලයට ස්ථිර ලෙස පත් කරනු ලැබූ අවස්ථාවක, ජාතික රාජ්‍ය
+images/acts_test_0043_line_017.png	සභාවේ 1978 අංක 19 දරන ගමනා ගමන මණ්ඩල පනතේ 13 වන
+images/acts_test_0043_line_018.png	වගන්තියේ (3) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස්
+images/acts_test_0043_line_019.png	කිරිම් සහිතව, ඔහුට සහ ඔහු සම්බන්ධයෙන් අදාළ විය යුතුය.
+images/acts_test_0043_line_020.png	(7) නිශ්චිත කාලසීමාවක් සඳහා ආණ්ඩුවට සේවය කිරීමට එකඟ
+images/acts_test_0043_line_021.png	වී ඇති යම් තැනැත්තකු මණ්ඩලය විසින් සේවයේ නියුක්ත කරනු
+images/acts_test_0043_line_022.png	ලැබූ අවස්ථාවක, ඒ තැනැත්තා විසින් මධ්‍යස්ථානය යටතේ සේවය
+images/acts_test_0043_line_023.png	කරනු ලබන යම් කාලසීමාවක් ඒ එකඟවීමේ බැඳීම් ඉටු කිරීමේ
+images/acts_test_0043_line_024.png	කාර්යය සඳහා ආණ්ඩුවට කරනු ලැබූ සේවයක් ලෙස සලකනු ලැබිය
+images/acts_test_0043_line_025.png	යුතු ය.
+images/acts_test_0043_line_026.png	(8) මණ්ඩලයේ ඉල්ලීම පිට, පළාත් පාලන සේවයේ යම්
+images/acts_test_0043_line_027.png	සාමාජිකයෙකු හෝ පළාත් පාලන ආයතනයක වෙනත් යම් නිල
+images/acts_test_0043_line_028.png	ධරයකු හෝ සේවකයකු, අවස්ථාවෝචිත පරිදි, ඒ සාමාජිකයාගේ,
+images/acts_test_0043_line_029.png	නිලධරයාගේ හෝ සේවකයාගේ සහ පළාත් පාලන සේවා උප
+images/acts_test_0043_line_030.png	දේශක මණ්ඩලයේ හෝ පළාත් පාලන ආයතනයේ කැමැත්ත
+images/acts_test_0043_line_031.png	ඇතිව, මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට එවැනිම කැමැත්ත ඇතිව
+images/acts_test_0043_line_032.png	මණ්ඩලය විසින් නිශ්චය කරනු ලබන කාලසීමාවක් සඳහා තාව
+images/acts_test_0043_line_033.png	කාලිකව පත් කරනු ලැබීම හෝ විශ්‍රාම වැටුප් හෝ අර්ථසාධක
+images/acts_test_0043_line_034.png	අරමුදල් සම්බන්ධයෙන් වූ අයිතිවාසිකම්වලට අදාළ නියම හා
+images/acts_test_0043_line_035.png	කොන්දේසි ද ඇතුළුව මණ්ඩලය සහ පළාත් පාලන සේවා උප
+images/acts_test_0043_line_036.png	දේශක මණ්ඩලය හෝ පළාත් පාලන ආයතනය විසින් එකඟවනු
+images/acts_test_0043_line_037.png	ලබන නියම හා කොන්දේසි මත සාමාජිකයා හෝ නිලධරයා හෝ
+images/acts_test_0043_line_038.png	සේවකයා ඒ මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට ස්ථිර ලෙස පත්
+images/acts_test_0043_line_039.png	කිරිම හෝ කරනු ලැබිය හැකි ය.
+images/acts_test_0043_line_040.png	(9) මණ්ඩලයේ ඉල්ලීම පිට, රාජ්‍ය සංස්ථාවක යම් නිලධරයකු
+images/acts_test_0043_line_041.png	හෝ සේවකයකු ඒ නිලධරයාගේ හෝ සේවකයාගේ සහ ඒ රාජ්‍ය
+images/acts_test_0043_line_042.png	සංස්ථාවේ කැමැත්ත ඇතිව මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට
+images/acts_test_0043_line_043.png	එවැනි ම කැමැත්ත ඇතිව මණ්ඩලය විසින් නිශ්චය කරනු ලබන
+images/acts_test_0043_line_044.png	කාලසීමාවක් සඳහා තාවකාලිකව පත් කරනු ලැබීම හෝ විශ්‍රාම
+images/acts_test_0043_line_045.png	වැටුප් හෝ අර්ථසාධක අරමුදල් සම්බන්ධයෙන් වූ අයිතිවාසිකම්
+images/acts_test_0043_line_046.png	වලට අදාළ නියම හා කොන්දේසි ඇතුළුව මණ්ඩලය සහ එකී රාජ්‍ය
+images/acts_test_0044_line_001.png	2018 අංක 2 දරන ප්‍රපාතන විරෝධී සහ 71
+images/acts_test_0044_line_002.png	ප්‍රතිතෝලන බදු පනත
+images/acts_test_0044_line_003.png	සිද්ධිමය කරුණුවලින් නිරූපණය වන අවස්ථාවක)
+images/acts_test_0044_line_004.png	එම සහනාධාර;
+images/acts_test_0044_line_005.png	(ආ) තනිව හෝ වෙනත් කොන්දේසි කිහිපයකින්
+images/acts_test_0044_line_006.png	එකක් ලෙස, ආනයන භාණ්ඩ වෙනුවට දේශීය
+images/acts_test_0044_line_007.png	භාණ්ඩ පරිභෝජනය මත රඳා පවත්නා
+images/acts_test_0044_line_008.png	සහනාධාර,
+images/acts_test_0044_line_009.png	අදහස් වේ;
+images/acts_test_0044_line_010.png	"තාවකාලික පියවර” යන්නෙන් -
+images/acts_test_0044_line_011.png	(අ) මේ පනතේ I වන කොටසට අදාළව, තාවකාලික
+images/acts_test_0044_line_012.png	බද්දක් ගෙවීමට නියම කිරීම හෝ මූලික තීරණයේ
+images/acts_test_0044_line_013.png	දී සොයා ගන්නා ලද ඇස්තමේන්තුගත කළ
+images/acts_test_0044_line_014.png	ප්‍රපාතන ආන්තිකයේ ප්‍රමාණයට සමාන ඇපයක්
+images/acts_test_0044_line_015.png	ඉදිරිපත් කිරීමට නියම කිරීම; හෝ
+images/acts_test_0044_line_016.png	(ආ) මේ පනතේ II වන කොටසට අදාළව, තාවකාලික
+images/acts_test_0044_line_017.png	බද්දක් ගෙවීමට හෝ මූලික තීරණයේ දී සොයා
+images/acts_test_0044_line_018.png	ගන්නා ලද ඇස්තමේන්තු කළ සහනාධාරයට
+images/acts_test_0044_line_019.png	සමාන වන ඇපයක් ඉදිරිපත් කිරීමට නියම කිරීම,
+images/acts_test_0044_line_020.png	අදහස් වේ;
+images/acts_test_0044_line_021.png	"ශ්‍රී ලාංකීය කර්මාන්තය” යන්නෙන්, දේශීය සමාන නිෂ්පාදනය
+images/acts_test_0044_line_022.png	හෝ නිෂ්පාදන නිපදවන සමස්ත දේශීය නිෂ්පාදකයන්
+images/acts_test_0044_line_023.png	හෝ එම නිෂ්පාදනයේ හෝ නිෂ්පාදනවල සමස්ත
+images/acts_test_0044_line_024.png	දේශීය නිෂ්පාදනයෙන් විශාල ප්‍රමාණයක් සංයුක්ත
+images/acts_test_0044_line_025.png	වන්නේ යම් නිෂ්පාදකයන්ගේ නිෂ්පාදනවලින් ද ඒ
+images/acts_test_0044_line_026.png	නිෂ්පාදකයන් අදහස් වේ. එහෙත් නිෂ්පාදකයන්
+images/acts_test_0044_line_027.png	අපනයනකරුවන්ට හෝ ආනයනකරුවන්ට
+images/acts_test_0044_line_028.png	සම්බන්ධතාවයක් ඇති විට හෝ නිෂ්පාදකයන් විසින්ම
+images/acts_test_0044_line_029.png	ප්‍රපාතනය කරන ලදැයි කියනු ලබන නිෂ්පාදනය
+images/acts_test_0044_line_030.png	නිපදවන විට "ශ්‍රී ලාංකීය කර්මාන්තය” යන යෙදුම
+images/acts_test_0044_line_031.png	නිෂ්පාදකයන්ගේ ඉතිරි කොටස පිළිබඳව කරන
+images/acts_test_0044_line_032.png	සඳහනක් ලෙස අර්ථ නිරූපණය කළ හැකි ය. මේ
+images/acts_test_0044_line_033.png	අර්ථ නිරූපණයේ කාර්ය සඳහා නිෂ්පාදකයන්,
+images/acts_test_0045_line_001.png	2017 අංක 1 දරන වෛද්‍ය (සංශෝධන) පනත 5
+images/acts_test_0045_line_002.png	(ආ) 43 වන වගන්තියේ (1) වන උපවගන්තියේ
+images/acts_test_0045_line_003.png	නිශ්චිතව සඳහන් කර ඇති උපාධියක් දරන්නා
+images/acts_test_0045_line_004.png	වූ ද, ශ්‍රී ලංකාවේ හෝ ඉන් පිටත අනුමත
+images/acts_test_0045_line_005.png	ආරෝග්‍යශාලා හෝ ආයතන එකක හෝ ඊට වැඩි
+images/acts_test_0045_line_006.png	ගණනක නිශ්චිත කාලසීමාවක් සඳහා දන්ත වෛද්‍ය
+images/acts_test_0045_line_007.png	වෘත්තියෙහි සේවයේ නියුක්තව සිට ඇත්තා වූ ද
+images/acts_test_0045_line_008.png	යම් තැනැත්තකුට, මේ ආඥාපනත මගින් නියම
+images/acts_test_0045_line_009.png	කර ඇති පරිදි එම තැනැත්තා සේවයේ නියුක්තව
+images/acts_test_0045_line_010.png	සිටි කාලය තුළ යම් අනුමත ක්ෂේත්‍රයක දන්ත
+images/acts_test_0045_line_011.png	වෛද්‍ය වෘත්තියෙහි නියැලී සිට ඇති බවට වෛද්‍ය
+images/acts_test_0045_line_012.png	සභාව සෑහීමකට පත් වන්නේ නම්, වෛද්‍ය සභාව
+images/acts_test_0045_line_013.png	විසින් (අ) ඡේදය යටතේ සහතිකයක් ප්‍රදානය කරනු
+images/acts_test_0045_line_014.png	ලැබිය හැකි ය.
+images/acts_test_0045_line_015.png	(ඇ) මේ වගන්තියේ කාර්ය සඳහා -
+images/acts_test_0045_line_016.png	"අනුමත ආරෝග්‍යශාලාව හෝ ආයතනය”
+images/acts_test_0045_line_017.png	යන්නෙන්, සෞඛ්‍ය සේවා අධ්‍යක්ෂ
+images/acts_test_0045_line_018.png	ජනරාල්වරයා විසින් වෛද්‍ය
+images/acts_test_0045_line_019.png	සභාවට ඉදිරිපත් කර ඇති
+images/acts_test_0045_line_020.png	ආරෝග්‍යශාලාවල සහ ආයතනවල
+images/acts_test_0045_line_021.png	ලැයිස්තුවෙන්, වෛද්‍ය සභාව
+images/acts_test_0045_line_022.png	විසින් අනුමත කරන ලද
+images/acts_test_0045_line_023.png	ආරෝග්‍යශාලාවක් හෝ ආයතනයක්
+images/acts_test_0045_line_024.png	අදහස් වේ;
+images/acts_test_0045_line_025.png	"අනුමත කාලසීමාව” යන්න, දන්ත වෛද්‍ය
+images/acts_test_0045_line_026.png	විද්‍යාව පිළිබඳ අනුමත ක්ෂේත්‍රවල
+images/acts_test_0045_line_027.png	වෘත්තියෙහි නියැලීමට අදාළව
+images/acts_test_0045_line_028.png	යෙදෙන විට, රටේ වෛද්‍ය
+images/acts_test_0045_line_029.png	අවශ්‍යතා කෙරෙහි සැලකිල්ල ඇතිව
+images/acts_test_0045_line_030.png	වෛද්‍ය සභාව විසින් අනුමත කරන
+images/acts_test_0045_line_031.png	ලද කාලසීමාවක් අදහස් වේ;
+images/acts_test_0045_line_032.png	“අනුමත ක්ෂේත්‍ර” යන්නෙන්, මුඛ හනුක
+images/acts_test_0045_line_033.png	චක්ත්‍ර ශල්‍ය විද්‍යාව, විකලාංග දන්ත
+images/acts_test_0045_line_034.png	ශල්‍ය විද්‍යාව සහ දන්ත සංරක්ෂණ
+images/acts_test_0045_line_035.png	ශල්‍ය විද්‍යාව අදහස් වේ;
+images/acts_test_0046_line_001.png	1989 අංක 11 දරන දේශීය ආදායම් (සංශෝධන) පනත 7
+images/acts_test_0046_line_002.png	12. ප්‍රධාන ප්‍රඥප්තියේ 113ඒ වගන්තියේ  "තැන්පතු
+images/acts_test_0046_line_003.png	මගින් මුදල් භාර ගැනීමේ හා ඒ මත පොලී ගෙවීමේ "යන වචන
+images/acts_test_0046_line_004.png	වෙනුවට " මුදල් භාර ගැනීම තමන් වෙනුවෙන් ම කරනු ලැබුව ද
+images/acts_test_0046_line_005.png	නැතගොත් වෙනත් යම් තැනැත්තකු වෙනුවෙන් කරනු ලැබුව ද,
+images/acts_test_0046_line_006.png	තැන්පතු මගින් මුදල් භාර ගැනීමේ හා ඒ මත පොලී ගෙවීමේ "
+images/acts_test_0046_line_007.png	යන වචන ආදේශ කිරීමෙන් ඒ වගන්තිය මෙයින් සංශෝධනය
+images/acts_test_0046_line_008.png	කරනු ලැබේ.
+images/acts_test_0046_line_009.png	13. ප්‍රධාන ප්‍රඥප්තියේ 117 වන වගන්තියේ (12) වන උප
+images/acts_test_0046_line_010.png	වගන්තිය පහත දැක්වෙන පරිදි ලමයින් සංශෝධනය කරනු
+images/acts_test_0046_line_011.png	ලැබේ:-
+images/acts_test_0046_line_012.png	(4) “ කොමසාරිස් ජනරාල්වරයා වෙත ලැබුණු දිනයෙ සිට අවු
+images/acts_test_0046_line_013.png	රුදු දෙකක් ඇතුළත එකඟත්වයට පත් කරනු ලැබිය
+images/acts_test_0046_line_014.png	යුතු ය. නැතහොත් එකී කාලය තුළ කොමසාරිස් ජනරාල්
+images/acts_test_0046_line_015.png	වරයා විසින් තීරණය කරනු ලැබිය යුතු  ය" යන
+images/acts_test_0046_line_016.png	වචන වෙනුවට "කොමසාරිස් ජනරාල්වරයා වෙත ලැබුණු
+images/acts_test_0046_line_017.png	දිනයේ සිට අවුරුදු තුනක් ඇතුළත දී එකඟත්වයට පත්
+images/acts_test_0046_line_018.png	කරනු ලැබිය යුතු ය; නැතහොත් එකී කාලය තුළ
+images/acts_test_0046_line_019.png	කොමසාරිස් ජනරාල්වරයා විසින් තිරණය කරනු ලැබිය
+images/acts_test_0046_line_020.png	යුතුය." යන වචන ආදේශ කිරීමෙන්; සහ
+images/acts_test_0046_line_021.png	(2) "(12) 1987 අප්‍රේල් මස 1 වන දින සිට " යන වචන සිට
+images/acts_test_0046_line_022.png	" ඒ අභියාචනය ලැබුණ දිනය වශයෙන් සලකනු ලැබිය
+images/acts_test_0046_line_023.png	යුතු ය." යන වචන තෙක් වූ සියලු වචන ඉවත් කොට ඒ
+images/acts_test_0046_line_024.png	වෙනුවට පහත දැක්වෙන කොටස ආදේශ කිරීමෙන් :-
+images/acts_test_0046_line_025.png	"(12) 1987 අප්‍රේල් මස 1 වන දින හෝ එදිනට පසු මේ
+images/acts_test_0046_line_026.png	වගන්තිය යටතේ ඉදිරිපත් කරනු ලබන සෑම අභි
+images/acts_test_0046_line_027.png	යාචන පෙත්සමක්ම, එහි අභියාචනය සම්බන්ධ
+images/acts_test_0046_line_028.png	යෙන් එකඟත්වයකට පත්වීම හෝ තීරණයක්
+images/acts_test_0046_line_029.png	කිරීම.
+images/acts_test_0046_line_030.png	(i) ඒ අභියාචනයට අදාළ හෝ ඊට සම්බන්ධ හෝ එයින්
+images/acts_test_0046_line_031.png	උද්ගත වන්නා වූ සහ කොමසාරිස් ජනරාල්වරයා
+images/acts_test_0046_line_032.png	විසින් හෝ අභියාචක විසින් නිසි අධිකරණයක්
+images/acts_test_0046_line_033.png	වෙත යොමු කරනු ලැබ ඇත්තා වූ ද යම් කාරණ
+images/acts_test_0046_line_034.png	යක් පිළිබඳව ඒ අධිකරණයෙ තීරණය මත; හෝ
+images/acts_test_0046_line_035.png	(ii) (අ) (අභියාචන පෙත් සම් කොටසාරිස ජනරාල්
+images/acts_test_0046_line_036.png	වරයා වෙත ලැබුනේ යම් දිනක ද එදින සිට
+images/acts_test_0046_line_037.png	අවරුදු තුනක් ඉකුත් වීමට මාස හයකට පෙරා
+images/acts_test_0046_line_038.png	තුව) ඒ අභියාචකට ලියවිල්ලකින් දෙනු ලබන
+images/acts_test_0046_line_039.png	දැන්වීමක් මගින්. තක්සේරුකරුවකු හෝ
+images/acts_test_0046_line_040.png	කොමසාරිස් ජනරාල්වරයා විසින් තත් කාර්යය
+images/acts_test_0046_line_041.png	කිරීමට නියම කරනු ලැබූ විට අභියාචක විසින්,
+images/acts_test_0046_line_042.png	නැතහොත්
+images/acts_test_0046_line_043.png	(ආ) කොමසාරිස් ජනරාල්වරයා හෝ තක්සේරු
+images/acts_test_0046_line_044.png	කරුවකු නොවන වෙනත් යම් තැනැත්තකු
+images/acts_test_0046_line_045.png	විසින්,
+images/acts_test_0047_line_001.png	2006 අංක 4 දරන ජිනිවා සම්මුති පනත 19
+images/acts_test_0047_line_002.png	142 වන වගන්තිය
+images/acts_test_0047_line_003.png	ආරක්ෂිත තැනැත්තන්ට උපකාර කිරීමෙහි නිරත ආගමික සංවිධාන, සහන සලසන
+images/acts_test_0047_line_004.png	සමිති, හෝ වෙනත් යම් සංවිධානවල නියෝජිතයන්ට, ඔවුන්ගේ ආරක්ෂාව පිළිබඳව
+images/acts_test_0047_line_005.png	වගබලා ගැනිම සඳහා හෝ වෙනත් යුක්ති සහගත අවශ්‍යතාවයක් නිසා අත්‍යවශ්‍ය ලෙස
+images/acts_test_0047_line_006.png	සිරකරුවන් රඳවා ගැනීමේ බලධරයන් සලකන ක්‍රියාමාර්ගවලට යටත්ව එම
+images/acts_test_0047_line_007.png	නියෝජිතයන්ට හෝ ඔවුන්ගේ ප්‍රතිත අනුයෝජිතයන්ට එම ආරක්ෂිත තැනැත්තන්
+images/acts_test_0047_line_008.png	බැලීමට යාම. ඔවුන්ගේ අධ්‍යාපනික, ක්‍රිඩා හා විනෝදාත්මක හෝ ආගමික කාර්ය
+images/acts_test_0047_line_009.png	අරමුණු කරගෙන යම් ප්‍රභවයකින් ලැබුණු සහන සැපයුම් හා ද්‍රව්‍ය ඔවුන් අතර
+images/acts_test_0047_line_010.png	බෙදාදීම සහ ඔවුන් රඳවාගනු ලැබ සිටින ස්ථාන ඇතුළත ඔවුන්ගේ විවේක කාලසීමා
+images/acts_test_0047_line_011.png	ගත කිරීම සංවිධානය කිරීම සඳහා සහාය වීම පිණිස සියලු පහසුකම් එකී බලධරයන්
+images/acts_test_0047_line_012.png	විසින් සැපයිය යුතු ය. එම සමිති හෝ සංවිධාන එම රඳවා ගැනීමේ බලාධිකාර වලට
+images/acts_test_0047_line_013.png	අයත් බලප්‍රදේශය ඇතුළතම හෝ වෙනත් යම් රටක හෝ සංස්ථාපනය කරනු ලැබිය
+images/acts_test_0047_line_014.png	හැකි හෝ ජාත්‍යන්තර අනුලක්ෂණ සහිත සමිති හෝ සංවිධාන විය හැකි ය. රඳවා
+images/acts_test_0047_line_015.png	ගැනිමේ බලාධිකාරය විසින් එම බලාධිකාරයේ දේශසීමා ඇතුළත ස්වකීය අධික්ෂණය
+images/acts_test_0047_line_016.png	යටතේ යම් සමිති වල හා සංවිධානවල දූතයන්ට ඒවායේ ක්‍රියාකාරකම් කරගෙන
+images/acts_test_0047_line_017.png	යාමට ඉඩදී තිබේද එම සමිති හා සංවිධාන සංඛ්‍යාව එම බලාධිකාරය විසින් සීමා
+images/acts_test_0047_line_018.png	කරනු ලැබිය හැකි ය; එසේ වුවද එම සීමා කිරීම සියලු ආරක්ෂිත තැනැත්තන්ට
+images/acts_test_0047_line_019.png	සාර්ථකව හා ප්‍රමාණවත්ව සහන ලැබීමට බාධාවක් නොවීමේ කොන්දේසිය මත විය
+images/acts_test_0047_line_020.png	යුතු ය.
+images/acts_test_0047_line_021.png	මෙම ක්ෂේත්‍රයෙහි ජාත්‍යන්තර රතු කුරුස සංවිධානයට හිමි විශේෂ තත්ත්වය සෑම
+images/acts_test_0047_line_022.png	කල්හිම පිළිගනු ලැබිය යුතු හා ගරුකරනු ලැබිය යුතු ය.
+images/acts_test_0047_line_023.png	143 වන වගන්තිය
+images/acts_test_0047_line_024.png	ආරක්ෂක රාජ්‍යවල නියෝජිතයන්ට සහ දූතයන්ට ආරක්ෂිත තැනැත්තන් සිටින
+images/acts_test_0047_line_025.png	සියලු ස්ථාන වලට, විශේෂයෙන් ඔවුන් සීමාවාසිකව සිටින. රඳවා තබා සිටින, සහ
+images/acts_test_0047_line_026.png	වැඩෙහි යොදවා සිටින ස්ථාන වලට යාමට අවසර තිබිය යුතු ය.
+images/acts_test_0047_line_027.png	ආරක්ෂිත තැනැත්තන් පරිහරණය කරන සියලු පරිශ්‍රවලට ප්‍රවිෂ්ඨවීමට සහ එම
+images/acts_test_0047_line_028.png	ආරක්ෂිත තැනැත්තන් සමග සාක්ෂිකරුවන් නොමැතිව පෞද්ගලිකව හෝ භාෂා
+images/acts_test_0047_line_029.png	පරිවර්තකයන් මගින් සම්මුඛව සාකච්ඡා කිරීමට ඔවුන්ට අවසර තිබිය යුතු ය.
+images/acts_test_0047_line_030.png	එසේ යෑම් ඊම්, අනිවාර්ය යුධමය අවශ්‍යතාවක හේතුව මත හැර තහනම් නොකළ
+images/acts_test_0047_line_031.png	යුතු අතර එසේ තහනම් කිරීමද සුවිශේෂ හා තාවකාලික ක්‍රියාමාර්ගයක් පමණක් විය
+images/acts_test_0047_line_032.png	යුතුය. එසේ ගමන් කරන අවස්ථාවලදී ගත කරන කාලය සහ ගමන් කරන වාර
+images/acts_test_0047_line_033.png	ගණන සීමා නොකළ යුතු ය.
+images/acts_test_0047_line_034.png	එම නියෝජිතයන්ට සහ දූතයන්ට ඔවුන් යාමට රිසි ස්ථාන තෝරා ගැනීමට
+images/acts_test_0047_line_035.png	සම්පූර්ණ නිදහස තිබිය යුතු ය. රඳවා තබා ගැනීම කරන හෝ බල සේනා යොදන
+images/acts_test_0047_line_036.png	රාජ්‍ය. ආරක්ෂක බලාධිකාරය සහ අදාළ අවස්ථාවක් මතු වූ විටක, බැලීමට නියමිත
+images/acts_test_0047_line_037.png	තැනැත්තන්ගේ සම්භව රාජ්‍යය විසින් සීමාවාසිකයන්ගේ ඒක දේශිකයන්ට එම
+images/acts_test_0047_line_038.png	ගමන් වලට සහභාගිවීමට අවසර දීමට එකඟ විය හැකි ය.
+images/acts_test_0047_line_039.png	ජාත්‍යන්තර රතු කුරුස සංවිධානයේ දූතයන් ද ඉහත සඳහන් පරමාධිකාරි බලතල
+images/acts_test_0047_line_040.png	භුක්ති විඳිය යුතුය. එහි දූතයන්ගේ පත් කිරිම, ඔවුන්ගේ කාර්ය ක්‍රියාත්මක කරන්නේ
+images/acts_test_0047_line_041.png	නම් දේශසීමා ඇතුළත ද එහි පාලනය කරන රාජ්‍යයේ අනුමතය සඳහා ඉදිරිපත් කළ
+images/acts_test_0047_line_042.png	යුතු ය.
+images/acts_test_0048_line_001.png	2000 අංක 43 දරන රක්ෂණ කර්මාන්තය 39
+images/acts_test_0048_line_002.png	විධිමත් කිරීමේ පනත
+images/acts_test_0048_line_003.png	(ඇ) රක්ෂණකරුගේ කලින් සිටි හෝ දැනට සිටින
+images/acts_test_0048_line_004.png	සාමාජිකයකුට හෝ රක්ෂණ ඔප්පු දරන්නකුට
+images/acts_test_0048_line_005.png	රක්ෂණකරු විසින් ඵ් රක්ෂණ ව්‍යාපාරයේ කාර්යය සඳහා දරනු
+images/acts_test_0048_line_006.png	ලබන වත්කම් සම්බන්ධයෙන් රක්ෂණකරුට ඇති අයිතියට සාක්ෂි
+images/acts_test_0048_line_007.png	වන ලේඛන ද ඇතුළුව රක්ෂණකරුගේ පොත්, ගිණුම්, වාර්තා
+images/acts_test_0048_line_008.png	හෝ වෙනත් ලේඛන කිසිවක් මණ්ඩලයේ පරික්ෂණය සඳහා
+images/acts_test_0048_line_009.png	ඉදිරිපත් කරන ලෙස හා ඒවා සම්පූර්ණයෙන් ම හෝ ඒවායේ
+images/acts_test_0048_line_010.png	යම් කොටසක් පිටපත් කර ගැනීමට අවසර දෙන ලෙස නියම
+images/acts_test_0048_line_011.png	කරනු ලැබිය හැකි ය :
+images/acts_test_0048_line_012.png	එසේ වුව ද, මේ උපවගන්තිය යටතේ කරන ලද නියමයක්,
+images/acts_test_0048_line_013.png	රක්ෂණකරු විසින් කර ගෙන යනු ලබන යම් ව්‍යාපාරයක
+images/acts_test_0048_line_014.png	කාර්යය සඳහා දරනු ලබන වත්කම්වලට රක්ෂණකරුට ඇති
+images/acts_test_0048_line_015.png	හිමිකමට සාක්ෂි වශයෙන් වූ රක්ෂණකරුගේ ඵ් ව්‍යාපාරයට
+images/acts_test_0048_line_016.png	අදාළ ලේඛනවලට පමණක් ව්‍යාප්ත විය යුතු ය.
+images/acts_test_0048_line_017.png	(4) මේ වගන්තිය යටතේ විමර්ශනය කිරීමේ දී, (3) වන
+images/acts_test_0048_line_018.png	උපවගන්තියෙහි නිශ්චිතව සඳහන් යම් පුද්ගලයකුට මණ්ඩලය
+images/acts_test_0048_line_019.png	ඉදිරියට පැමිණ, රක්ෂණකරුගේ ව්‍යාපාරය සම්බන්ධයෙන්
+images/acts_test_0048_line_020.png	දිවුරුමක් මත විභාග කරනු ලැබීමට යටත් වන ලෙස මණ්ඩලය
+images/acts_test_0048_line_021.png	විසින් නියම කරනු ලැබිය හැකි අතර, මේ වගන්තියේ කාර්යය
+images/acts_test_0048_line_022.png	සඳහා මණ්ඩලය විසින් දිවුරවීම් කරනු ලැබිය හැකි ය.
+images/acts_test_0048_line_023.png	(5) (3) වන හෝ (4) වන උපවගන්තිය යටතේ ස්වකිය
+images/acts_test_0048_line_024.png	භාරයේ ඇති යම් ලේඛනයක් ඉදිරිපත් කරන ලෙස හෝ මණ්ඩලය
+images/acts_test_0048_line_025.png	ඉදිරියට පැමිණෙන ලෙස හෝ මණ්ඩලය විසින් හෝ මණ්ඩලය
+images/acts_test_0048_line_026.png	විසින් පත්කරන ලද යම් තැනැත්තකු විසින් හෝ විභාග කරනු
+images/acts_test_0048_line_027.png	ලැබීමට යටත් වන ලෙස හෝ ඒ විභාගයේ දී තමාගෙන් අසනු
+images/acts_test_0048_line_028.png	ලබන යම් ප්‍රශ්නයකට පිළිතුරු දෙන ලෙස නියම කරනු ලැබූ
+images/acts_test_0048_line_029.png	විට, එසේ කිරීම ප්‍රතික්ෂේප කරන හෝ පැහැර හරින යම්
+images/acts_test_0048_line_030.png	තැනැත්තකු, වරදකට වරදකරු විය යුතු අතර, මහෙස්ත්‍රාත්වරයකු
+images/acts_test_0048_line_031.png	ඉදිරියෙහි පවත්වනු ලබන ලඝු නඩු විභාගයකින් පසු වරදකරු
+images/acts_test_0048_line_032.png	කරනු ලැබූ විට, රුපියල් පණස් දහසකට නොඅඩු දඩයකට ඵ්
+images/acts_test_0048_line_033.png	තැනැත්තා යටත් විය යුතු ය.
+images/acts_test_0048_line_034.png	(6) මේ වගන්තිය යටතේ කරනු ලබන යම් විමර්ශනයක
+images/acts_test_0048_line_035.png	ප්‍රතිඵල, අවස්ථාවෝචිත පරිදි, පත් කරන ලද විගණකවරයා
+images/acts_test_0048_line_036.png	හෝ ජීව ගණක හෝ විසින් ලිඛිතව වාර්තා කර ගනු ලැබිය
+images/acts_test_0048_line_037.png	යුතු අතර, ඒ වාර්තාවේ පිටපත් මණ්ඩලය හා රක්ෂණකරු
+images/acts_test_0048_line_038.png	වෙත සපයනු ලැබිය යුතු ය.
+images/acts_test_0049_line_001.png	20 2006 අංක 4 දරන ජිනීවා සම්මුති පනත
+images/acts_test_0049_line_002.png	144 වන වගන්තිය
+images/acts_test_0049_line_003.png	මෙම සම්මුතියේ මුල ධර්ම පිළිබඳව තමතමන්ගේ මුළු මහත් ජනතාව දැනුවත්
+images/acts_test_0049_line_004.png	කිරීම පිණිස, යුද්ධය පවතින කාලය තුළ මෙන්ම සාමය පවතින කාලය තුළ දී ද මෙම
+images/acts_test_0049_line_005.png	සම්මුතියේ භාවය පිළිබඳ දැනීම තම තමන්ගේ රටවල හැකිතාක් පුළුල්ව ව්‍යාප්ත
+images/acts_test_0049_line_006.png	කිරීමට සහ විශේෂයෙන්ම යුධ උපදේශන වැඩසටහන්වල දීහා හැකි නම් සිවිල්
+images/acts_test_0049_line_007.png	උපදේශන වැඩ සටහන්වලදී අධ්‍යයනය සඳහා ඇතුළත් කිරීමට, ගිවිසුම්ගත ප්‍රධාන
+images/acts_test_0049_line_008.png	රාජ්‍ය පාර්ශ්ව ගිවිස ගනී.
+images/acts_test_0049_line_009.png	යුද්ධයක් පවත්නා කාලසිමාවල දී යුධ සිරකරුවන් පිළිබඳ වගකීම භාර ගන්නා
+images/acts_test_0049_line_010.png	යම් සිවිල් යුධ හමුදා.පොලිස් හෝ වෙනත් බලධාරීන් වෙත මෙම සම්මුතියේ වගන්ති
+images/acts_test_0049_line_011.png	තිබිය යුතු අතර, සම්මුතියේ විධිවිධාන පිළිබඳව එම බල ධරයන් විශේෂයෙන් උපදෙස්
+images/acts_test_0049_line_012.png	ලබා තිබිය යුතු ය.
+images/acts_test_0049_line_013.png	145 වන වගන්තිය
+images/acts_test_0049_line_014.png	ගිවිසුම්ගත ප්‍රධාන රාජ්‍ය පාර්ශ්ව විසින් ඔවුනොවුන් අතර සන්නිවේදනය ස්විස්
+images/acts_test_0049_line_015.png	ෆෙඩරල් කවුන්සිලය හරහා පවත්වා ගත යුතු අතර, ගැටුම පවතින අවස්ථාවල දී
+images/acts_test_0049_line_016.png	සම්මුතිය අදාළ කර ගන්නා බවට වගබලා ගැනීම පිණිස වර්තමාන සම්මුතියේ නිල
+images/acts_test_0049_line_017.png	පරිවර්තනය සහ තමන් විසින් උපයෝගී කර ගත හැකි නීතිරීති හා නියෝග හරහා
+images/acts_test_0049_line_018.png	සන්නිවේදනය පවත්වාගත යුතු ය.
+images/acts_test_0049_line_019.png	146 වන වගන්තිය
+images/acts_test_0049_line_020.png	මෙම සම්මුතියේ පහත දැක්වෙන වගන්තියේ අර්ථකථනය කර තිබෙන බරපතල
+images/acts_test_0049_line_021.png	උල්ලංඝන කිසිවක් සිදු කරන හෝ සිදු කිරිමට අණ කරන තැනැත්තන් කෙරෙහි සාර්ථක
+images/acts_test_0049_line_022.png	දණ්ඩන පැනවීම සඳහා අවශ්‍ය ව්‍යවස්ථා සම්මත කිරිමට, ගිවිසුම්ගත ප්‍රධාන රාජ්‍ය
+images/acts_test_0049_line_023.png	පාර්ශ්ව ගිවිසගනී.
+images/acts_test_0049_line_024.png	එවැනි බරපතල උල්ලංඝන සිදු කළ හෝ සිදු කිරීමට අණකළ තැනැත්තන් සොයා
+images/acts_test_0049_line_025.png	ගැනීමේ සෝදිසි මෙහෙයුම් පැවැත්වීමට, එක් එක් ගිවිසුම්ගත ප්‍රධාන රාජ්‍ය පාර්ශ්වය
+images/acts_test_0049_line_026.png	බැඳි සිටින අතර, එම තැනැත්තන්ගේ ජාතිකත්වය කුමක් වුව ද, ඒ තැනැත්තන් තම
+images/acts_test_0049_line_027.png	රජයේ අධිකරණ හමුවට පැමිණවීම එක් එක් ප්‍රධාන රාජ්‍ය පාර්ශ්වය විසින් සිදු කරනු
+images/acts_test_0049_line_028.png	ලැබිය යුතු ය. ඒ ඒ ගිවිසුම්ගත ප්‍රධාන රාජ්‍ය පාර්ශ්වයේ මනාපය අනුව සහ වෙනත්
+images/acts_test_0049_line_029.png	ප්‍රධාන රාජ්‍ය පාර්ශ්වයක් විසින් මුල් බැල්මට පෙනෙන කාරණා ඉදිරිපත් කරන්නේ
+images/acts_test_0049_line_030.png	නම්, එම තැනැත්තන් නඩු විභාගය සඳහා එකී වෙනත් ප්‍රධාන රාජ්‍ය පාර්ශ්වයකට තම
+images/acts_test_0049_line_031.png	රටෙහි ව්‍යවස්ථාවලට අනුකූලව හාර දෙනු ලැබිය හැකි ය.
+images/acts_test_0049_line_032.png	මෙහි පහත වගන්තියේ අර්ථකථනය කර තිබෙන බරපතල උල්ලංඝන හැර. මේ
+images/acts_test_0049_line_033.png	සම්මුතියේ විධිවිධානවලට පටහැනි සියලු ක්‍රියා මැඩපැවැත්වීම සඳහා අවශ්‍ය
+images/acts_test_0049_line_034.png	ක්‍රියාමාර්ග. එක් එක් ගිවිසුම්ගත ප්‍රධාන රාජ්‍ය පාර්ශ්වය විසින් ගනු ලැබිය යුතු ය.
+images/acts_test_0049_line_035.png	සියලු අවස්ථාගත තත්ත්වයන් හි දී, නිසි නඩු විභාගයක් ලැබීමේ සහ නිසි
+images/acts_test_0049_line_036.png	විත්තිවාචකයක් දිය හැකි වීමේ ආරක්ෂක ක්‍රියාමාර්ග මගින්, චුදිත තැනැත්තන්ට
+images/acts_test_0049_line_037.png	ප්‍රතිලාභ අත්වන අතර, එම ක්‍රියාමාර්ග, 105 වන වගන්තියේ සහ යුධ සිරකරුවන්ට
+images/acts_test_0049_line_038.png	සැලකීම පිළිබඳ 1949 අගෝස්තු 12 දිනැති ජිනීවා සම්මුතියේ පහත දැක්වෙන
+images/acts_test_0049_line_039.png	වගන්තිවලින් සලසා ඇති ප්‍රතිකර්මවලට වඩා අඩු වාසිදායක නොවිය යුතු ය.
+images/acts_test_0050_line_001.png	2011 අංක 9 දරන එකතු කළ අගය මත බදු   7
+images/acts_test_0050_line_002.png	(සංශෝධන) පනත
+images/acts_test_0050_line_003.png	මත එම ලියාපදිංචි තැනැත්තා විසින් ගෙවනු ලැබූ බදු එම
+images/acts_test_0050_line_004.png	ලියාපදිංචි තැනැත්තාගේ යෙදවුම් බදු බැර වශයෙන් ඉඩ
+images/acts_test_0050_line_005.png	දිය හැකි ය.
+images/acts_test_0050_line_006.png	(3) එම වගන්තියේ (10) වන උපවගන්තියේ "මේ වගන්තියේ
+images/acts_test_0050_line_007.png	ඉහතින් වූ විධිවිධාන යටතේ බදු අයකළ හැකි" යන වචන
+images/acts_test_0050_line_008.png	සහ ඉලක්කම්වල සිට "යෙදවුම් බද්දේ කොටසක් ලෙස
+images/acts_test_0050_line_009.png	සලකනු ලැබිය යුතු ය." දක්වා වූ කොටස ඉවත්කර ඒ
+images/acts_test_0050_line_010.png	වෙනුවට පහත දැක්වෙන කොටස ආදේශ කිරීමෙන්:—
+images/acts_test_0050_line_011.png	"යම් බදු අයකල හැකි කාලසීමාවක් සඳහා ඉඩදිය හැකි
+images/acts_test_0050_line_012.png	යෙදවුම් බද්දේ ප්‍රමාණය පහත දැක්වෙන වැඩිදුරටත්
+images/acts_test_0050_line_013.png	වන සීමා කිරීම්වලට යටත් විය යුතු ය:—
+images/acts_test_0050_line_014.png	(අ) මෙම වගන්තියේ (5) වන උපවගන්තියේ තුන්වන
+images/acts_test_0050_line_015.png	අතුරු විධානයේ දැක්වෙන පිරිසැකසුම් කිරීමකින්
+images/acts_test_0050_line_016.png	තොරව නැවත විකිණීම සඳහා භාණ්ඩ ආනයනය
+images/acts_test_0050_line_017.png	කරනු ලබන යම් ලියාපදිංචි තැනැත්තකු
+images/acts_test_0050_line_018.png	සම්බන්ධයෙන් වන විට, 2006 දෙසැම්බර් මස 31
+images/acts_test_0050_line_019.png	වන දිනට යෙදවුම් බද්දේ අතිරික්තය ද ඇතුළුව,
+images/acts_test_0050_line_020.png	2007 ජනවාරි මස 1 දින හෝ ඉන්පසු ආරම්භ වන
+images/acts_test_0050_line_021.png	එහෙත් 2010 දෙසැම්බර් මස 31 වන දිනට පෙරාතුව
+images/acts_test_0050_line_022.png	වූ යම් බදු අයකළ හැකි කාලසීමාවක් සඳහා එම
+images/acts_test_0050_line_023.png	බදු අයකල හැකි කාලසීමාව සඳහා ප්‍රකාශයට පත්
+images/acts_test_0050_line_024.png	කරන ලද නිමැවුම් බදු ප්‍රමාණයෙන් සියයට අසූ
+images/acts_test_0050_line_025.png	පහක් හෝ මේ පනතේ විධිවිධාන යටතේ ඉඩදිය
+images/acts_test_0050_line_026.png	හැකි යෙදවුම් බදු ප්‍රමාණය යන ඒවායින් අඩු
+images/acts_test_0050_line_027.png	ප්‍රමාණයකට තවදුරටත් සීමා කළ යුතු ය. යම්
+images/acts_test_0050_line_028.png	ශේෂයක් ඇත්නම්, එම ශේෂය, 2010 දෙසැම්බර්
+images/acts_test_0050_line_029.png	මස 31 වන දිනයෙන් අවසන් වන බදු අයකල
+images/acts_test_0050_line_030.png	හැකි කාලසීමාව දක්වා එකී සීමා කිරීමටම යටත්ව,
+images/acts_test_0050_line_031.png	පසුව එළඹෙන බදු අයකළ හැකි කාලසීමාව හෝ
+images/acts_test_0050_line_032.png	කාලසීමා වලදී ඉඩ දිය හැකි යෙදවුම් බදු ප්‍රමාණයේ
+images/acts_test_0050_line_033.png	කොටසක් ලෙස සලකනු ලැබිය යුතු ය. 2010
+images/acts_test_0050_line_034.png	දෙසැම්බර් මස 31 වන දිනට අන්තර්ග්‍රහණය
+images/acts_test_0050_line_035.png	නොකළ යම් ශේෂයක් ඇත්නම්, එම ශේෂය
+images/acts_test_0050_line_036.png	ඉදිරියට රැගෙන යායුතු මෙන්ම යම් බදු අයකළ
+images/acts_test_0050_line_037.png	යුතු කාලසීමාවක් සඳහා එක් එක් මාසය සඳහා
+images/acts_test_0050_line_038.png	අන්තර්ග්‍රහණය නොකළ ප්‍රමාණයෙන් සියයට
+images/acts_test_0052_line_001.png	4 2004 අංක 1 දරන දේශීය භාණ්ඩාගාර බිල්පත්
+images/acts_test_0052_line_002.png	(සංශෝධන) පනත
+images/acts_test_0052_line_003.png	රහිත භාණ්ඩාගාර බිල්පත් පිළිබඳව හෝ ඒ බිල්පත්
+images/acts_test_0052_line_004.png	කෙරෙහි බලපෑමක් සහිත යම් පොත්පත්, වාර්තා හෝ
+images/acts_test_0052_line_005.png	ගිණුම් පරීක්ෂා කිරීම සහ ඒවායේ පිටපත් ලබා ගැනීම
+images/acts_test_0052_line_006.png	ශ්‍රී ලංකා මහ බැංකුව විසින් කරනු ලැබිය හැකි ය.
+images/acts_test_0052_line_007.png	ශ්‍රී ලංකා මහ බැංකුවට අවශ්‍ය විය හැකි හා ඉල්ලා සිටිනු
+images/acts_test_0052_line_008.png	ලැබිය හැකි සියලු පොත්පත්, වාර්තා, හුවමාරු වූ ලිපි හෝ
+images/acts_test_0052_line_009.png	වෙනත් යම් ලේඛන, සෘජු සහභාගිකරු හෝ එහි
+images/acts_test_0052_line_010.png	නිලධරයන්, අධ්‍යක්ෂවරයන්, සේවා නියුක්තයන් හෝ
+images/acts_test_0052_line_011.png	සේවකයන් විසින් සැපයිය යුතු අතර, සහතික රහිත
+images/acts_test_0052_line_012.png	භාණ්ඩාගාර බිල්පත් නිකුත් කිරීම හා සම්බන්ධව මේ
+images/acts_test_0052_line_013.png	ආඥාපනතින් ශ්‍රී ලංකා මහ බැංකුව වෙත පැනවී තිබෙන
+images/acts_test_0052_line_014.png	කාර්ය ඉටු කිරීම සඳහා ඊට අවශ්‍ය සියලු සහාය ලබා දිය
+images/acts_test_0052_line_015.png	යුතු ය.
+images/acts_test_0052_line_016.png	මේ වගන්තියේ විධිවිධාන, විද්‍යුත් ස්වරූපයකින්
+images/acts_test_0052_line_017.png	පවත්වාගෙන යනු ලබන යම් පොත්පත්, වාර්තා, ගිණුම්
+images/acts_test_0052_line_018.png	හා ලිපි හුවමාරු කෙරෙහි අදාළ වන්නේ ය.
+images/acts_test_0052_line_019.png	(5) සහතික රහිත භාණ්ඩාගාර බිල් පත්‍රයක්
+images/acts_test_0052_line_020.png	වෙනුවෙන් ආණ්ඩුවට යම් වගකීමකට යටත්වීමට සිදුවන
+images/acts_test_0052_line_021.png	හෝ යම් කල්පිරීමේ ගෙවීමක් කිරිමට සිදු වන්නා වූ ද
+images/acts_test_0052_line_022.png	සෘජු සහභාගිකරුවකුගේ හෝ අලෙවිකාර සෘජු
+images/acts_test_0052_line_023.png	සහභාගිකරුවකුගේ පැහැර හැරීමක ප්‍රතිඵලයක් වශයෙන්
+images/acts_test_0052_line_024.png	හෝ පැහැර හැරීමක් හේතුකොටගෙන එම වගකීම උද්ගත
+images/acts_test_0052_line_025.png	වන්නා වූ හෝ ගෙවීම කරනු ලබන්නා වූ අවස්ථාවක,
+images/acts_test_0052_line_026.png	ආණ්ඩුව විසින් ඉල්ලා සිටි විට ඒ වගකීම හෝ ගෙවීම
+images/acts_test_0052_line_027.png	සම්බන්ධයෙන් ආණ්ඩුවට හානි පූරණය කිරීමට ඒ
+images/acts_test_0052_line_028.png	සහභාගිකරු බැඳී සිටින්නේ ය.
+images/acts_test_0052_line_029.png	(6) මේ වගන්තියේ කාර්ය සඳහා “පැහැර හැරීම”
+images/acts_test_0052_line_030.png	යන්නට :-
+images/acts_test_0052_line_031.png	(අ) යම් සෘජු සහභාගිකරුවකු වෙත හෝ
+images/acts_test_0052_line_032.png	අලෙවිකාර සෘජු සහභාගිකරුවකු වෙත මේ
+images/acts_test_0052_line_033.png	අඥාපනතින් හෝ මේ ආඥාපනත මගින්
+images/acts_test_0052_line_034.png	කටයුතු කෙරෙන යම් කාරණයකට අදාළ
+images/acts_test_0052_line_035.png	වෙනත් යම් ලිඛිත නීතියකින් හෝ පැවරී ඇති
+images/acts_test_0052_line_036.png	හෝ නියම වී ඇති යම් කර්තව්‍යයක් කිරීමෙහි
+images/acts_test_0052_line_037.png	හෝ කාර්යයක් ඉටුකිරීමෙහි ලා ඔහුගේ
+images/acts_test_0052_line_038.png	පාර්ශ්වයෙන් සිදුවන යම් නොසැලකිල්ලක් හෝ
+images/acts_test_0052_line_039.png	පැහැර හැරීමක් ; සහ
+images/acts_test_0053_line_001.png	2018 අංක 3 දරන ආරක්ෂණ පියවර පනත 15
+images/acts_test_0053_line_002.png	(අ) නිෂ්පාදනයක ස්වභාවයට, නිෂ්පාදන ක්‍රියාවලියට,
+images/acts_test_0053_line_003.png	මෙහෙයුම්වලට, නිෂ්පාදන උපකරණවලට හෝ
+images/acts_test_0053_line_004.png	යන්ත්‍රෝපකරණවලට අදාළ ව්‍යාපාර හෝ වාණිජ රහස්;
+images/acts_test_0053_line_005.png	(ආ) සමාගමක මුල්‍ය තත්වයට අදාළ ප්‍රසිද්ධ කර නොමැති
+images/acts_test_0053_line_006.png	තොරතුරු; සහ
+images/acts_test_0053_line_007.png	(ඇ) පිරිවැය, ගනුදෙනුකරුවන් හඳුනාගැනීම, අලෙවිය,
+images/acts_test_0053_line_008.png	ඉන්වෙන්ටරි පොත්, නැව්බඩු තොග, යම් නිෂ්පාදනයක්
+images/acts_test_0053_line_009.png	නිපදවීම සහ විකිණීමට අදාළ යම් ආදායමක, ලාභයක,
+images/acts_test_0053_line_010.png	අලාභයක හෝ වියදමක ප්‍රමාණය හෝ මූලාශ්‍රය පිළිබඳ
+images/acts_test_0053_line_011.png	තොරතුරු.
+images/acts_test_0053_line_012.png	(4) අධ්‍යක්ෂ ජනරාල්වරයා වෙත ලබා දී ඇති ඇතැම් තොරතුරු
+images/acts_test_0053_line_013.png	සඳහා රහස්‍ය තත්ත්වය ලබා දෙන ලෙස, එවැනි සැලකීමක් ඉල්ලා
+images/acts_test_0053_line_014.png	සිටීම සඳහා වන හේතු ද සමග, තොරතුරු ඉදිරිපත් කරන
+images/acts_test_0053_line_015.png	අවස්ථාවේ දී ඒ සම්බන්ධයෙන් කරනු ලබන ඉල්ලීමක් මාර්ගයෙන්
+images/acts_test_0053_line_016.png	ඉල්ලා සිටීමට විමර්ශනයක පාර්ශ්වකරුවකුට හැකි ය. අධ්‍යක්ෂ
+images/acts_test_0053_line_017.png	ජනරාල්වරයා විසින් එවැනි ඉල්ලීම් පිළිබඳව ඉක්මනින් සලකා
+images/acts_test_0053_line_018.png	බැලිය යුතු අතර, එසේ රහස්‍ය ලෙස සැලකීමට ඉඩ ලබා නොදෙන
+images/acts_test_0053_line_019.png	බවට අධ්‍යක්ෂ ජනරාල්වරයා තීරණය කරන්නේ නම්, ඒ බව
+images/acts_test_0053_line_020.png	තොරතුරු ඉදිරිපත් කරන පාර්ශ්වය වෙත දැනුම් දිය යුතු ය.
+images/acts_test_0053_line_021.png	(5) විමර්ශනයක පාර්ශ්වකරුවන් විසින් රහස්‍ය ලෙස සැලකීම
+images/acts_test_0053_line_022.png	අපේක්ෂා කරනු ලබන සියලු තොරතුරුවල රහස්‍ය නොවන
+images/acts_test_0053_line_023.png	සාරාංශයක් ඉදිරිපත් කළ යුතු අතර, එම සාරාංශය, රහස්‍ය
+images/acts_test_0053_line_024.png	පිටපතෙහි සපයා ඇති සංඛ්‍යාවල සුචිගත කිරීමක් වශයෙන් හෝ
+images/acts_test_0053_line_025.png	එම ලේඛනයෙහි ලකුණු කරන ලද ඉවත් කිරීම් වශයෙන් දැක්විය
+images/acts_test_0053_line_026.png	යුතු ය. තව ද, එම සාරාංශය මගින් රහස්‍ය ලෙස ඉදිරිපත් කරන
+images/acts_test_0053_line_027.png	ලද තොරතුරුවල අන්තර්ගත කරුණු සාධාරණ ලෙස තේරුම්
+images/acts_test_0053_line_028.png	ගැනීමට ඉඩ සැලැස්විය යුතු ය.
+images/acts_test_0053_line_029.png	(6) විශේෂ අවස්ථානුගත කරුණුවල දී රහස්‍යභාවය අපේක්ෂා
+images/acts_test_0053_line_030.png	කරන තොරතුරු සාරාංශයකින් දැක්විය නොහැකි බව පාර්ශ්වයන්
+images/acts_test_0053_line_031.png	විසින් පෙන්වා දෙනු ලැබිය හැකි අතර, එවැනි අවස්ථාවල දී
+images/acts_test_0053_line_032.png	සාරාංශය ලබාදීමට නොහැකි වීමට හේතු පිළිබඳ ප්‍රකාශයක් එම
+images/acts_test_0053_line_033.png	පාර්ශ්වයන් විසින් ඉදිරිපත් කරනු ලැබිය යුතු ය.
+images/acts_test_0054_line_001.png	2011 අංක 9 දරන එකතු කළ අගය මත බදු
+images/acts_test_0054_line_002.png	(සංශෝධන) පනත
+images/acts_test_0054_line_003.png	වචනවල සිට එම අනුඡේදය අවසානය දක්වා වූ සියලු
+images/acts_test_0054_line_004.png	වචන ඉවත්කොට ඒ වෙනුවට පහත දැක්වෙන කොටස
+images/acts_test_0054_line_005.png	ආදේශ කිරීමෙන් :—
+images/acts_test_0054_line_006.png	"(අ) භාණ්ඩ සැපයුම්ලාභීන් විසින් එකී සපයන ලද
+images/acts_test_0054_line_007.png	භාණ්ඩ ඇත්ත වශයෙන්ම අපනයනය කරන ලද
+images/acts_test_0054_line_008.png	බවට ප්‍රකාශ කරමින් එකී භාණ්ඩ බැහැර කිරීමට
+images/acts_test_0054_line_009.png	අදාළව; හෝ
+images/acts_test_0054_line_010.png	(ආ) එකී සේවා, අපනයනය කරන ලද ඇඟළුම්
+images/acts_test_0054_line_011.png	නිෂ්පාදනය සඳහා ඇත්ත වශයෙන්ම භාවිත කරන
+images/acts_test_0054_line_012.png	ලද බවට ප්‍රකාශ කරමින් එකතු කළ අගය මත වූ
+images/acts_test_0054_line_013.png	සේවාවන් සැපයීමට අදාළව,
+images/acts_test_0054_line_014.png	සැසදුම් ප්‍රකාශයක් ඉදිරිපත් කිරීම මත, තත්කාර්ය සඳහා
+images/acts_test_0054_line_015.png	දේශීය ආදායම් කොමසාරිස් - ජනරාල්වරයා විසින්
+images/acts_test_0054_line_016.png	නිකුත් කරන ලද මාර්ගෝපදේශවල නිශ්චිතව දක්වා
+images/acts_test_0054_line_017.png	ඇති ආකාරයට එකී ඇගළුම් නිෂ්පාදකයා හෝ සේවා
+images/acts_test_0054_line_018.png	සපයන්නා විසින් ක්‍රියාකර ඇති තාක්කල්:
+images/acts_test_0054_line_019.png	එසේ වුව ද, 2011 අප්‍රේල් මස 1 වන දින සිට
+images/acts_test_0054_line_020.png	බලපැවැත්වෙන පරිදි, මේ ඡේදය යටතේ වූ විලම්බන
+images/acts_test_0054_line_021.png	බද්ද දේශීය ආදායම් කොමසාරිස් - ජනරාල්වරයා විසින්
+images/acts_test_0054_line_022.png	පරිපාලනය කරනු ලැබිය යුතු ය.”
+images/acts_test_0054_line_023.png	(ආ) එහි (ඈ) අනුඡේදයේ, "අපනයන සංවර්ධන මණ්ඩලය
+images/acts_test_0054_line_024.png	විසින්” යන වචනවල සිට එම අනුඡේදය අවසානය දක්වා
+images/acts_test_0054_line_025.png	වූ සියලු වචන ඉවත්කොට ඒ වෙනුවට පහත දැක්වෙන
+images/acts_test_0054_line_026.png	වචන ආදේශ කිරීමෙන් :—
+images/acts_test_0054_line_027.png	"(අ) භාණ්ඩ සැපයුම්ලාභීන් විසින් එකී සපයන ලද
+images/acts_test_0054_line_028.png	භාණ්ඩ ඇත්ත වශයෙන්ම අපනයනය කරන ලද
+images/acts_test_0054_line_029.png	බවට ප්‍රකාශ කරමින් එකී භාණ්ඩ බැහැර කිරීමට
+images/acts_test_0054_line_030.png	අදාළව; හෝ
+images/acts_test_0054_line_031.png	(ආ) එකී සේවා, අපනයනය කරන ලද භාණ්ඩ
+images/acts_test_0054_line_032.png	නිෂ්පාදනය සඳහා ඇත්ත වශයෙන්ම භාවිත කරන
+images/acts_test_0054_line_033.png	ලද බවට ප්‍රකාශ කරමින් එකතු කළ අගය මත වූ
+images/acts_test_0054_line_034.png	සේවා සැපයීමට අදාළව,
+images/acts_test_0055_line_001.png	1987 අංක 24 දරන පළාත් පාලන ආයතන 39
+images/acts_test_0055_line_002.png	ඡන්ද විමසීම් (සංශෝධන) පනත
+images/acts_test_0055_line_003.png	ඉන් පසුව, ඡන්දදායකයා විසින්, සම්පූර්ණ කරන ලද තම අනන්‍යතා ප්‍රකාශය
+images/acts_test_0055_line_004.png	සමඟ මුද්‍රා තබන ලද ඡන්ද පත්‍රිකා ලියුම් කවරය, තේරීම් භාර නිලධරයා නමට
+images/acts_test_0055_line_005.png	අමතනු ලැබ බහා එවා ඇති අනෙක් ලොකු ලියුම් කවරය තුළ දමා ලියුම් කවරය
+images/acts_test_0055_line_006.png	නොහැලවෙන සේ අලවා එය අප්‍රමාදව යැවීම සඳහා තම සාක්ෂිකරුට භාර දිය
+images/acts_test_0055_line_007.png	යුතු ය.
+images/acts_test_0055_line_008.png	6. ඡන්ද විමසීම පැවැත්වීම සඳහා නියම කරන ලද දිනයේ දී ඡන්ද විමසීම්
+images/acts_test_0055_line_009.png	අවසන් කරනු ලැබීමට පෙර තේරීම් භාර නිලධරයා වෙත ලැබෙන සේ තැපැල්
+images/acts_test_0055_line_010.png	ඡන්ද පත්‍රිකාවක් ආපසු යවනු ලැබුවහොත් ද, යථා පරිදි අත්සන කොට සංක්ෂි
+images/acts_test_0055_line_011.png	දරනු ලැබූ අනන්‍යතා ප්‍රකාශය ඒ තැපැල් ඡන්ද පත්‍රිකාව සමඟ තිබුණ හොත් ද
+images/acts_test_0055_line_012.png	මිස ඒ තැපැල් ඡන්ද පත්‍රිකාව යථා පරිදි ආපසු යවනු ලැබූ ඡන්ද පත්‍රිකාවක්
+images/acts_test_0055_line_013.png	ලෙස සලකනු නොලැබිය යුතු ය.
+images/acts_test_0055_line_014.png	(ආ) ඡන්ද පත්‍රිකාව සහ වෙනත් ලේඛන කෙළින් ම ස්වකීය නිල නාමය සහ
+images/acts_test_0055_line_015.png	ලිපිනය යටතේ යවනු ලැබුවේ යම් ඡන්දදායකයකු වෙතද ඒ ඡන්ද
+images/acts_test_0055_line_016.png	දායකයාට උපදෙස්.
+images/acts_test_0055_line_017.png	1. ඡන්දදායකයා විසින්, තම අනන්‍යතා ප්‍රකාශය අත්සන් කිරීමට පෙර ඒ
+images/acts_test_0055_line_018.png	ප්‍රකාශය තමා අත්සන් කළ යුත්තේ යම් තැනැත්තකු ඉදිරිපිට දී ද ඒ
+images/acts_test_0055_line_019.png	තැනැත්තාට-
+images/acts_test_0055_line_020.png	(අ) ඒ ප්‍රකාශයේ නිශ්චිත වශයෙන් දක්වා ඇති අංකය ම දරන ඡන්ද
+images/acts_test_0055_line_021.png	පත්‍රිකාව; සහ
+images/acts_test_0055_line_022.png	(ආ) ඡන්දදායකයා වෙත අනන්‍යතා ප්‍රකාශයේ ආකෘතිය හා ඡන්ද පත්‍රිකාව
+images/acts_test_0055_line_023.png	බහා එවන ලද ලියුම් කවරය
+images/acts_test_0055_line_024.png	පෙන්වනු ලැබිය යුතු ය.
+images/acts_test_0055_line_025.png	2. (අ) ඡන්දදායකයා ශ්‍රී ලංකා යුද්ධ හමුදාවේ හෝ ශ්‍රී ලංකා නාවික හමුදාවේ
+images/acts_test_0055_line_026.png	හෝ ශ්‍රී ලංකා ගුවන් හමුදාවේ සාමාජිකයෙකු වන්නේ නම්, ඒ යුද්ධ
+images/acts_test_0055_line_027.png	හමුදාවේ. නාවික හමුදාවේ හෝ ගුවන් හමුදාවේ අධිකාරලත් නිලධරයකු
+images/acts_test_0055_line_028.png	විය යුතු වූ ද;
+images/acts_test_0055_line_029.png	(ආ) ඡන්දදායකයා රජයේ සේවයේ හෝ ශ්‍රී ලංකා මහ බැංකුවේ නිලධරයකු
+images/acts_test_0055_line_030.png	හෝ සේවකයකු වන්නේ නම්, ඒ සේවයේ ජ්‍යෙෂ්ඨ නිලධරයකු විය
+images/acts_test_0055_line_031.png	යුතු වූ, හෝ ඡන්දදායකයාට ජ්‍යෙෂ්ඨ නිලධරයකු නොමැති නම්, ඒ
+images/acts_test_0055_line_032.png	සේවයේ වෙනත් යම් නිලධරයකු විය යුතු වූ ද
+images/acts_test_0055_line_033.png	සාක්ෂිකරුවකු ඉදිරිපිට දී ඡන්දදායකයා විසින් අනන්‍යතා ප්‍රකාශය අත්සන්
+images/acts_test_0055_line_034.png	කරනු ලැබිය යුතු ය.
+images/acts_test_0055_line_035.png	3. ඡන්දදායකයාට එක් ඡන්දයක් පමණක් ඇත්තේ ය.
+images/acts_test_0055_line_036.png	4. ඡන්දදායකයා, තමා ඡන්දය දෙන පිළිගත් දේශපාලන පක්ෂයේ හෝ
+images/acts_test_0055_line_037.png	ස්වාධීන කණ්ඩායමේ නම සහ ලකුණ ඉදිරියෙන්, ඡන්ද පත්‍රිකාවේ දකුණු
+images/acts_test_0055_line_038.png	පැත්තේ, තත් කාර්යය සඳහා සලසා ඇති ඉඩ ප්‍රමාණයෙහි කතිර ලකුණක්
+images/acts_test_0055_line_039.png	(මෙසේ x) කිරීමෙන් ඡන්දය දිය යුතු ය. තවද ඒ පක්ෂය විසින් හෝ
+images/acts_test_0055_line_040.png	කණ්ඩායම විසින් හෝ නාමයෝජනා කරන ලද අපේක්ෂකයන් 3 දෙනකුට
+images/acts_test_0055_line_041.png	නොවැඩි ගණනක් සම්බන්ධව සිය මනාපය දැක්වීම, ඒ එක් එක් අපේක්ෂකයා
+images/acts_test_0055_line_042.png	සඳහා වෙන් කර ඇති අනුක්‍රමික අංකයට අනුරූප වන අනුක්‍රමික අංකය ඇතුළත්
+images/acts_test_0055_line_043.png	ඡන්ද පත්‍රිකාවේ පහළ ඇති කොටුවෙහි කතිර ලකුණ යෙදීමෙන් කරනු ලැබිය
+images/acts_test_0055_line_044.png	හැකි ය.
+images/acts_test_0055_line_045.png	5. ඡන්දදායකයා තමා ඡන්ද දුන්නේ කවර ආකාරයට ද යන වග කිසිම
+images/acts_test_0055_line_046.png	තැනැත්තකුට දැකිමට ඉඩ නොතැබිය යුතු ය.
+images/acts_test_0056_line_001.png	4 2019 අංක 24 දරන ක්‍රීඩාවලට සම්බන්ධ
+images/acts_test_0056_line_002.png	වැරදි වැළැක්වීමේ පනත
+images/acts_test_0056_line_003.png	(v) ඉහත දැක්වෙන ඡේදවල නිශ්චිතව සඳහන් කර
+images/acts_test_0056_line_004.png	ඇති යම් ක්‍රියාවකට ඍජුව හෝ වක්‍රව සම්බන්ධ
+images/acts_test_0056_line_005.png	වූ ද සහ යම් ක්‍රීඩාවකට හෝ ක්‍රීඩා ඉසව්වකට
+images/acts_test_0056_line_006.png	අගතිගාමී වූ ද යම් ක්‍රියාවක හෝ නොකර
+images/acts_test_0056_line_007.png	හැරීමක නිරත වන්නා වූ;
+images/acts_test_0056_line_008.png	(ආ) යම් තනි ක්‍රීඩකයකු හෝ ක්‍රීඩකයන් කණ්ඩායමක්
+images/acts_test_0056_line_009.png	විසින්-
+images/acts_test_0056_line_010.png	(i) යම් ක්‍රීඩාවක දී හෝ ක්‍රීඩා ඉසව්වක දී තනිව
+images/acts_test_0056_line_011.png	හෝ සාමූහිකව ක්‍රීඩා කුසලතාව අඩුවෙන්
+images/acts_test_0056_line_012.png	දැක්වීම සඳහා හෝ ව්‍යාජ හේතු මත ඒ
+images/acts_test_0056_line_013.png	ක්‍රීඩාවෙන් හෝ ක්‍රීඩා ඉසව්වෙන් ඉවත් වීම
+images/acts_test_0056_line_014.png	සඳහා මුදල් හෝ වෙනත් යම් ත්‍යාගයක් හෝ
+images/acts_test_0056_line_015.png	ප්‍රතිලාභයක් භාරගන්නා වූ; හෝ
+images/acts_test_0056_line_016.png	(ii) ඒ ක්‍රීඩකයාගේ හෝ ක්‍රීඩකයන් කණ්ඩායමේ
+images/acts_test_0056_line_017.png	ක්‍රීඩා කුසලතාවට හානි කරමින්, ඒ ක්‍රීඩකයා
+images/acts_test_0056_line_018.png	හෝ ක්‍රීඩකයන් කණ්ඩායම ක්‍රීඩා කරන ක්‍රීඩාව
+images/acts_test_0056_line_019.png	හෝ ක්‍රීඩා ඉසව්ව _ සම්බන්ධයෙන් ඔට්ටු
+images/acts_test_0056_line_020.png	අල්ලන්නා වූ;
+images/acts_test_0056_line_021.png	(ඇ) යම් විනිසුරුවරයකු, තරග විනිශ්චයකාරවරයකු හෝ
+images/acts_test_0056_line_022.png	තරග තීරකවරයකු විසින් මුදල් හෝ වෙනත් යම්
+images/acts_test_0056_line_023.png	ත්‍යාගයක් හෝ ප්‍රතිලාභයක් සඳහා යම් ක්‍රීඩාවක හෝ
+images/acts_test_0056_line_024.png	ක්‍රීඩා ඉසව්වක රීති සිතාමතාම වැරදි ලෙස
+images/acts_test_0056_line_025.png	යොදන්නා වූ;
+images/acts_test_0056_line_026.png	(ඈ) යම් ක්‍රීඩාංගණ භාරකරුවකු හෝ යම් ක්‍රීඩාංගණ
+images/acts_test_0056_line_027.png	කාර්ය මණ්ඩලයක හෝ ක්‍රීඩා පිටි කාර්ය මණ්ඩලයක
+images/acts_test_0056_line_028.png	හෝ සහාය කාර්ය මණ්ඩලයක යම් සාමාජිකයකු
+images/acts_test_0056_line_029.png	විසින්-
+images/acts_test_0056_line_030.png	(i) ඔට්ටු මෙහෙයුම්කරුවකු ද ඇතුළුව යම්
+images/acts_test_0056_line_031.png	තැනැත්තකුගේ මනාපය පරිදි යම් ක්‍රීඩාවක හෝ
+images/acts_test_0056_line_032.png	ක්‍රීඩා ඉසව්වක, යම් තණතිල්ලක්, ක්‍රීඩා පිටියක්
+images/acts_test_0056_line_033.png	හෝ ක්‍රීඩා පිටියක මතුපිට සකස් කිරීමට; හෝ
+images/acts_test_0056_line_034.png	(ii) යම් ක්‍රීඩාවක හෝ ක්‍රීඩා ඉසව්වක තණතිල්ල
+images/acts_test_0056_line_035.png	හෝ ක්‍රීඩා පිටිය හෝ ක්‍රීඩා පිටියේ මතුපිට
+images/acts_test_0058_line_001.png	1982 අංක 35 දරන ජාතික ශිල්ප සභාව සහ අනුබද්ධ  27
+images/acts_test_0058_line_002.png	ආයතන පනත
+images/acts_test_0058_line_003.png	(4) මණ්ඩලයේ ඉල්ලීම පිට, රජයේ සේවයේ යම් නිලධරයකු
+images/acts_test_0058_line_004.png	එ නිලධරයාගේ සහ රාජ්‍ය පරිපාලන විෂයය භාර අමාත්‍යවරයාගේ
+images/acts_test_0058_line_005.png	අමාත්‍යාංශයේ ලේකම්වරයාගේ කැමැත්ත ඇතිව මධ්‍යස්ථානයේ
+images/acts_test_0058_line_006.png	කාර්ය මණ්ඩලයට එවැනිම කැමැත්ත ඇතිව මණ්ඩලය විසින්
+images/acts_test_0058_line_007.png	නිශ්චය කරනු ලබන කාලසීමාවක් සඳහා තාවකාලිකව පත් කරනු
+images/acts_test_0058_line_008.png	ලැබීම හෝ එවැනිම කැමැත්ත ඇතිව ඒ කාර්ය මණ්ඩලයට ස්ථිර
+images/acts_test_0058_line_009.png	ලෙස පත් කරනු ලැබීම හෝ කරනු ලැබිය හැකි ය.
+images/acts_test_0058_line_010.png	(5) රජයේ සේවයේ යම් නිලධරයකු මධ්‍යස්ථානයේ කාර්ය
+images/acts_test_0058_line_011.png	මණ්ඩලයට තාවකාලිකව පත් කරනු ලැබූ අවස්ථාවක, ජාතික රාජ්‍ය
+images/acts_test_0058_line_012.png	සභාවේ 1978 අංක 19 දරන ගමනාගමන මණ්ඩල පනතේ 13 වන
+images/acts_test_0058_line_013.png	වගන්තියේ (2) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස්
+images/acts_test_0058_line_014.png	කිරීම් සහිතව, ඔහුට සහ ඔහු සම්බන්ධයෙන් අදාළ විය යුතු ය.
+images/acts_test_0058_line_015.png	(6) රජයෙ සේවයේ යම් නිලධරයෙකු මධ්‍යස්ථානයේ කාර්ය
+images/acts_test_0058_line_016.png	මණ්ඩලයට ස්ථිර ලෙස පත් කරනු ලැබූ අවස්ථාවක, ජාතික රාජ්‍ය
+images/acts_test_0058_line_017.png	සභාවේ 1978 අංක 19 දරන ගමනා ගමන මණ්ඩල පනතේ 13 වන
+images/acts_test_0058_line_018.png	වගන්තියේ (3) වන උපවගන්තියේ විධිවිධාන, අවශ්‍ය වෙනස්
+images/acts_test_0058_line_019.png	කිරිම් සහිතව, ඔහුට සහ ඔහු සම්බන්ධයෙන් අදාළ විය යුතු ය.
+images/acts_test_0058_line_020.png	(7) නිශ්චිත කාලසීමාවක් සඳහා ආණ්ඩුවට සේවය කිරීමට එකඟ
+images/acts_test_0058_line_021.png	වී ඇති යම් තැනැත්තකු මණ්ඩලය විසින් සේවයේ නියුක්ත කරනු
+images/acts_test_0058_line_022.png	ලැබූ අවස්ථාවක, ඒ තැනැත්තා විසින් මධ්‍යස්ථානය යටතේ සේවය
+images/acts_test_0058_line_023.png	කරනු ලබන යම් කාලසීමාවක් ඒ එකඟවීමේ බැඳීම් ඉටු කිරීමේ
+images/acts_test_0058_line_024.png	කාර්යය සඳහා ආණ්ඩුවට කරනු ලැබූ සේවයක් ලෙස සලකනු ලැබිය
+images/acts_test_0058_line_025.png	යුතු ය.
+images/acts_test_0058_line_026.png	(8) මණ්ඩලයේ ඉල්ලීම පිට, පළාත් පාලන සේවයේ යම්
+images/acts_test_0058_line_027.png	සාමාජිකයෙකු හෝ පළාත් පාලන ආයතනයක වෙනත් යම් නිල
+images/acts_test_0058_line_028.png	ධරයකු හෝ සේවකයකු, අවස්ථාවෝචිත පරිදි, ඒ සාමාජිකයාගේ,
+images/acts_test_0058_line_029.png	නිලධරයාගේ හෝ සේවකයාගේ සහ පළාත් පාලන සේවා උප
+images/acts_test_0058_line_030.png	දේශක මණ්ඩලයේ හෝ පළාත් පාලන ආයතනයේ කැමැත්ත
+images/acts_test_0058_line_031.png	ඇතිව, මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට එවැනිම කැමැත්ත ඇතිව
+images/acts_test_0058_line_032.png	මණ්ඩලය විසින් නිශ්චය කරනු ලබන කාලසීමාවක් සඳහා තාව
+images/acts_test_0058_line_033.png	කාලිකව පත් කරනු ලැබීම හෝ විශ්‍රාම වැටුප් හෝ අර්ථසාධක
+images/acts_test_0058_line_034.png	අරමුදල් සම්බන්ධයෙන් වූ අයිතිවාසිකම්වලට අදාළ නියම හා
+images/acts_test_0058_line_035.png	කොන්දේසි ද ඇතුළුව මණ්ඩලය සහ පළාත් පාලන සේවා උප
+images/acts_test_0058_line_036.png	දේශක මණ්ඩලය හෝ පළාත් පාලන ආයතනය විසින් එකඟවනු
+images/acts_test_0058_line_037.png	ලබන නියම හා කොන්දේසි මත සාමාජිකයා හෝ නිලධරයා හෝ
+images/acts_test_0058_line_038.png	සේවකයා. ඒ මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට ස්ථිර ලෙස පත්
+images/acts_test_0058_line_039.png	කිරිම හෝ කරනු ලැබිය හැකි ය.
+images/acts_test_0058_line_040.png	(9) මණ්ඩලයේ ඉල්ලීම පිට, රාජ්‍ය සංස්ථාවක යම් නිලධරයකු
+images/acts_test_0058_line_041.png	හෝ සේවකයකු ඒ නිලධරයාගේ හෝ සේවකයාගේ සහ ඒ රාජ්‍ය
+images/acts_test_0058_line_042.png	සංස්ථාවේ කැමැත්ත ඇතිව මධ්‍යස්ථානයේ කාර්ය මණ්ඩලයට
+images/acts_test_0058_line_043.png	එවැනි ම කැමැත්ත ඇතිව මණ්ඩලය විසින් නිශ්චය කරනු ලබන
+images/acts_test_0058_line_044.png	කාලසීමාවක් සඳහා තාවකාලිකව පත් කරනු ලැබීම හෝ විශ්‍රාම
+images/acts_test_0058_line_045.png	වැටුප් හෝ අර්ථසාධක අරමුදල් සම්බන්ධයෙන් වූ අයිතිවාසිකම්
+images/acts_test_0058_line_046.png	වලට අදාළ නියම හා කොන්දේසි ඇතුළුව මණ්ඩලය සහ එකී රාජ්‍ය

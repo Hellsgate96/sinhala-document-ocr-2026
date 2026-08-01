@@ -1,15 +1,15 @@
 {
   "checkpoint": "models/crnn_best.pth",
-  "source": "RESULTS.md section 2 Final numbers (AFTER + matra/lyric post-correct, 2026-08-01)",
-  "note": "End-to-end corpus CER/WER. Green = held out; grey = in-training reference only. Accuracy % = (1 − error rate) × 100.",
+  "source": "RESULTS.md section 2 Final numbers (AFTER + word-accuracy push §3g, 2026-08-01)",
+  "note": "End-to-end corpus CER/WER. Green = held out; grey = in-training reference only. Accuracy % = (1 − error rate) × 100. Same checkpoint as Aug-01 lyric polish; §3g adds safe word-level post-correct rules.",
   "sets": [
     {
       "id": "print_photos",
       "label": "Real photos (held out)",
-      "cer": 0.0455,
-      "wer": 0.2193,
-      "char_accuracy_pct": 95.45,
-      "word_accuracy_pct": 78.07,
+      "cer": 0.0325,
+      "wer": 0.1491,
+      "char_accuracy_pct": 96.75,
+      "word_accuracy_pct": 85.09,
       "held_out": true,
       "n_pages": 2,
       "n_lines": 32

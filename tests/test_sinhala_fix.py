@@ -24,7 +24,6 @@ def test_word_final_na_ii():
 
 def test_illegal_prebase_reorder():
     assert fix_sinhala_ocr("දිෙනක", use_lm=False) == "දිනෙක"
-    # Already-correct syllables must not be scrambled.
     assert fix_sinhala_ocr("කොඩි වෙලා", use_lm=False) == "කොඩි වෙලා"
 
 
@@ -33,7 +32,6 @@ def test_orphan_prebase_before_virama():
 
 
 def test_legitimate_en_untouched():
-    # Word-final ලෙන් must not become නේ.
     assert fix_sinhala_ocr("සිසිලෙන් තෙමුණේ", use_lm=False) == "සිසිලෙන් තෙමුණේ"
 
 
@@ -43,5 +41,18 @@ def test_lyric_short_crop_fixes():
     assert fix_sinhala_ocr("වැවි බැඳුණේ..", use_lm=False) == "වැව් බැඳුණේ.."
     assert fix_sinhala_ocr("නැගුණි...//", use_lm=False) == "නැගුණේ...//"
     assert fix_sinhala_ocr("ලොව මැවුණ", use_lm=False) == "ලොව මැවුණේ"
-    # Bare ණි (not preceded by ු) must stay — used in correct past forms.
     assert fix_sinhala_ocr("පිළිගැන්විණි", use_lm=False) == "පිළිගැන්විණි"
+
+
+def test_literary_ssu_long_uu_safe():
+    assert fix_sinhala_ocr("තිගැස්සු", use_lm=False) == "තිගැස්සූ"
+    assert fix_sinhala_ocr("හිනැස්සු", use_lm=False) == "හිනැස්සූ"
+    assert fix_sinhala_ocr("ඇවිස්සු", use_lm=False) == "ඇවිස්සූ"
+    assert fix_sinhala_ocr("ගමේ මිනිස්සු සහ", use_lm=False) == "ගමේ මිනිස්සු සහ"
+
+
+def test_word_accuracy_residual_fixes():
+    assert fix_sinhala_ocr("හමුවලා හදවෙතේ", use_lm=False) == "හමුවෙලා හදවතේ"
+    assert fix_sinhala_ocr("යළි උපදිමි මේ", use_lm=False) == "යළි උපදිම් මේ"
+    assert fix_sinhala_ocr("ගොනු හිත්", use_lm=False) == "ගොනු හිතේ"
+    assert fix_sinhala_ocr("මගහැරී ගිලිහුනෙම", use_lm=False) == "මඟහැරී ගිලිහුනෙම"

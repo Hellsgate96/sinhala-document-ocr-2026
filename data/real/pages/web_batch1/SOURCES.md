@@ -6,6 +6,7 @@
 |---|---|---|---|
 | `page_exam_cover_2024.jpg` | User-provided Jul-26 notebook test image (exam cover style) | Authorized by user for MSc OCR research | Line crops `web_exam_line_*.png` labeled manually |
 | Acts pages (60 train pages used) | Hugging Face `avishadilhara/sinhala-ocr-lk-acts-1010` | **CC-BY-4.0** | Detector-in-the-loop crops via `scripts/download_hf_acts.py` (exact line-count match only); **2275** labeled lines in `web_batch1_acts.txt` (+ light aug) |
+| Acts **test** split extras (50 pages) | Same HF dataset, `split=test` | **CC-BY-4.0** | Aug-01 accuracy push: **1895** detector-matched lines in `web_batch1_acts_extra.txt` (page copies under `pages/web_batch1_extra/`). Spot-checked against crops; reserved for next mix-train. |
 
 ## Synthetic / rendered (OFL fonts)
 

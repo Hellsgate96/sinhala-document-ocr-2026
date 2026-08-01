@@ -1,4 +1,4 @@
-images/web_exam_line_001.png	11 ශ්‍රේණිය
+images/web_exam_line_001.png	II ශ්‍රේණිය
 images/web_exam_line_002.png	දෙවන වාර පරීක්ෂණය
 images/web_exam_line_003.png	සිංහල සාහිත්‍ය
 images/web_exam_line_004.png	රසාස්වාදය

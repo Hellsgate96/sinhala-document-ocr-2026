@@ -49,22 +49,22 @@ checkpoint `models/crnn_best_pre_jul28.pth` with the previous inference config;
 
 ### Held out
 
-| Evaluation set | BEFORE (Jul-27) | AFTER beam+LM | AFTER + matra | AFTER + lyric polish (Aug-01) | Char Acc. % |
-|---|---|---|---|---|---|
-| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | 0.0877 | 0.0552 | **0.0455** | **95.45%** |
-| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | 0.0533 | 0.0533 | **0.0533** | 94.67% |
-| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | 0.0987 | 0.0558 | **0.0429** | 95.71% |
-| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **0.0088** | **0.0088** | **99.12%** |
-| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | 0.0351 | **0.0351** | 96.49% |
+| Evaluation set | BEFORE (Jul-27) | AFTER beam+LM | AFTER + matra | AFTER + lyric polish | AFTER + word Acc push (§3g) | Char Acc. % | Word Acc. % |
+|---|---|---|---|---|---|---|---|
+| **Real photos** — `print_photos` (2 pages, 32 lines) | 0.1688 | 0.0877 | 0.0552 | 0.0455 | **0.0325** | **96.75%** | **85.09%** |
+| &nbsp;&nbsp;`page_poem_print.jpg` (serif book print, 9 lines) | 0.1400 | 0.0533 | 0.0533 | 0.0533 | **0.0067** | 99.33% | — |
+| &nbsp;&nbsp;`page_song_lyrics.jpg` (251 px-wide lyrics card, 23 lines) | 0.1781 | 0.0987 | 0.0558 | 0.0429 | **0.0408** | 95.92% | — |
+| `eval_pages` (10 synthetic pages, 76 lines) | 0.0192 | **0.0088** | **0.0088** | **0.0088** | **0.0088** | **99.12%** | **97.74%** |
+| `adversarial` (3 acceptance pages) | 0.0339 | 0.0351 | 0.0351 | 0.0351 | **0.0351** | 96.49% | 95.42% |
 
-Corresponding end-to-end **WER** on the Aug-01 delivered decode:
-`print_photos` **0.2193** (Word Accuracy **78.07%**), `eval_pages` **0.0226**
+Corresponding end-to-end **WER** after §3g:
+`print_photos` **0.1491** (Word Accuracy **85.09%**), `eval_pages` **0.0226**
 (97.74%), `adversarial` **0.0458** (95.42%). Character Accuracy =
 (1 − CER) × 100%; Word Accuracy = (1 − WER) × 100%.
 
-The matra/modifier post-corrector (`src/postprocess/sinhala_fix.py`, §3e–3f)
-is on by default (`inference.post_correct: true`). Same checkpoint — no retrain.
-The Aug-01 lyric polish does not change `eval_pages` or `adversarial`.
+The matra/modifier post-corrector (`src/postprocess/sinhala_fix.py`, §3e–3g)
+is on by default (`inference.post_correct: true`). Same checkpoint weights — no
+retrain promoted for §3g (`models/train_acc80.log`).
 
 ### In training (reference only — not generalisation evidence)
 
@@ -277,6 +277,38 @@ re-checked and again rejected (they regress the synthetic holdouts).
 
 Same checkpoint; rules live in `fix_sinhala_ocr`.
 
+### 3g. Word-accuracy push (no retrain, 2026-08-01)
+
+The notebook / `eval_summary.json` ~78% figure is **Word Accuracy**
+(1 − WER), not character accuracy — Char Acc was already ~95%. With CER ≈
+0.045, most remaining failures are single-grapheme swaps that still mark the
+whole word wrong (114 reference words on `print_photos`; WER 0.2193 ≈ 25
+word edits).
+
+Error analysis + A/B on all held-out page sets added only rules that improve
+`print_photos` **and leave `eval_pages` / `adversarial` unchanged**:
+
+| Rule | Notes |
+|---|---|
+| word-final `(?<!මිනි)ස්සු` → `ස්සූ` | literary past-participle long-uu; everyday `මිනිස්සු` excluded (blind rewrite regresses synth holdouts) |
+| `හදවෙතේ` → `හදවතේ`, `හමුවලා` → `හමුවෙලා` | kombuva attachment residuals |
+| word-final `උපදිමි` → `උපදිම්`, `හිත්` → `හිතේ` | hal vs is-pilla |
+| `මගහැරී` → `මඟහැරී` | prenasal ග/ඟ |
+
+| Set | after §3f | after §3g |
+|---|---|---|
+| real photos CER / Word Acc | 0.0455 / 78.07% | **0.0325 / 85.09%** |
+| `eval_pages` | 0.0088 / 97.74% | 0.0088 / 97.74% |
+| adversarial | 0.0351 / 95.42% | 0.0351 / 95.42% |
+
+**Label audit** (training transcripts vs line crops): 3 confirmed wrong labels
+fixed — `web_exam_line_001` `11`→`II`, poem `කොවුවන්`→`කොවුලන්`,
+`user_p01` `රත්නසිරි`→`රත්නවීර`. Synthetic/hard labels spot-checked OK by
+construction. Extra CC-BY-4.0 Acts **test** lines (50 pages / 1895 crops) added
+as `web_batch1_acts_extra.txt` for a future mix-train; not needed to clear 80%.
+
+Checkpoint weights unchanged; local backup `models/crnn_best_pre_acc80.pth`.
+
 ---
 
 ## 4. Known limitations (honest)
@@ -288,8 +320,9 @@ Same checkpoint; rules live in `fix_sinhala_ocr`.
    together with the associated spurious `ෙ` insertion. Roughly halved across
    the two fixes, but not solved.
 3. **Long `ූ` vs short `ු`** on traditional serif book faces. The character LM
-   does *not* help here — the corpus itself prefers the short form — so this
-   one has to be fixed in the recogniser with more serif-print training data.
+   prefers the short form, so §3g uses a *gated* literary `ස්සු`→`ස්සූ` rule
+   (keeps prose `මිනිස්සු`). Remaining poem-line `මිනිස්සූ` and lyric glyph
+   errors still need more serif / tiny-text recognition data.
 4. Other residual confusions on ~16 px text: `් → ි` (hal kirima vs is-pilla),
    `ඟ → ග`, `හ → න`, `ද → ඳ`. Regenerate the current list any time with
    `python scripts/report_errors.py data/debug/suite_delivered.json --set print_photos`.

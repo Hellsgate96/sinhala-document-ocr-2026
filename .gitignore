@@ -38,6 +38,8 @@ data/real/labels/*
 !data/real/labels/web_batch1.txt
 !data/real/labels/web_batch1_holdout.txt
 !data/real/labels/web_batch1_acts.txt
+!data/real/labels/web_batch1_acts_extra.txt
+!data/real/labels/LABEL_AUDIT.md
 # web_batch1_acts_aug.txt regenerated locally (large)
 # poem_kanyawee_aug.txt / user_batch1_aug.txt / web_batch1_aug.txt are regenerated locally
 # Keep a few example user_batch1 crops for demo reproducibility (not full pages/)
