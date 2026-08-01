@@ -93,17 +93,19 @@ methodology in [`RESULTS.md`](RESULTS.md)):
 
 | Evaluation set | Status | CER | Char Acc. % | WER | Word Acc. % |
 |---|---|---|---|---|---|
-| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0455** | **95.45%** | 0.2193 | 78.07% |
+| Real photographed pages (2 pages, 32 lines) | **held out** | **0.0325** | **96.75%** | **0.1491** | **85.09%** |
 | Synthetic eval pages (10 pages, 76 lines) | held out | **0.0088** | **99.12%** | 0.0226 | 97.74% |
 | Adversarial acceptance pages (3) | held out | 0.0351 | 96.49% | 0.0458 | 95.42% |
 | Real line crops (`user_batch1`, 41) | *in training* | 0.0035 | 99.65% | 0.0222 | 97.78% |
 | Kanyawee poem lines (10) | *in training* | 0.0000 | 100% | 0.0000 | 100% |
 
 *(Character Accuracy = (1 − CER) × 100%; Word Accuracy = (1 − WER) × 100%.
-Real-photo CER was 0.0877 after beam+LM; measured matra + lyric post-correction
-in `src/postprocess/sinhala_fix.py` brings it to **0.0455** with no regression
-on the other held-out sets. Same checkpoint — no retrain. Full write-up:
-[`docs/Project_Report.md`](docs/Project_Report.md), numbers in [`RESULTS.md`](RESULTS.md).)*
+Real-photo CER was 0.0877 after beam+LM; measured matra + lyric polish brought
+it to 0.0455; the §3g word-accuracy push in `src/postprocess/sinhala_fix.py`
+brings held-out real photos to **CER 0.0325 / Word Acc 85.09%** with no
+regression on the other held-out sets. Same checkpoint — no retrain. Full
+write-up: [`docs/Project_Report.md`](docs/Project_Report.md), numbers in
+[`RESULTS.md`](RESULTS.md).)*
 
 Line detection is exact on every page in the suite (76/76, 9/9, 23/23).
 

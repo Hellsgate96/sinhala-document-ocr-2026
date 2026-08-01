@@ -2,7 +2,7 @@
 
 Short answers intended for an MSc review panel. Numbers match `RESULTS.md` and
 `data/metrics/eval_summary.json` for the delivered checkpoint
-`models/crnn_best.pth` (beam+LM + post-correct, Aug-01 polish).
+`models/crnn_best.pth` (beam+LM + post-correct, including §3g word-accuracy push).
 
 ---
 
@@ -19,15 +19,15 @@ stack is preferable to an under-trained larger model.
 CER/WER are standard OCR error rates and expose edit distance, not only
 exact-match. This project also reports **Character Accuracy = (1−CER)×100%** and
 **Word Accuracy = (1−WER)×100%** so the panel can read both conventions. Word
-Accuracy on real photos (78.07%) is much lower than Character Accuracy (95.45%)
+Accuracy on real photos (85.09%) is still lower than Character Accuracy (96.75%)
 because a one-character matra error flips a whole word.
 
 ### What is the headline number I should quote?
 
 Held-out real photographs (`print_photos`, 2 pages / 32 lines):
 
-* CER **0.0455** → Character Accuracy **95.45%**
-* WER **0.2193** → Word Accuracy **78.07%**
+* CER **0.0325** → Character Accuracy **96.75%**
+* WER **0.1491** → Word Accuracy **85.09%**
 
 Do **not** quote `user_batch1` / poem CERs near zero as generalisation; those
 sets are in training.

@@ -20,8 +20,8 @@ combines CTC beam search, a character *n*-gram language model, and a small set o
 measured Sinhala orthographic post-corrections.
 
 The headline **held-out** result on real photographed pages (2 pages, 32 lines,
-never seen in training) is end-to-end **CER 0.0455** (**Character Accuracy 95.45%**)
-and **WER 0.2193** (**Word Accuracy 78.07%**). On held-out synthetic pages the
+never seen in training) is end-to-end **CER 0.0325** (**Character Accuracy 96.75%**)
+and **WER 0.1491** (**Word Accuracy 85.09%**). On held-out synthetic pages the
 pipeline reaches CER **0.0088** (Character Accuracy **99.12%**). Line detection is
 exact on every page in the evaluation suite. The work deliberately separates
 *held-out* evidence from *in-training* reference scores, because synthetic
@@ -55,10 +55,11 @@ matra/lyric correction). Training data combine synthetic text lines, detector-in
 the-loop page crops, and a modest set of real annotated lines. Evaluation is
 reported end-to-end so that detection mistakes count against accuracy.
 
-On the clean real-photo holdout, Character Accuracy reaches **95.45%** (CER
-0.0455). Remaining errors concentrate on very low-resolution lyric text and a few
-serif-print confusions (`ු`/`ූ`, `ේ`/`ී`). The delivered artefact is one general
-checkpoint plus a Jupyter demo that examiners can run without retraining.
+On the clean real-photo holdout, Character Accuracy reaches **96.75%** (CER
+0.0325) and Word Accuracy **85.09%** (WER 0.1491). Remaining errors concentrate
+on very low-resolution lyric text and a few serif-print confusions (`ු`/`ූ`,
+`ේ`/`ී`). The delivered artefact is one general checkpoint plus a Jupyter demo
+that examiners can run without retraining.
 
 ---
 
@@ -282,7 +283,7 @@ lines in order, so missed/merged lines inflate CER.
 
 | Set | Status | CER | Char Acc. % | WER | Word Acc. % |
 |---|---|---|---|---|---|
-| Real photos (`print_photos`, 32 lines) | held out | **0.0455** | **95.45** | **0.2193** | **78.07** |
+| Real photos (`print_photos`, 32 lines) | held out | **0.0325** | **96.75** | **0.1491** | **85.09** |
 | Synthetic pages (`eval_pages`, 76 lines) | held out | **0.0088** | **99.12** | **0.0226** | **97.74** |
 | Adversarial (3 pages) | held out | 0.0351 | 96.49 | 0.0458 | 95.42 |
 | Synthetic val (trainer) | trainer split | 0.0348 | 96.52 | 0.0912 | 90.88 |
@@ -304,8 +305,10 @@ bundled history JSON); held-out CER bar chart from
 2. **Small-text curriculum** — continue-train with crushed lyric-style lines.  
 3. **Beam + character LM** (`lm_weight=0.2`) — improves or ties all holdouts.  
 4. **Matra post-corrector** — large gain on lyrics without hurting other holdouts.  
-5. **Lyric polish (Aug-01)** — CER 0.0552 → **0.0455** on real photos; no
-   regression on `eval_pages` / `adversarial`.
+5. **Lyric polish (Aug-01)** — CER 0.0552 → 0.0455 on real photos; no
+   regression on `eval_pages` / `adversarial`.  
+6. **Word-accuracy push (§3g)** — CER **0.0325** / Word Acc **85.09%** on real
+   photos via safe word-level post-correct rules (checkpoint unchanged).
 
 ### Sample residual errors (held-out)
 
@@ -391,11 +394,12 @@ python scripts/run_eval_suite.py --checkpoint models/crnn_best.pth --out data/de
 This MSc project delivers a working end-to-end OCR system for printed Sinhala
 documents. With careful handling of short line crops, a continue-trained CRNN,
 beam+LM decoding, and a small post-corrector, held-out real photographs reach
-**95.45% Character Accuracy** (CER 0.0455). The work emphasises reproducible
-evaluation and transparent limitations: the real holdout is still small, and
-synthetic validation must not be trusted alone. The repository, checkpoint, and
-demo notebook are organised so that a review panel can inspect both the method
-and the numbers without retraining.
+**96.75% Character Accuracy** (CER 0.0325) and **85.09% Word Accuracy**
+(WER 0.1491). The work emphasises reproducible evaluation and transparent
+limitations: the real holdout is still small, and synthetic validation must not
+be trusted alone. The repository, checkpoint, and demo notebook are organised so
+that a review panel can inspect both the method and the numbers without
+retraining.
 
 ---
 
