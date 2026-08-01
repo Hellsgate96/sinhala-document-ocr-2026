@@ -131,8 +131,8 @@ def format_run_report(
         lines.append("-" * 72)
         lines.append("Ground truth   : not available")
         lines.append(
-            "No CER/WER computed. Provide a sidecar `<image>.gt.txt` (one GT line "
-            "per detected line) or set GT_PATH in the notebook config cell."
+            "No CER/WER computed. Provide a sidecar `<image>.gt.txt` "
+            "(one GT line per detected line)."
         )
         # Optional crude confidence proxy: fraction of lines that look non-empty.
         nonempty = sum(1 for t in pred_lines if t.strip())

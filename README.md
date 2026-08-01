@@ -37,21 +37,20 @@ below to rebuild it instead).
 jupyter lab notebooks/local_pipeline.ipynb
 ```
 
-In the config cell leave training/generation flags `False`, set `TEST_IMAGE_PATH`
-to your image (or leave it empty for a file picker, or set `OCR_TEST_IMAGE`), then
-**Kernel → Restart & Run All**. The demo notebook shows detected line boxes, each
-line crop with its Sinhala prediction, CER/WER with **Character/Word Accuracy %**
-when ground truth is available, plus training curves and held-out summary charts.
-With no image chosen it falls back to a bundled demo page under
-`data/eval_real/print_photos/`. Review-panel write-up:
+Optionally set `TEST_IMAGE_PATH` (or leave empty for the file picker /
+`OCR_TEST_IMAGE`), then **Kernel → Restart & Run All**. The demo loads
+`models/crnn_best.pth`, runs OCR on one page, shows line predictions, prints
+CER/WER with **Character/Word Accuracy %** when a sidecar `.gt.txt` exists, and
+plots training curves plus held-out summary charts. Missing checkpoint → one
+short `FileNotFoundError`. Review-panel write-up:
 [`docs/Project_Report.md`](docs/Project_Report.md) and
-[`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md).
+[`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md). Setup, training, and
+optional flags live in those docs — not in the notebook.
 
-The whole notebook runs in well under a minute on a GPU when the training flags
-are `False`. It is verified to run headlessly:
+Headless:
 
 ```powershell
-$env:OCR_TEST_IMAGE="data/eval_real/print_photos/page_poem_print.jpg"
+$env:OCR_TEST_IMAGE="data/eval_real/print_photos/page_song_lyrics.jpg"
 jupyter nbconvert --to notebook --execute --inplace notebooks/local_pipeline.ipynb
 ```
 
@@ -73,7 +72,7 @@ handover is:
 
 | File | Why |
 |---|---|
-| **`models/crnn_best.pth`** | **the delivered model** — Section 8 of the notebook and every eval script need it. This is the one that matters. |
+| **`models/crnn_best.pth`** | **the delivered model** — the demo notebook and every eval script need it. This is the one that matters. |
 | `models/crnn_best_jul28_e12.pth` | byte-identical copy of it, kept as the restore point |
 | `models/crnn_best_pre_jul28.pth` | the previous checkpoint, only needed to reproduce the "before" column |
 
@@ -86,9 +85,8 @@ model from scratch with *Reproducing the trained model* below (~6 h on a GPU).
 regenerate it separately.
 
 Everything else degrades gracefully: a clean clone with no checkpoint and no
-generated data still passes all 63 tests, and the notebook runs top to bottom
-printing what is missing until Section 8, which stops with an explicit message
-pointing back here.
+generated data still passes all 63 tests. The demo notebook fails fast with a
+short missing-checkpoint error if `models/crnn_best.pth` is absent.
 
 **Headline accuracy** (end-to-end, detection errors included; full table and
 methodology in [`RESULTS.md`](RESULTS.md)):
@@ -218,8 +216,8 @@ python -m src.evaluation.metrics --checkpoint models/crnn_best.pth \
 Character Error Rate (CER), Word Error Rate (WER), field-level accuracy, and average
 **CPU inference time** (see `src/evaluation/metrics.py`).
 
-Training loss / val CER–WER curves and a held-out CER bar chart are plotted in
-`notebooks/local_pipeline.ipynb` §12 and `notebooks/colab_pipeline.ipynb` §7
+Training loss / val CER–WER curves and a held-out CER bar chart are plotted at
+the end of `notebooks/local_pipeline.ipynb` and `notebooks/colab_pipeline.ipynb`
 (`src/evaluation/train_curves.py`; details in [`RESULTS.md`](RESULTS.md) §5).
 
 
@@ -256,9 +254,8 @@ python scripts/generate_data.py --config configs/local.yaml --large
 python -m src.recognition.train --config configs/local.yaml
 ```
 
-Or in `notebooks/local_pipeline.ipynb`: set `RUN_GENERATE=True` /
-`RUN_GENERATE_PAGES=True` / `RUN_TRAIN=True` in Section 4 once, then
-**Restart & Run All**. Later testing leaves those flags `False`.
+Use the CLI commands above for generation/training — the demo notebooks are
+inference-only (see *Typical workflow* below).
 
 ## v3: closing the synthetic-to-real domain gap
 
@@ -387,10 +384,8 @@ python -m src.recognition.train --config configs/local.yaml \
     --extra-labels data/synthetic_pages/train_labels.txt --resume models/crnn_best.pth
 ```
 
-Or in `notebooks/local_pipeline.ipynb`: `RUN_GENERATE=True`, `RUN_GENERATE_PAGES=True`,
-`RUN_BASELINE_TRAIN=True` in Section 4, then run Sections 5-7 (Section 5b is the new
-page supplement). `RESUME_FROM_PRE_V3_CKPT=True` (default) warm-starts from the
-existing `crnn_best.pth` instead of random init.
+Use the CLI commands above for generation/training. The demo notebooks stay
+inference-only; warm-start with `--resume models/crnn_best.pth` as shown.
 
 ## Running Locally (Windows + Jupyter)
 
@@ -428,22 +423,23 @@ Verify the GPU is visible:
 python -c "import torch; print('version:', torch.__version__); print('CUDA:', torch.cuda.is_available()); print(torch.cuda.get_device_name(0) if torch.cuda.is_available() else 'N/A')"
 ```
 
-### Typical workflow (`notebooks/local_pipeline.ipynb`) — Monday demo path
+### Typical workflow — examiner demo vs training
 
-**One general model:** always use `models/crnn_best.pth`. Real Kanyawee poem lines are
-mixed into general training (with heavy augmentation) via `--extra-labels`; there is
-no required second-stage poem fine-tune.
+**One general model:** always use `models/crnn_best.pth`.
 
-| Goal | Flags (Section 4) |
-|------|-------------------|
-| **Test a real image only** | Leave `RUN_GENERATE` / `RUN_GENERATE_PAGES` / `RUN_TRAIN` as `False`; set `TEST_IMAGE_PATH` or use the file picker; **Kernel → Restart & Run All** |
-| **First full train** | Set generate/train flags `True` once (auto-skips later when data/checkpoint exist) |
-| **Refresh synthetic data** | `RUN_GENERATE=True` (and optionally `RUN_GENERATE_PAGES=True`) |
+| Goal | How |
+|------|-----|
+| **Examiner demo (inference only)** | Open `notebooks/local_pipeline.ipynb`, optionally set `TEST_IMAGE_PATH`, **Kernel → Restart & Run All** |
+| **First full train** | CLI: `scripts/generate_data.py` → `scripts/generate_pages.py` → `python -m src.recognition.train` (see below) |
+| **Refresh synthetic data** | `python scripts/generate_data.py --config configs/local.yaml --large` |
 
-Notebook sections: setup → install → fonts → **one control cell** → optional generate → optional page-synth → optional train → **test real image** → optional poem CER → optional debug → **eval text report** → **training curves / CER bar chart**.
+Demo notebook sections (titles only): Setup → Config → Load model → Run OCR →
+Predictions → Evaluation metrics → Training curves. Training-data steps (including
+poem line crops mixed via `--extra-labels`) stay in this README / `RESULTS.md`,
+not in the notebook.
 
 Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
-Optional legacy: `models/crnn_finetuned.pth` is **not** used by the cleaned notebook.
+Optional legacy: `models/crnn_finetuned.pth` is **not** used by the demo notebook.
 
 ### Adding real labeled lines (where files go)
 
@@ -525,12 +521,13 @@ python -m src.recognition.train --config configs/mix_web.yaml `
   --resume models/crnn_best.pth
 ```
 
-**Notebook:** after any `data/real/labels/*_aug.txt` exists, set `RUN_TRAIN=True` and
-Restart & Run All — prefers `configs/mix_web.yaml` and auto-includes every `*_aug.txt`
-plus `data/synthetic_hard/train_labels.txt` / `web_batch1_acts.txt` when present.
+**Train via CLI** (after any `data/real/labels/*_aug.txt` exists), e.g. with
+`configs/mix_web.yaml` and the `--extra-labels` list above — not from the demo
+notebook.
 
-**Test after:** leave train flags `False`, set `TEST_IMAGE_PATH` to a page (e.g. the
-exam cover), Run All; keep `RUN_POEM_CER=True` for poem crops.
+**Test after:** open the demo notebook, set `TEST_IMAGE_PATH` to a page, Restart &
+Run All. Poem-line crop CER checks are a training-data step (CLI / `RESULTS.md`),
+not part of the examiner notebook.
 
 **Note:** `*.pth` checkpoints and large page/hard images are gitignored. Keep a local
 `models/crnn_best.pth` (backup: `models/crnn_best_pre_web.pth`). Labels + `SOURCES.md`
@@ -685,17 +682,16 @@ domain-mix run can trade synthetic CER for real accuracy, always decide which
 one to keep with `scripts/run_eval_suite.py` on the held-out sets, and back up
 the previous checkpoint first (`models/crnn_best_pre_*.pth`).
 
-### Real image test (notebook Section 8)
+### Real image test (demo notebook)
 
 1. Open `notebooks/local_pipeline.ipynb`.
-2. In Section 4, leave train flags `False` if `models/crnn_best.pth` already exists.
+2. Ensure `models/crnn_best.pth` is present.
 3. Set `TEST_IMAGE_PATH` to a page/photo path, or leave it empty and use the picker / demo fallback.
    The `OCR_TEST_IMAGE` environment variable does the same thing for a headless run.
-4. **Kernel → Restart & Run All** — detect lines, show crops + Sinhala predictions + full transcription.
+4. **Kernel → Restart & Run All** — detect lines, show crops + Sinhala predictions, metrics, curves.
 
-If `models/crnn_best.pth` is missing, Sections 5–7 print a clear NOTE and skip
-(they will *not* silently start hours of data generation or training) and
-Section 8 raises a message telling you where to get the checkpoint.
+If `models/crnn_best.pth` is missing, the **Load model** cell raises a short
+`FileNotFoundError` (no generation/training is started from the notebook).
 
 ## Architecture summary
 

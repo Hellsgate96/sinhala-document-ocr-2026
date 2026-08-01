@@ -91,9 +91,14 @@ scope.
 
 1. Place `models/crnn_best.pth` in `models/`.  
 2. Open `notebooks/local_pipeline.ipynb`.  
-3. Optionally set `TEST_IMAGE_PATH` (or use the picker).  
-4. **Kernel → Restart & Run All** (training flags remain off).  
-5. Read Sections 4–7 for predictions, metrics with %, and curves.
+3. Optionally set `TEST_IMAGE_PATH` (or use the picker / leave empty for the
+   bundled demo page).  
+4. **Kernel → Restart & Run All**.  
+5. Read the short sections in order: Load model → Run OCR → Predictions →
+   Evaluation metrics → Training curves.
+
+Training, data generation, and long methodology notes are **not** in the
+notebook — see this FAQ, `docs/Project_Report.md`, and `README.md`.
 
 ### Where is the full write-up?
 

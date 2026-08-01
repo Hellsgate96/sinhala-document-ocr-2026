@@ -335,17 +335,25 @@ jupyter lab notebooks/local_pipeline.ipynb
 
 **Examiner Restart & Run All**
 
-1. Open `notebooks/local_pipeline.ipynb`.  
-2. Optionally set `TEST_IMAGE_PATH` (or leave empty for the file picker).  
-3. Keep install/training off (`RUN_INSTALL=False`).  
+The notebook is a short scientific demo only (setup → load model → OCR →
+predictions → metrics → curves). Long instructions, training, and optional
+generation live in this report / README / FAQ — not in the notebook cells.
+
+1. Place `models/crnn_best.pth` under `models/`.  
+2. Open `notebooks/local_pipeline.ipynb`.  
+3. Optionally set `TEST_IMAGE_PATH` (empty → file picker → bundled
+   `page_song_lyrics.jpg`).  
 4. **Kernel → Restart & Run All**.  
-5. Inspect Sections 4–5 (boxes + Sinhala predictions), Section 6 (metrics /
-   accuracy %), Section 7 (curves + held-out bars).
+5. Inspect: page boxes, per-line Sinhala predictions, CER/WER with accuracy %,
+   training curves and held-out CER bars.
+
+Missing checkpoint raises a single short `FileNotFoundError` (no setup tutorial
+in the notebook).
 
 Headless:
 
 ```powershell
-$env:OCR_TEST_IMAGE="data/eval_real/print_photos/page_poem_print.jpg"
+$env:OCR_TEST_IMAGE="data/eval_real/print_photos/page_song_lyrics.jpg"
 jupyter nbconvert --to notebook --execute --inplace notebooks/local_pipeline.ipynb
 ```
 

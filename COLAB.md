@@ -59,24 +59,29 @@ My Drive/
 
 ## 3. Config cell knobs
 
+The Colab notebook stays minimal (same scientific demo as the local notebook).
+Edit only what you need:
+
 | Variable | Meaning |
 |---|---|
-| `SETUP_MODE` | `"drive"` (default) or `"github"` |
 | `DRIVE_PROJECT_DIR` | folder on Drive that contains `models/crnn_best.pth` |
-| `TEST_IMAGE_PATH` | path to a page image (Drive path or under the project) |
-| `GT_PATH` | optional ground-truth `.gt.txt` (one line per text line) |
+| `DRIVE_ZIP_PATH` | optional zip to unzip once into that folder |
+| `TEST_IMAGE_PATH` | path to a page image (empty → bundled demo page) |
+
+Ground truth is auto-resolved from a sidecar `<image>.gt.txt` next to the test
+image (no separate notebook flag).
 
 ## 4. Run
 
 **Runtime → Run all.** The notebook will:
 
-1. Mount Drive (or clone GitHub and copy the checkpoint from Drive)
+1. Mount Drive and locate the checkpoint (fails fast if missing)
 2. Install dependencies + a Sinhala font
 3. Load `models/crnn_best.pth` + `models/charset.json`
 4. Detect lines, recognise with beam+LM + matra post-correction
 5. Print the **Evaluation metrics** block (CER/WER when GT exists)
-6. Plot **training curves** (loss / val CER–WER / LR) and a held-out CER bar chart
-   from `data/metrics/` (no retrain; see `RESULTS.md` §5)
+6. Plot **training curves** and a held-out CER bar chart from `data/metrics/`
+   (no retrain; see `RESULTS.md` §5)
 
 ## 5. Adding your own test image
 
@@ -86,8 +91,8 @@ My Drive/
 
 ## Alternative: GitHub clone + checkpoint on Drive
 
-If the code is public but the `.pth` stays private on Drive:
-
-1. Set `SETUP_MODE = "github"`.
-2. Keep `models/crnn_best.pth` (and `charset.json`) under `DRIVE_PROJECT_DIR/models/`.
-3. The notebook clones the repo, then copies those two files into the local `models/` folder.
+If the code is public but the `.pth` stays private on Drive, clone the repo in
+a Colab cell, keep `models/crnn_best.pth` (and `charset.json`) under
+`DRIVE_PROJECT_DIR/models/`, and copy those two files into the local `models/`
+folder before running the demo cells. The shipped Colab notebook itself uses the
+Drive-mount path above so examiners only need one zip upload.
