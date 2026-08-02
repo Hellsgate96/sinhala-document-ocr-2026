@@ -41,11 +41,12 @@ Optionally set `TEST_IMAGE_PATH` (or leave empty for the file picker /
 `OCR_TEST_IMAGE`), then **Kernel → Restart & Run All**. The demo loads
 `models/crnn_best.pth`, runs OCR on one page, shows line predictions, prints
 CER/WER with **Character/Word Accuracy %** when a sidecar `.gt.txt` exists, and
-plots training curves plus held-out summary charts. Missing checkpoint → one
-short `FileNotFoundError`. Review-panel write-up:
-[`docs/Project_Report.md`](docs/Project_Report.md) and
-[`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md). Setup, training, and
-optional flags live in those docs — not in the notebook.
+plots training curves plus held-out summary charts. Default Run all is
+inference-only (`RUN_TRAIN = False`); an optional training appendix is at the
+end for viva. Missing checkpoint → one short `FileNotFoundError`. Review-panel
+write-up: [`docs/Project_Report.md`](docs/Project_Report.md) and
+[`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md). Colab upload steps:
+[`COLAB.md`](COLAB.md).
 
 Headless:
 
@@ -431,14 +432,15 @@ python -c "import torch; print('version:', torch.__version__); print('CUDA:', to
 
 | Goal | How |
 |------|-----|
-| **Examiner demo (inference only)** | Open `notebooks/local_pipeline.ipynb`, optionally set `TEST_IMAGE_PATH`, **Kernel → Restart & Run All** |
+| **Examiner demo (inference only)** | Open `notebooks/local_pipeline.ipynb`, pick an image (path or file picker), **Kernel → Restart & Run All** |
+| **Colab live image** | `notebooks/colab_pipeline.ipynb` with `USE_UPLOAD = True` (default) → browser upload |
 | **First full train** | CLI: `scripts/generate_data.py` → `scripts/generate_pages.py` → `python -m src.recognition.train` (see below) |
 | **Refresh synthetic data** | `python scripts/generate_data.py --config configs/local.yaml --large` |
 
 Demo notebook sections (titles only): Setup → Config → Load model → Run OCR →
-Predictions → Evaluation metrics → Training curves. Training-data steps (including
-poem line crops mixed via `--extra-labels`) stay in this README / `RESULTS.md`,
-not in the notebook.
+Predictions → Evaluation metrics → Training curves → Optional: Training
+(`RUN_TRAIN = False` by default). Full data-prep / mix_web continue-train steps
+stay in this README / `RESULTS.md`.
 
 Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
 Optional legacy: `models/crnn_finetuned.pth` is **not** used by the demo notebook.
@@ -686,14 +688,16 @@ the previous checkpoint first (`models/crnn_best_pre_*.pth`).
 
 ### Real image test (demo notebook)
 
-1. Open `notebooks/local_pipeline.ipynb`.
+1. Open `notebooks/local_pipeline.ipynb` (or Colab: `COLAB.md`).
 2. Ensure `models/crnn_best.pth` is present.
-3. Set `TEST_IMAGE_PATH` to a page/photo path, or leave it empty and use the picker / demo fallback.
+3. Set `TEST_IMAGE_PATH` to a page/photo path, or leave it empty and use the
+   local file picker / Colab `files.upload()` / demo fallback.
    The `OCR_TEST_IMAGE` environment variable does the same thing for a headless run.
 4. **Kernel → Restart & Run All** — detect lines, show crops + Sinhala predictions, metrics, curves.
+5. Optional viva train: set `RUN_TRAIN = True` in **Optional: Training** (short demo by default).
 
 If `models/crnn_best.pth` is missing, the **Load model** cell raises a short
-`FileNotFoundError` (no generation/training is started from the notebook).
+`FileNotFoundError`. Default Run all does not start training (`RUN_TRAIN = False`).
 
 ## Architecture summary
 
@@ -746,8 +750,10 @@ Quick path:
    (see `COLAB.md` for the exact file list).
 2. Upload to Drive, e.g. `My Drive/sinhala-document-ocr/`.
 3. Open `notebooks/colab_pipeline.ipynb` with Colaboratory (GPU runtime).
-4. Set `DRIVE_PROJECT_DIR` / `TEST_IMAGE_PATH` in the config cell → **Runtime → Run all**.
-5. The last section prints evaluation metrics (CER/WER when a `.gt.txt` is present).
+4. Set `DRIVE_PROJECT_DIR`. Leave `USE_UPLOAD = True` (default) to pick a real
+   image at runtime, or set `TEST_IMAGE_PATH` → **Runtime → Run all**.
+5. Metrics / curves print after OCR; optional training appendix stays off unless
+   you set `RUN_TRAIN = True`.
 
 ## Reference methods (2021+)
 

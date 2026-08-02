@@ -338,17 +338,26 @@ jupyter lab notebooks/local_pipeline.ipynb
 
 **Examiner Restart & Run All**
 
-The notebook is a short scientific demo only (setup → load model → OCR →
-predictions → metrics → curves). Long instructions, training, and optional
-generation live in this report / README / FAQ — not in the notebook cells.
+Default demo is **inference-only**: setup → load model → OCR → predictions →
+metrics → curves. An **Optional: Training** appendix sits at the end with
+`RUN_TRAIN = False` so Run all stays short; set it `True` only for viva
+questions about the train loop / epoch status.
 
 1. Place `models/crnn_best.pth` under `models/`.  
-2. Open `notebooks/local_pipeline.ipynb`.  
-3. Optionally set `TEST_IMAGE_PATH` (empty → file picker → bundled
-   `page_song_lyrics.jpg`).  
+2. Open `notebooks/local_pipeline.ipynb` (or Colab: see `COLAB.md`).  
+3. Pick a real image: local file picker when `TEST_IMAGE_PATH` is empty; on
+   Colab, `USE_UPLOAD = True` (default) opens `files.upload()` and saves under
+   `data/uploads/`. Cancel → bundled `page_song_lyrics.jpg`.  
 4. **Kernel → Restart & Run All**.  
 5. Inspect: page boxes, per-line Sinhala predictions, CER/WER with accuracy %,
    training curves and held-out CER bars.
+
+**Optional training (viva):** with `RUN_TRAIN = True`, `TRAIN_MODE = "short"`
+runs a few epochs on a small synthetic sample and saves best weights to
+`models/crnn_best.pth` (resume keeps the prior best CER bar). This only
+demonstrates the loop; the delivered model used the full schedule in this
+report / `configs/`. `TRAIN_MODE = "full"` continues with the chosen config and
+can take hours.
 
 Missing checkpoint raises a single short `FileNotFoundError` (no setup tutorial
 in the notebook).

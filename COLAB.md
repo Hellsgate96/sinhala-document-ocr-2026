@@ -25,41 +25,54 @@ If you copied the whole `sinhala-document-ocr` folder to Google Drive:
 
    Use your real Drive path if the folder name or location differs
    (e.g. `/content/drive/MyDrive/Projects/sinhala-document-ocr`).
-5. (Optional) In **Config**, set a real test image:
+5. **Runtime → Run all.**
 
-   ```python
-   TEST_IMAGE_PATH = "data/uploads/my_test.jpg"
-   ```
-
-   Put the file under that path in the Drive project first, or use an absolute
-   path such as `/content/drive/MyDrive/sinhala-document-ocr/data/uploads/my_test.jpg`.
-   Leave empty to run the bundled demo page.
-6. **Runtime → Run all.**
+   By default **Config** has `USE_UPLOAD = True` and an empty `TEST_IMAGE_PATH`,
+   so the **Run OCR** cell opens a browser file picker
+   (`google.colab.files.upload()`). Choose any Sinhala page photo/scan; it is
+   saved under `data/uploads/` and OCR runs on it. Cancel the picker to use the
+   bundled demo page.
 
 The notebook mounts Drive, installs deps from `requirements.txt`, loads
 `models/crnn_best.pth`, runs detection + recognition, prints evaluation metrics,
-and plots training curves from `data/metrics/`.
+and plots training curves from `data/metrics/`. Default **Run all** is
+**inference-only** (`RUN_TRAIN = False` in the optional appendix).
 
 ## Test a real image
 
-**Path (preferred for Run all)**
+**Browser upload (preferred for live demo)**
 
-1. Upload a photo/scan into the Drive project, e.g.
+1. Leave `TEST_IMAGE_PATH = ""` and `USE_UPLOAD = True` (defaults).
+2. Run **Run OCR** (or Runtime → Run all) and pick an image in the Colab upload UI.
+3. Optional: add a sidecar GT next to the saved file
+   (`data/uploads/<name>.gt.txt`, one line per expected text line) and re-run
+   metrics.
+
+**Path (no picker)**
+
+1. Put a photo/scan in the Drive project, e.g.
    `My Drive/sinhala-document-ocr/data/uploads/my_test.jpg`.
-2. Optionally add a sidecar GT file next to it (`my_test.gt.txt`, one line per
-   expected text line) for CER/WER.
-3. Set in **Config**:
+2. In **Config**:
 
    ```python
    TEST_IMAGE_PATH = "data/uploads/my_test.jpg"
+   USE_UPLOAD = False  # optional; path wins anyway when set
    ```
 
-4. Runtime → Run all (or re-run from **Config** downward).
+3. Runtime → Run all (or re-run from **Config** downward).
 
-**Browser upload (optional)**
+## Optional: Training (viva / appendix)
 
-In **Config**, leave `TEST_IMAGE_PATH = ""` and set `USE_UPLOAD = True`, then run
-the **Run OCR** cell and choose a file. Cancel falls back to the bundled demo.
+At the end of the notebook, **Optional: Training** is off by default
+(`RUN_TRAIN = False`) so examiners are not blocked by a long train.
+
+| Mode | When | What it does |
+|---|---|---|
+| `TRAIN_MODE = "short"` (default when enabled) | Panel asks how training works | Few epochs + small synthetic sample; prints epoch / train_loss / val CER; saves best to `models/crnn_best.pth` (resume preserves prior best CER). **Not** the delivered full schedule. |
+| `TRAIN_MODE = "full"` | You want a real continue-train | Uses `TRAIN_CONFIG` (`configs/local.yaml` or `configs/mix_web.yaml`); can take hours on Colab free GPU and needs `data/synthetic/` (+ extras for mix_web). |
+
+Set `RUN_TRAIN = True`, choose mode/config, and run that cell only. Full training
+details are in `docs/Project_Report.md`.
 
 ## Config knobs
 
@@ -67,8 +80,9 @@ the **Run OCR** cell and choose a file. Cancel falls back to the bundled demo.
 |---|---|
 | `DRIVE_PROJECT_DIR` | Drive folder that contains `models/crnn_best.pth` |
 | `DRIVE_ZIP_PATH` | optional zip to unzip once into that folder |
-| `TEST_IMAGE_PATH` | page image (relative to project root, or absolute Drive path) |
-| `USE_UPLOAD` | `True` → Colab file picker when path is empty |
+| `TEST_IMAGE_PATH` | page image (relative to project root, or absolute Drive path); empty → upload/demo |
+| `USE_UPLOAD` | `True` (default) → Colab file picker when path is empty |
+| `RUN_TRAIN` | `False` (default) → skip optional training appendix |
 
 Ground truth is auto-resolved from a sidecar `<image>.gt.txt` (no separate flag).
 
