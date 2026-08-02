@@ -1,27 +1,89 @@
 # Running on Google Colab (via Google Drive)
 
-The trained checkpoint (`models/crnn_best.pth`, ≈120 MB) is **gitignored**, so a
-bare `git clone` is not enough to run inference. The easiest examiner path is:
-zip the project (including the checkpoint), upload to Google Drive, open the
-Colab notebook.
+Same scientific demo as `notebooks/local_pipeline.ipynb`, with Drive mount and
+dependency install. The trained checkpoint (`models/crnn_best.pth`, ≈120 MB) is
+**gitignored**, so it must be present in the Drive copy.
 
-## 1. What to zip / upload
+## Recommended: project already on Drive
 
-From the project root, include at least:
+If you copied the whole `sinhala-document-ocr` folder to Google Drive:
+
+1. Confirm the Drive folder contains at least:
+   - `models/crnn_best.pth`
+   - `models/charset.json`
+   - `src/`, `configs/`, `requirements.txt`
+   - `notebooks/colab_pipeline.ipynb`
+   - `data/eval_real/print_photos/` (demo page + `.gt.txt`)
+   - `data/metrics/` (training curves)
+2. In Drive, open `notebooks/colab_pipeline.ipynb` → **Open with** → **Google Colaboratory**.
+3. Runtime → **Change runtime type** → **GPU** (T4 is fine).
+4. In the **Mount Drive** cell, set:
+
+   ```python
+   DRIVE_PROJECT_DIR = "/content/drive/MyDrive/sinhala-document-ocr"
+   ```
+
+   Use your real Drive path if the folder name or location differs
+   (e.g. `/content/drive/MyDrive/Projects/sinhala-document-ocr`).
+5. (Optional) In **Config**, set a real test image:
+
+   ```python
+   TEST_IMAGE_PATH = "data/uploads/my_test.jpg"
+   ```
+
+   Put the file under that path in the Drive project first, or use an absolute
+   path such as `/content/drive/MyDrive/sinhala-document-ocr/data/uploads/my_test.jpg`.
+   Leave empty to run the bundled demo page.
+6. **Runtime → Run all.**
+
+The notebook mounts Drive, installs deps from `requirements.txt`, loads
+`models/crnn_best.pth`, runs detection + recognition, prints evaluation metrics,
+and plots training curves from `data/metrics/`.
+
+## Test a real image
+
+**Path (preferred for Run all)**
+
+1. Upload a photo/scan into the Drive project, e.g.
+   `My Drive/sinhala-document-ocr/data/uploads/my_test.jpg`.
+2. Optionally add a sidecar GT file next to it (`my_test.gt.txt`, one line per
+   expected text line) for CER/WER.
+3. Set in **Config**:
+
+   ```python
+   TEST_IMAGE_PATH = "data/uploads/my_test.jpg"
+   ```
+
+4. Runtime → Run all (or re-run from **Config** downward).
+
+**Browser upload (optional)**
+
+In **Config**, leave `TEST_IMAGE_PATH = ""` and set `USE_UPLOAD = True`, then run
+the **Run OCR** cell and choose a file. Cancel falls back to the bundled demo.
+
+## Config knobs
+
+| Variable | Meaning |
+|---|---|
+| `DRIVE_PROJECT_DIR` | Drive folder that contains `models/crnn_best.pth` |
+| `DRIVE_ZIP_PATH` | optional zip to unzip once into that folder |
+| `TEST_IMAGE_PATH` | page image (relative to project root, or absolute Drive path) |
+| `USE_UPLOAD` | `True` → Colab file picker when path is empty |
+
+Ground truth is auto-resolved from a sidecar `<image>.gt.txt` (no separate flag).
+
+## Alternative: zip upload
+
+If you prefer a zip instead of a full folder copy, include at least:
 
 | Must include | Why |
 |---|---|
-| `models/crnn_best.pth` | **required** — delivered recogniser (gitignored) |
-| `models/charset.json` | character map (must match the checkpoint) |
-| `src/` | all pipeline code |
-| `configs/` | `local.yaml` / `default.yaml` inference settings |
-| `notebooks/colab_pipeline.ipynb` | the Colab entry point |
-| `requirements.txt` | deps |
-| `data/eval_real/print_photos/` | demo images + `.gt.txt` for CER/WER |
-| `data/metrics/` | bundled train curves + eval CER bar-chart numbers |
-| `fonts/` (optional) | Sinhala fonts; Colab can also `apt-get` Noto |
-
-You do **not** need synthetic training data, old checkpoints, or `data/debug/`.
+| `models/crnn_best.pth` | required checkpoint (gitignored) |
+| `models/charset.json` | character map |
+| `src/`, `configs/`, `requirements.txt` | code + deps |
+| `notebooks/colab_pipeline.ipynb` | Colab entry point |
+| `data/eval_real/print_photos/` | demo images + GT |
+| `data/metrics/` | train curves + held-out CER chart |
 
 Example (PowerShell, from the repo root):
 
@@ -30,69 +92,5 @@ Compress-Archive -Path src,configs,notebooks,models,requirements.txt,fonts,data\
   -DestinationPath sinhala-document-ocr-colab.zip -Force
 ```
 
-Upload `sinhala-document-ocr-colab.zip` to Google Drive, e.g.:
-
-```
-My Drive/
-  sinhala-document-ocr/
-    sinhala-document-ocr-colab.zip
-```
-
-Then unzip once in Colab (the notebook does this), or unzip on Drive into:
-
-```
-My Drive/
-  sinhala-document-ocr/
-    models/crnn_best.pth
-    models/charset.json
-    src/
-    configs/
-    notebooks/colab_pipeline.ipynb
-    ...
-```
-
-## 2. Open the notebook in Colab
-
-1. In Drive, right-click `notebooks/colab_pipeline.ipynb` → **Open with** → **Google Colaboratory**.
-2. Or upload the notebook to Colab and set `DRIVE_PROJECT_DIR` in the first config cell.
-3. Runtime → **Change runtime type** → **GPU** (T4 is fine).
-
-## 3. Config cell knobs
-
-The Colab notebook stays minimal (same scientific demo as the local notebook).
-Edit only what you need:
-
-| Variable | Meaning |
-|---|---|
-| `DRIVE_PROJECT_DIR` | folder on Drive that contains `models/crnn_best.pth` |
-| `DRIVE_ZIP_PATH` | optional zip to unzip once into that folder |
-| `TEST_IMAGE_PATH` | path to a page image (empty → bundled demo page) |
-
-Ground truth is auto-resolved from a sidecar `<image>.gt.txt` next to the test
-image (no separate notebook flag).
-
-## 4. Run
-
-**Runtime → Run all.** The notebook will:
-
-1. Mount Drive and locate the checkpoint (fails fast if missing)
-2. Install dependencies + a Sinhala font
-3. Load `models/crnn_best.pth` + `models/charset.json`
-4. Detect lines, recognise with beam+LM + matra post-correction
-5. Print the **Evaluation metrics** block (CER/WER when GT exists)
-6. Plot **training curves** and a held-out CER bar chart from `data/metrics/`
-   (no retrain; see `RESULTS.md` §5)
-
-## 5. Adding your own test image
-
-1. Upload a photo/scan to Drive (e.g. `My Drive/sinhala-document-ocr/data/uploads/my_page.jpg`).
-2. Optionally add `my_page.gt.txt` next to it (one GT line per expected text line).
-3. Set `TEST_IMAGE_PATH` to that file and re-run.
-
-## Alternative: GitHub clone + checkpoint on Drive
-
-If the code is public but the `.pth` stays private on Drive, clone the repo in
-a Colab cell, keep `models/crnn_best.pth` (and `charset.json`) under
-`DRIVE_PROJECT_DIR/models/`, and copy those two files into the local `models/`
-folder before running the demo cells. The shipped Colab notebook itself uses the
-Drive-mount path above so examiners only need one zip upload.
+Set `DRIVE_ZIP_PATH` in the Mount Drive cell to the zip on Drive; the notebook
+unzips once if the checkpoint is missing.
