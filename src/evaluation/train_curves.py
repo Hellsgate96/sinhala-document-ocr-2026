@@ -299,8 +299,9 @@ def plot_train_curves(
     """
     import matplotlib.pyplot as plt
 
-    from src.utils.display import apply_latin_font, use_latin_plots
+    from src.utils.display import apply_latin_font, latin_fontproperties, use_latin_plots
 
+    fp = latin_fontproperties()
     with use_latin_plots():
         n_rows = 2 + (1 if show_lr and any(v is not None for v in hist.lr) else 0)
         fig, axes = plt.subplots(n_rows, 1, figsize=figsize, sharex=True)
@@ -308,15 +309,20 @@ def plot_train_curves(
             axes = [axes]
         epochs = hist.epochs
         src_name = Path(hist.source).name if hist.source else "train history"
-        fig.suptitle(title or f"Training curves — {src_name}", fontsize=13, fontweight="bold")
+        fig.suptitle(
+            title or f"Training curves — {src_name}",
+            fontsize=13,
+            fontweight="bold",
+            fontproperties=fp,
+        )
 
         ax = axes[0]
         xs, ys = _xy(epochs, hist.train_loss)
         if xs:
             ax.plot(xs, ys, "o-", color="#1f77b4", linewidth=2, markersize=5, label="train loss")
-        ax.set_ylabel("Train loss")
+        ax.set_ylabel("Train loss", fontproperties=fp)
         ax.grid(True, alpha=0.3)
-        ax.legend(loc="upper right")
+        ax.legend(loc="upper right", prop=fp)
 
         ax = axes[1]
         xs, ys = _xy(epochs, hist.val_cer)
@@ -334,25 +340,26 @@ def plot_train_curves(
             xs, ys = _xy(epochs, hist.val_wer)
             if xs:
                 ax.plot(xs, ys, "^-", color="#ff7f0e", linewidth=1.5, markersize=4, label="val WER")
-        ax.set_ylabel("Validation error")
+        ax.set_ylabel("Validation error", fontproperties=fp)
         ax.grid(True, alpha=0.3)
-        ax.legend(loc="upper right")
+        ax.legend(loc="upper right", prop=fp)
 
         if n_rows >= 3:
             ax = axes[2]
             xs, ys = _xy(epochs, hist.lr)
             if xs:
                 ax.plot(xs, ys, "D-", color="#2ca02c", linewidth=2, markersize=4, label="learning rate")
-            ax.set_ylabel("Learning rate")
+            ax.set_ylabel("Learning rate", fontproperties=fp)
             ax.set_yscale("log")
             ax.grid(True, alpha=0.3)
-            ax.legend(loc="upper right")
+            ax.legend(loc="upper right", prop=fp)
 
-        axes[-1].set_xlabel("Epoch")
+        axes[-1].set_xlabel("Epoch", fontproperties=fp)
         fig.tight_layout()
         apply_latin_font(fig)
         if show:
             plt.show()
+            apply_latin_font(fig)
         return fig
 
 
@@ -374,7 +381,7 @@ def plot_eval_cer_bars(
     """
     import matplotlib.pyplot as plt
 
-    from src.utils.display import apply_latin_font, use_latin_plots
+    from src.utils.display import apply_latin_font, latin_fontproperties, use_latin_plots
 
     sets = list(summary.get("sets", []))
     if not sets:
@@ -385,13 +392,14 @@ def plot_eval_cer_bars(
     held = [bool(s.get("held_out", False)) for s in sets]
     colors = ["#2ca02c" if h else "#7f7f7f" for h in held]
 
+    fp = latin_fontproperties()
     with use_latin_plots():
         fig, ax = plt.subplots(figsize=figsize)
         bars = ax.bar(range(len(labels)), cers, color=colors, edgecolor="black", linewidth=0.6)
         ax.set_xticks(range(len(labels)))
-        ax.set_xticklabels(labels, rotation=25, ha="right")
-        ax.set_ylabel("Corpus CER (lower is better)")
-        ax.set_title(title)
+        ax.set_xticklabels(labels, rotation=25, ha="right", fontproperties=fp)
+        ax.set_ylabel("Corpus CER (lower is better)", fontproperties=fp)
+        ax.set_title(title, fontproperties=fp)
         ax.grid(True, axis="y", alpha=0.3)
         for bar, val in zip(bars, cers):
             acc = max(0.0, 1.0 - val) * 100.0
@@ -405,8 +413,8 @@ def plot_eval_cer_bars(
                 ha="center",
                 va="bottom",
                 fontsize=7.5,
+                fontproperties=fp,
             )
-        # Legend
         from matplotlib.patches import Patch
 
         ax.legend(
@@ -415,10 +423,19 @@ def plot_eval_cer_bars(
                 Patch(facecolor="#7f7f7f", edgecolor="black", label="In training (reference)"),
             ],
             loc="upper right",
+            prop=fp,
         )
         note = summary.get("note") or summary.get("checkpoint")
         if note:
-            ax.text(0.01, -0.32, str(note), transform=ax.transAxes, fontsize=8, color="#444444")
+            ax.text(
+                0.01,
+                -0.32,
+                str(note),
+                transform=ax.transAxes,
+                fontsize=8,
+                color="#444444",
+                fontproperties=fp,
+            )
         if show_accuracy:
             ax.text(
                 0.01,
@@ -427,11 +444,13 @@ def plot_eval_cer_bars(
                 transform=ax.transAxes,
                 fontsize=8,
                 color="#444444",
+                fontproperties=fp,
             )
         fig.tight_layout()
         apply_latin_font(fig)
         if show:
             plt.show()
+            apply_latin_font(fig)
         return fig
 
 
