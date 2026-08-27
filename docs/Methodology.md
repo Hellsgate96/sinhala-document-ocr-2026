@@ -2,7 +2,7 @@
 
 **Project:** Sinhala Document OCR (`sinhala-document-ocr`)  
 **Delivered checkpoint:** `models/crnn_best.pth` (CRNN + CTC; continue-trained 2026-07-28)  
-**Companion notebook:** `notebooks/training_methodology.ipynb`  
+**Companion notebook:** `notebooks/training_methodology.ipynb` (preprocessing, CRNN `print(model)`, CTC training loop)  
 **Numerical source of truth:** `RESULTS.md` (reproduced by `scripts/run_eval_suite.py`)
 
 This document is the full training and evaluation methodology. The Jupyter demos
@@ -40,25 +40,97 @@ projection-profile, not a learned DBNet/CRAFT head.
 
 A page image is processed in five stages. Every evaluation script and both demo
 notebooks share one detect-and-recognise path (`src/evaluation/pipeline_eval.py`),
-so what is measured is what a user upload goes through.
+so what is measured is what a user upload goes through. Runnable walkthrough of
+the same stages: `notebooks/training_methodology.ipynb` §§4–7.
 
 ```
 (1) Acquisition     (2) Preprocess      (3) Detection       (4) Recognition      (5) Post-process
- phone / scanner  →  deskew / CLAHE  →  projection lines →  CRNN + CTC decode →  matra / lyric rules
+ phone / scanner  →  deskew / invert  →  projection lines →  CRNN + CTC decode →  matra / lyric rules
+                    + resize H=48
 ```
 
 | Stage | Implementation | Why this choice |
 |---|---|---|
-| Preprocess | `src/preprocessing/`, deskew in `src/detection/text_detection.py` | A few degrees of skew merge adjacent projection bands on photographed columns. Deskew (`detection.deskew: true`, search ±5°) is applied before the ink profile. |
-| Line detection | Horizontal projection on a contrast-binarised ink mask; tall-band re-split at the internal valley | Classical, inspectable, and exact on the evaluation suite (76/76, 9/9, 23/23 lines). Watermark/border suppression avoids treating ornaments as text. |
-| Recognition | CRNN (CNN → BiLSTM → linear) trained with CTC | No character boxes required; fits a single RTX 4060-class GPU. Input height 48 px, variable width (max 512). |
-| Decode | CTC prefix beam search with 6-gram character-LM shallow fusion | Default `decode: beam_lm`, `lm_weight: 0.2`. Swept; higher weights overfit the LM corpus. |
+| Preprocess | Deskew in `src/detection/text_detection.py`; line prep in `src/recognition/inference.py` | A few degrees of skew merge adjacent projection bands. Short crops are *upscaled* to 48 px so training and inference share `resize_keep_height`. |
+| Line detection | `ProjectionLineDetector`: contrast-binarised ink mask, border/watermark suppression, tall-band re-split | Classical, inspectable, exact on the evaluation suite (76/76, 9/9, 23/23 lines). |
+| Recognition | CRNN in `src/recognition/model.py` (CNN → AdaptiveAvgPool → BiLSTM → linear), CTC | No character boxes; fits a single RTX 4060-class GPU. Input `(B, 1, 48, W)`, output `(T, B, 225)`. |
+| Decode | CTC greedy, prefix beam, or beam + 6-gram character-LM (`src/recognition/decode.py`) | Default `decode: beam_lm`, `lm_weight: 0.2`. Swept; higher weights overfit the LM corpus. |
 | Post-correct | `src/postprocess/sinhala_fix.py` | Only rules that improve or tie **every** held-out set. Same checkpoint; no retrain for the final accuracy push. |
 
-Short crops at inference are **upscaled** to 48 px (`pad_to_height: false`).
-Training always resizes with `resize_keep_height`. White-padding a 18 px lyric
-line used to leave glyphs at 18 px inside a 48 px canvas — a train/inference
-mismatch that was measured and then removed (`RESULTS.md` §3a).
+### 2.1 Page-level preprocessing (deskew)
+
+The delivered detector deskew is **not** the min-area-rect helper in
+`src/preprocessing/preprocess.py`. Evaluation (`run_pipeline_on_gray`) estimates
+skew from the ink mask and rotates the page *before* projection:
+
+1. Convert the page to grayscale.
+2. Build an ink mask (`detector.ink_mask` → `binarize_for_detection`).
+3. `estimate_page_skew(mask, max_angle=5.0)`: search \(\theta \in [-5^\circ,+5^\circ]\)
+   (coarse \(0.5^\circ\), then fine \(0.1^\circ\)) maximising the sharpness of the
+   horizontal ink profile
+   \[
+   S(\theta)=\sum_y\left(\sum_x M_\theta(x,y)\right)^2.
+   \]
+4. Apply `rotate_page` only when \(S(\theta^\star)\ge 1.02\,S(0)\) and
+   \(|\theta^\star|\ge 0.3^\circ\) (`detection.deskew_min_angle`). Corners are
+   filled with the page-border median so they are not binarised as fake ink.
+
+`src/preprocessing/preprocess.py` still exposes CLAHE / denoise / Otsu for
+optional document cleaning; the scored path does **not** binarise the page
+before recognition (binarisation is detection-only).
+
+### 2.2 Detection (`ProjectionLineDetector`)
+
+Config (`configs/local.yaml` `detection:`): `method: projection`,
+`min_contrast: 25`, `suppress_borders: true`, `min_ink_frac: 0.004`,
+`min_ink_density: 0.01`, `min_height_frac: 0.35`, crop padding \(10\times5\) px,
+`min_crop_height: 14`.
+
+1. **Binarise.** Local background = large median blur; darkness relative to
+   background; Otsu threshold floored at `min_contrast` (drops faint watermarks).
+   Ink is 255 on 0.
+2. **Suppress borders.** Connected components that span most of the page, or
+   that touch the margin band and are long-and-thin, are erased.
+3. **Horizontal projection.** Rows with ink fraction \(\ge\) `min_ink_frac` form
+   bands. Neighbouring bands merge only when the gap is small *and* one side is
+   a diacritic fragment. Bands taller than \(1.2\times\) the median height are
+   re-split at an internal profile valley (`_split_tall_band`).
+4. **Boxes.** Each band becomes an axis-aligned box hugging the ink extent
+   (`band_to_box`), then relative-height filtering. Reading order: top-to-bottom.
+5. **Crops.** `crop_lines` adds padding and enforces `min_crop_height`.
+
+`OpenCVLineDetector` (morphology + contours) is a config fallback, not the
+delivered method. `DBNetDetector` is an unimplemented placeholder.
+
+### 2.3 Line-crop recognition preprocessing
+
+Each crop is prepared by `prepare_line_for_recognition` /
+`prepare_line_tensor` (`src/recognition/inference.py`). Training
+(`OCRLineDataset`) uses the same height, width cap and normalisation.
+
+1. uint8 grayscale.
+2. Optional median denoise (off: `inference.denoise: false`).
+3. Polarity: invert if `auto_invert` and mean intensity \(< 128\) (light-on-dark
+   titles become dark-on-light).
+4. Height policy (`inference.pad_to_height`):
+   * `true` — white-pad a short crop to 48 px; glyphs stay at the original
+     height inside the canvas.
+   * `false` (**delivered**) — skip padding; `resize_keep_height` *upscales*
+     so glyphs fill 48 px.
+5. Resize keeping aspect ratio, clamp width at 512:
+   \[
+   w'=\min\bigl(512,\; \mathrm{round}(w\cdot 48/h)\bigr).
+   \]
+6. Tensor \(x\in\mathbb{R}^{1\times 48\times w'}\):
+   \[
+   x \leftarrow x/255,\qquad x \leftarrow (x-0.5)/0.5
+   \]
+   so pixels lie in roughly \([-1,1]\). White (\(255\)) becomes \(+1\), which is
+   also the collate pad value.
+
+Short crops at inference are therefore **upscaled** to 48 px. White-padding an
+~18 px lyric line used to leave glyphs at 18 px inside a 48 px canvas — a
+train/inference mismatch that was measured and then removed (`RESULTS.md` §3a).
 
 ---
 
@@ -146,8 +218,43 @@ every transcript the trainer saw. Honest summary: the only fully clean
 ## 4. Model
 
 **Architecture.** Convolutional Recurrent Neural Network (Shi, Bai & Yao,
-*IEEE TPAMI* 2017): CNN backbone → map-to-sequence → two Bidirectional LSTM
-blocks → linear layer over classes. Implementation: `src/recognition/model.py`.
+*IEEE TPAMI* 2017). Implementation is exactly `src/recognition/model.py`: a CNN
+backbone, `AdaptiveAvgPool2d((1, None))` if feature height is not already 1, a
+map-to-sequence permute, two `BidirectionalLSTM` blocks, and a linear CTC head.
+`forward` returns log-probabilities of shape **`(T, B, num_classes)`**.
+
+```mermaid
+flowchart LR
+  A["input (B, 1, 48, W)"] --> B[CNN]
+  B --> C["AdaptiveAvgPool height=1"]
+  C --> D["permute (T, B, C')"]
+  D --> E["BiLSTM 1: LSTM 512→256 x2 layers + Linear 512→256"]
+  E --> F["BiLSTM 2: LSTM 256→256 x1 layer + Linear 512→225"]
+  F --> G["log-softmax (T, B, 225)"]
+```
+
+**CNN layers** (no layers are invented beyond `CRNN.cnn`):
+
+| Block | Layers in `model.py` | Spatial note (H=48) |
+|---|---|---|
+| 1 | Conv 3×3, 1→64, ReLU; MaxPool 2×2 | H/2, W/2 |
+| 2 | Conv 3×3, 64→128, ReLU; MaxPool 2×2 | H/4, W/4 |
+| 3 | Conv 3×3, 128→256, ReLU; Conv 3×3, 256→256, ReLU; MaxPool (2,2) stride (2,1) pad (0,1) | H/8, W/4 |
+| 4 | Conv 3×3, 256→512, **BN**, ReLU; Conv 3×3, 512→512, **BN**, ReLU; MaxPool (2,2) stride (2,1) pad (0,1) | H/16, W/4 |
+| 5 | Conv 2×2, 512→512, **BN**, ReLU (stride 1, pad 0) | height collapses further |
+
+`conv_bn(..., bn=False)` is Conv+ReLU only. BatchNorm appears only on the
+512-channel blocks and the final 2×2 convolution.
+
+**Map-to-sequence.** Squeeze height, then `permute(2, 0, 1)`:
+`(B, C', W') → (T, B, C')` with \(T=W'\).
+
+**Recurrent head.** Two stacked `BidirectionalLSTM` modules:
+
+1. `nn.LSTM(512, 256, num_layers=2, bidirectional=True, dropout=0.1)` +
+   `Linear(512, 256)`. Config `rnn_layers: 2` is this first block’s layer count.
+2. `nn.LSTM(256, 256, num_layers=1, bidirectional=True)` +
+   `Linear(512, num_classes)`.
 
 | Hyperparameter | Value (`configs/local.yaml` / `model`) |
 |---|---|
@@ -155,9 +262,11 @@ blocks → linear layer over classes. Implementation: `src/recognition/model.py`
 | CNN final channels | 512 |
 | BiLSTM hidden (per direction) | 256 |
 | LSTM layers (first block) | 2 |
-| Dropout | 0.1 |
+| Dropout | 0.1 (only inside the first LSTM, because `num_layers>1`) |
 | Charset | **224** printable characters in `models/charset.json` |
 | CTC blank | index 0 → **225** output classes |
+| Parameters | **10,005,217** (`sum(p.numel())` on `build_crnn(225, local.yaml model)`) |
+| I/O | input `(B, 1, 48, W)` → output `(T, B, 225)` |
 
 The charset (`src/charset.py`) covers the Sinhala Unicode block (U+0D80–U+0DFF),
 ZWJ and ZWNJ, ASCII letters and digits, and form punctuation. Conjuncts that
@@ -169,7 +278,9 @@ checkpoint** — class indices must match the saved weights.
 PyTorch `nn.CTCLoss(blank=0, zero_infinity=True)`. CTC removes the need for
 character-level bounding boxes: the network emits a frame-wise distribution
 over 225 symbols; the loss marginalises over all alignments that collapse
-(after removing blanks and repeats) to the Unicode transcript.
+(after removing blanks and repeats) to the Unicode transcript. Greedy decode
+(`Charset.ctc_greedy_decode`) drops blanks and merges repeats; `beam_lm` is
+the delivered inference path (Section 6).
 
 ---
 
@@ -181,7 +292,63 @@ had already seen synthetic lines, page-synth crops, hard styles and real
 mixes. Promotion is decided with `scripts/run_eval_suite.py` on held-out
 pages, **not** with the trainer’s synthetic validation CER alone.
 
-### 5.1 Chronology (from logs on disk + README where a log is empty)
+### 5.1 Training algorithm (`src/recognition/train.py`)
+
+```
+load charset; model ← build_crnn(num_classes, model_cfg)
+criterion ← nn.CTCLoss(blank=0, zero_infinity=True)
+optimizer ← Adam(lr from config); scheduler ← ReduceLROnPlateau on val CER
+train_loader ← synthetic train (capped at synthetic_train_max)
+                ∪ extra-label files (repeat = extra_label_repeat)
+val_loader   ← synthetic val_labels.txt   # greedy CER, not the real holdout
+if resume: load weights; best_cer ← checkpoint CER (else +∞)
+
+for epoch = 1 .. E:
+    # train_one_epoch
+    for images, targets, target_lengths, widths, texts in train_loader:
+        log_probs ← model(images)              # (T, B, C)
+        input_lengths ← T for every item
+        loss ← criterion(log_probs, targets, input_lengths, target_lengths)
+        clip_grad_norm_(max_norm=grad_clip); optimizer.step()
+    val_cer, val_wer ← evaluate_model(val_loader)   # greedy decode
+    save crnn_last.pth
+    if val_cer < best_cer:
+        best_cer ← val_cer; save crnn_best.pth
+    else if patience exceeded: early stop
+    scheduler.step(val_cer)
+```
+
+**Collate.** `_ctc_collate_batch` right-pads images in a batch to the maximum
+width with pad value **1.0** (normalised white). Targets are concatenated;
+`target_lengths` are passed to CTC.
+
+**Extra-labels.** `_merge_label_records` appends each `--extra-labels` file
+after a seed-shuffled cap of the primary synthetic train (`synthetic_train_max`,
+seed 1337). Files under `data/real/` resolve images from `real_dir`; generator
+trees resolve from their own directory. That is how page-synth, hard, tiny,
+poem-aug, user-aug, web-aug and Acts rows share a batch with synthetic lines.
+
+**CLI that produced the delivered `crnn_best.pth`** (`configs/mix_jul28.yaml`):
+
+```powershell
+python -m src.recognition.train --config configs/mix_jul28.yaml `
+    --extra-labels data/synthetic_pages/train_labels.txt `
+    --extra-labels data/synthetic_hard/train_labels.txt `
+    --extra-labels data/synthetic_small/train_labels.txt `
+    --extra-labels data/real/labels/poem_kanyawee_aug.txt `
+    --extra-labels data/real/labels/user_batch1_aug.txt `
+    --extra-labels data/real/labels/web_batch1_aug.txt `
+    --extra-labels data/real/labels/web_batch1_acts_aug.txt `
+    --extra-labels data/real/labels/web_batch1_acts.txt `
+    --resume models/crnn_best.pth
+```
+
+The trainer overwrites `crnn_best.pth` only when **synthetic** val CER
+improves. Because a domain-mix run can trade synthetic CER for real accuracy,
+the previous checkpoint is copied first (`models/crnn_best_pre_jul28.pth`) and
+the keep/reject decision is made from the held-out suite.
+
+### 5.2 Chronology (from logs on disk + README where a log is empty)
 
 | Round | Config / log | Epochs actually logged | Best synthetic val CER | Notes |
 |---|---|---|---|---|
@@ -197,7 +364,7 @@ pages, **not** with the trainer’s synthetic validation CER alone.
 Do not invent a 40-epoch delivered schedule. The shipped recogniser is the
 **12-epoch** Jul-28 continue-train (`RESULTS.md` opening paragraph).
 
-### 5.2 Hyperparameters of the delivered round
+### 5.3 Hyperparameters of the delivered round
 
 From `configs/mix_jul28.yaml` (inherits `mix_web.yaml` → `local.yaml`):
 
@@ -215,20 +382,27 @@ From `configs/mix_jul28.yaml` (inherits `mix_web.yaml` → `local.yaml`):
 | Seed | 1337 |
 | Hardware (development) | NVIDIA RTX 4060 Laptop GPU |
 
+`mix_web.yaml` (parent of this round) already set `lr: 8e-5`, `batch_size: 32`,
+`extra_label_repeat: 1`, `synthetic_train_max: 10000`, `lr_patience: 2` and
+`early_stopping_patience: 8`. `mix_jul28.yaml` only shortens the schedule
+(epochs 12, early-stop patience 6) and adds the tiny-text extra-labels.
+
 The trainer writes `models/crnn_last.pth` every epoch and overwrites
 `models/crnn_best.pth` only when **synthetic** val CER improves. Because a
 domain-mix run can trade synthetic CER for real accuracy, the previous
 checkpoint is copied first (`models/crnn_best_pre_jul28.pth`) and the keep/reject
 decision is made from the held-out suite.
 
-### 5.3 Base (local.yaml) schedule used for from-scratch / v2–v3
+### 5.4 Base (local.yaml) schedule used for from-scratch / v2–v3
 
 | Item | Value |
 |---|---|
 | Epochs | 40 (early stopping patience 8) |
+| Optimiser | Adam (`weight_decay: 0`) |
 | LR | 1×10⁻³, plateau factor 0.5, patience 3, min_lr 1×10⁻⁶ |
 | Batch size | 32 |
-| Save-best metric | CER |
+| Gradient clip | 5.0 |
+| Save-best metric | CER (`train.save_best_metric`) |
 
 ---
 
