@@ -98,10 +98,14 @@ scope.
    curves. For train-loop questions, enable **Optional: Training**
    (`RUN_TRAIN = True`; short demo by default).
 
-Long methodology stays in this FAQ / `docs/Project_Report.md` / `README.md`.
+Long methodology stays in `docs/Methodology.md` /
+`notebooks/training_methodology.ipynb` / this FAQ / `docs/Project_Report.md`.
 
 ### Where is the full write-up?
 
+* `docs/Methodology.md` (and `docs/Methodology.docx`) — how we trained  
+* `notebooks/training_methodology.ipynb` — runnable counts, configs, curves  
 * `docs/Project_Report.md` (and `.docx` if generated)  
-* `RESULTS.md` — methodology of evaluation and ablations  
+* `RESULTS.md` — evaluation protocol and ablations  
 * `README.md` — setup and reproduction commands  
+* Demo (inference only): `notebooks/local_pipeline.ipynb`

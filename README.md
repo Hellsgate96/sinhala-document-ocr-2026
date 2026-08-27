@@ -17,7 +17,9 @@ synthetic Sinhala text-line generator.
 
 ## Quick start (examiner / supervisor)
 
-**Final results, methodology and honest limitations: [`RESULTS.md`](RESULTS.md).**
+**How we trained (counts, configs, curves):** [`notebooks/training_methodology.ipynb`](notebooks/training_methodology.ipynb) and [`docs/Methodology.md`](docs/Methodology.md).  
+**Inference demo (loads `crnn_best.pth` only):** [`notebooks/local_pipeline.ipynb`](notebooks/local_pipeline.ipynb) / Colab [`notebooks/colab_pipeline.ipynb`](notebooks/colab_pipeline.ipynb).  
+**Final results and honest limitations:** [`RESULTS.md`](RESULTS.md).
 
 ```powershell
 git clone <repo> && cd sinhala-document-ocr
@@ -31,7 +33,7 @@ Then place the trained checkpoint at **`models/crnn_best.pth`** (≈120 MB — i
 gitignored, so it is handed over separately; see *Reproducing the trained model*
 below to rebuild it instead).
 
-**Test an image:**
+**Test an image (demo, inference only):**
 
 ```powershell
 jupyter lab notebooks/local_pipeline.ipynb
@@ -44,9 +46,11 @@ CER/WER with **Character/Word Accuracy %** when a sidecar `.gt.txt` exists, and
 plots training curves plus held-out summary charts. Default Run all is
 inference-only (`RUN_TRAIN = False`); an optional training appendix is at the
 end for viva. Missing checkpoint → one short `FileNotFoundError`. Review-panel
-write-up: [`docs/Project_Report.md`](docs/Project_Report.md) and
+write-up: [`docs/Project_Report.md`](docs/Project_Report.md),
+[`docs/Methodology.md`](docs/Methodology.md) and
 [`docs/Review_Panel_FAQ.md`](docs/Review_Panel_FAQ.md). Colab upload steps:
-[`COLAB.md`](COLAB.md).
+[`COLAB.md`](COLAB.md). Training walkthrough (not the demo):
+[`notebooks/training_methodology.ipynb`](notebooks/training_methodology.ipynb).
 
 Headless:
 
@@ -147,15 +151,18 @@ sinhala-document-ocr/
                                  (shared detect+recognize path for all eval scripts)
     postprocess/                dictionary + LM correction
     utils/                      seeding, logging, IO, config loader
-  notebooks/local_pipeline.ipynb   Windows/Jupyter end-to-end notebook (primary)
-  notebooks/colab_pipeline.ipynb   Google Colab end-to-end notebook
+  notebooks/local_pipeline.ipynb   Windows/Jupyter inference demo (primary)
+  notebooks/colab_pipeline.ipynb   Google Colab inference demo
+  notebooks/training_methodology.ipynb  how we trained (counts, logs, curves)
   scripts/                      CLI wrappers (generate_data.py, generate_pages.py,
                                  build_eval_pages.py, build_adversarial_pages.py,
                                  eval_real_images.py, run_realistic_eval.py,
                                  run_eval_suite.py, report_errors.py,
                                  check_holdout_leakage.py, ...)
   data/  models/  tests/
-  RESULTS.md                    final metrics, methodology, limitations
+  RESULTS.md                    final metrics, honest holdout labels
+  docs/Methodology.md           full training methodology (also .docx)
+  docs/Project_Report.md        dissertation-style write-up
 ```
 
 ### Where things live
@@ -207,6 +214,10 @@ python -m src.evaluation.metrics --checkpoint models/crnn_best.pth \
 ```
 
 ## Datasets
+
+Counts, in-train vs held-out labels, and the Jul-28 mix total (**70,115** rows)
+are tabulated in [`docs/Methodology.md`](docs/Methodology.md) and counted on
+disk in [`notebooks/training_methodology.ipynb`](notebooks/training_methodology.ipynb).
 
 - **Synthetic** Sinhala text lines rendered with Sinhala fonts (Noto Sans Sinhala,
   FM Abhaya, Iskoola Pota, Malithi Web, Nirmala UI) via `src/data/synthetic_generator.py`
@@ -432,15 +443,16 @@ python -c "import torch; print('version:', torch.__version__); print('CUDA:', to
 
 | Goal | How |
 |------|-----|
+| **How we trained** (counts, configs, logs, curves) | Open `notebooks/training_methodology.ipynb` — see also [`docs/Methodology.md`](docs/Methodology.md) |
 | **Examiner demo (inference only)** | Open `notebooks/local_pipeline.ipynb`, pick an image (path or file picker), **Kernel → Restart & Run All** |
 | **Colab live image** | `notebooks/colab_pipeline.ipynb` with `USE_UPLOAD = True` (default) → browser upload |
 | **First full train** | CLI: `scripts/generate_data.py` → `scripts/generate_pages.py` → `python -m src.recognition.train` (see below) |
 | **Refresh synthetic data** | `python scripts/generate_data.py --config configs/local.yaml --large` |
 
-Demo notebook sections (titles only): Setup → Config → Load model → Run OCR →
+Demo notebooks stay inference-only: Setup → Config → Load model → Run OCR →
 Predictions → Evaluation metrics → Training curves → Optional: Training
-(`RUN_TRAIN = False` by default). Full data-prep / mix_web continue-train steps
-stay in this README / `RESULTS.md`.
+(`RUN_TRAIN = False` by default). Full data-prep / mix continue-train steps
+stay in [`docs/Methodology.md`](docs/Methodology.md) / this README / `RESULTS.md`.
 
 Checkpoints: `models/crnn_best.pth` (general model; gitignored — keep a local copy after training).
 Optional legacy: `models/crnn_finetuned.pth` is **not** used by the demo notebook.

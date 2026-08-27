@@ -36,8 +36,10 @@ validation CER alone was shown to be a misleading model-selection signal.
 | Title | End-to-End Optical Character Recognition for Printed Sinhala Documents |
 | Programme | MSc in Computer Science, University of Moratuwa |
 | Scope language | Sinhala (printed); Tamil and handwriting out of scope |
-| Demo notebook | `notebooks/local_pipeline.ipynb` |
-| Colab notebook | `notebooks/colab_pipeline.ipynb` |
+| Demo notebook (inference) | `notebooks/local_pipeline.ipynb` |
+| Colab notebook (inference) | `notebooks/colab_pipeline.ipynb` |
+| Methodology notebook | `notebooks/training_methodology.ipynb` |
+| Methodology write-up | `docs/Methodology.md` (also `.docx`) |
 
 ---
 
@@ -165,6 +167,13 @@ flowchart LR
 
 ## 8. Methodology
 
+A fully explained account — problem, data table with on-disk counts, train/val/test
+splits, hyperparameters, CTC, decode, post-correct, metric definitions, results,
+limitations and reproduce CLI — is in **`docs/Methodology.md`** (Word copy:
+`docs/Methodology.docx`). The runnable walkthrough is
+`notebooks/training_methodology.ipynb`. What follows is the condensed chapter
+used in this report.
+
 ### 8.1 Preprocessing
 
 Pages may be slightly rotated. The detector path estimates a deskew angle
@@ -226,15 +235,26 @@ regress synthetic holdouts.
 
 ## 9. Dataset
 
-| Source | Role | Notes |
-|---|---|---|
-| Synthetic lines (`data/synthetic`) | Primary train/val/test split | Multi-font render + camera-style augment |
-| Synthetic pages (`data/synthetic_pages`) | Detector-in-the-loop crops | Real detector run on rendered pages |
-| Hard / small lines | Curriculum for tiny text | e.g. `data/synthetic_small` |
-| Real labelled lines | Domain adaptation | `user_batch1`, web batch, poem lines |
-| `data/eval_pages/` | Held-out synthetic pages | 10 pages, 76 lines |
-| `data/eval_real/print_photos/` | **Held-out real photos** | 2 pages, 32 lines |
-| `data/eval_real/adversarial/` | Held-out acceptance pages | 3 synthetic stress pages |
+Counts from label files on the development machine (gitignored image trees may
+be absent on a clone). Full table: `docs/Methodology.md` §3.
+
+| Source | Lines / crops | Role | Status |
+|---|---|---|---|
+| Synthetic lines (`data/synthetic`) | 30,000 (21,000 / 4,500 / 4,500 train/val/test) | Primary CRNN corpus, split 70/15/15 | Generator split |
+| Page-synth (`data/synthetic_pages`) | 25,545 (21,713 train + 3,832 val) | Detector-in-the-loop extra-labels | In mix |
+| Hard lines | 12,000 | Pill/dark/serif/tiny styles | In mix |
+| Tiny curriculum (`synthetic_small`) | 10,000 (11–26 px) | Jul-28 continue-train | In mix |
+| Poem lines | 10 unique / 810 aug | Training mix only | **In training** |
+| `user_batch1` | 91 labelled / 3,731 aug | Real page crops | **In training** (historical 41-line “holdout” folded in) |
+| `web_batch1` | 6 unique / 486 aug | Exam-cover style | **In training** |
+| HF Acts (CC-BY-4.0) | 2,275 + 9,100 aug | Legal print mix | **In training** |
+| `data/eval_pages/` | 10 pages, 76 lines | Held-out synthetic pages | Held out |
+| `data/eval_real/print_photos/` | **2 pages, 32 lines** | **Held-out real photos** | **Held out** |
+| `data/eval_real/adversarial/` | 3 pages, 26 lines | Held-out acceptance pages | Held out |
+
+Jul-28 delivered continue-train merged **70,115** rows (`synthetic_train_max`
+10,000 + extras above). `synthetic_small2` (10,000) was used only in the
+**rejected** Jul-29 run.
 
 Leakage audit (`scripts/check_holdout_leakage.py`):
 
@@ -257,6 +277,7 @@ top of an earlier general CRNN:
 | Batch size | 32 |
 | Input height | 48 |
 | Best synthetic val CER | **0.0348** (epoch 12) |
+| Merged train rows | ~70,115 (`synthetic_train_max` 10k + extras) |
 | Hardware (development) | NVIDIA RTX 4060 Laptop GPU |
 
 Important negative result (`RESULTS.md` §3d): a later continue-train reached
@@ -291,9 +312,9 @@ lines in order, so missed/merged lines inflate CER.
 | `web_batch1` (14 lines) | partial leak | 0.0000 | 100.00 | 0.0000 | 100.00 |
 | `poem_kanyawee` (10 lines) | in train | 0.0000 | 100.00 | 0.0000 | 100.00 |
 
-Plots: training loss / val CER–WER curves from `models/train_jul28.log` (or
-bundled history JSON); held-out CER bar chart from
-`data/metrics/eval_summary.json`, labelled with Character Accuracy %.
+Full training methodology (counts, configs, logs, curves) lives in
+`notebooks/training_methodology.ipynb` and `docs/Methodology.md`. The demo
+notebooks stay inference-only.
 
 ---
 
@@ -333,7 +354,8 @@ git clone <repo> && cd sinhala-document-ocr
 python -m venv .venv; .venv\Scripts\activate
 pip install -r requirements.txt
 # place models/crnn_best.pth (gitignored) into models/
-jupyter lab notebooks/local_pipeline.ipynb
+jupyter lab notebooks/local_pipeline.ipynb          # inference demo
+jupyter lab notebooks/training_methodology.ipynb    # how we trained
 ```
 
 **Examiner Restart & Run All**
@@ -427,7 +449,8 @@ retraining.
    alternative considered but not used as the delivered training path.  
 5. Unicode Consortium, *The Unicode Standard* — Sinhala block and ZWJ conjunct
    behaviour (ongoing standard; essential for charset design).  
-6. Project artefacts: `RESULTS.md`, `README.md`, `data/metrics/eval_summary.json`
+6. Project artefacts: `RESULTS.md`, `docs/Methodology.md`, `README.md`,
+   `data/metrics/eval_summary.json`
    (implementation-specific evaluation record for this dissertation project).
 
 *Prefer citing the peer-reviewed CRNN/CTC papers in the viva; treat project files

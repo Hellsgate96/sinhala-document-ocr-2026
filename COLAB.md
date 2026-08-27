@@ -1,8 +1,15 @@
 # Running on Google Colab (via Google Drive)
 
-Same scientific demo as `notebooks/local_pipeline.ipynb`, with Drive mount and
-dependency install. The trained checkpoint (`models/crnn_best.pth`, ≈120 MB) is
-**gitignored**, so it must be present in the Drive copy.
+Two Colab entry points:
+
+* **Inference demo:** `notebooks/colab_pipeline.ipynb` (same as
+  `notebooks/local_pipeline.ipynb`) — loads `models/crnn_best.pth` and runs OCR.
+* **How we trained:** `notebooks/training_methodology.ipynb` — dataset counts,
+  configs, parsed logs/curves, eval table. Prose: `docs/Methodology.md`.
+
+The trained checkpoint (`models/crnn_best.pth`, ≈120 MB) is **gitignored**, so
+it must be present in the Drive copy for the **demo**. The methodology notebook
+still runs counts and curves without it.
 
 ## Recommended: project already on Drive
 
@@ -95,7 +102,8 @@ If you prefer a zip instead of a full folder copy, include at least:
 | `models/crnn_best.pth` | required checkpoint (gitignored) |
 | `models/charset.json` | character map |
 | `src/`, `configs/`, `requirements.txt` | code + deps |
-| `notebooks/colab_pipeline.ipynb` | Colab entry point |
+| `notebooks/colab_pipeline.ipynb` | Colab inference demo |
+| `notebooks/training_methodology.ipynb` | How we trained (optional on Colab) |
 | `data/eval_real/print_photos/` | demo images + GT |
 | `data/metrics/` | train curves + held-out CER chart |
 

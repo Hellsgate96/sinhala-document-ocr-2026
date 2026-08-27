@@ -343,9 +343,10 @@ Notebooks plot training dynamics and a held-out CER bar chart (no GPU needed):
   `models/train_history.json` (written each epoch by `src/recognition/train.py`) or
   the bundled `data/metrics/train_history_jul28.json`.
 - **Bar chart:** `data/metrics/eval_summary.json` — same end-to-end CER figures as §2.
-- **Where:** `notebooks/local_pipeline.ipynb` §7 and `notebooks/colab_pipeline.ipynb` §7
-  (training curves + held-out CER / Character Accuracy % bars). Helpers live in
-  `src/evaluation/train_curves.py`.
+- **Where:** `notebooks/training_methodology.ipynb` (full methodology walkthrough);
+  demo notebooks `local_pipeline.ipynb` / `colab_pipeline.ipynb` §7 also plot the
+  same curves after inference. Helpers: `src/evaluation/train_curves.py`.
+  Prose: `docs/Methodology.md`.
 
 Restart & Run All on either notebook is enough; Section 6 still prints the
 per-image CER/WER and accuracy-% text report.
