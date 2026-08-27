@@ -1,18 +1,34 @@
-"""Jupyter / matplotlib helpers for Sinhala Unicode in notebooks."""
+"""Jupyter / matplotlib helpers for Sinhala Unicode in notebooks.
+
+Sinhala predictions are shown via UTF-8 print / HTML (``display_sinhala_table``),
+not via matplotlib. Metric plots use English labels and must keep a Latin-capable
+font (see ``use_latin_plots``) — Noto Sans Sinhala lacks Latin glyphs and causes
+tofu boxes / ``Glyph missing`` warnings if set as the global matplotlib family.
+"""
 
 from __future__ import annotations
 
+import contextlib
 import glob
 import html
 import sys
 import warnings
 from pathlib import Path
-from typing import Iterable, Optional, Sequence
+from typing import Iterator, Optional, Sequence
 
 from src.utils.common import configure_stdout_utf8
 
 _registered_font_path: Optional[str] = None
 _registered_font_name: Optional[str] = None
+
+# Latin-capable stack for English metric plots (titles, axes, legends).
+_LATIN_SANS_SERIF = (
+    "DejaVu Sans",
+    "Bitstream Vera Sans",
+    "Arial",
+    "Helvetica",
+    "sans-serif",
+)
 
 
 def configure_display_utf8() -> None:
@@ -88,8 +104,18 @@ def sinhala_font_css_family(font_path: Optional[str] = None) -> str:
     return "'Nirmala UI', 'Noto Sans Sinhala', sans-serif"
 
 
-def setup_matplotlib_sinhala(font_path: Optional[str] = None) -> Optional[str]:
-    """Register a Sinhala font with matplotlib and set it as the default family."""
+def setup_matplotlib_sinhala(
+    font_path: Optional[str] = None,
+    *,
+    set_as_default: bool = False,
+) -> Optional[str]:
+    """Register a Sinhala font with matplotlib (for rare Sinhala plot labels).
+
+    By default this does **not** change the global ``font.family`` — Sinhala OCR
+    demos use print/HTML for predictions, and English metric plots need a
+    Latin-capable face. Pass ``set_as_default=True`` only when deliberately
+    drawing Sinhala text with matplotlib.
+    """
     global _registered_font_path, _registered_font_name
 
     import matplotlib.pyplot as plt
@@ -99,7 +125,8 @@ def setup_matplotlib_sinhala(font_path: Optional[str] = None) -> Optional[str]:
     if path is None:
         warnings.warn(
             "No Sinhala-capable font found for matplotlib. "
-            "Titles and labels may show missing glyphs (tofu). "
+            "Sinhala plot labels may show missing glyphs (tofu). "
+            "Predictions via print/HTML are unaffected. "
             "On Windows use Nirmala UI; on Linux install fonts-noto-core or "
             "run scripts/download_fonts.ps1 to fetch Noto Sans Sinhala into fonts/.",
             UserWarning,
@@ -110,16 +137,73 @@ def setup_matplotlib_sinhala(font_path: Optional[str] = None) -> Optional[str]:
     font_manager.fontManager.addfont(str(path))
     prop = font_manager.FontProperties(fname=str(path))
     name = prop.get_name()
-    plt.rcParams["font.family"] = name
-    sans = [name]
-    for fallback in ("DejaVu Sans", "sans-serif"):
-        if fallback not in sans:
-            sans.append(fallback)
-    plt.rcParams["font.sans-serif"] = sans
 
     _registered_font_path = str(path)
     _registered_font_name = name
+
+    if set_as_default:
+        # Prefer Latin fallbacks first so English labels still render if this
+        # font lacks Latin glyphs (Noto Sans Sinhala typically does).
+        plt.rcParams["font.family"] = "sans-serif"
+        sans = list(_LATIN_SANS_SERIF)
+        if name not in sans:
+            sans.append(name)
+        plt.rcParams["font.sans-serif"] = sans
+
     return _registered_font_path
+
+
+def ensure_latin_plot_fonts() -> None:
+    """Set matplotlib rcParams to a Latin-capable sans-serif stack.
+
+    Prefer this for English metric plots. Matplotlib often resolves glyph fonts
+    lazily at draw time, so a temporary ``rc_context`` alone is not enough if
+    the figure is shown after the context exits.
+    """
+    import matplotlib.pyplot as plt
+
+    plt.rcParams["font.family"] = "sans-serif"
+    plt.rcParams["font.sans-serif"] = list(_LATIN_SANS_SERIF)
+
+
+def apply_latin_font(fig) -> None:
+    """Bake DejaVu Sans (or first available Latin face) onto all text artists."""
+    from matplotlib import font_manager
+
+    prop = font_manager.FontProperties(family="DejaVu Sans")
+    texts = []
+    if getattr(fig, "_suptitle", None) is not None:
+        texts.append(fig._suptitle)
+    for ax in fig.axes:
+        texts.extend(
+            [
+                ax.title,
+                ax.xaxis.label,
+                ax.yaxis.label,
+                *ax.get_xticklabels(),
+                *ax.get_yticklabels(),
+                *ax.texts,
+            ]
+        )
+        leg = ax.get_legend()
+        if leg is not None:
+            texts.extend(leg.get_texts())
+            if leg.get_title() is not None:
+                texts.append(leg.get_title())
+    for t in texts:
+        if t is not None:
+            t.set_fontproperties(prop)
+
+
+@contextlib.contextmanager
+def use_latin_plots() -> Iterator[None]:
+    """Force Latin fonts for the duration of English metric plotting.
+
+    Sets rcParams for the block and does **not** restore a prior Sinhala face —
+    English plots must keep a Latin-capable default for later Jupyter redraws.
+    """
+    ensure_latin_plot_fonts()
+    yield
 
 
 def display_sinhala_table(

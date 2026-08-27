@@ -292,61 +292,68 @@ def plot_train_curves(
 ):
     """Plot train loss, val CER/(WER), and optional LR vs epoch.
 
+    Uses a Latin-capable font so English labels are not broken by a global
+    Sinhala matplotlib face (Noto Sans Sinhala lacks Latin glyphs).
+
     Returns a matplotlib Figure (caller can ``plt.show()`` or display in Jupyter).
     """
     import matplotlib.pyplot as plt
 
-    n_rows = 2 + (1 if show_lr and any(v is not None for v in hist.lr) else 0)
-    fig, axes = plt.subplots(n_rows, 1, figsize=figsize, sharex=True)
-    if n_rows == 1:
-        axes = [axes]
-    epochs = hist.epochs
-    src_name = Path(hist.source).name if hist.source else "train history"
-    fig.suptitle(title or f"Training curves — {src_name}", fontsize=13, fontweight="bold")
+    from src.utils.display import apply_latin_font, use_latin_plots
 
-    ax = axes[0]
-    xs, ys = _xy(epochs, hist.train_loss)
-    if xs:
-        ax.plot(xs, ys, "o-", color="#1f77b4", linewidth=2, markersize=5, label="train loss")
-    ax.set_ylabel("Train loss")
-    ax.grid(True, alpha=0.3)
-    ax.legend(loc="upper right")
+    with use_latin_plots():
+        n_rows = 2 + (1 if show_lr and any(v is not None for v in hist.lr) else 0)
+        fig, axes = plt.subplots(n_rows, 1, figsize=figsize, sharex=True)
+        if n_rows == 1:
+            axes = [axes]
+        epochs = hist.epochs
+        src_name = Path(hist.source).name if hist.source else "train history"
+        fig.suptitle(title or f"Training curves — {src_name}", fontsize=13, fontweight="bold")
 
-    ax = axes[1]
-    xs, ys = _xy(epochs, hist.val_cer)
-    if xs:
-        ax.plot(xs, ys, "s-", color="#d62728", linewidth=2, markersize=5, label="val CER")
-        if hist.best_val_cer is not None:
-            ax.axhline(
-                hist.best_val_cer,
-                color="#d62728",
-                linestyle="--",
-                alpha=0.5,
-                label=f"best CER = {hist.best_val_cer:.4f}",
-            )
-    if show_wer:
-        xs, ys = _xy(epochs, hist.val_wer)
+        ax = axes[0]
+        xs, ys = _xy(epochs, hist.train_loss)
         if xs:
-            ax.plot(xs, ys, "^-", color="#ff7f0e", linewidth=1.5, markersize=4, label="val WER")
-    ax.set_ylabel("Validation error")
-    ax.grid(True, alpha=0.3)
-    ax.legend(loc="upper right")
-
-    if n_rows >= 3:
-        ax = axes[2]
-        xs, ys = _xy(epochs, hist.lr)
-        if xs:
-            ax.plot(xs, ys, "D-", color="#2ca02c", linewidth=2, markersize=4, label="learning rate")
-        ax.set_ylabel("Learning rate")
-        ax.set_yscale("log")
+            ax.plot(xs, ys, "o-", color="#1f77b4", linewidth=2, markersize=5, label="train loss")
+        ax.set_ylabel("Train loss")
         ax.grid(True, alpha=0.3)
         ax.legend(loc="upper right")
 
-    axes[-1].set_xlabel("Epoch")
-    fig.tight_layout()
-    if show:
-        plt.show()
-    return fig
+        ax = axes[1]
+        xs, ys = _xy(epochs, hist.val_cer)
+        if xs:
+            ax.plot(xs, ys, "s-", color="#d62728", linewidth=2, markersize=5, label="val CER")
+            if hist.best_val_cer is not None:
+                ax.axhline(
+                    hist.best_val_cer,
+                    color="#d62728",
+                    linestyle="--",
+                    alpha=0.5,
+                    label=f"best CER = {hist.best_val_cer:.4f}",
+                )
+        if show_wer:
+            xs, ys = _xy(epochs, hist.val_wer)
+            if xs:
+                ax.plot(xs, ys, "^-", color="#ff7f0e", linewidth=1.5, markersize=4, label="val WER")
+        ax.set_ylabel("Validation error")
+        ax.grid(True, alpha=0.3)
+        ax.legend(loc="upper right")
+
+        if n_rows >= 3:
+            ax = axes[2]
+            xs, ys = _xy(epochs, hist.lr)
+            if xs:
+                ax.plot(xs, ys, "D-", color="#2ca02c", linewidth=2, markersize=4, label="learning rate")
+            ax.set_ylabel("Learning rate")
+            ax.set_yscale("log")
+            ax.grid(True, alpha=0.3)
+            ax.legend(loc="upper right")
+
+        axes[-1].set_xlabel("Epoch")
+        fig.tight_layout()
+        apply_latin_font(fig)
+        if show:
+            plt.show()
+        return fig
 
 
 def plot_eval_cer_bars(
@@ -361,8 +368,13 @@ def plot_eval_cer_bars(
 
     When ``show_accuracy`` is True, each bar is also labelled with
     Character Accuracy = (1 − CER) × 100%.
+
+    Forces a Latin-capable font so English labels render even if a Sinhala
+    face was set as the global matplotlib default.
     """
     import matplotlib.pyplot as plt
+
+    from src.utils.display import apply_latin_font, use_latin_plots
 
     sets = list(summary.get("sets", []))
     if not sets:
@@ -373,52 +385,54 @@ def plot_eval_cer_bars(
     held = [bool(s.get("held_out", False)) for s in sets]
     colors = ["#2ca02c" if h else "#7f7f7f" for h in held]
 
-    fig, ax = plt.subplots(figsize=figsize)
-    bars = ax.bar(range(len(labels)), cers, color=colors, edgecolor="black", linewidth=0.6)
-    ax.set_xticks(range(len(labels)))
-    ax.set_xticklabels(labels, rotation=25, ha="right")
-    ax.set_ylabel("Corpus CER (lower is better)")
-    ax.set_title(title)
-    ax.grid(True, axis="y", alpha=0.3)
-    for bar, val in zip(bars, cers):
-        acc = max(0.0, 1.0 - val) * 100.0
-        label = f"{val:.4f}"
-        if show_accuracy:
-            label = f"{val:.4f}\n({acc:.1f}%)"
-        ax.text(
-            bar.get_x() + bar.get_width() / 2,
-            bar.get_height(),
-            label,
-            ha="center",
-            va="bottom",
-            fontsize=7.5,
-        )
-    # Legend
-    from matplotlib.patches import Patch
+    with use_latin_plots():
+        fig, ax = plt.subplots(figsize=figsize)
+        bars = ax.bar(range(len(labels)), cers, color=colors, edgecolor="black", linewidth=0.6)
+        ax.set_xticks(range(len(labels)))
+        ax.set_xticklabels(labels, rotation=25, ha="right")
+        ax.set_ylabel("Corpus CER (lower is better)")
+        ax.set_title(title)
+        ax.grid(True, axis="y", alpha=0.3)
+        for bar, val in zip(bars, cers):
+            acc = max(0.0, 1.0 - val) * 100.0
+            label = f"{val:.4f}"
+            if show_accuracy:
+                label = f"{val:.4f}\n({acc:.1f}%)"
+            ax.text(
+                bar.get_x() + bar.get_width() / 2,
+                bar.get_height(),
+                label,
+                ha="center",
+                va="bottom",
+                fontsize=7.5,
+            )
+        # Legend
+        from matplotlib.patches import Patch
 
-    ax.legend(
-        handles=[
-            Patch(facecolor="#2ca02c", edgecolor="black", label="Held out"),
-            Patch(facecolor="#7f7f7f", edgecolor="black", label="In training (reference)"),
-        ],
-        loc="upper right",
-    )
-    note = summary.get("note") or summary.get("checkpoint")
-    if note:
-        ax.text(0.01, -0.32, str(note), transform=ax.transAxes, fontsize=8, color="#444444")
-    if show_accuracy:
-        ax.text(
-            0.01,
-            -0.40,
-            "Bar labels: CER (Character Accuracy % = (1 − CER) × 100)",
-            transform=ax.transAxes,
-            fontsize=8,
-            color="#444444",
+        ax.legend(
+            handles=[
+                Patch(facecolor="#2ca02c", edgecolor="black", label="Held out"),
+                Patch(facecolor="#7f7f7f", edgecolor="black", label="In training (reference)"),
+            ],
+            loc="upper right",
         )
-    fig.tight_layout()
-    if show:
-        plt.show()
-    return fig
+        note = summary.get("note") or summary.get("checkpoint")
+        if note:
+            ax.text(0.01, -0.32, str(note), transform=ax.transAxes, fontsize=8, color="#444444")
+        if show_accuracy:
+            ax.text(
+                0.01,
+                -0.40,
+                "Bar labels: CER (Character Accuracy % = (1 − CER) × 100)",
+                transform=ax.transAxes,
+                fontsize=8,
+                color="#444444",
+            )
+        fig.tight_layout()
+        apply_latin_font(fig)
+        if show:
+            plt.show()
+        return fig
 
 
 def format_eval_summary_table(summary: Mapping[str, Any]) -> str:
